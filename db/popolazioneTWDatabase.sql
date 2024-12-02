@@ -3,7 +3,7 @@ VALUES
 ('Mattia Negri', 'Polypoly', 'polipoly@example.com', 1, 'Via Roma 10', 'Milano'),
 ('Luisa Bianchi', 'securePass456', 'luisa.bianchi@example.com', 0, 'Via Milano 5', 'Roma');
 
-INSERT INTO CATEGORIE (nome, descrizione)
+INSERT INTO CATEGORIA (nome, descrizione)
 VALUES 
 ('Computer', 'Dispositivo elettronico'),
 ('Telefono', 'Dispositivo elettronico portabile');
