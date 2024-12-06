@@ -1,3 +1,7 @@
+a:hover {
+    color:var(--bs-black) !important;
+}
+
 .text-custom-gold {
     color: #AA8539 !important;
 }
@@ -14,4 +18,10 @@
     background-color: #2E4272 !important;
 }
 
+.bg-custom-lblue {
+    background-color: #4F618f !important;
+}
 
+.rm-border {
+    border:none;
+}
