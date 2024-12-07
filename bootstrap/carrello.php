@@ -27,7 +27,7 @@
                 <?php for ($i=0; $i < 2 ; $i++) { ?>
                 <div class="row justify-content-center border border-1 border-secondary my-4 py-2">
                     <a class="col-auto text-center" href="#">
-                        <img class="img-fluid" src="img/temp.jpg" alt="" style="max-width: 200px;" />
+                        <img class="img-fluid img-preview-size" src="img/temp.jpg" alt="" />
                     </a>
                     <div class="col-sm text-center text-sm-start">
                         <h2 class="col">Nome del Prodotto</h2>
