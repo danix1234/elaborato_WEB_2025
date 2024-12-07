@@ -37,7 +37,7 @@
 <!-- recensioni TODO da cambiare con foreach ecc..-->
 <section class="mt-2">
         <h3 class="fw-bold mb-3">Recensioni</h3>
-        <ul>
+        <ul class="p-0">
             <li class="d-flex align-items-start mb-3">
                 <img src="img/temp.jpg" class="rounded-circle me-3 user-avatar-size" alt="Profilo Utente" />
                 <div>
