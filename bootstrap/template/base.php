@@ -14,7 +14,7 @@
 </head>
 
 <body class="bg-white">
-    <header class="container-fluid p-0 overflow-hidden bg-custom-blue">
+    <header class="container-fluid p-0 py-2 overflow-hidden bg-custom-blue">
 
         <div class="row d-flex align-items-center justify-content-center px-1">
             <div class="col-3">
