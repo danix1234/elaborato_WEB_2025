@@ -1,27 +1,27 @@
 a:hover {
-    color:var(--bs-black) !important;
+    color: var(--bs-black);
 }
 
 .text-custom-gold {
-    color: #AA8539 !important;
+    color: #AA8539;
 }
 
 .bg-custom-gold {
-    background-color: #AA8539 !important;
+    background-color: #AA8539;
 }
 
 .bg-custom-lgold {
-    background-color: #D4B26A !important;
+    background-color: #D4B26A;
 }
 
 .bg-custom-blue {
-    background-color: #2E4272 !important;
+    background-color: #2E4272;
 }
 
 .bg-custom-lblue {
-    background-color: #4F618f !important;
+    background-color: #4F618f;
 }
 
 .rm-border {
-    border:none;
+    border: none;
 }
