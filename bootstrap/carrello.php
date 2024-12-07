@@ -31,7 +31,7 @@
                     </a>
                     <div class="col-sm text-center text-sm-start">
                         <h2 class="col">Nome del Prodotto</h2>
-                        <p class="col">Descrizione molto lunga del prodotto da acquistare
+                        <p class="col">Descrizione molto lunga del prodotto da acquistare</p>
                         <div class="row justify-content-center justify-content-sm-start">
                             <label class="col-auto">Quantità <input type="number" name="id" value="1" min="1" max="100"
                                     id="id">
