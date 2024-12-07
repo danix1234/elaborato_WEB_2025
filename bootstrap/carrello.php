@@ -36,7 +36,7 @@
                             <label class="col-auto">Quantità <input type="number" name="id" value="1" min="1" max="100"
                                     id="id">
                             </label>
-                            <button class="col-auto btn btn-sm bg-custom-lgold" type="button">Rimuovi</button>
+                            <button class="col-auto btn btn-sm bg-custom-lgold bg-custom-gold-hover" type="button">Rimuovi</button>
                             <span class="col-auto">Prezzo: 19.99$</span>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                 <div class="ms-4 my-4 p-2 border border-1 border-secondary">
                     <span> Prezzo totale (2 prodotti): 29.98$ </span>
                     <div class="row justify-content-center">
-                        <button class="col-auto btn btn-sm bg-custom-lgold" type="button">Acquista</button>
+                        <button class="col-auto btn btn-sm bg-custom-lgold bg-custom-gold-hover" type="button">Acquista</button>
                     </div>
                 </div>
             </div>
