@@ -1,9 +1,13 @@
-a:hover {
-    color: var(--bs-black);
+a:hover { /* TODO togliere forse? */
+    color: #000; 
 }
 
 .text-custom-gold {
     color: #AA8539;
+}
+
+.text-custom-lgold {
+    color: #D4B26A;
 }
 
 .bg-custom-gold {
@@ -21,6 +25,29 @@ a:hover {
 .bg-custom-lblue {
     background-color: #4F618f;
 }
+
+.btn-custom-lgold {
+    background-color: #D4B26A;
+    color: #000;
+    border: none;
+}
+
+.btn-custom-lgold:hover {
+    background-color: #AA8539;
+    color: #000;
+}
+
+.btn-custom-gold {
+    background-color: #AA8539;
+    color: #000;
+    border: none;
+}
+
+.btn-custom-gold:hover {
+    background-color: #805D15;
+    color: #fff;
+}
+
 
 .rm-border {
     border: none;
