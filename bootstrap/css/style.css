@@ -26,6 +26,22 @@ a:hover { /* TODO togliere forse? */
     background-color: #4F618f;
 }
 
+.bg-custom-gold-hover:hover {
+    background-color: #AA8539;
+}
+
+.bg-custom-lgold-hover:hover {
+    background-color: #D4B26A;
+}
+
+.bg-custom-blue-hover:hover {
+    background-color: #2E4272;
+}
+
+.bg-custom-lblue-hover:hover {
+    background-color: #4F618f;
+}
+
 .btn-custom-lgold {
     background-color: #D4B26A;
     color: #000;
@@ -51,4 +67,9 @@ a:hover { /* TODO togliere forse? */
 
 .rm-border {
     border: none;
+}
+
+.img-preview-size {
+    max-width: 200px;
+    max-height: 200px;
 }
