@@ -36,7 +36,13 @@
         </section>
 
         <!--resoconto finale-->
-        <section>
+        <section class="text-center">
+            <div class="row">
+                <p>Prezzo totale (n prodotti): 16.69$</p>
+            </div>
+            <div class="row">
+                <button type="button" class="btn bg-custom-lgold">Procedi all'acquisto</button>
+            </div>
         </section>
     </div>
 </div>
