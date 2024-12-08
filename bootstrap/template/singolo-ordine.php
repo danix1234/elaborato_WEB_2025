@@ -1,7 +1,7 @@
 <!--title of entire page-->
 <header class="row">
     <h1 class="col text-center">
-        Carrello
+        Ordine
     </h1>
 </header>
 
@@ -22,12 +22,7 @@
                         <p>Descrizione non troppo lunga e non troppo complessa del prodotto.</p>
                     </div>
                     <div class="row justify-content-between">
-                        <div class="col-auto">
-                            <label class="col-auto">Quantità <input type="number" name="id" value="1" min="1"
-                                    max="100" />
-                            </label>
-                            <button class="col-auto" type="button">Rimuovi</button>
-                        </div>
+                        <span class="col-auto">Quantità: 1</span>
                         <span class="col-auto">Prezzo: 19.99$</span>
                     </div>
                 </div>
@@ -36,12 +31,9 @@
         </section>
 
         <!--resoconto finale-->
-        <section class="text-center col-md-4">
+        <section class="text-center">
             <div class="row">
                 <p>Prezzo totale (n prodotti): 16.69$</p>
-            </div>
-            <div class="row">
-                <button type="button" class="btn bg-custom-lgold">Procedi all'acquisto</button>
             </div>
         </section>
     </div>
