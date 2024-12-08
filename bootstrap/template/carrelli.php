@@ -8,13 +8,13 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <!--prodotti-->
-        <section class="">
+        <section>
             <?php for ($i=0; $i < 5 ; $i++) { ?>
             <div>
-                <a class="" href="#">
+                <a href="#">
                     <img class="img-fluid" src="img/temp.jpg" alt="" />
                 </a>
-                <div class="">
+                <div>
                     <div class="row">
                         <h2>Nome del prodotto</h2>
                     </div>
@@ -36,7 +36,7 @@
         </section>
 
         <!--resoconto finale-->
-        <section class="">
+        <section>
         </section>
     </div>
 </div>
