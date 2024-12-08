@@ -55,7 +55,7 @@
         </nav>
     </div> -->
 
-    <main class="container mt-2">
+    <main class="container my-2">
         <?php
         if (isset($templateParams["nome"])) {
             require($templateParams["nome"]);
