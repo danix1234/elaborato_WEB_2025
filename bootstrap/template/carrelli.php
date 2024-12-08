@@ -10,11 +10,11 @@
         <!--prodotti-->
         <section class="col-md-8">
             <?php for ($i=0; $i < 5 ; $i++) { ?>
-            <div>
-                <a href="#">
+            <div class="row">
+                <a class="col-md-4" href="#">
                     <img class="img-fluid" src="img/temp.jpg" alt="" />
                 </a>
-                <div>
+                <div class="col-md-8">
                     <div class="row">
                         <h2>Nome del prodotto</h2>
                     </div>
