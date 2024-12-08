@@ -1,44 +1,52 @@
 <!--title of entire page-->
-<header class="row bb-4">
+<header class="row">
     <h1 class="col text-center">
         Carrello
     </h1>
 </header>
 
-<div class="container-fluid p-sm-4 pt-4 p-0">
-
-    <div class="row justify-content-center px-4">
-        <div class="col-auto">
-            <?php for ($i=0; $i < 2 ; $i++) { ?>
-            <div class="row justify-content-center border border-1 border-secondary my-4 py-2">
-                <a class="col-sm-4 col-xl-auto text-center" href="#">
-                    <img class="img-fluid img-preview-size" src="img/temp.jpg" alt="" />
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <!--prodotti-->
+        <section class="">
+            <?php for ($i=0; $i < 5 ; $i++) { ?>
+            <div>
+                <a class="" href="#">
+                    <img class="img-fluid" src="img/temp.jpg" alt="" />
                 </a>
-                <div class="col-sm-8 text-center text-sm-start">
-                    <h2 class="col">Nome del Prodotto</h2>
-                    <p class="col">Descrizione molto lunga del prodotto da
-                        acquistareaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah</p>
-                    <div class="row justify-content-center justify-content-sm-start">
-                        <label class="col-auto">Quantità <input type="number" name="id" value="1" min="1" max="100"
-                                id="id">
-                        </label>
-                        <button class="col-auto btn btn-sm bg-custom-lgold bg-custom-gold-hover"
-                            type="button">Rimuovi</button>
+                <div class="">
+                    <div class="row">
+                        <h2>Nome del prodotto</h2>
+                    </div>
+                    <div class="row">
+                        <p>Descrizione non troppo lunga e non troppo complessa del prodotto.</p>
+                    </div>
+                    <div class="row justify-content-between">
+                        <div class="col-auto">
+                            <label class="col-auto">Quantità <input type="number" name="id" value="1" min="1"
+                                    max="100" />
+                            </label>
+                            <button class="col-auto" type="button">Rimuovi</button>
+                        </div>
                         <span class="col-auto">Prezzo: 19.99$</span>
                     </div>
                 </div>
             </div>
             <?php } ?>
-        </div>
+        </section>
 
-        <div class="col-auto">
-            <div class="ms-4 my-4 p-2 border border-1 border-secondary">
-                <span> Prezzo totale (2 prodotti): 29.98$ </span>
-                <div class="row justify-content-center">
-                    <button class="col-auto btn btn-sm bg-custom-lgold bg-custom-gold-hover"
-                        type="button">Acquista</button>
-                </div>
-            </div>
-        </div>
+        <!--resoconto finale-->
+        <section class="">
+        </section>
     </div>
 </div>
+<!--    <div class="col-auto">-->
+<!--        <div class="ms-4 my-4 p-2 border border-1 border-secondary">-->
+<!--            <span> Prezzo totale (2 prodotti): 29.98$ </span>-->
+<!--            <div class="row justify-content-center">-->
+<!--                <button class="col-auto btn btn-sm bg-custom-lgold bg-custom-gold-hover"-->
+<!--                    type="button">Acquista</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
