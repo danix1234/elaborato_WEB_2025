@@ -14,7 +14,22 @@
 </head>
 
 <body class="bg-white">
-    
+
+    <header class="bg-custom-blue py-2">
+        <div class="container d-flex justify-content-center">
+            <a href="#" class="d-block">
+                <img src="./img/temp.jpg" alt="Logo" class="img-fluid" style="max-height: 50px;"> <!-- TODO Inline css -->
+            </a>
+        </div>
+    </header>
+
+    <main class="container my-2">
+        <?php
+        if (isset($templateParams["nome"])) {
+            require($templateParams["nome"]);
+        }
+        ?>
+    </main>
 
     <footer class="text-center bg-custom-blue text-white">
         sono il footer
