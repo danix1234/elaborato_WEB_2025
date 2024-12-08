@@ -8,7 +8,7 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <!--prodotti-->
-        <section>
+        <section class="col-md-8">
             <?php for ($i=0; $i < 5 ; $i++) { ?>
             <div>
                 <a href="#">
@@ -36,7 +36,7 @@
         </section>
 
         <!--resoconto finale-->
-        <section class="text-center">
+        <section class="text-center col-md-4">
             <div class="row">
                 <p>Prezzo totale (n prodotti): 16.69$</p>
             </div>
