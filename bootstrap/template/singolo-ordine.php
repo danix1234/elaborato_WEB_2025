@@ -38,13 +38,3 @@
         </section>
     </div>
 </div>
-<!--    <div class="col-auto">-->
-<!--        <div class="ms-4 my-4 p-2 border border-1 border-secondary">-->
-<!--            <span> Prezzo totale (2 prodotti): 29.98$ </span>-->
-<!--            <div class="row justify-content-center">-->
-<!--                <button class="col-auto btn btn-sm bg-custom-lgold bg-custom-gold-hover"-->
-<!--                    type="button">Acquista</button>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->

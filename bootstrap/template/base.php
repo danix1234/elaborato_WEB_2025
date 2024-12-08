@@ -44,17 +44,6 @@
         </div>
     </header>
 
-    <!-- category -->
-    <!-- <div class="row px-2 overflow-auto bg-custom-lblue">
-        <nav class="nav d-flex flex-nowrap w-100">
-            <a class="nav-link text-white" href="#">categoria1</a>
-            <a class="nav-link text-white" href="#">categoria2</a>
-            <a class="nav-link text-white" href="#">categoria3</a>
-            <a class="nav-link text-white" href="#">categoria4</a>
-            <a class="nav-link text-white" href="#">categoria5</a>
-        </nav>
-    </div> -->
-
     <main class="container mt-2">
         <?php
         if (isset($templateParams["nome"])) {
