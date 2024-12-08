@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="it">
 
@@ -65,3 +66,11 @@
 </body>
 
 </html>
+=======
+<?php 
+
+$templateParams["nome"] = "carrelli.php";
+
+require("template/base.php");
+?>
+>>>>>>> main
