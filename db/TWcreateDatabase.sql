@@ -28,7 +28,7 @@ create table CARRELLO (
 create table CATEGORIA (
      codCategoria int not null auto_increment,
      nome varchar(20) not null,
-     descrizione varchar(300) not null,
+     descrizione varchar(511) not null,
      constraint ID_CATEGORIA_ID primary key (codCategoria));
 
 create table DETTAGLIO_ORDINE (
@@ -39,7 +39,7 @@ create table DETTAGLIO_ORDINE (
 
 create table NOTIFICA (
      codNotifica int not null auto_increment,
-     messaggio varchar(200) not null,
+     messaggio varchar(255) not null,
      tipoNotifica varchar(20) not null,
      letto char not null,
      dataNotifica datetime not null,
@@ -50,7 +50,7 @@ create table RECENSIONE (
      codUtente int not null,
      codProdotto int not null,
      votoRecensione int not null,
-     commento varchar(500) not null,
+     commento varchar(511) not null,
      dataRecensione datetime not null,
      constraint ID_RECENSIONE_ID primary key (codUtente, codProdotto));
 
@@ -66,22 +66,23 @@ create table ORDINE (
 create table PRODOTTO (
      codProdotto int not null auto_increment,
      nome varchar(30) not null,
-     descrizione varchar(300) not null,
+     descrizione varchar(255) not null,
      quantitaResidua int not null,
      prezzo int not null,
-     immagine varchar(30) not null,
+     immagine varchar(50) not null,
      codCategoria int not null,
      constraint ID_PRODOTTO_ID primary key (codProdotto));
 
 create table UTENTE (
      codUtente int not null auto_increment,
      nomeUtente varchar(20) not null,
-     password varchar(20) not null,
+     password varchar(255) not null,
      email varchar(30) not null,
      privilegi char not null,
      indirizzo varchar(30) not null,
      citta varchar(20) not null,
-     constraint ID_UTENTE_ID primary key (codUtente));
+     constraint ID_UTENTE_ID primary key (codUtente),
+     constraint ID_UTENTE_EMAIL unique (email));
 
 
 -- Constraints Section
@@ -169,3 +170,5 @@ create index FKfa_parte_IND
 create unique index ID_UTENTE_IND
      on UTENTE (codUtente);
 
+create unique index ID_UTENTE_EM
+     on UTENTE (email);
