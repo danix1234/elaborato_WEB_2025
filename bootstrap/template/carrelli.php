@@ -26,7 +26,7 @@
                             <label class="col-auto">Quantità <input type="number" name="id" value="1" min="1"
                                     max="100" />
                             </label>
-                            <button class="col-auto" type="button">Rimuovi</button>
+                            <button class="col-auto bg-custom-lgold" type="button">Rimuovi</button>
                         </div>
                         <span class="col-auto">Prezzo: 19.99$</span>
                     </div>
