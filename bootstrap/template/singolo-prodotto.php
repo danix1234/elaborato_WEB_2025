@@ -32,7 +32,7 @@
     <button class="btn btn-custom-gold">Compra Subito</button>
 </div>
 
-<hr>
+<hr/>
 
 <!-- recensioni TODO da cambiare con foreach ecc..-->
 <section class="mt-2">
