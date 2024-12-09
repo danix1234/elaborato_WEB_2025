@@ -1,6 +1,6 @@
+/*
 a:hover {
-    /* TODO togliere forse? */
-    color: #000;
+color: #000;
 }
 
 .text-custom-gold {
@@ -82,5 +82,14 @@ a:hover {
 
 .button-size {
     width: 40px;
-    /* per larghezza bottoni consistenti */
+}
+
+*/
+
+.btn {
+    background-color: #AA8539;
+}
+
+.btn:hover {
+    background-color: #AA8539;
 }

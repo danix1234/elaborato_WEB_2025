@@ -10,8 +10,8 @@
     <div class="row">
         <div class="col-xl-6">
             <img class="img-fluid" src="img/temp.jpg" alt="">
-            <label class="form-label" for="">Scegli Immagine </label>
-            <input class="form-control" type="file" name="" value="">
+            <label class="form-label visually-hidden" for="">Scegli Immagine </label>
+            <input class="form-control" type="file" accept="image/png, image/jpeg" name="" value="">
         </div>
         <div class="col-xl-6">
             <label class="form-label" for="">Nome</label>
@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <button class="btn btn-primary col-auto" type="submit">Inserisci</button>
-        <button class="btn btn-primary col-auto" type="reset">Annulla</button>
+        <button class="btn col-auto" type="submit">Inserisci</button>
+        <button class="btn col-auto" type="reset">Annulla</button>
     </div>
 </form>
