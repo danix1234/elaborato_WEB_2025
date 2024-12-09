@@ -26,7 +26,7 @@
             <label class="form-label" for="">Quantità residua</label>
             <div class="input-group">
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement">-</button>
-                <input class="form-control" type="text" name="" value="1" />
+                <input class="form-control" type="text" name="" value="" />
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment">+</button>
             </div>
         </div>
