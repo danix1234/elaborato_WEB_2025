@@ -10,7 +10,7 @@
 <!-- costo e stelle -->
 <div class="row d-flex align-items-center justify-content-between mb-3">
     <div class="col-3 text-center fw-bold fs-5">€10,70</div>
-    <div class="col text-start"><span class="bi bi-star-fill text-custom-lgold"></span> 4.5/5</div>
+    <div class="col text-end"><span class="bi bi-star-fill text-custom-lgold"></span> 4.5/5</div>
 </div>
 <!-- quantita -->
 <div class="row align-items-center mb-3">
@@ -19,9 +19,9 @@
     </div>
     <div class="col">
         <div class="input-group">
-            <button class="btn btn-outline-secondary button-size" type="button" id="decrement">-</button>
-            <input id="quantita" type="number" class="form-control text-center border-secondary" value="1" min="1">
-            <button class="btn btn-outline-secondary button-size" type="button" id="increment">+</button>
+            <button class="btn btn-outline-secondary font-monospace" type="button" id="decrement">-</button>
+            <input id="quantita" type="text" class="form-control text-center border-secondary" value="1" min="1">
+            <button class="btn btn-outline-secondary font-monospace" type="button" id="increment">+</button>
         </div>
     </div>
 </div>
