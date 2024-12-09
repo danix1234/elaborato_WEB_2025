@@ -24,7 +24,11 @@
                 <span class="input-group-text">$</span>
             </div>
             <label class="form-label" for="">Quantità residua</label>
-            <input class="form-control" type="text" min="1" max="10000" name="" value="1" required />
+            <div class="input-group">
+                <button class="input-group-text font-monospace" type="button" id="decrement">-</button>
+                <input class="form-control" type="text" name="" value="1" />
+                <button class="input-group-text font-monospace" type="button" id="increment">+</button>
+            </div>
         </div>
     </div>
     <div class="row justify-content-center">
