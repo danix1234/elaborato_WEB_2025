@@ -8,12 +8,12 @@
 <!--modifica del prodotto-->
 <form action="#" method="">
     <div class="row">
-        <div class="col-xl-6">
+        <div class="col-md-6">
             <img class="img-fluid" src="img/temp.jpg" alt="">
             <label class="form-label visually-hidden" for="">Scegli Immagine </label>
             <input class="form-control" type="file" accept="image/png, image/jpeg" name="" value="">
         </div>
-        <div class="col-xl-6">
+        <div class="col-md-6">
             <label class="form-label" for="">Nome</label>
             <input class="form-control" type="text" name="" value="" />
             <label class="form-label" for="">Descrizione</label>
@@ -24,11 +24,11 @@
                 <span class="input-group-text">$</span>
             </div>
             <label class="form-label" for="">Quantità residua</label>
-            <input class="form-control" type="number" min="1" max="10000" name="" value="1" required />
+            <input class="form-control" type="text" min="1" max="10000" name="" value="1" required />
         </div>
     </div>
     <div class="row justify-content-center">
-        <button class="btn col-auto" type="submit">Inserisci</button>
-        <button class="btn col-auto" type="reset">Annulla</button>
+        <button class="btn bg-custom-lgold bg-custom-gold-hover col-auto" type="submit">Inserisci</button>
+        <button class="btn border col-auto" type="reset">Annulla</button>
     </div>
 </form>
