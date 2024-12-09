@@ -6,7 +6,7 @@
 </header>
 
 <!--modifica del prodotto-->
-<form action="#" method="">
+<form action="#" method="get">
     <div class="row">
         <div class="col-md-6">
             <img class="img-fluid" src="img/temp.jpg" alt="">
@@ -25,9 +25,9 @@
             </div>
             <label class="form-label" for="">Quantità residua</label>
             <div class="input-group">
-                <button class="input-group-text font-monospace" type="button" id="decrement">-</button>
+                <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement">-</button>
                 <input class="form-control" type="text" name="" value="1" />
-                <button class="input-group-text font-monospace" type="button" id="increment">+</button>
+                <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment">+</button>
             </div>
         </div>
     </div>
