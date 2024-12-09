@@ -27,19 +27,24 @@ a:hover {
     background-color: #4F618f;
 }
 
-.bg-custom-gold-hover:hover {
+.bg-custom-gold-hover:hover,
+.bg-custom-gold-hover:focus {
     background-color: #AA8539;
 }
 
-.bg-custom-lgold-hover:hover {
+
+.bg-custom-lgold-hover:hover,
+.bg-custom-lgold-hover:focus {
     background-color: #D4B26A;
 }
 
-.bg-custom-blue-hover:hover {
+.bg-custom-blue-hover:hover,
+.bg-custom-blue-hover:focus {
     background-color: #2E4272;
 }
 
-.bg-custom-lblue-hover:hover {
+.bg-custom-lblue-hover:hover,
+.bg-custom-lblue-hover:focus {
     background-color: #4F618f;
 }
 
