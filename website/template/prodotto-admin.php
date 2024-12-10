@@ -9,7 +9,7 @@
 <form action="#" method="get">
     <div class="row">
         <div class="col-md-6">
-            <img class="img-fluid" src="img/temp.jpg" alt="" />
+            <img class="img-fluid" src="img/temp.jpg" alt="immagine descrittiva del prodotto" />
             <label class="form-label visually-hidden" for="">Scegli Immagine </label>
             <input class="form-control" type="file" accept="image/png, image/jpeg" name="" value="" />
         </div>
