@@ -6,7 +6,7 @@
 </header>
 
 <!--modifica del prodotto-->
-<form action="#" method="get">
+<form action="#" method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-6">
             <img class="img-fluid" src="img/temp.jpg" alt="immagine descrittiva del prodotto" />
