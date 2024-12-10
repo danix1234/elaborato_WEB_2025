@@ -33,7 +33,7 @@
         </div>
     </div>
     <div class="row justify-content-evenly my-4">
-        <button class="btn bg-custom-lgold bg-custom-gold-hover col-auto" type="submit" id="submit">Inserisci</button>
-        <button class="btn border col-auto" type="reset" id="reset">Annulla</button>
+        <button class="focus-ring btn bg-custom-lgold bg-custom-gold-hover col-auto" type="submit" id="submit">Inserisci</button>
+        <button class="focus-ring btn border col-auto" type="reset" id="reset">Annulla</button>
     </div>
 </form>
