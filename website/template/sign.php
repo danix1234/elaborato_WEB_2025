@@ -1,5 +1,5 @@
-<div class="row justify-content-center">
-    <div class="col-12 col-md-6 col-lg-4"> <!-- md for md size screen lg for large (desktop) -->
+<div class="row justify-content-center mx-1">
+    <div class="col-12 col-md-6 col-lg-4 border pb-2">
         <form method="POST">
             <h2 class="text-center fw-bold mb-4">Crea account</h2>
 
