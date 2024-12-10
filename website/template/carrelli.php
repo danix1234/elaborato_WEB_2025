@@ -1,10 +1,10 @@
 <!--title of entire page-->
-<header class="row">
+<header class="row my-2">
     <div class="col-1"> </div>
-    <h1 class="col text-center">
+    <h1 class="col text-center my-0">
         Carrello
     </h1>
-    <a href="#buy" class="col-1">
+    <a href="#buy" class="col-1 d-flex align-items-center justify-content-center">
         <i class="bi bi-arrow-down-circle-fill fs-5"></i>
     </a>
 </header>
