@@ -44,7 +44,7 @@
         </div>
     </header>
 
-    <main class="container-fluid mt-2">
+    <main class="container-fluid">
         <?php
         if (isset($templateParams["nome"])) {
             require($templateParams["nome"]);
