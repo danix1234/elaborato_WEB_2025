@@ -6,15 +6,15 @@
 </header>
 
 <!--modifica del prodotto-->
-<form action="#" method="post" enctype="multipart/form-data">
-    <div class="row">
-        <div class="col-md-6">
+<form class="m-md-4 m-1" action="#" method="post" enctype="multipart/form-data">
+    <div class="row mb-4">
+        <div class="col-md-6 pe-md-3">
             <img class="img-fluid" src="img/temp.jpg" alt="immagine descrittiva del prodotto" />
             <label class="form-label visually-hidden" for="preview">Scegli Immagine </label>
             <input class="form-control" type="file" accept="image/png, image/jpeg" name="preview" id="preview"
                 required />
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 ps-md-3">
             <label class="form-label" for="name">Nome</label>
             <input class="form-control" type="text" name="name" id="name" required />
             <label class="form-label" for="description">Descrizione</label>
@@ -32,7 +32,7 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-evenly mb-4">
         <button class="btn bg-custom-lgold bg-custom-gold-hover col-auto" type="submit" id="submit">Inserisci</button>
         <button class="btn border col-auto" type="reset" id="reset">Annulla</button>
     </div>
