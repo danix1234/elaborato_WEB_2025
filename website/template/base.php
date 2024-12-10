@@ -14,32 +14,38 @@
 </head>
 
 <body class="bg-white">
-    <header class="container-fluid p-0 py-2 overflow-hidden bg-custom-blue">
+    <header class="container-fluid px-0 py-2 overflow-hidden bg-custom-blue">
 
-        <div class="row d-flex align-items-center justify-content-center px-1">
-            <div class="col-3">
-                <a href="#"><img src="./img/temp.jpg" class="img-fluid" alt="Logo" /></a><!-- TODO add path to img -->
+        <div class="row align-items-center justify-content-between mx-1">
+            <!-- Logo -->
+            <div class="col-3 col-md-2 col-lg-1 order-1"> <!-- TODO col-lg ! -->
+                <a href="#"><img src="./img/temp.jpg" class="img-fluid" alt="Logo" /></a>
             </div>
-            <div class="col text-center text-white">ciao, accedi</div>
-            <!-- TODO add correct ref -->
-            <div class="col-4 d-flex align-items-center">
-                <div class="w-100 d-flex justify-content-around">
-                    <a href="#" title="notifica" class="text-white"><span
-                            class="bi bi-bell"></span></a><!-- TODO add correct ref -->
-                    <a href="#" title="ordini" class="text-white"><span
-                            class="bi bi-clock-history"></span></a><!-- TODO add correct ref -->
-                    <a href="#" title="carrello" class="text-custom-gold"><span
-                            class="bi bi-cart"></span></a><!-- TODO add correct ref -->
+
+            <!-- search bar -->
+            <div class="col-12 col-md-7 mt-2 mt-md-0 order-4 order-md-2">
+                <div class="input-group">
+                    <label for="searchBar" class="visually-hidden form-label">Cerca</label>
+                    <input id="searchBar" type="search" class="form-control rounded-start rm-border"
+                        placeholder="Cerca" />
+                    <button type="submit" class="btn btn-custom-lgold">
+                        <span class="bi bi-search"></span>
+                    </button>
                 </div>
             </div>
-        </div>
-        <!-- search bar -->
-        <div class="row mt-2 px-3">
-            <div class="input-group">
-                <label for="searchBar" class="visually-hidden form-label">Cerca</label>
-                <input id="searchBar" type="search" class="form-control rounded-start rm-border" placeholder="Cerca" />
-                <a href="#" class="input-group-text bg-custom-lgold rm-border" title="cerca">
-                    <span class="bi bi-search"></span> </a>
+
+            <!-- log in -->
+            <div class="col-5 col-md-1 text-center text-white order-2 order-md-3">
+                ciao, accedi
+            </div>
+
+            <!-- icons -->
+            <div class="col-4 col-md-2 d-flex align-items-center order-3 order-md-4 justify-content-center">
+                <div class="w-100 d-flex justify-content-around">
+                    <a href="#" title="notifica" class="text-white"><span class="bi bi-bell"></span></a>
+                    <a href="#" title="ordini" class="text-white"><span class="bi bi-clock-history"></span></a>
+                    <a href="#" title="carrello" class="text-custom-gold"><span class="bi bi-cart"></span></a>
+                </div>
             </div>
         </div>
     </header>
