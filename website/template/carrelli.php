@@ -46,13 +46,9 @@
     </div>
 
     <!--resoconto-->
-    <div class="my-2">
-        <div class="row justify-content-center">
-            <p class="col-auto my-1 align-middle">Prezzo totale: 16.69$</p>
-        </div>
-        <div class="row justify-content-center ">
-            <button type="button" class="col-auto btn bg-custom-lgold bg-custom-gold-hover" id="buy">Acquista</button>
-        </div>
+    <div class="my-2 row justify-content-evenly">
+        <p class="col-auto my-1 align-middle">Prezzo totale: 16.69$</p>
+        <button type="button" class="col-auto btn bg-custom-lgold bg-custom-gold-hover" id="buy">Acquista</button>
     </div>
 
 </div>
