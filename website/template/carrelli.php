@@ -21,7 +21,7 @@
                 <img class="img-fluid" src="img/temp.jpg" alt="" />
             </div>
             <div class="col-md">
-                <a href="#" class="row">
+                <a href="#" class="row link-custom">
                     <h2>Nome del prodotto</h2>
                 </a>
                 <div class="row">

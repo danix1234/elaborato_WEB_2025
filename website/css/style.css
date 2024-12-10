@@ -1,6 +1,11 @@
-a:hover {
-    /* TODO togliere forse? */
-    color: #000;
+.link-custom {
+    color: black;
+    text-decoration: none;
+}
+
+.link-custom:hover {
+    color: red;
+    text-decoration: underline;
 }
 
 .text-custom-gold {
