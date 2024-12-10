@@ -1,6 +1,6 @@
 <!--title of entire page-->
 <header class="row my-2">
-    <h1 class="col text-center m-0">
+    <h1 class="text-center m-0">
         Inserisci Prodotto
     </h1>
 </header>

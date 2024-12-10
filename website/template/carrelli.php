@@ -4,7 +4,7 @@
     <!--title of entire page-->
     <header class="row my-2">
         <div class="col-1"> </div>
-        <h1 class="col text-center my-0">
+        <h1 class="col-10 text-center my-0">
             Carrello
         </h1>
         <a href="#buy" title="button to go to buy button"
@@ -20,7 +20,7 @@
             <div class="col-md-4">
                 <img class="img-fluid" src="img/temp.jpg" alt="" />
             </div>
-            <div class="col-md">
+            <div class="col-md-8">
                 <a href="#" class="row link-custom">
                     <h2>Nome del prodotto</h2>
                 </a>
