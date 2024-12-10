@@ -1,12 +1,12 @@
 <!--title of entire page-->
-<header class="row">
-    <h1 class="col text-center">
+<header class="row my-2">
+    <h1 class="col text-center m-0">
         Inserisci Prodotto
     </h1>
 </header>
 
 <!--modifica del prodotto-->
-<form class="m-md-4 m-1" action="#" method="post" enctype="multipart/form-data">
+<form class="mx-md-4 mx-1 mt-md-4" action="#" method="post" enctype="multipart/form-data">
     <div class="row mb-4">
         <div class="col-md-6 pe-md-3">
             <img class="img-fluid" src="img/temp.jpg" alt="immagine descrittiva del prodotto" />
@@ -32,7 +32,7 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-evenly mb-4">
+    <div class="row justify-content-evenly my-4">
         <button class="btn bg-custom-lgold bg-custom-gold-hover col-auto" type="submit" id="submit">Inserisci</button>
         <button class="btn border col-auto" type="reset" id="reset">Annulla</button>
     </div>
