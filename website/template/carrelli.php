@@ -10,7 +10,29 @@
 </header>
 
 <!--lista dei prodotti-->
-<div class="row mx-1 mx-md-4">
+<div class="mx-1 mx-md-4">
+    <?php for($i=0; $i<4; $i++){ ?>
+    <div class="row">
+        <img class="img-fluid" src="img/temp.jpg" alt="" />
+        <div>
+            <a href="#" class="row">
+                <h2>Nome del prodotto</h2>
+            </a>
+            <div class="row">
+                <span> Descrizione molto lunga del prodotto </span>
+            </div>
+            <div class="input-group">
+                <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement">-</button>
+                <input class="form-control" type="text" value=1 name="quantity" id="quantity" required />
+                <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment">+</button>
+                <button class="btn bg-custom-lgold bg-custom-gold-hover" type="button" />Remove</button>
+            </div>
+            <div class="row">
+                <span>Prezzo: 11.69€</span>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
 </div>
 
 <!--resoconto-->
@@ -22,42 +44,3 @@
         <button type="button" class="col-auto btn bg-custom-lgold bg-custom-gold-hover" id="buy">Acquista</button>
     </div>
 </div>
-
-<!--<div class="row justify-content-center">-->
-<!--    <!--prodotti-->
-<!--    <section class="col-md-8">-->
-<!--        <?php for ($i=0; $i < 5 ; $i++) { ?>-->
-<!--        <div class="row">-->
-<!--            <a class="col-md-4" href="#">-->
-<!--                <img class="img-fluid" src="img/temp.jpg" alt="" />-->
-<!--            </a>-->
-<!--            <div class="col-md-8">-->
-<!--                <div class="row">-->
-<!--                    <h2>Nome del prodotto</h2>-->
-<!--                </div>-->
-<!--                <div class="row">-->
-<!--                    <p>Descrizione non troppo lunga e non troppo complessa del prodotto.</p>-->
-<!--                </div>-->
-<!--                <div class="row justify-content-between">-->
-<!--                    <div class="col-auto">-->
-<!--                        <label class="col-auto">Quantità <input type="number" name="id" value="1" min="1" max="100" />-->
-<!--                        </label>-->
-<!--                        <button class="col-auto bg-custom-lgold" type="button">Rimuovi</button>-->
-<!--                    </div>-->
-<!--                    <span class="col-auto">Prezzo: 19.99$</span>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <?php } ?>-->
-<!--    </section>-->
-<!---->
-<!--    <!--resoconto finale-->
-<!--    <section class="text-center col-md-4">-->
-<!--        <div class="row">-->
-<!--            <p>Prezzo totale (n prodotti): 16.69$</p>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--            <button type="button" class="btn bg-custom-lgold" id="buy">Procedi all'acquisto</button>-->
-<!--        </div>-->
-<!--    </section>-->
-<!--</div>-->
