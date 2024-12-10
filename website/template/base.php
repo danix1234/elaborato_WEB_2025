@@ -23,11 +23,16 @@
             </div>
 
             <!-- search bar -->
-            <div class="col-12 col-md-7 mt-2 mt-md-0 order-4 order-md-2">
+            <div class="col-12 col-md-7 col-lg-8 mt-2 mt-md-0 order-4 order-md-2">
                 <div class="input-group">
                     <label for="searchBar" class="visually-hidden form-label">Cerca</label>
-                    <input id="searchBar" type="search" class="form-control rounded-start rm-border"
+                    <input id="searchBar" type="search" class="form-control rounded-start border border-0"
                         placeholder="Cerca" />
+                    <select class="form-select-md border border-0 d-none d-md-block">
+                        <option value="">Tutte le categorie</option>
+                        <option value="1">Categoria 1</option>
+                        <option value="2">Categoria 2</option>
+                    </select>
                     <button type="submit" class="btn btn-custom-lgold">
                         <span class="bi bi-search"></span>
                     </button>
