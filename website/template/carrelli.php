@@ -14,9 +14,9 @@
     </header>
 
     <!--lista dei prodotti-->
-    <div>
+    <div class="text-center text-md-start">
         <?php for($i=0; $i<4; $i++){ ?>
-        <div class="row">
+        <div class="row border-bottom border-3 py-4">
             <div class="col-md-4">
                 <img class="img-fluid" src="img/temp.jpg" alt="" />
             </div>
