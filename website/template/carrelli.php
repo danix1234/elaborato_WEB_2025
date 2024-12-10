@@ -4,24 +4,24 @@
     <h1 class="col text-center my-0">
         Carrello
     </h1>
-    <a href="#buy" class="col-1 d-flex align-items-center justify-content-center">
-        <i class="bi bi-arrow-down-circle-fill fs-5"></i>
+    <a href="#buy" title="button to go to buy button" class="col-1 d-flex align-items-center justify-content-center">
+        <span class="bi bi-arrow-down-circle-fill fs-5"></span>
     </a>
 </header>
 
 <!--lista dei prodotti-->
-<section class="row mx-1 mx-md-4">
-</section>
+<div class="row mx-1 mx-md-4">
+</div>
 
 <!--resoconto-->
-<section class="mx-1 mx-md-4 my-2">
+<div class="mx-1 mx-md-4 my-2">
     <div class="row justify-content-center">
         <p class="col-auto my-1 align-middle">Prezzo totale: 16.69$</p>
     </div>
     <div class="row justify-content-center ">
         <button type="button" class="col-auto btn bg-custom-lgold bg-custom-gold-hover" id="buy">Acquista</button>
     </div>
-</section>
+</div>
 
 <!--<div class="row justify-content-center">-->
 <!--    <!--prodotti-->
