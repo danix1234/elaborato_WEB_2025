@@ -1,8 +1,12 @@
 <!--title of entire page-->
 <header class="row">
+    <div class="col-1"> </div>
     <h1 class="col text-center">
         Carrello
     </h1>
+    <a href="#buy" class="col-1">
+        <i class="bi bi-arrow-down-circle-fill fs-5"></i>
+    </a>
 </header>
 
 <div class="row justify-content-center">
@@ -39,7 +43,7 @@
             <p>Prezzo totale (n prodotti): 16.69$</p>
         </div>
         <div class="row">
-            <button type="button" class="btn bg-custom-lgold">Procedi all'acquisto</button>
+            <button type="button" class="btn bg-custom-lgold" id="buy">Procedi all'acquisto</button>
         </div>
     </section>
 </div>
