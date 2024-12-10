@@ -9,9 +9,9 @@
 <form action="#" method="get">
     <div class="row">
         <div class="col-md-6">
-            <img class="img-fluid" src="img/temp.jpg" alt="">
+            <img class="img-fluid" src="img/temp.jpg" alt="" />
             <label class="form-label visually-hidden" for="">Scegli Immagine </label>
-            <input class="form-control" type="file" accept="image/png, image/jpeg" name="" value="">
+            <input class="form-control" type="file" accept="image/png, image/jpeg" name="" value="" />
         </div>
         <div class="col-md-6">
             <label class="form-label" for="">Nome</label>
