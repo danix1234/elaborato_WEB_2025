@@ -20,7 +20,11 @@ for (const number_input of number_inputs) {
         return function() {
             const prev_val = Math.trunc(Number(number_input.value))
             if (!prev_val && number_input.value != "0") {
-                number_input.value = min
+                if (amount == 0) {
+                    number_input.value = ""
+                } else {
+                    number_input.value = min
+                }
             } else {
                 number_input.value = Math.min(max, Math.max(min, prev_val + amount))
             }
