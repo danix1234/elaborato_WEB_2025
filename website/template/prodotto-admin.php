@@ -37,3 +37,5 @@
         <button class="btn col-auto" type="reset" id="reset">Annulla</button>
     </div>
 </form>
+
+<script src="scripts/number_button.js"></script>
