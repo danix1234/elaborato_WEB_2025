@@ -35,6 +35,7 @@
                             <p class="col-9 fw-bold mb-1">Ordine #1 </p>
                             <span class="col-3 bi bi-check-circle-fill text-success text-end mb-1"> <!-- spedito -->
                                 <span class="bi bi-truck text-custom-gold"></span> <!-- in spedizione -->
+                                <span class="bi bi-clock-history text-custom-gold"></span> <!-- in attesa -->
                                 <span class="bi bi-x-circle-fill text-danger"></span> <!-- cancellato -->
                             </span>
                         </div>
