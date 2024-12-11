@@ -35,7 +35,7 @@
                         required />
                     <button tabindex="-1" class="input-group-text font-monospace" type="button"
                         id="increment<?php echo $i?>">+</button>
-                    <button class="focus-ring btn bg-custom-lgold bg-custom-gold-hover" type="button">Remove</button>
+                    <button class="btn bg-custom-lgold bg-custom-gold-hover" type="button">Remove</button>
                 </div>
                 <div class="row">
                     <span>Prezzo: 11.69€</span>
@@ -48,7 +48,7 @@
     <!--resoconto-->
     <div class="my-2 row justify-content-evenly">
         <p class="col-auto my-1 align-middle">Prezzo totale: 16.69$</p>
-        <button type="button" class="focus-ring col-auto btn bg-custom-lgold bg-custom-gold-hover" id="buy">Acquista</button>
+        <button type="button" class="col-auto btn bg-custom-lgold bg-custom-gold-hover" id="buy">Acquista</button>
     </div>
 
 </div>
