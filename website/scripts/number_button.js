@@ -14,7 +14,6 @@ for (const number_input of number_inputs) {
             max = min
         }
     }
-    let field = { old: "", new: "" }
 
     // we do some currying
     function add(amount) {
@@ -31,20 +30,9 @@ for (const number_input of number_inputs) {
     inc_button.addEventListener("mousedown", add(-1))
     dec_button.addEventListener("click", add(1))
 
-    // input field validator
-    function validate() {
-        return function() {
-            field.old = field.new
-            // todo: very complex! (if i could use anything but javascript, i would have already completed this function yesterday!)
-            field.new = number_input.value
-            // uncomment for debugging porpouses
-            // console.log(field)
-        }
-    }
-
     // if we want to disable writing wrong things inside input field
-    number_input.addEventListener("input", validate())
-    number_input.addEventListener("paste", validate())
-    number_input.addEventListener("change", validate())
-    number_input.addEventListener("keypress", validate())
+    //number_input.addEventListener("input", validate())
+    //number_input.addEventListener("paste", validate())
+    number_input.addEventListener("change", add(0))
+    //number_input.addEventListener("keypress", validate())
 }
