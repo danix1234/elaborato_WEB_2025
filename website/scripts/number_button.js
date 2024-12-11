@@ -36,17 +36,22 @@ for (const number_input of number_inputs) {
         return function() {
             field.old = field.new
 
-            oldNum = Number(field.old) || field.old == "0"
-            newNum = Number(number_input.value) || number_input.value == "0"
-            if (!newNum && oldNum) {
-                number_input.value = oldNum
-            }
-            const val = Math.trunc(Number(number_input.value))
-            if (val < min) {
-                number_input.value = min
-            }
-            if (val > max) {
-                number_input.value = max
+            if (number_input.value.trim() != "") {
+                oldNum = Number(field.old) || field.old == "0"
+                newNum = Number(number_input.value) || number_input.value == "0"
+                if (!newNum && oldNum) {
+                    number_input.value = oldNum
+                }
+                const val = Math.trunc(Number(number_input.value))
+                if (val < min) {
+                    number_input.value = min
+                } else if (val > max) {
+                    number_input.value = max
+                } else {
+                    number_input.value = val
+                }
+            } else {
+                number_input.value = ""
             }
 
             field.new = number_input.value
