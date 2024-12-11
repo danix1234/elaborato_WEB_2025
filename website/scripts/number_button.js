@@ -2,8 +2,18 @@ const number_inputs = document.getElementsByClassName("button-custom-quantity")
 for (const number_input of number_inputs) {
     const inc_button = number_input.previousElementSibling
     const dec_button = number_input.nextElementSibling
-    const min = -1
-    const max = 1000
+    let min = 1
+    let max = 1000
+    max_attr = Math.trunc(Number(number_input.getAttribute("max")))
+    if (number_input.getAttribute("min") != null) {
+        min = Math.trunc(Number(number_input.getAttribute("min")))
+        console.log("min changed to: ", min)
+    }
+    if (number_input.getAttribute("max") != null) {
+        max = Math.trunc(Number(number_input.getAttribute("max")))
+        console.log("max changed to: ", max)
+    }
+    console.log(min, max)
 
     // we do some currying
     function add(amount) {
