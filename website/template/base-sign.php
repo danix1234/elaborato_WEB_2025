@@ -15,11 +15,13 @@
 
 <body class="bg-white">
 
-    <header class="bg-custom-blue py-2">
-        <div class="container d-flex justify-content-center">
-            <a href="#" class="d-block">
-                <img src="./img/temp.jpg" alt="Logo" class="img-fluid" style="max-height: 50px;"> <!-- TODO Inline css -->
-            </a>
+    <header class="container-fluid overflow-hidden bg-custom-blue py-2">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-6 col-md-2">
+                <a href="#">
+                    <img src="./img/temp.jpg" alt="Logo" class="img-fluid">
+                </a>
+            </div>
         </div>
     </header>
 
