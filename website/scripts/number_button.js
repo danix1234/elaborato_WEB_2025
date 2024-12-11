@@ -7,18 +7,19 @@ for (const number_input of number_inputs) {
     max_attr = Math.trunc(Number(number_input.getAttribute("max")))
     if (number_input.getAttribute("min") != null) {
         min = Math.trunc(Number(number_input.getAttribute("min")))
-        console.log("min changed to: ", min)
     }
     if (number_input.getAttribute("max") != null) {
         max = Math.trunc(Number(number_input.getAttribute("max")))
-        console.log("max changed to: ", max)
+        if (max < min) {
+            max = min
+        }
     }
-    console.log(min, max)
+    let field = { old: "", new: "" }
 
     // we do some currying
     function add(amount) {
         return function() {
-            const prev_val = Number(number_input.value)
+            const prev_val = Math.trunc(Number(number_input.value))
             if (!prev_val && number_input.value != "0") {
                 number_input.value = min
             } else {
@@ -30,9 +31,32 @@ for (const number_input of number_inputs) {
     inc_button.addEventListener("mousedown", add(-1))
     dec_button.addEventListener("click", add(1))
 
+    // input field validator
+    function validate() {
+        return function() {
+            field.old = field.new
+
+            oldNum = Number(field.old) || field.old == "0"
+            newNum = Number(number_input.value) || number_input.value == "0"
+            if (!newNum && oldNum) {
+                number_input.value = oldNum
+            }
+            const val = Math.trunc(Number(number_input.value))
+            if (val < min) {
+                number_input.value = min
+            }
+            if (val > max) {
+                number_input.value = max
+            }
+
+            field.new = number_input.value
+            console.log(field)
+        }
+    }
+
     // if we want to disable writing wrong things inside input field
-    //number_input.addEventListener("input", add(0))
-    //number_input.addEventListener("paste", add(0))
-    //number_input.addEventListener("change", add(0))
-    //number_input.addEventListener("keypress", add(0))
+    number_input.addEventListener("input", validate())
+    number_input.addEventListener("paste", validate())
+    number_input.addEventListener("change", validate())
+    number_input.addEventListener("keypress", validate())
 }
