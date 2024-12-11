@@ -2,7 +2,7 @@ const number_inputs = document.getElementsByClassName("button-custom-quantity")
 for (const number_input of number_inputs) {
     const inc_button = number_input.previousElementSibling
     const dec_button = number_input.nextElementSibling
-    let min = 1
+    let min = 0
     let max = 1000
     max_attr = Math.trunc(Number(number_input.getAttribute("max")))
     if (number_input.getAttribute("min") != null) {
@@ -35,27 +35,10 @@ for (const number_input of number_inputs) {
     function validate() {
         return function() {
             field.old = field.new
-
-            if (number_input.value.trim() != "") {
-                oldNum = Number(field.old) || field.old == "0"
-                newNum = Number(number_input.value) || number_input.value == "0"
-                if (!newNum && oldNum) {
-                    number_input.value = oldNum
-                }
-                const val = Math.trunc(Number(number_input.value))
-                if (val < min) {
-                    number_input.value = min
-                } else if (val > max) {
-                    number_input.value = max
-                } else {
-                    number_input.value = val
-                }
-            } else {
-                number_input.value = ""
-            }
-
+            // todo: very complex! (if i could use anything but javascript, i would have already completed this function yesterday!)
             field.new = number_input.value
-            console.log(field)
+            // uncomment for debugging porpouses
+            // console.log(field)
         }
     }
 
