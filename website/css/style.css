@@ -48,24 +48,26 @@
     background-color: #4F618f;
 }
 
-.btn-custom-lgold {
+.btn.btn-custom-lgold {
     background-color: #D4B26A;
     color: #000;
     border: none;
 }
 
-.btn-custom-lgold:hover {
+.btn.btn-custom-lgold:active,
+.btn.btn-custom-lgold:hover {
     background-color: #805D15;
     color: #000;
 }
 
-.btn-custom-gold {
+.btn.btn-custom-gold {
     background-color: #AA8539;
     color: #000;
     border: none;
 }
 
-.btn-custom-gold:hover {
+.btn.btn-custom-gold:active,
+.btn.btn-custom-gold:hover {
     background-color: #805D15;
     color: #000;
 }
