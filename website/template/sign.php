@@ -1,5 +1,5 @@
 <div class="row justify-content-center mx-1">
-    <div class="col-12 col-md-6 col-lg-4 border pb-2">
+    <div class="col-12 col-md-6 col-lg-4 border rounded shadow pb-3">
         <form method="POST">
             <h2 class="text-center fw-bold mb-4">Crea account</h2>
 
