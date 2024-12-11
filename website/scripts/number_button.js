@@ -1,20 +1,20 @@
-const number_input = document.getElementById("quantity")
-const inc_button = number_input.previousElementSibling
-const dec_button = number_input.nextElementSibling
+const number_inputs = document.getElementsByClassName("button-custom-quantity")
+for (const number_input of number_inputs) {
+    const inc_button = number_input.previousElementSibling
+    const dec_button = number_input.nextElementSibling
 
-function add(amount) {
-    return function() {
-        const val = number_input.value
-        if (val == "") {
-            number_input.value = 1
-        }
-        if (/^-?\d+$/.test(val)) {
-            val_int = parseInt(val)
-            number_input.value = val_int + amount
+    //we do some currying
+    function add(amount) {
+        return function() {
+            const prev_val = Number(number_input.value)
+            if (!prev_val) {
+                number_input.value = 1
+            } else {
+                number_input.value = Math.max(1, prev_val + amount)
+            }
         }
     }
+
+    inc_button.addEventListener("mousedown", add(-1))
+    dec_button.addEventListener("click", add(1))
 }
-
-inc_button.addEventListener("mousedown", add(-1))
-dec_button.addEventListener("click", add(1))
-
