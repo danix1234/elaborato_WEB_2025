@@ -31,8 +31,8 @@
                 <div class="input-group">
                     <button tabindex="-1" class="input-group-text font-monospace" type="button"
                         id="decrement<?php echo $i?>">-</button>
-                    <input class="form-control button-custom-quantity" type="text" value=1 name="quantity" id="quantity<?php echo $i?>"
-                        required />
+                    <input class="form-control button-custom-quantity" type="text" value=1 name="quantity"
+                        id="quantity<?php echo $i?>" required />
                     <button tabindex="-1" class="input-group-text font-monospace" type="button"
                         id="increment<?php echo $i?>">+</button>
                     <button class="btn btn-custom-lgold" type="button">Remove</button>
@@ -51,4 +51,5 @@
         <button type="button" class="col-auto btn btn-custom-lgold" id="buy">Acquista</button>
     </div>
 
+    <script src="scripts/number_button.js"></script>
 </div>

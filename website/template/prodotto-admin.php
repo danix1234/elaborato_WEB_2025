@@ -11,8 +11,8 @@
         <div class="col-md-6 pe-md-3">
             <img class="img-fluid" src="img/temp.jpg" alt="immagine descrittiva del prodotto" />
             <label class="form-label visually-hidden" for="preview">Scegli Immagine </label>
-            <input class="form-control image-custom-preview" type="file" accept="image/png, image/jpeg" name="preview" id="preview"
-                required />
+            <input class="form-control image-custom-preview" type="file" accept="image/png, image/jpeg" name="preview"
+                id="preview" required />
         </div>
         <div class="col-md-6 ps-md-3">
             <label class="form-label" for="name">Nome</label>
@@ -21,7 +21,7 @@
             <textarea class="form-control" cols="50" rows="3" name="description" id="description" required></textarea>
             <label class="form-label" for="price">Prezzo unitario</label>
             <div class="input-group">
-                <input class="form-control" type="text" name="price" id="price" required />
+                <input class="form-control button-custom-float" type="text" name="price" id="price" required />
                 <span class="input-group-text">€</span>
             </div>
             <label class="form-label" for="quantity">Quantità residua</label>
@@ -37,4 +37,6 @@
         <button class="btn col-auto" type="reset" id="reset">Annulla</button>
     </div>
 </form>
-
+<script src="scripts/number_button.js"></script>
+<script src="scripts/preview_image.js"></script>
+<script src="scripts/float_button.js"></script>
