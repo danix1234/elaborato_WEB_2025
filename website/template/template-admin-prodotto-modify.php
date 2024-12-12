@@ -1,7 +1,7 @@
 <!--title of entire page-->
 <header class="row my-2">
     <h1 class="text-center m-0">
-        Inserisci Prodotto
+        Modifica Prodotto
     </h1>
 </header>
 
@@ -33,7 +33,8 @@
         </div>
     </div>
     <div class="row justify-content-evenly my-4">
-        <button class="btn btn-custom-lgold col-auto" type="submit" id="submit">Inserisci</button>
+        <button class="btn btn-custom-lgold col-auto" type="submit" id="submit">Modifica</button>
+        <button class="btn btn-custom-gold col-auto" type="button" id="remove">Cancella</button>
         <button class="btn border col-auto" type="reset" id="reset">Annulla</button>
     </div>
 </form>
