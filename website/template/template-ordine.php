@@ -6,10 +6,6 @@
         <h1 class="col-10 text-center my-0">
             Ordine
         </h1>
-        <a href="#buy" title="button to go to buy button"
-            class="col-1 d-flex align-items-center justify-content-center">
-            <span class="bi bi-arrow-down-circle-fill fs-5"></span>
-        </a>
     </header>
 
     <!--lista dei prodotti-->
@@ -27,7 +23,7 @@
                     <span> Descrizione molto lunga del prodotto </span>
                 </div>
                 <div class="row">
-                    <span>Quantity: 1</span>
+                    <span>Quantità: 1</span>
                 </div>
                 <div class="row">
                     <span>Prezzo: 11.69€</span>
@@ -40,8 +36,5 @@
     <!--resoconto-->
     <div class="my-2 row justify-content-evenly">
         <p class="col-auto my-1 align-middle">Prezzo totale: 16.69$</p>
-        <button type="button" class="col-auto btn btn-custom-lgold" id="buy">Acquista</button>
     </div>
-
-    <script src="scripts/number_button.js"></script>
 </div>
