@@ -28,7 +28,8 @@
                     <label for="searchBar" class="visually-hidden form-label">Cerca</label>
                     <input id="searchBar" type="search" class="form-control rounded-start border border-0"
                         placeholder="Cerca" />
-                    <select class="form-select-md border border-0 d-none d-md-block">
+                    <label for="categoryBar" class="visually-hidden form-label">Categorie</label>
+                    <select id="categoryBar" class="form-select-md border border-0 d-none d-md-block">
                         <option value="">Tutte le categorie</option>
                         <option value="1">Categoria 1</option>
                         <option value="2">Categoria 2</option>

@@ -4,7 +4,8 @@
     </div>
     <!-- filtro tempo -->
     <div class="col-5 col-md-2 order-2 order-md-3 mb-2 mb-md-0">
-        <select class="form-select">
+        <label for="filter-time" class="visually-hidden form-label">Filtra per tempo</label>
+        <select id="filter-time" class="form-select">
             <option value="">Tutti</option>
             <option value="1">1 mese</option>
             <option value="2">3 mesi</option>
