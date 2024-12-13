@@ -51,5 +51,5 @@
         <button type="button" class="col-auto btn btn-custom-lgold" id="buy">Acquista</button>
     </div>
 
-    <script src="scripts/number_button.js"></script>
+    <script src="js/number_button.js"></script>
 </div>

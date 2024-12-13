@@ -41,6 +41,6 @@
         <button class="btn border col-auto" type="reset" id="reset">Annulla</button>
     </div>
 </form>
-<script src="scripts/number_button.js"></script>
-<script src="scripts/preview_image.js"></script>
-<script src="scripts/float_button.js"></script>
+<script src="js/number_button.js"></script>
+<script src="js/preview_image.js"></script>
+<script src="js/float_button.js"></script>
