@@ -7,9 +7,8 @@
         <h1 class="col-10 text-center my-0">
             Carrello
         </h1>
-        <a href="#buy" title="button to go to buy button"
-            class="col-1 d-flex align-items-center justify-content-center">
-            <span class="bi bi-arrow-down-circle-fill fs-5"></span>
+        <a href="#buy" title="button to go to buy button" class="col-1 d-flex align-items-center justify-content-center">
+            <span class="bi bi-arrow-down-circle-fill fs-5 text-custom-lblue"></span>
         </a>
     </header>
 
