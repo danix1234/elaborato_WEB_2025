@@ -1,4 +1,5 @@
 <?php
+require_once("bootstrap.php");
 
 $templateParams["nome"] = "template-admin-prodotto-insert.php";
 $templateParams["scripts"] = array("js/number_button.js", "js/preview_image.js", "js/float_button.js");

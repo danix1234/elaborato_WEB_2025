@@ -1,4 +1,5 @@
 <?php 
+require_once("bootstrap.php");
 
 $templateParams["nome"] = "template-ordini.php";
 
