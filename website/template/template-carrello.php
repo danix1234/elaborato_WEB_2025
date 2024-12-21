@@ -26,15 +26,21 @@
                     <div class="row">
                         <span> Descrizione molto lunga del prodotto </span>
                     </div>
-                    <label for="quantity<?php echo $i ?>" class="visually-hidden">Quantity</label>
-                    <div class="input-group">
-                        <button tabindex="-1" class="input-group-text font-monospace" type="button"
-                            id="decrement<?php echo $i ?>">-</button>
-                        <input class="form-control button-custom-quantity" type="text" value=1 name="quantity"
-                            id="quantity<?php echo $i ?>" required />
-                        <button tabindex="-1" class="input-group-text font-monospace" type="button"
-                            id="increment<?php echo $i ?>">+</button>
-                        <button class="btn btn-custom-lgold" type="button">Remove</button>
+                    <div class="row justify-content-md-start justify-content-center">
+                        <label for="quantity<?php echo $i ?>" class="col-form-label pe-0 col-auto">Quantità:</label>
+                        <div class="col-auto ps-2">
+                            <div class="input-group">
+                                <button tabindex="-1" class="input-group-text font-monospace" type="button"
+                                    id="decrement<?php echo $i ?>">-</button>
+                                <input class="form-control button-custom-quantity" type="text" value=1 name="quantity"
+                                    id="quantity<?php echo $i ?>" required />
+                                <button tabindex="-1" class="input-group-text font-monospace" type="button"
+                                    id="increment<?php echo $i ?>">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-start justify-content-center mt-2 ms-0">
+                        <button class="btn btn-custom-lgold col-auto" type="button">Remove</button>
                     </div>
                     <div class="row">
                         <span>Prezzo: 11.69€</span>
