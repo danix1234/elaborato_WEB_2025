@@ -31,9 +31,9 @@
         <div class="d-flex align-items-center mb-3">
             <label for="quantita" class="form-label mb-0 me-2">Quantità</label>
             <div class="input-group">
-                <button class="btn btn-outline-secondary font-monospace" type="button" id="decrement">-</button>
-                <input id="quantita" type="text" class="form-control text-center border-secondary" value="1" min="1">
-                <button class="btn btn-outline-secondary font-monospace" type="button" id="increment">+</button>
+                <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement">-</button>
+                <input class="form-control button-custom-quantity" value="1" type="text" name="quantity" id="quantity" required />
+                <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment">+</button>
             </div>
         </div>
 
