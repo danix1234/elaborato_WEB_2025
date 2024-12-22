@@ -28,7 +28,7 @@ class DatabaseHelper
     {
         $query = "SELECT privilegi
                     FROM UTENTE
-                    WHERE email = ?;";
+                    WHERE email = ? AND privilegi;";
         return sizeof($this->parametrizedQuery($query, "s", $email)) > 0;
     }
     public function getAllNotifications()
@@ -36,4 +36,3 @@ class DatabaseHelper
         return $this->simpleQuery("SELECT * FROM NOTIFICA;");
     }
 }
-
