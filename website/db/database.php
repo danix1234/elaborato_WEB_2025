@@ -11,20 +11,29 @@ class DatabaseHelper
             die("Connection failed: " . $temp);
         }
     }
-    public function isAdmin($email): bool
+    private function simpleQuery($query)
     {
-        $stmt = $this->db->prepare(
-            "SELECT privilegi
-                    FROM Utente
-                    WHERE email = ?;"
-        );
-        $stmt->bind_param("s", $email);
+        $stmt = $this->db->prepare($query);
         $stmt->execute();
-        $result = $stmt->get_result();
-
-        return $result->fetch_column(0);
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
-
-
+    private function parametrizedQuery($query, $types, &$var1, &...$vars)
+    {
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param($types, $var1, ...$vars);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+    public function isAdmin($email)
+    {
+        $query = "SELECT privilegi
+                    FROM UTENTE
+                    WHERE email = ?;";
+        return sizeof($this->parametrizedQuery($query, "s", $email)) > 0;
+    }
+    public function getAllNotifications()
+    {
+        return $this->simpleQuery("SELECT * FROM NOTIFICA;");
+    }
 }
-?>
+
