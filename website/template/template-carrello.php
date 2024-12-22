@@ -26,6 +26,9 @@
                     <div class="row">
                         <span> Descrizione molto lunga del prodotto </span>
                     </div>
+                    <div class="row">
+                        <span>Prezzo: 11.69€</span>
+                    </div>
                     <div class="row justify-content-md-start justify-content-center">
                         <label for="quantity<?php echo $i ?>" class="col-form-label pe-0 col-auto">Quantità:</label>
                         <div class="col-auto ps-2">
@@ -41,9 +44,6 @@
                     </div>
                     <div class="row justify-content-md-start justify-content-center mt-2 ms-0">
                         <button class="btn btn-custom-lgold col-auto" type="button">Remove</button>
-                    </div>
-                    <div class="row">
-                        <span>Prezzo: 11.69€</span>
                     </div>
                 </div>
             </div>
