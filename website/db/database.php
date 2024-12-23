@@ -31,8 +31,12 @@ class DatabaseHelper
                     WHERE email = ? AND privilegi;";
         return sizeof($this->parametrizedQuery($query, "s", $email)) > 0;
     }
-    public function getAllNotifications()
+    public function getAllCartItems($email)
     {
-        return $this->simpleQuery("SELECT * FROM NOTIFICA;");
+        $query = "SELECT *
+                    FROM CARRELLO C, PRODOTTO P, UTENTE U
+                    WHERE C.codProdotto = P.codProdotto AND U.codUtente = C.codUtente
+                        AND U.email = ?;";
+        return $this->parametrizedQuery($query, "s", $email);
     }
 }
