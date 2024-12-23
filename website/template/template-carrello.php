@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="row justify-content-md-start justify-content-center mt-2 ms-0">
-                        <button class="btn btn-custom-lgold col-auto" type="button">Remove</button>
+                        <button class="btn btn-custom-lgold col-auto button-custom-remove" type="button">Remove</button>
                     </div>
                 </div>
             </div>
