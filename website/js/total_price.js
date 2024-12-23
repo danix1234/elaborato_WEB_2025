@@ -8,7 +8,7 @@ for (let i = 0; i < number_inputs.length; i++) {
             const unaryPriceInner = parseFloat(document.getElementsByClassName("text-custom-price")[inner].innerHTML.split(":")[1].trim())
             total_price += quantityInner * unaryPriceInner
         }
-        document.getElementsByClassName("text-custom-totprice")[0].innerText = `Prezzo totale: ${(Number(total_price).toLocaleString())}€`
+        document.getElementsByClassName("text-custom-totprice")[0].innerText = `Prezzo totale: ${total_price}€`
     }
     const number_input = number_inputs[i]
     number_input.addEventListener("change", update)
@@ -18,9 +18,6 @@ for (let i = 0; i < number_inputs.length; i++) {
         fetch(`./api/update_cart.php?product=${number_inputs[i].id}&delete=`)
             .then(_ => location.reload())
     })
-    if (i == 0) {
-        update()
-    }
 }
 
 

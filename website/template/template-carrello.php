@@ -30,6 +30,7 @@
         }
         for ($i = 0; $i < sizeof($items); $i++) {
             $item = $items[$i];
+            $total_price += $item["quantita"] * $item["prezzo"];
         ?>
             <div class="row border-bottom border-3 py-4">
                 <div class="col-md-4">
@@ -68,7 +69,7 @@
 
     <!--resoconto-->
     <div class="my-2 row justify-content-evenly">
-        <p class="col-auto my-1 align-middle text-custom-totprice">Prezzo totale: </p>
+        <p class="col-auto my-1 align-middle text-custom-totprice">Prezzo totale: <?php echo $total_price ?>€</p>
         <button type="button" class="col-auto btn btn-custom-lgold" id="buy">Acquista</button>
     </div>
 </div>
