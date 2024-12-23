@@ -7,7 +7,7 @@ if (!isset($_GET["product"])) {
 };
 
 /* TODO: get codutente from session */
-$codUtente = 1;
+$codUtente = getCurrentUserId();
 $codProdotto = $_GET["product"];
 if (isset($_GET["delete"])) {
     $dbh->deleteFromCart($codUtente, intval($codProdotto));
