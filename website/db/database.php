@@ -24,6 +24,12 @@ class DatabaseHelper
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
+    private function parametrizedNoresultQuery($query, $types, &$var1, &...$vars)
+    {
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param($types, $var1, ...$vars);
+        return $stmt->execute();
+    }
     public function isAdmin($userId)
     {
         $query = "SELECT privilegi
@@ -43,6 +49,13 @@ class DatabaseHelper
     {
         $query = "DELETE FROM CARRELLO
                     WHERE codUtente = ? AND codProdotto = ?;";
-        return $this->parametrizedQuery($query, "ii", $userId, $productId);
+        return $this->parametrizedNoresultQuery($query, "ii", $userId, $productId);
+    }
+    public function updateCartQuantity($userId, $productId, $newQuantity)
+    {
+        $query = "UPDATE CARRELLO
+                    SET quantita = ? 
+                    WHERE codUtente = ? AND codProdotto = ?;";
+        return $this->parametrizedNoresultQuery($query, "iii", $newQuantity, $userId, $productId);
     }
 }

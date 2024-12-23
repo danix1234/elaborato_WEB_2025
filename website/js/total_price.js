@@ -2,6 +2,7 @@ const number_inputs = document.getElementsByClassName("button-custom-quantity")
 const prices = document.getElementsByClassName("text-custom-price")
 for (let i = 0; i < number_inputs.length; i++) {
     let update = function() {
+        fetch(`./api/update_cart.php?product=${number_inputs[i].id}&quantity=${parseInt(number_inputs[i].value)}`)
         let total_price = 0
         for (let inner = 0; inner < number_inputs.length; inner++) {
             const quantityInner = parseInt(number_inputs[inner].value)

@@ -22,7 +22,6 @@
         }
         for ($i = 0; $i < sizeof($items); $i++) {
             $item = $items[$i];
-            $total_price += $item["prezzo"] * $item["quantita"];
         ?>
             <div class="row border-bottom border-3 py-4">
                 <div class="col-md-4">
@@ -44,8 +43,8 @@
                             <div class="input-group">
                                 <button tabindex="-1" class="input-group-text font-monospace" type="button"
                                     id="decrement<?php echo $i ?>">-</button>
-                                <input class="form-control button-custom-quantity" type="text" value="<?php echo $item["quantita"] ?>" name="quantity" max="<?php echo $item["quantitaResidua"] ?>"
-                                    id="quantity<?php echo $i ?>" required />
+                                <input class="form-control button-custom-quantity" type="text" value="<?php echo $item["quantita"] ?>" name="<?php echo $item["codProdotto"] ?>"
+                                    max="<?php echo $item["quantitaResidua"] ?>" id="<?php echo $item["codProdotto"] ?>" required />
                                 <button tabindex="-1" class="input-group-text font-monospace" type="button"
                                     id="increment<?php echo $i ?>">+</button>
                             </div>
@@ -61,7 +60,7 @@
 
     <!--resoconto-->
     <div class="my-2 row justify-content-evenly">
-        <p class="col-auto my-1 align-middle text-custom-totprice">Prezzo totale: <?php echo $total_price ?>$</p>
+        <p class="col-auto my-1 align-middle text-custom-totprice">Prezzo totale: </p>
         <button type="button" class="col-auto btn btn-custom-lgold" id="buy">Acquista</button>
     </div>
 </div>
