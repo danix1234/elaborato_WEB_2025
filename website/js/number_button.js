@@ -1,5 +1,4 @@
-const number_inputs = document.getElementsByClassName("button-custom-quantity")
-for (const number_input of number_inputs) {
+for (const number_input of document.getElementsByClassName("button-custom-quantity")) {
     const inc_button = number_input.previousElementSibling
     const dec_button = number_input.nextElementSibling
     let min_attr = number_input.getAttribute("min")

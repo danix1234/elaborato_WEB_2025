@@ -36,7 +36,7 @@
                         <span><?php echo $item["descrizione"] ?></span>
                     </div>
                     <div class="row">
-                        <span>Prezzo: <?php echo $item["prezzo"] ?>€</span>
+                        <span class="text-custom-price">Prezzo: <?php echo $item["prezzo"] ?>€</span>
                     </div>
                     <div class="row justify-content-md-start justify-content-center">
                         <label for="quantity<?php echo $i ?>" class="col-form-label pe-0 col-auto">Quantità:</label>
@@ -61,7 +61,7 @@
 
     <!--resoconto-->
     <div class="my-2 row justify-content-evenly">
-        <p class="col-auto my-1 align-middle">Prezzo totale: <?php echo $total_price ?>$</p>
+        <p class="col-auto my-1 align-middle text-custom-totprice">Prezzo totale: <?php echo $total_price ?>$</p>
         <button type="button" class="col-auto btn btn-custom-lgold" id="buy">Acquista</button>
     </div>
 </div>

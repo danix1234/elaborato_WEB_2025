@@ -1,5 +1,4 @@
-const file_pickers = document.getElementsByClassName("image-custom-preview")
-for (const file_picker of file_pickers) {
+for (const file_picker of document.getElementsByClassName("image-custom-preview")) {
     let image_preview = file_picker.previousElementSibling.previousElementSibling
     file_picker.addEventListener("change", () => {
         const file = file_picker.files[0]
