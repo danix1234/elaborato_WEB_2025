@@ -1,4 +1,12 @@
 <div class="mx-1 mx-md-4">
+    <?php if (isset($templateParams["carrello"]) && sizeof($templateParams["carrello"]) == 0) { ?>
+        <header class="row my-2">
+            <h1 class="col text-center my-0">
+                Il Carrello è vuoto!
+            </h1>
+        </header>
+    <?php return;
+    } ?>
 
 
     <!--title of entire page-->
