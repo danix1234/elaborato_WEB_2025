@@ -24,19 +24,25 @@ class DatabaseHelper
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
-    public function isAdmin($email)
+    public function isAdmin($userId)
     {
         $query = "SELECT privilegi
                     FROM UTENTE
-                    WHERE email = ? AND privilegi;";
-        return sizeof($this->parametrizedQuery($query, "s", $email)) > 0;
+                    WHERE codUtente = ? AND privilegi;";
+        return sizeof($this->parametrizedQuery($query, "i", $userId)) > 0;
     }
-    public function getAllCartItems($email)
+    public function getAllCartItems($userId)
     {
         $query = "SELECT *
-                    FROM CARRELLO C, PRODOTTO P, UTENTE U
-                    WHERE C.codProdotto = P.codProdotto AND U.codUtente = C.codUtente
-                        AND U.email = ?;";
-        return $this->parametrizedQuery($query, "s", $email);
+                    FROM CARRELLO C, PRODOTTO P
+                    WHERE C.codProdotto = P.codProdotto 
+                        AND C.codUtente = ?";
+        return $this->parametrizedQuery($query, "i", $userId);
+    }
+    public function deleteFromCart($userId, $productId)
+    {
+        $query = "DELETE FROM CARRELLO
+                    WHERE codUtente = ? AND codProdotto = ?;";
+        return $this->parametrizedQuery($query, "ii", $userId, $productId);
     }
 }
