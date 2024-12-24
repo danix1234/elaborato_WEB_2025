@@ -1,16 +1,18 @@
  <div class="container-fluid text-center my-4">
-     <div class="row justify-content-center">
-         <div class="col-12 col-md-8">
-             <div class="col-12 d-flex justify-content-center align-items-left gap-3 py-3">
+     <div class="row justify-content-between col-12">
+         <div class="col-12 d-flex flex-wrap justify-content-center gap-2 gap-md-3 py-3">
+             <div class="d-flex flex-wrap justify-content-center gap-2">
                  <button type="button" class="btn btn-custom-lgold">Seleziona tutto</button>
                  <button type="button" class="btn btn-custom-lgold">Leggi Selezionate</button>
              </div>
-             <div class="col-12 d-flex justify-content-center align-items-right gap-3 py-3">
+             <div class="d-flex flex-wrap justify-content-center gap-2">
                  <button type="button" class="btn btn-custom-lgold">Gia' lette</button>
                  <button type="button" class="btn btn-custom-lgold">Da leggere</button>
              </div>
          </div>
      </div>
+
+
      <?php for ($i = 0; $i < 4; $i++) { ?>
          <div class="row align-items-center border-bottom py-2">
              <div class="col-12 col-md-1 text-center">
