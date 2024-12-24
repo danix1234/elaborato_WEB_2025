@@ -1,4 +1,4 @@
-for (const float_input of document.getElementsByClassName("button-custom-quantity")) {
+for (const float_input of document.getElementsByClassName("button-custom-float")) {
     let min = 0
     let max = 10000
 
