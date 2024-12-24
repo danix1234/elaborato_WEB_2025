@@ -1,3 +1,5 @@
+<?php $product = $templateParams["product"] ?>
+
 <!--title of entire page-->
 <header class="row my-2">
     <h1 class="text-center m-0">
@@ -9,28 +11,25 @@
 <form class="mx-md-4 mx-1 mt-md-4" action="#" method="post" enctype="multipart/form-data">
     <div class="row mb-4">
         <div class="col-md-6 pe-md-3">
-            <img class="img-fluid" src="img/temp.jpg" alt="immagine descrittiva del prodotto" />
+            <img class="img-fluid" src="<?php echo UPLOAD_DIR . $product["immagine"] ?>" alt="immagine descrittiva del prodotto" />
             <label class="form-label visually-hidden" for="preview">Scegli Immagine </label>
             <input class="form-control image-custom-preview" type="file" accept="image/png, image/jpeg" name="preview"
                 id="preview" />
         </div>
         <div class="col-md-6 ps-md-3">
             <label class="form-label" for="name">Nome</label>
-            <input class="form-control" type="text" name="name" id="name" placeholder="current-value" />
+            <input class="form-control" type="text" name="name" id="name" value="<?php echo $product["nome"] ?>" required />
             <label class="form-label" for="description">Descrizione</label>
-            <textarea class="form-control" cols="50" rows="3" name="description" id="description"
-                placeholder="current-value"></textarea>
+            <textarea class="form-control" cols="50" rows="3" name="description" id="description"><?php echo $product["descrizione"] ?></textarea>
             <label class="form-label" for="price">Prezzo unitario</label>
             <div class="input-group">
-                <input class="form-control button-custom-float" type="text" name="price" id="price"
-                    placeholder="current-value" />
+                <input class="form-control button-custom-float" type="text" name="price" id="price" value="<?php echo $product["prezzo"] ?>" required />
                 <span class="input-group-text">€</span>
             </div>
             <label class="form-label" for="quantity">Quantità residua</label>
             <div class="input-group">
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement">-</button>
-                <input class="form-control button-custom-quantity" type="text" name="quantity" id="quantity"
-                    placeholder="current-value" />
+                <input class="form-control button-custom-quantity" type="text" name="quantity" id="quantity" value="<?php echo $product["quantitaResidua"] ?>" required />
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment">+</button>
             </div>
         </div>

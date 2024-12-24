@@ -53,5 +53,11 @@ class DatabaseHelper
                     WHERE codUtente = ? AND codProdotto = ?;";
         return $this->parametrizedNoresultQuery($query, "iii", $newQuantity, $userId, $productId);
     }
-
+    public function getProduct($productId)
+    {
+        $query = "SELECT *
+                    FROM PRODOTTO
+                    WHERE codProdotto = ?;";
+        return $this->parametrizedQuery($query, "i", $productId);
+    }
 }
