@@ -11,6 +11,7 @@ class DatabaseHelper
             die("Connection failed: " . $temp);
         }
     }
+
     private function simpleQuery($query)
     {
         $stmt = $this->db->prepare($query);
@@ -30,6 +31,7 @@ class DatabaseHelper
         $stmt->bind_param($types, $var1, ...$vars);
         return $stmt->execute();
     }
+
     public function getAllCartItems($userId)
     {
         $query = "SELECT *
@@ -51,11 +53,5 @@ class DatabaseHelper
                     WHERE codUtente = ? AND codProdotto = ?;";
         return $this->parametrizedNoresultQuery($query, "iii", $newQuantity, $userId, $productId);
     }
-    public function getUserInfo($email)
-    {
-        $query = "SELECT *
-                    FROM UTENTE
-                    WHERE email = ?";
-        return $this->parametrizedQuery($query, "s", $email);
-    }
+
 }
