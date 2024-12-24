@@ -60,4 +60,10 @@ class DatabaseHelper
                     WHERE codProdotto = ?;";
         return $this->parametrizedQuery($query, "i", $productId);
     }
+    public function getAllCategories()
+    {
+        $query = "SELECT *
+                    FROM CATEGORIA";
+        return $this->simpleQuery($query);
+    }
 }

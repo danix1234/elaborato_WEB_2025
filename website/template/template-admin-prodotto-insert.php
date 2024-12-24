@@ -29,6 +29,13 @@
                 <input class="form-control button-custom-quantity" type="text" name="quantity" id="quantity" required />
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment">+</button>
             </div>
+            <label class="form-label" for="category">Categoria</label>
+            <select class="form-select" id="category" required>
+                <option value="" disabled selected>Scegli Categoria</option>
+                <?php foreach ($templateParams["categories"] as $cat) { ?>
+                    <option id="<?php echo $cat["codCategoria"] ?>" value="<?php echo $cat["codCategoria"] ?>"><?php echo $cat["nome"] ?></option>
+                <?php } ?>
+            </select>
         </div>
     </div>
     <div class="row justify-content-evenly my-4">
