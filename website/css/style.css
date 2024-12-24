@@ -1,0 +1,93 @@
+.link-custom {
+    color: black;
+    text-decoration: none;
+}
+
+.link-custom:hover,
+.link-custom:focus {
+    color: red;
+    text-decoration: underline;
+}
+
+.text-custom-gold {
+    color: #AA8539;
+}
+
+.text-custom-lgold {
+    color: #D4B26A;
+}
+
+.text-custom-blue {
+    color: #2E4272;
+}
+
+.text-custom-lblue {
+    color: #4F618f;
+}
+
+.bg-custom-gold {
+    background-color: #AA8539;
+}
+
+.bg-custom-lgold {
+    background-color: #D4B26A;
+}
+
+.bg-custom-blue {
+    background-color: #2E4272;
+}
+
+.bg-custom-lblue {
+    background-color: #4F618f;
+}
+
+.bg-custom-gold-hover:hover,
+.bg-custom-gold-hover:focus {
+    background-color: #AA8539;
+}
+
+.bg-custom-lgold-hover:hover,
+.bg-custom-lgold-hover:focus {
+    background-color: #D4B26A;
+}
+
+.bg-custom-blue-hover:hover,
+.bg-custom-blue-hover:focus {
+    background-color: #2E4272;
+}
+
+.bg-custom-lblue-hover:hover,
+.bg-custom-lblue-hover:focus {
+    background-color: #4F618f;
+}
+
+.btn.btn-custom-lgold {
+    background-color: #D4B26A;
+    color: #000;
+    border: none;
+}
+
+.btn.btn-custom-lgold:active,
+.btn.btn-custom-lgold:hover,
+.btn.btn-custom-lgold:focus {
+    background-color: #805D15;
+    color: #000;
+}
+
+.btn.btn-custom-gold {
+    background-color: #AA8539;
+    color: #000;
+    border: none;
+}
+
+.btn.btn-custom-gold:active,
+.btn.btn-custom-gold:hover,
+.btn.btn-custom-gold:focus {
+    background-color: #805D15;
+    color: #000;
+}
+
+.user-avatar-size {
+    width: 40px;
+    height: 40px;
+}
