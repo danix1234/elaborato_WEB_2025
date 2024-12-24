@@ -2,9 +2,9 @@
      <div class="row justify-content-center">
          <div class="col-12 ol-md-6">
              <div class="d-flex justify-content-center align-items-center gap-3 py-3">
-                 <button type="button" class="btn btn-custom-lgold flex-fill mx-1">Seleziona tutto</button>
-                 <button type="button" class="btn btn-custom-lgold flex-fill mx-1">Segna come letto</button>
-                 <button type="button" class="btn btn-custom-lgold flex-fill mx-1">Elimina Selezionati</button>
+                 <button type="button" class="btn btn-custom-lgold">Seleziona tutto</button>
+                 <button type="button" class="btn btn-custom-lgold">Segna come letto</button>
+                 <button type="button" class="btn btn-custom-lgold">Elimina Selezionati</button>
              </div>
          </div>
      </div>
