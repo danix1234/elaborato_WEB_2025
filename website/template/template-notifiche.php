@@ -18,7 +18,7 @@
                  doloremque, minus rem sint tempora, vero reiciendis repudiandae labore maxime aut facilis saepe,
                  nemo provident vel fugit. Et, saepe provident.
              </div>
-             <div class="col-6 col-md-1 text-end text-sm-start">
+             <div class="col-6 col-md-1 text-end text-sm-star text-center">
                  12:32
              </div>
              <div class="col-6 col-md-1 text-center">
