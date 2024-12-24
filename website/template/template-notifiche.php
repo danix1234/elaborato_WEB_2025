@@ -1,10 +1,13 @@
  <div class="container-fluid text-center my-4">
      <div class="row justify-content-center">
-         <div class="col-12 col-md-6">
-             <div class="d-flex justify-content-center align-items-center gap-3 py-3">
+         <div class="col-12 col-md-8">
+             <div class="col-12 d-flex justify-content-center align-items-left gap-3 py-3">
                  <button type="button" class="btn btn-custom-lgold">Seleziona tutto</button>
-                 <button type="button" class="btn btn-custom-lgold">Segna come letto</button>
-                 <button type="button" class="btn btn-custom-lgold">Elimina Selezionati</button>
+                 <button type="button" class="btn btn-custom-lgold">Leggi Selezionate</button>
+             </div>
+             <div class="col-12 d-flex justify-content-center align-items-right gap-3 py-3">
+                 <button type="button" class="btn btn-custom-lgold">Gia' lette</button>
+                 <button type="button" class="btn btn-custom-lgold">Da leggere</button>
              </div>
          </div>
      </div>
