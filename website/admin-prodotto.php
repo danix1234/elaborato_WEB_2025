@@ -7,6 +7,7 @@ if (!isAdmin()) {
 
 if (isset($_GET["productId"])) {
     $templateParams["nome"] = "template-admin-prodotto-modify.php";
+    $templateParams["scripts"] = array("js/number_button.js", "js/preview_image.js", "js/float_button.js", "js/remove_product.js");
     $product = $dbh->getProduct($_GET["productId"]);
     if (sizeof($product) == 0) {
         die('not a valid product id!');
@@ -15,8 +16,8 @@ if (isset($_GET["productId"])) {
     }
 } else {
     $templateParams["nome"] = "template-admin-prodotto-insert.php";
+    $templateParams["scripts"] = array("js/number_button.js", "js/preview_image.js", "js/float_button.js");
 }
-$templateParams["scripts"] = array("js/number_button.js", "js/preview_image.js", "js/float_button.js");
 $templateParams["categories"] = $dbh->getAllCategories();
 
 require("template/base.php");
