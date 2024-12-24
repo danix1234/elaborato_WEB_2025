@@ -10,7 +10,7 @@
      </div>
      <?php for ($i = 0; $i < 4; $i++) { ?>
          <div class="row align-items-center border-bottom py-2">
-             <div class="col-12 col-mm-1 text-center">
+             <div class="col-12 col-md-1 text-center">
                  <input class="form-check-input select-checkbox" type="checkbox" value="" id="flexCheckDefault">
              </div>
              <div class="col-12 col-md-9 text-wrap text-break">
