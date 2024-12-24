@@ -66,4 +66,23 @@ class DatabaseHelper
                     FROM CATEGORIA";
         return $this->simpleQuery($query);
     }
+    public function addProduct($name, $desc, $quantity, $price, $img, $cat)
+    {
+        $query = 'INSERT INTO PRODOTTO(nome, descrizione, quantitaResidua, prezzo, immagine, codCategoria)
+                    VALUES(?,?,?,?,?,?)';
+        return $this->parametrizedNoresultQuery($query, "ssidsi", $name, $desc, $quantity, $price, $img, $cat);
+    }
+    public function updateProduct($productId, $name, $desc, $quantity, $price, $img, $cat)
+    {
+        $query = 'UPDATE PRODOTTO
+                    SET nome = ?, descrizione = ?, quantitaResidua = ?, prezzo = ?, immagine = ?, codCategoria = ?
+                    WHERE codProdotto = ?';
+        return $this->parametrizedNoresultQuery($query, "ssidsii", $name, $desc, $quantity, $price, $img, $cat, $productId);
+    }
+    public function deleteProduct($productId)
+    {
+        $query = 'DELETE FROM PRODOTTO
+                    WHERE codProdotto = ?';
+        return $this->parametrizedNoresultQuery($query, "i", $productId);
+    }
 }

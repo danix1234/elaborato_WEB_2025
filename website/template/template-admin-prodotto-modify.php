@@ -8,7 +8,7 @@
 </header>
 
 <!--modifica del prodotto-->
-<form class="mx-md-4 mx-1 mt-md-4" action="#" method="post" enctype="multipart/form-data">
+<form class="mx-md-4 mx-1 mt-md-4" action="api/manage_product.php?productId=<?php echo $_GET["productId"] ?>" method="post" enctype="multipart/form-data">
     <div class="row mb-4">
         <div class="col-md-6 pe-md-3">
             <img class="img-fluid" src="<?php echo UPLOAD_DIR . $product["immagine"] ?>" alt="immagine descrittiva del prodotto" />

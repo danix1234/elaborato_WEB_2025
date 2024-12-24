@@ -6,7 +6,7 @@
 </header>
 
 <!--modifica del prodotto-->
-<form class="mx-md-4 mx-1 mt-md-4" action="#" method="post" enctype="multipart/form-data">
+<form class="mx-md-4 mx-1 mt-md-4" action="api/manage_product.php" method="post" enctype="multipart/form-data">
     <div class="row mb-4">
         <div class="col-md-6 pe-md-3">
             <img class="img-fluid" src="img/temp.jpg" alt="immagine descrittiva del prodotto" />
@@ -30,7 +30,7 @@
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment">+</button>
             </div>
             <label class="form-label" for="category">Categoria</label>
-            <select class="form-select" id="category" required>
+            <select class="form-select" id="category" name="category" required>
                 <option value="" disabled selected>Scegli Categoria</option>
                 <?php foreach ($templateParams["categories"] as $cat) { ?>
                     <option id="<?php echo $cat["codCategoria"] ?>" value="<?php echo $cat["codCategoria"] ?>"><?php echo $cat["nome"] ?></option>

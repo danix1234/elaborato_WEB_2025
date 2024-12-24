@@ -2,7 +2,9 @@
 
 require_once "../bootstrap.php";
 
-if (!isset($_GET["product"])) {
+if (!isLoggedIn()) {
+    die('not currently logged in!');
+} elseif (!isset($_GET["product"])) {
     die('product id not passed via GET method!');
 };
 
