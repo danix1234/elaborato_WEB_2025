@@ -30,13 +30,6 @@ class DatabaseHelper
         $stmt->bind_param($types, $var1, ...$vars);
         return $stmt->execute();
     }
-    public function isAdmin($userId)
-    {
-        $query = "SELECT privilegi
-                    FROM UTENTE
-                    WHERE codUtente = ? AND privilegi;";
-        return sizeof($this->parametrizedQuery($query, "i", $userId)) > 0;
-    }
     public function getAllCartItems($userId)
     {
         $query = "SELECT *
@@ -57,5 +50,12 @@ class DatabaseHelper
                     SET quantita = ? 
                     WHERE codUtente = ? AND codProdotto = ?;";
         return $this->parametrizedNoresultQuery($query, "iii", $newQuantity, $userId, $productId);
+    }
+    public function getUserInfo($email)
+    {
+        $query = "SELECT *
+                    FROM UTENTE
+                    WHERE email = ?";
+        return $this->parametrizedQuery($query, "s", $email);
     }
 }
