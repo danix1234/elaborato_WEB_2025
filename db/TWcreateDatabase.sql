@@ -68,7 +68,7 @@ create table PRODOTTO (
      nome varchar(30) not null,
      descrizione varchar(255) not null,
      quantitaResidua int not null,
-     prezzo int not null,
+     prezzo decimal(11, 2) not null,
      immagine varchar(50) not null,
      codCategoria int not null,
      constraint ID_PRODOTTO_ID primary key (codProdotto));
