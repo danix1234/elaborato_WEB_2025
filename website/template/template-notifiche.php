@@ -3,8 +3,8 @@
          <div class="col-12 col-sm-8 col-md-6">
              <div class="d-flex justify-content-center align-items-center gap-3 py-3">
                  <button type="button" class="btn btn-custom-lgold flex-fill mx-1">Seleziona tutto</button>
-                 <button type="button" class="btn btn-custom-lgold flex-fill mx-1">Elimina Selezionati</button>
                  <button type="button" class="btn btn-custom-lgold flex-fill mx-1">Segna come letto</button>
+                 <button type="button" class="btn btn-custom-lgold flex-fill mx-1">Elimina Selezionati</button>
              </div>
          </div>
      </div>
@@ -26,7 +26,4 @@
              </div>
          </div>
      <?php } ?>
-
  </div>
- <!-- <div class="col d-none d-md-block">  
-<button type="button" class="btn" data-bs-toggle="button">Già letti</button>  </div> -->
