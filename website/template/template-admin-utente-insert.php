@@ -13,29 +13,36 @@
             <label class="form-label visually-hidden" for="preview">Scegli Immagine </label>
             <input class="form-control image-custom-preview" type="file" accept="image/png, image/jpeg" name="preview" id="preview" required />
         </div>
-        <div class="col-md-6 ps-md-3">
-            <label class="form-label" for="name">Nome</label>
-            <input class="form-control" type="text" name="name" id="name" required />
-            <label class="form-label" for="description">Descrizione</label>
-            <textarea class="form-control" cols="50" rows="3" name="description" id="description" required></textarea>
-            <label class="form-label" for="price">Prezzo unitario</label>
-            <div class="input-group">
-                <input class="form-control button-custom-float" type="text" name="price" id="price" required />
-                <span class="input-group-text">€</span>
+        <div class="col-md-6 ps-md-3 my-3">
+            <div class="mb-3">
+                <label class="form-label" for="name">Nome</label>
+                <input class="form-control" type="text" name="name" id="name" required />
             </div>
-            <label class="form-label" for="quantity">Quantità residua</label>
-            <div class="input-group">
-                <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement">-</button>
-                <input class="form-control button-custom-quantity" type="text" name="quantity" id="quantity" required />
-                <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment">+</button>
+            <div class="mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" type="password" name="password" id="password" required />
             </div>
-            <label class="form-label" for="category">Categoria</label>
-            <select class="form-select" id="category" name="category" required>
-                <option value="" disabled selected>Scegli Categoria</option>
-                <?php foreach ($templateParams["categories"] as $cat) { ?>
-                    <option id="<?php echo $cat["codCategoria"] ?>" value="<?php echo $cat["codCategoria"] ?>"><?php echo $cat["nome"] ?></option>
-                <?php } ?>
-            </select>
+            <div class="mb-3">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control" type="email" name="email" id="email" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="category">Categoria</label>
+                <select class="form-select" id="category" name="category" required>
+                    <option value="" disabled selected>Scegli Categoria</option>
+                    <option value="Admin">Admin</option>
+                    <option value="User">Utente</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="address">Indirizzo</label>
+                <input class="form-control" type="text" name="address" id="address" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="city">Città</label>
+                <input class="form-control" type="text" name="city" id="city" required />
+            </div>
+
         </div>
     </div>
     <div class="row justify-content-evenly my-4">
