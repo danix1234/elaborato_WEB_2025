@@ -8,7 +8,7 @@ for (let i = 0; i < number_inputs.length; i++) {
             const unaryPriceInner = parseFloat(document.getElementsByClassName("text-custom-price")[inner].innerHTML.split(":")[1].trim())
             total_price += quantityInner * unaryPriceInner
         }
-        document.getElementsByClassName("text-custom-totprice")[0].innerText = `Prezzo totale: ${total_price}€`
+        document.getElementsByClassName("text-custom-totprice")[0].innerText = `Prezzo totale: ${(Math.trunc(total_price * 100) / 100).toFixed(2)}€`
     }
     const number_input = number_inputs[i]
     number_input.addEventListener("change", update)
