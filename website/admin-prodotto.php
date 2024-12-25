@@ -1,7 +1,9 @@
 <?php
 require_once("bootstrap.php");
 
-if (!isAdmin()) {
+if (!isLoggedIn()) {
+    die('not logged in!');
+} elseif (!isAdmin()) {
     die('cannot modify products, without admin privilegies!');
 }
 
