@@ -34,7 +34,7 @@
         ?>
             <div class="row border-bottom border-3 py-4">
                 <div class="col-md-4">
-                    <img class="img-fluid" src="img/temp.jpg" alt="" />
+                    <img class="img-fluid" src="<?php echo UPLOAD_DIR . $item["immagine"] ?>" alt="" />
                 </div>
                 <div class="col-md-8">
                     <a href="#" class="row link-custom">
