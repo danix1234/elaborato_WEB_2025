@@ -85,4 +85,12 @@ class DatabaseHelper
                     WHERE codProdotto = ?';
         return $this->parametrizedNoresultQuery($query, "i", $productId);
     }
+    public function getOrder($orderId, $userId)
+    {
+        $query = 'SELECT *
+                    FROM ORDINE O, DETTAGLIO_ORDINE D, PRODOTTO P, UTENTE U
+                    WHERE O.codOrdine = D.codOrdine AND P.codProdotto = D.codProdotto AND U.codUtente = O.codUtente
+                        AND O.codOrdine = ? AND U.codUtente = ?;';
+        return $this->parametrizedQuery($query, "ii", $orderId, $userId);
+    }
 }
