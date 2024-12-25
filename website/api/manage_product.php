@@ -8,7 +8,7 @@ if (!isLoggedIn()) {
     die("current user doesn't have admin privilegies!");
 }
 
-if (!isset($_GET["delete"]) && isset($_FILES["preview"])) {
+if (!isset($_GET["delete"]) && isset($_FILES["preview"]) && $_FILES["preview"]["error"] != UPLOAD_ERR_NO_FILE) {
     list($ok, $msg) = uploadImage("../" . UPLOAD_DIR, $_FILES["preview"]);
     if (!$ok) {
         die('failur in loading image: ' . $msg);
