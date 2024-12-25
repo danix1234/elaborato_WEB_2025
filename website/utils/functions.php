@@ -25,3 +25,28 @@ function getCurrentUserId()
     }
     return $_SESSION["userId"];
 }
+function uploadImage($uploadDir, $image)
+{
+    if ($image["error"]) {
+        return array(false, 'error uploading image!');
+    }
+
+    if (getimagesize($image["tmp_name"]) === false) {
+        return array(false, 'not actually an image!');
+    }
+
+    if (!in_array($image["type"], array("image/png", "image/jpg"))) {
+        return array(false, 'image type not supported!');
+    }
+
+    do {
+        $imageName = uniqid("uploaded") . '.' . pathinfo($image["name"], PATHINFO_EXTENSION);
+    } while (file_exists($uploadDir . $imageName));
+
+    print_r($imageName);
+    if (!move_uploaded_file($image["tmp_name"], $uploadDir . $imageName)) {
+        return array(false, 'error in moving uploaded image!');
+    } else {
+        return array(true, $imageName);
+    }
+}

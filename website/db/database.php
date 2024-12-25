@@ -72,12 +72,19 @@ class DatabaseHelper
                     VALUES(?,?,?,?,?,?)';
         return $this->parametrizedNoresultQuery($query, "ssidsi", $name, $desc, $quantity, $price, $img, $cat);
     }
-    public function updateProduct($productId, $name, $desc, $quantity, $price, $img, $cat)
+    public function updateProduct($productId, $name, $desc, $quantity, $price, $cat)
     {
         $query = 'UPDATE PRODOTTO
-                    SET nome = ?, descrizione = ?, quantitaResidua = ?, prezzo = ?, immagine = ?, codCategoria = ?
+                    SET nome = ?, descrizione = ?, quantitaResidua = ?, prezzo = ?, codCategoria = ?
                     WHERE codProdotto = ?';
-        return $this->parametrizedNoresultQuery($query, "ssidsii", $name, $desc, $quantity, $price, $img, $cat, $productId);
+        return $this->parametrizedNoresultQuery($query, "ssidii", $name, $desc, $quantity, $price, $cat, $productId);
+    }
+    public function updateProductImg($productId, $img)
+    {
+        $query = 'UPDATE PRODOTTO
+                    SET immagine = ?
+                    WHERE codProdotto = ?';
+        return $this->parametrizedNoresultQuery($query, "si", $img, $productId);
     }
     public function deleteProduct($productId)
     {
