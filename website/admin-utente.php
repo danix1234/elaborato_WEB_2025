@@ -1,9 +1,7 @@
 <?php
 require_once("bootstrap.php");
 
-if (!isAdmin()) {
-    die('cannot modify users, without admin privilegies!');
-}
+//if (!isAdmin()) {    die('cannot modify users, without admin privilegies!');}
 
 if (isset($_GET["userId"])) {
     $templateParams["nome"] = "template-admin-utente-modify.php";

@@ -1,15 +1,15 @@
 <!--title of entire page-->
 <header class="row my-2">
     <h1 class="text-center m-0">
-        Inserisci Prodotto
+        Inserisci Utente
     </h1>
 </header>
 
 <!--modifica del prodotto-->
-<form class="mx-md-4 mx-1 mt-md-4" action="api/manage_product.php" method="post" enctype="multipart/form-data">
+<form class="mx-md-4 mx-1 mt-md-4" action="" method="post" enctype="">
     <div class="row mb-4">
         <div class="col-md-6 pe-md-3">
-            <img class="img-fluid" src="img/temp.jpg" alt="immagine descrittiva del prodotto" />
+            <img class="img-fluid" src="img/temp.jpg" alt="immagine dell'utente" />
             <label class="form-label visually-hidden" for="preview">Scegli Immagine </label>
             <input class="form-control image-custom-preview" type="file" accept="image/png, image/jpeg" name="preview" id="preview" required />
         </div>
