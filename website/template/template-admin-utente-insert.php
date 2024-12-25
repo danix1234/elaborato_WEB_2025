@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-6 ps-md-3 my-3">
             <div class="mb-3">
-                <label class="form-label" for="name">Nome</label>
+                <label class="form-label" for="name">Nome e cognome</label>
                 <input class="form-control" type="text" name="name" id="name" required />
             </div>
             <div class="mb-3">
