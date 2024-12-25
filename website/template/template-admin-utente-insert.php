@@ -27,12 +27,12 @@
                 <input class="form-control" type="email" name="email" id="email" required />
             </div>
             <div class="mb-3">
-                <label class="form-label" for="category">Categoria</label>
-                <select class="form-select" id="category" name="category" required>
-                    <option value="" disabled selected>Scegli Categoria</option>
+                <label class="form-label" for="privileges">Privilegi</label>
+                <select class="form-select" id="privileges" name="privileges" required>
                     <option value="Admin">Admin</option>
                     <option value="User">Utente</option>
                 </select>
+
             </div>
             <div class="mb-3">
                 <label class="form-label" for="address">Indirizzo</label>
