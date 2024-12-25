@@ -1,7 +1,7 @@
 <!--title of entire page-->
 <header class="row my-2">
     <h1 class="text-center m-0">
-        Inserisci Prodotto
+        Inserisci Utente
     </h1>
 </header>
 

@@ -3,7 +3,7 @@
 <!--title of entire page-->
 <header class="row my-2">
     <h1 class="text-center m-0">
-        Modifica Prodotto
+        Modifica Utente
     </h1>
 </header>
 

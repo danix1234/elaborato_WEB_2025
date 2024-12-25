@@ -1,6 +1,6 @@
 INSERT INTO UTENTE (nomeUtente, password, email, privilegi, indirizzo, citta)
 VALUES 
-('Mattia Negri', 'Polypoly', 'polipoly@example.com', 1, 'Via Libia Valdagno 10', 'Milano'),
+('Mattia Negri', 'Polypoly', 'polipoly@example.com', 1, 'Via Libia 10', 'Valdagno'),
 ('Luisa Bianchi', 'securePass456', 'luisa.bianchi@example.com', 0, 'Via Milano 5', 'Roma');
 
 INSERT INTO CATEGORIA (nome, descrizione)
