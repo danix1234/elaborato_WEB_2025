@@ -1,14 +1,12 @@
  <div class="container-fluid text-center my-4">
      <div class="row justify-content-between col-12">
-         <div class="col-12 d-flex flex-wrap justify-content-center gap-2 gap-md-3 py-3">
-             <div class="d-flex flex-wrap justify-content-center gap-2">
-                 <button type="button" class="btn btn-custom-lgold">Seleziona tutto</button>
-                 <button type="button" class="btn btn-custom-lgold">Leggi Selezionate</button>
-             </div>
-             <div class="d-flex flex-wrap justify-content-center gap-2">
-                 <button type="button" class="btn btn-custom-lgold">Gia' lette</button>
-                 <button type="button" class="btn btn-custom-lgold">Da leggere</button>
-             </div>
+         <div class="col-12 col-md-6 d-flex justify-content-md-start align-items-center gap-3 py-3">
+             <button type="button" class="btn btn-custom-lgold">Seleziona tutto</button>
+             <button type="button" class="btn btn-custom-lgold">Leggi Selezionate</button>
+         </div>
+         <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end align-items-center gap-3 py-3">
+             <button type="button" class="btn btn-custom-lgold">Gia' lette</button>
+             <button type="button" class="btn btn-custom-lgold">Da leggere</button>
          </div>
      </div>
 
