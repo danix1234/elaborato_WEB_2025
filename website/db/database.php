@@ -8,7 +8,7 @@ class DatabaseHelper
         $this->db = new mysqli($servername, $username, $password, $dbname, $port);
 
         if ($temp = $this->db->connect_error) {
-            die("Connection failed: ". $temp);
+            die("Connection failed: " . $temp);
         }
     }
 
@@ -135,13 +135,22 @@ class DatabaseHelper
                     FROM UTENTE 
                     WHERE email = ?
                     AND password = ?";
-        return $this->parametrizedQuery($query,"ss", $email, $password);
+        return $this->parametrizedQuery($query, "ss", $email, $password);
     }
-
-    public function getUserbyEmail($email){
+    /**
+     * get user by email
+     */
+    public function getUserbyEmail($email)
+    {
         $query = "SELECT *
                     FROM UTENTE
                     WHERE email = ?";
-        return $this->parametrizedNoresultQuery($query,"s", $email);
+        return $this->parametrizedQuery($query, "s", $email);
+    }
+
+    public function addUserr($name, $email, $password, $address, $city){
+        $query = "INSERT INTO UTENTE(nomeUtente, email, password, privilegi, indirizzo, citta)
+                    VALUES(?,?,?,false,?,?)";
+        return $this->parametrizedQuery($query, "sssss", $name, $email, $password, $address, $city);
     }
 }
