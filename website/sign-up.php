@@ -18,7 +18,10 @@ if (
         } else {
             $dbh->addUserr($nome, $email, $hash, $indirizzo, $citta);
             $login_result = $dbh->checkLogin($email, $hash);
-            registerUser($login_result[0]);
+            // for warning
+            if (!empty($login_result)) {
+                registerUser($login_result[0]);
+            }
         }
     } else {
         $templateParams["erroresign"] = "Errore, email non valida.";
@@ -28,7 +31,7 @@ if (
 if (isLoggedIn()) {
     header("Location: prodotto.php"); //TODO home
 } else {
-    $templateParams["nome"] = "sign.php";
+    $templateParams["nome"] = "template-sign.php";
     $templateParams["tipo"] = "Registrazione";
     $templateParams["fields"] = array("nome", "email", "password", "indirizzo", "citta");
     $templateParams["redirect"] = "Hai gia' un account? Accedi!";

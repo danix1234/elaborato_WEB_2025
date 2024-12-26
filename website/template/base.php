@@ -10,7 +10,11 @@
 
     <link rel="stylesheet" href="./css/style.css" />
 
-    <title>Nostro Sito</title> <!-- TODO change title -->
+    <title>Nostro Sito<?php
+    if (isset($templateParams["titolo"])) {
+        echo " - " . "$templateParams[titolo]";
+    }
+    ?></title> <!-- TODO change title -->
 </head>
 
 <body class="bg-white">
@@ -19,7 +23,7 @@
         <div class="row align-items-center justify-content-between mx-1">
             <!-- Logo -->
             <div class="col-3 col-md-2 col-lg-1 order-1"> <!-- TODO col-lg ! -->
-                <a href="#"><img src="./img/temp.jpg" class="img-fluid" alt="Logo" /></a>
+                <a href="<?php checkFile("home.php"); ?>"><img src="./img/temp.jpg" class="img-fluid" alt="Logo" /></a>
             </div>
 
             <!-- search bar -->
@@ -42,15 +46,23 @@
 
             <!-- log in -->
             <div class="col-5 col-md-1 text-center text-white order-2 order-md-3">
-                ciao, accedi
+                <a href="<?php checkFile("sign-in.php"); ?>" title="accedi"
+                    class="text-white text-decoration-none">Ciao, <?php if (!empty(getCurrentUserName())) {
+                        echo getCurrentUserName();
+                    } else {
+                        echo "Accedi";
+                    } ?></a>
             </div>
 
             <!-- icons -->
             <div class="col-4 col-md-2 d-flex align-items-center order-3 order-md-4 justify-content-center">
                 <div class="w-100 d-flex justify-content-around">
-                    <a href="#" title="notifica" class="text-white"><span class="bi bi-bell"></span></a>
-                    <a href="#" title="ordini" class="text-white"><span class="bi bi-clock-history"></span></a>
-                    <a href="#" title="carrello" class="text-custom-gold"><span class="bi bi-cart"></span></a>
+                    <a href="<?php checkFile("notifiche.php"); ?>" title="notifica" class="text-white"><span
+                            class="bi bi-bell"></span></a>
+                    <a href="<?php checkFile("ordini.php"); ?>" title="ordini" class="text-white"><span
+                            class="bi bi-clock-history"></span></a>
+                    <a href="<?php checkFile("carrello.php"); ?>" title="carrello" class="text-custom-gold"><span
+                            class="bi bi-cart"></span></a>
                 </div>
             </div>
         </div>

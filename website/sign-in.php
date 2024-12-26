@@ -21,7 +21,7 @@ if (!empty($_POST["email"]) && !empty($_POST["password"])) {
 if (isLoggedIn()) {
     header("Location: prodotto.php"); //TODO home
 } else {
-    $templateParams["nome"] = "sign.php";
+    $templateParams["nome"] = "template-sign.php";
     $templateParams["tipo"] = "Accedi";
     $templateParams["fields"] = array("email", "password");
     $templateParams["redirect"] = "Sei nuovo? Registrati!";

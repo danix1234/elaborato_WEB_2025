@@ -45,7 +45,7 @@
     </div>
 </div>
 
-<!-- Reviews Section -->
+<!-- recensioni -->
 <hr />
 <div class="row mx-md-2">
     <div class="col border rounded mb-2 mx-auto">

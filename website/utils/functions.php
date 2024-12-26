@@ -1,4 +1,9 @@
 <?php
+function checkFile($pagename)
+{
+    $href = file_exists("$pagename") ? $pagename : "#";
+    echo $href;
+}
 function getIdFromName($name)
 {
     return preg_replace("/[^a-z]/", '', strtolower($name));
@@ -24,6 +29,13 @@ function getCurrentUserId()
         die('CANNOT GET CURRENT USER: NOT LOGGED IN!');
     }
     return $_SESSION["userId"];
+}
+function getCurrentUserName()
+{
+    if (!isLoggedIn()) {
+        die('CANNOT GET CURRENT USER: NOT LOGGED IN!');
+    }
+    return $_SESSION["name"];
 }
 function uploadImage($uploadDir, $image)
 {
