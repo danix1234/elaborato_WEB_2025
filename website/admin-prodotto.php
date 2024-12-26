@@ -18,7 +18,7 @@ if (isset($_GET["productId"])) {
 } else {
     $templateParams["nome"] = "template-admin-prodotto-insert.php";
 }
-$templateParams["scripts"] = array("js/number_button.js", "js/preview_image.js", "js/float_button.js", "js/remove_product.js");
+$templateParams["scripts"] = array("js/number_button.js", "js/preview_image.js", "js/float_button.js");
 $templateParams["categories"] = $dbh->getAllCategories();
 
 require("template/base.php");

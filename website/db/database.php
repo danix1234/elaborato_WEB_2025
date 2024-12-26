@@ -86,12 +86,6 @@ class DatabaseHelper
                     WHERE codProdotto = ?';
         return $this->parametrizedNoresultQuery($query, "si", $img, $productId);
     }
-    public function deleteProduct($productId)
-    {
-        $query = 'DELETE FROM PRODOTTO
-                    WHERE codProdotto = ?';
-        return $this->parametrizedNoresultQuery($query, "i", $productId);
-    }
     public function getOrder($orderId, $userId)
     {
         $query = 'SELECT *
