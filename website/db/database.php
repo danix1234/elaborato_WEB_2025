@@ -29,7 +29,9 @@ class DatabaseHelper
     {
         $stmt = $this->db->prepare($query);
         $stmt->bind_param($types, $var1, ...$vars);
-        return $stmt->execute();
+        $ok = $stmt->execute();
+        $rows = $stmt->affected_rows;
+        return array($ok, $rows);
     }
 
     public function getAllCartItems($userId)
@@ -40,14 +42,12 @@ class DatabaseHelper
                         AND C.codUtente = ?";
         return $this->parametrizedQuery($query, "i", $userId);
     }
-
     public function deleteFromCart($userId, $productId)
     {
         $query = "DELETE FROM CARRELLO
                     WHERE codUtente = ? AND codProdotto = ?;";
         return $this->parametrizedNoresultQuery($query, "ii", $userId, $productId);
     }
-
     public function updateCartQuantity($userId, $productId, $newQuantity)
     {
         $query = "UPDATE CARRELLO
@@ -55,14 +55,6 @@ class DatabaseHelper
                     WHERE codUtente = ? AND codProdotto = ?;";
         return $this->parametrizedNoresultQuery($query, "iii", $newQuantity, $userId, $productId);
     }
-
-    public function getAllCategories()
-    {
-        $query = "SELECT *
-                    FROM CATEGORIA";
-        return $this->simpleQuery($query);
-    }
-
     public function getProduct($productId)
     {
         $query = "SELECT *
@@ -70,27 +62,39 @@ class DatabaseHelper
                     WHERE codProdotto = ?;";
         return $this->parametrizedQuery($query, "i", $productId);
     }
-
+    public function getAllCategories()
+    {
+        $query = "SELECT *
+                    FROM CATEGORIA";
+        return $this->simpleQuery($query);
+    }
     public function addProduct($name, $desc, $quantity, $price, $img, $cat)
     {
         $query = 'INSERT INTO PRODOTTO(nome, descrizione, quantitaResidua, prezzo, immagine, codCategoria)
                     VALUES(?,?,?,?,?,?)';
         return $this->parametrizedNoresultQuery($query, "ssidsi", $name, $desc, $quantity, $price, $img, $cat);
     }
-
-    public function updateProduct($productId, $name, $desc, $quantity, $price, $img, $cat)
+    public function updateProduct($productId, $name, $desc, $quantity, $price, $cat)
     {
         $query = 'UPDATE PRODOTTO
-                    SET nome = ?, descrizione = ?, quantitaResidua = ?, prezzo = ?, immagine = ?, codCategoria = ?
+                    SET nome = ?, descrizione = ?, quantitaResidua = ?, prezzo = ?, codCategoria = ?
                     WHERE codProdotto = ?';
-        return $this->parametrizedNoresultQuery($query, "ssidsii", $name, $desc, $quantity, $price, $img, $cat, $productId);
+        return $this->parametrizedNoresultQuery($query, "ssidii", $name, $desc, $quantity, $price, $cat, $productId);
     }
-
-    public function deleteProduct($productId)
+    public function updateProductImg($productId, $img)
     {
-        $query = 'DELETE FROM PRODOTTO
+        $query = 'UPDATE PRODOTTO
+                    SET immagine = ?
                     WHERE codProdotto = ?';
-        return $this->parametrizedNoresultQuery($query, "i", $productId);
+        return $this->parametrizedNoresultQuery($query, "si", $img, $productId);
+    }
+    public function getOrder($orderId, $userId)
+    {
+        $query = 'SELECT *
+                    FROM ORDINE O, DETTAGLIO_ORDINE D, PRODOTTO P, UTENTE U
+                    WHERE O.codOrdine = D.codOrdine AND P.codProdotto = D.codProdotto AND U.codUtente = O.codUtente
+                        AND O.codOrdine = ? AND U.codUtente = ?;';
+        return $this->parametrizedQuery($query, "ii", $orderId, $userId);
     }
 
     public function getUser($username)
