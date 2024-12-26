@@ -96,4 +96,34 @@ class DatabaseHelper
                         AND O.codOrdine = ? AND U.codUtente = ?;';
         return $this->parametrizedQuery($query, "ii", $orderId, $userId);
     }
+
+    public function getUser($username)
+    {
+        $query = "SELECT *
+                    FROM UTENTE
+                    WHERE nomeUtente = ?;";
+        return $this->parametrizedQuery($query, "s", $username);
+    }
+
+    public function addUser($username, $password, $email, $privileges, $address, $city)
+    {
+        $query = 'INSERT INTO UTENTE(nomeUtente, password, email, privilegi, indirizzo, citta)
+                    VALUES(?,?,?,?,?,?)';
+        return $this->parametrizedNoresultQuery($query, "ssssss", $username, $password, $email, $privileges, $address, $city);
+    }
+
+    public function updateUser($username, $password, $email, $privileges, $address, $city)
+    {
+        $query = 'UPDATE UTENTE
+                    SET password = ?, email = ?, privilegi = ?, indirizzo = ?, citta = ?
+                    WHERE nomeUtente = ?';
+        return $this->parametrizedNoresultQuery($query, "ssssss", $password, $email, $privileges, $address, $city, $username);
+    }
+
+    public function deleteUser($username)
+    {
+        $query = 'DELETE FROM UTENTE
+                    WHERE nomeUtente = ?';
+        return $this->parametrizedNoresultQuery($query, "s", $username);
+    }
 }
