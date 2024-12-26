@@ -29,7 +29,9 @@ class DatabaseHelper
     {
         $stmt = $this->db->prepare($query);
         $stmt->bind_param($types, $var1, ...$vars);
-        return $stmt->execute();
+        $ok = $stmt->execute();
+        $rows = $stmt->affected_rows;
+        return array($ok, $rows);
     }
 
     public function getAllCartItems($userId)

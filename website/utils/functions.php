@@ -43,7 +43,6 @@ function uploadImage($uploadDir, $image)
         $imageName = uniqid("uploaded") . '.' . pathinfo($image["name"], PATHINFO_EXTENSION);
     } while (file_exists($uploadDir . $imageName));
 
-    print_r($imageName);
     if (!move_uploaded_file($image["tmp_name"], $uploadDir . $imageName)) {
         return array(false, 'error in moving uploaded image!');
     } else {
