@@ -1,14 +1,12 @@
 <?php $user = $templateParams["user"] ?>
 
-<!--title of entire page-->
 <header class="row my-2">
     <h1 class="text-center m-0">
         Modifica utente
     </h1>
 </header>
 
-<!--modifica del utente-->
-<form class="mx-md-4 mx-1 mt-md-4" action="" method="post" enctype="">
+<form class="mx-md-4 mx-1 mt-md-4" action="api/manage_user.php?productId=<?php echo $_GET["userId"] ?>" method="post" enctype="">
     <div class="row mb-4">
         <div class="col-md-6 pe-md-3">
             <img class="img-fluid" src="<?php echo UPLOAD_DIR . $user["immagine"] ?>" alt="immagine dell'utente" />
