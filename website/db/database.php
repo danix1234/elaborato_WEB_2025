@@ -150,7 +150,7 @@ class DatabaseHelper
 
     public function addUserr($name, $email, $password, $address, $city){
         $query = "INSERT INTO UTENTE(nomeUtente, email, password, privilegi, indirizzo, citta)
-                    VALUES(?,?,?,false,?,?)";
-        return $this->parametrizedQuery($query, "sssss", $name, $email, $password, $address, $city);
+                    VALUES(?,?,?,0,?,?)";
+        return $this->parametrizedNoresultQuery($query, "sssss", $name, $email, $password, $address, $city);
     }
 }

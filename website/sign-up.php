@@ -7,7 +7,7 @@ if (
 ) {
     $nome = $_POST["nome"];
     $email = $_POST["email"];
-    $password = $_POST["password"];
+    $hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
     $indirizzo = $_POST["indirizzo"];
     $citta = $_POST["citta"];
 
@@ -16,8 +16,8 @@ if (
         if (!empty($checkEmail)) {
             $templateParams["erroresign"] = "Errore, email gia' registrata.";
         } else {
-            $dbh->addUserr($nome, $password, $email, $indirizzo, $citta);
-            $login_result = $dbh->checkLogin($email, $password);
+            $dbh->addUserr($nome, $email, $hash, $indirizzo, $citta);
+            $login_result = $dbh->checkLogin($email, $hash);
             registerUser($login_result[0]);
         }
     } else {
@@ -27,7 +27,6 @@ if (
 
 if (isLoggedIn()) {
     header("Location: prodotto.php"); //TODO home
-    session_unset();
 } else {
     $templateParams["nome"] = "sign.php";
     $templateParams["tipo"] = "Registrazione";
