@@ -3,9 +3,9 @@ class DatabaseHelper
 {
     private $db;
 
-    public function __construct($servername, $username, $password, $dbname)
+    public function __construct($servername, $username, $password, $dbname, $port)
     {
-        $this->db = new mysqli($servername, $username, $password, $dbname);
+        $this->db = new mysqli($servername, $username, $password, $dbname, $port);
 
         if ($temp = $this->db->connect_error) {
             die("Connection failed: " . $temp);
@@ -125,5 +125,13 @@ class DatabaseHelper
         $query = 'DELETE FROM UTENTE
                     WHERE nomeUtente = ?';
         return $this->parametrizedNoresultQuery($query, "s", $username);
+    }
+
+    public function checkLogin($username, $password){
+        $query = "SELECT nomeUtente, password, codUtente, privilegi
+                    FROM UTENTE 
+                    WHERE nomeUtente = ?
+                    AND password = ?";
+        return $this->parametrizedQuery($query, "ss", $username, $password);
     }
 }
