@@ -8,7 +8,7 @@ class DatabaseHelper
         $this->db = new mysqli($servername, $username, $password, $dbname, $port);
 
         if ($temp = $this->db->connect_error) {
-            die("Connection failed: " . $temp);
+            die("Connection failed: ". $temp);
         }
     }
 
@@ -127,11 +127,12 @@ class DatabaseHelper
         return $this->parametrizedNoresultQuery($query, "s", $username);
     }
 
-    public function checkLogin($username, $password){
-        $query = "SELECT nomeUtente, password, codUtente, privilegi
+    public function checkLogin($email, $password)
+    {
+        $query = "SELECT nomeUtente, email, codUtente, privilegi
                     FROM UTENTE 
-                    WHERE nomeUtente = ?
+                    WHERE email = ?
                     AND password = ?";
-        return $this->parametrizedQuery($query, "ss", $username, $password);
+        return $this->parametrizedQuery($query,"ss", $email, $password);
     }
 }
