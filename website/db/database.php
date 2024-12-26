@@ -126,7 +126,9 @@ class DatabaseHelper
                     WHERE nomeUtente = ?';
         return $this->parametrizedNoresultQuery($query, "s", $username);
     }
-
+    /**
+     * check if the email and password match in the database
+     */
     public function checkLogin($email, $password)
     {
         $query = "SELECT nomeUtente, email, codUtente, privilegi
@@ -134,5 +136,12 @@ class DatabaseHelper
                     WHERE email = ?
                     AND password = ?";
         return $this->parametrizedQuery($query,"ss", $email, $password);
+    }
+
+    public function getUserbyEmail($email){
+        $query = "SELECT *
+                    FROM UTENTE
+                    WHERE email = ?";
+        return $this->parametrizedNoresultQuery($query,"s", $email);
     }
 }

@@ -2,9 +2,9 @@
     <div class="col-12 col-md-6 col-lg-4 border rounded p-4">
         <form action="#" method="POST">
             <h2 class="text-center fw-bold mb-2"><?php echo $templateParams["tipo"]; ?></h2>
-            <?php if (isset($templateParams["erroresignin"])): ?>
+            <?php if (isset($templateParams["erroresign"])): ?>
                 <div class="text-danger mb-3">
-                    <?php echo $templateParams["erroresignin"] ?>
+                    <?php echo $templateParams["erroresign"] ?>
                 </div>
             <?php endif; ?>
 
