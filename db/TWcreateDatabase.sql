@@ -56,7 +56,7 @@ create table RECENSIONE (
 
 create table ORDINE (
      codOrdine int not null auto_increment,
-     dataOrdine date not null,
+     dataOrdine datetime not null,
      statoOrdine varchar(20) not null,
      totale decimal(11,2) not null,
      pagato char not null,
