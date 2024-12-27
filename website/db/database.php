@@ -105,13 +105,6 @@ class DatabaseHelper
         return $this->parametrizedQuery($query, "s", $username);
     }
 
-    public function addUser($username, $password, $email, $privileges, $address, $city)
-    {
-        $query = 'INSERT INTO UTENTE(nomeUtente, password, email, privilegi, indirizzo, citta)
-                    VALUES(?,?,?,?,?,?)';
-        return $this->parametrizedNoresultQuery($query, "ssssss", $username, $password, $email, $privileges, $address, $city);
-    }
-
     public function updateUser($username, $password, $email, $privileges, $address, $city)
     {
         $query = 'UPDATE UTENTE
