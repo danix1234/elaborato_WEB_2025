@@ -16,7 +16,7 @@ if (
         if (!empty($checkEmail)) {
             $templateParams["erroresign"] = "Errore, email gia' registrata.";
         } else {
-            $dbh->addUserr($nome, $email, $hash, $indirizzo, $citta);
+            $dbh->addUser($nome, $email, $hash, $indirizzo, $citta);
             $login_result = $dbh->checkLogin($email, $hash);
             // for warning
             if (!empty($login_result)) {

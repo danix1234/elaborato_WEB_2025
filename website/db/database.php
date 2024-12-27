@@ -140,8 +140,10 @@ class DatabaseHelper
                     WHERE email = ?";
         return $this->parametrizedQuery($query, "s", $email);
     }
-
-    public function addUserr($name, $email, $password, $address, $city){
+    /**
+     * add a new use into the database
+     */
+    public function addUser($name, $email, $password, $address, $city){
         $query = "INSERT INTO UTENTE(nomeUtente, email, password, privilegi, indirizzo, citta)
                     VALUES(?,?,?,0,?,?)";
         return $this->parametrizedNoresultQuery($query, "sssss", $name, $email, $password, $address, $city);
