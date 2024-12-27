@@ -47,7 +47,7 @@ VALUES
 -- Insert Orders
 INSERT INTO ORDINE (dataOrdine, statoOrdine, totale, pagato, codUtente)
 VALUES 
-('2024-11-30', 'Shipped', 2000.00, 1, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
+('2024-1-30', 'Shipped', 2000.00, 1, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
 ('2024-12-01', 'Shipping', 1500.00, 1, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
 ('2024-12-02', 'Pending', 1000.00, 0, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
 ('2024-12-03', 'Deleted', 500.00, 0, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com'));
@@ -67,15 +67,7 @@ VALUES
 -- Insert Notifications
 INSERT INTO NOTIFICA (messaggio, tipoNotifica, letto, dataNotifica, codUtente)
 VALUES 
-('Your order has been shipped', 'Order', 0, '2024-11-30 10:00:00', (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
-('Your order is being shipped', 'Order', 0, '2024-12-01 10:00:00', (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
-('Your order is pending', 'Order', 0, '2024-12-02 10:00:00', (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
-('Your order has been deleted', 'Order', 0, '2024-12-03 10:00:00', (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com'));
-
--- Insert Notifications
-INSERT INTO NOTIFICA (messaggio, tipoNotifica, letto, dataNotifica, codUtente)
-VALUES 
-('Your order has been shipped', 'Order', 0, '2024-11-30 10:00:00', (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
+('Your order has been shipped', 'Order', 0, '2024-1-30 10:00:00', (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
 ('Your order is being shipped', 'Order', 0, '2024-12-01 10:00:00', (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
 ('Your order is pending', 'Order', 0, '2024-12-02 10:00:00', (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
 ('Your order has been deleted', 'Order', 0, '2024-12-03 10:00:00', (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com'));
