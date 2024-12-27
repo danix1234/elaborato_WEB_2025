@@ -12,6 +12,9 @@
 .text-custom-gold {
     color: #AA8539;
 }
+.text-custom-gold:hover {
+    color: #805D15;
+}
 
 .text-custom-lgold {
     color: #D4B26A;
