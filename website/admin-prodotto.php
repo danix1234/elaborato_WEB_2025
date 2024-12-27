@@ -2,7 +2,7 @@
 require_once("bootstrap.php");
 
 if (!isLoggedIn()) {
-    die('not logged in!');
+    header("Location: sign-in.php");
 } elseif (!isAdmin()) {
     die('cannot modify products, without admin privilegies!');
 }
