@@ -176,5 +176,16 @@ class DatabaseHelper
                     VALUES(?,?,?,0,?,?)";
         return $this->parametrizedNoresultQuery($query, "sssss", $name, $email, $password, $address, $city);
     }
+    /**
+     * get all orders performed by and user
+     */
+    public function getOrders($userId)
+    {
+        $query = "SELECT *
+                    FROM ORDINE
+                    WHERE codUtente = ?
+                    ORDER BY dataOrdine DESC";
+        return $this->parametrizedQuery($query, "i", $userId);
+    }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }
