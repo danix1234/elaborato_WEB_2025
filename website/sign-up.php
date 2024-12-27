@@ -21,6 +21,7 @@ if (
             // for warning
             if (!empty($login_result)) {
                 registerUser($login_result[0]);
+                header("Location: prodotto.php"); //TODO home
             }
         }
     } else {
@@ -28,13 +29,12 @@ if (
     }
 }
 
-if (isLoggedIn()) {
-    header("Location: prodotto.php"); //TODO home
-} else {
-    $templateParams["nome"] = "template-sign.php";
-    $templateParams["tipo"] = "Registrazione";
-    $templateParams["fields"] = array("nome", "email", "password", "indirizzo", "citta");
-    $templateParams["redirect"] = "Hai gia' un account? Accedi!";
-    require("template/base-sign.php");
-}
+$templateParams["titolo"] = "Registrazione";
+$templateParams["nome"] = "template-sign.php";
+$templateParams["tipo"] = "Registrazione";
+$templateParams["fields"] = array("nome", "email", "password", "indirizzo", "citta");
+$templateParams["redirect"] = "Hai gia' un account? Accedi!";
+$templateParams["redirect-link"] = "sign-in.php";
+require("template/base-sign.php");
+
 ?>

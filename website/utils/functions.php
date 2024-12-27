@@ -33,7 +33,7 @@ function getCurrentUserId()
 function getCurrentUserName()
 {
     if (!isLoggedIn()) {
-        die('CANNOT GET CURRENT USER: NOT LOGGED IN!');
+        die("");
     }
     return $_SESSION["name"];
 }
