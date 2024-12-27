@@ -47,7 +47,7 @@
             <!-- log in -->
             <div class="col-5 col-md-1 text-center order-2 order-md-3">
                 <a href="<?php checkFile("sign-in.php"); ?>" title="accedi"
-                    class="link-light link-opacity-50-hover text-decoration-none">Ciao, <?php if (!empty(getCurrentUserName())) {
+                    class="link-light link-opacity-50-hover text-decoration-none">Ciao, <?php if (!empty(isLoggedIn())) {
                         echo getCurrentUserName();
                     } else {
                         echo "Accedi";
