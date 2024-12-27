@@ -113,12 +113,6 @@ class DatabaseHelper
         return $this->parametrizedNoresultQuery($query, "ssssss", $password, $email, $privileges, $address, $city, $username);
     }
 
-    public function deleteUser($username)
-    {
-        $query = 'DELETE FROM UTENTE
-                    WHERE nomeUtente = ?';
-        return $this->parametrizedNoresultQuery($query, "s", $username);
-    }
     /**
      * check if the email and password match in the database
      */
