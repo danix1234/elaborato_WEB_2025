@@ -34,6 +34,7 @@ class DatabaseHelper
         return array($ok, $rows);
     }
 
+    // ↓↓↓ FIRST DANIELE QUERY ↓↓↓
     public function getAllCartItems($userId)
     {
         $query = "SELECT *
@@ -95,6 +96,13 @@ class DatabaseHelper
                     WHERE codProdotto = ?';
         return $this->parametrizedNoresultQuery($query, "i", $productId);
     }
+    public function isImageUsed($img)
+    {
+        $query = 'SELECT *
+                    FROM PRODOTTO
+                    WHERE immagine = ?';
+        return $this->parametrizedNoresultQuery($query, "s", $img);
+    }
     public function getOrder($orderId, $userId)
     {
         $query = 'SELECT *
@@ -103,6 +111,7 @@ class DatabaseHelper
                         AND O.codOrdine = ? AND U.codUtente = ?;';
         return $this->parametrizedQuery($query, "ii", $orderId, $userId);
     }
+    // ↑↑↑ LAST DANIELE QUERY ↑↑↑
 
     public function getUser($username)
     {
