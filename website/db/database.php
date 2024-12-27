@@ -59,7 +59,7 @@ class DatabaseHelper
     {
         $query = "SELECT *
                     FROM PRODOTTO
-                    WHERE codProdotto = ?;";
+                    WHERE NOT disabilitato AND codProdotto = ?;";
         return $this->parametrizedQuery($query, "i", $productId);
     }
     public function getAllCategories()
@@ -78,14 +78,14 @@ class DatabaseHelper
     {
         $query = 'UPDATE PRODOTTO
                     SET nome = ?, descrizione = ?, quantitaResidua = ?, prezzo = ?, codCategoria = ?
-                    WHERE codProdotto = ?';
+                    WHERE codProdotto = ? AND NOT disabilitato';
         return $this->parametrizedNoresultQuery($query, "ssidii", $name, $desc, $quantity, $price, $cat, $productId);
     }
     public function updateProductImg($productId, $img)
     {
         $query = 'UPDATE PRODOTTO
                     SET immagine = ?
-                    WHERE codProdotto = ?';
+                    WHERE codProdotto = ? AND NOT disabilitato';
         return $this->parametrizedNoresultQuery($query, "si", $img, $productId);
     }
     public function disableProduct($productId)

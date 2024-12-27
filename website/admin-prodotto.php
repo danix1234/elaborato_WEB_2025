@@ -8,6 +8,7 @@ if (!isLoggedIn()) {
 }
 
 if (isset($_GET["productId"])) {
+    $templateParams["scripts"] = array("js/number_button.js", "js/preview_image.js", "js/float_button.js", "js/admin-product.js");
     $templateParams["nome"] = "template-admin-prodotto-modify.php";
     $product = $dbh->getProduct($_GET["productId"]);
     if (sizeof($product) == 0) {
@@ -16,9 +17,9 @@ if (isset($_GET["productId"])) {
         $templateParams["product"] = $product[0];
     }
 } else {
+    $templateParams["scripts"] = array("js/number_button.js", "js/preview_image.js", "js/float_button.js");
     $templateParams["nome"] = "template-admin-prodotto-insert.php";
 }
-$templateParams["scripts"] = array("js/number_button.js", "js/preview_image.js", "js/float_button.js");
 $templateParams["categories"] = $dbh->getAllCategories();
 
 require("template/base.php");

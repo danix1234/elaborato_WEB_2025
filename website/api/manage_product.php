@@ -18,12 +18,15 @@ if (isset($_FILES["preview"]) && $_FILES["preview"]["error"] != UPLOAD_ERR_NO_FI
 if (!isset($_GET["productId"])) {
     // insert product
     $dbh->addProduct($_POST["name"], $_POST["description"], intval($_POST["quantity"]), floatval($_POST["price"]), $msg, intval($_POST["category"]));
-} else {
+} else if (!isset($_GET["delete"])) {
     // modify product
     $dbh->updateProduct(intval($_GET["productId"]), $_POST["name"], $_POST["description"], intval($_POST["quantity"]), floatval($_POST["price"]), intval($_POST["category"]));
     if (isset($msg)) {
         $dbh->updateProductImg(intval($_GET["productId"]), $msg);
     }
+} else {
+    // disable product
+    $dbh->disableProduct(intval($_GET["productId"]));
 }
 
 header("Location: " . $_SERVER['HTTP_REFERER']);
