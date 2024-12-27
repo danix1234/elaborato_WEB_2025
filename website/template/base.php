@@ -23,7 +23,8 @@
         <div class="row align-items-center justify-content-between mx-1">
             <!-- Logo -->
             <div class="col-3 col-md-2 col-lg-1 order-1">
-                <a href="<?php checkFile("search.php"); ?>"><img src="./img/temp.jpg" class="img-fluid" alt="Logo" /></a>
+                <a href="<?php checkFile("search.php"); ?>"><img src="./img/temp.jpg" class="img-fluid"
+                        alt="Logo" /></a>
             </div>
 
             <!-- search bar -->
@@ -32,11 +33,18 @@
                     <label for="searchBar" class="visually-hidden form-label">Cerca</label>
                     <input id="searchBar" type="search" class="form-control rounded-start border border-0"
                         placeholder="Cerca" />
+                    <!-- category bar -->
+                    <?php
+                    require_once("bootstrap.php");
+                    $categories = $dbh->getAllCategories();
+                    ?>
                     <label for="categoryBar" class="visually-hidden form-label">Categorie</label>
                     <select id="categoryBar" class="form-select-md border border-0 d-none d-md-block">
                         <option value="">Tutte le categorie</option>
-                        <option value="1">Categoria 1</option>
-                        <option value="2">Categoria 2</option>
+                        <?php foreach ($categories as $category): ?>
+                            <option value="<?php echo $category['codCategoria']; ?>"><?php echo $category['nome']; ?>
+                            </option>
+                        <?php endforeach; ?>
                     </select>
                     <button type="submit" class="btn btn-custom-lgold">
                         <span class="bi bi-search"></span>
@@ -57,10 +65,10 @@
             <!-- icons -->
             <div class="col-4 col-md-2 d-flex align-items-center order-3 order-md-4 justify-content-center">
                 <div class="w-100 d-flex justify-content-around">
-                    <a href="<?php checkFile("notifiche.php"); ?>" title="notifica" class="link-light link-opacity-50-hover"><span
-                            class="bi bi-bell"></span></a>
-                    <a href="<?php checkFile("ordini.php"); ?>" title="ordini" class="link-light link-opacity-50-hover"><span
-                            class="bi bi-clock-history"></span></a>
+                    <a href="<?php checkFile("notifiche.php"); ?>" title="notifica"
+                        class="link-light link-opacity-50-hover"><span class="bi bi-bell"></span></a>
+                    <a href="<?php checkFile("ordini.php"); ?>" title="ordini"
+                        class="link-light link-opacity-50-hover"><span class="bi bi-clock-history"></span></a>
                     <a href="<?php checkFile("carrello.php"); ?>" title="carrello" class="text-custom-gold"><span
                             class="bi bi-cart"></span></a>
                 </div>
