@@ -49,7 +49,7 @@ create table NOTIFICA (
 create table RECENSIONE (
      codUtente int not null,
      codProdotto int not null,
-     votoRecensione int not null,
+     votoRecensione decimal(2,1) not null,
      commento varchar(511) not null,
      dataRecensione datetime not null,
      constraint ID_RECENSIONE_ID primary key (codUtente, codProdotto));
@@ -58,7 +58,7 @@ create table ORDINE (
      codOrdine int not null auto_increment,
      dataOrdine date not null,
      statoOrdine varchar(20) not null,
-     totale int not null,
+     totale decimal(11,2) not null,
      pagato char not null,
      codUtente int not null,
      constraint ID_ORDINE_ID primary key (codOrdine));
@@ -70,6 +70,7 @@ create table PRODOTTO (
      quantitaResidua int not null,
      prezzo decimal(11, 2) not null,
      immagine varchar(50) not null,
+     disabilitato char not null,
      codCategoria int not null,
      constraint ID_PRODOTTO_ID primary key (codProdotto));
 
@@ -80,6 +81,7 @@ create table UTENTE (
      email varchar(30) not null,
      privilegi char not null,
      indirizzo varchar(30) not null,
+     disabilitato char not null,
      citta varchar(20) not null,
      constraint ID_UTENTE_ID primary key (codUtente),
      constraint ID_UTENTE_EMAIL unique (email));
