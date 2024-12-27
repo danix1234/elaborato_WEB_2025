@@ -88,6 +88,13 @@ class DatabaseHelper
                     WHERE codProdotto = ?';
         return $this->parametrizedNoresultQuery($query, "si", $img, $productId);
     }
+    public function disableProduct($productId)
+    {
+        $query = 'UPDATE PRODOTTO
+                    SET disabilitato = true
+                    WHERE codProdotto = ?';
+        return $this->parametrizedNoresultQuery($query, "i", $productId);
+    }
     public function getOrder($orderId, $userId)
     {
         $query = 'SELECT *
@@ -143,7 +150,8 @@ class DatabaseHelper
     /**
      * add a new use into the database
      */
-    public function addUser($name, $email, $password, $address, $city){
+    public function addUser($name, $email, $password, $address, $city)
+    {
         $query = "INSERT INTO UTENTE(nomeUtente, email, password, privilegi, indirizzo, citta)
                     VALUES(?,?,?,0,?,?)";
         return $this->parametrizedNoresultQuery($query, "sssss", $name, $email, $password, $address, $city);

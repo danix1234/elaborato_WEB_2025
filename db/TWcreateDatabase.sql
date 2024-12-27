@@ -70,7 +70,7 @@ create table PRODOTTO (
      quantitaResidua int not null,
      prezzo decimal(11, 2) not null,
      immagine varchar(50) not null,
-     disabilitato char not null,
+     disabilitato char not null default false,
      codCategoria int not null,
      constraint ID_PRODOTTO_ID primary key (codProdotto));
 
@@ -81,7 +81,7 @@ create table UTENTE (
      email varchar(30) not null,
      privilegi char not null,
      indirizzo varchar(30) not null,
-     disabilitato char not null,
+     disabilitato char not null default false,
      citta varchar(20) not null,
      constraint ID_UTENTE_ID primary key (codUtente),
      constraint ID_UTENTE_EMAIL unique (email));
