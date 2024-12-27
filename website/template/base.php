@@ -22,8 +22,8 @@
 
         <div class="row align-items-center justify-content-between mx-1">
             <!-- Logo -->
-            <div class="col-3 col-md-2 col-lg-1 order-1"> <!-- TODO col-lg ! -->
-                <a href="<?php checkFile("home.php"); ?>"><img src="./img/temp.jpg" class="img-fluid" alt="Logo" /></a>
+            <div class="col-3 col-md-2 col-lg-1 order-1">
+                <a href="<?php checkFile("search.php"); ?>"><img src="./img/temp.jpg" class="img-fluid" alt="Logo" /></a>
             </div>
 
             <!-- search bar -->
@@ -47,7 +47,7 @@
             <!-- log in -->
             <div class="col-5 col-md-1 text-center order-2 order-md-3">
                 <a href="<?php checkFile("sign-in.php"); ?>" title="accedi"
-                    class="link-light link-opacity-50-hover text-decoration-none">Ciao, <?php if (!empty(isLoggedIn())) {
+                    class="link-light link-opacity-50-hover text-decoration-none">Ciao, <?php if (isLoggedIn()) {
                         echo getCurrentUserName();
                     } else {
                         echo "Accedi";

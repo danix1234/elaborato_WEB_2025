@@ -10,7 +10,11 @@
 
     <link rel="stylesheet" href="./css/style.css" />
 
-    <title>Nostro Sito</title> <!-- TODO change title -->
+    <title>Nostro Sito<?php
+    if (isset($templateParams["titolo"])) {
+        echo " - " . "$templateParams[titolo]";
+    }
+    ?></title> <!-- TODO change title -->
 </head>
 
 <body class="bg-white">
@@ -18,7 +22,7 @@
     <header class="container-fluid overflow-hidden bg-custom-blue py-2">
         <div class="row align-items-center justify-content-center">
             <div class="col-6 col-md-2">
-                <a href="#">
+                <a href="<?php checkFile("search.php"); ?>">
                     <img src="./img/temp.jpg" alt="Logo" class="img-fluid">
                 </a>
             </div>

@@ -12,10 +12,11 @@
                 <?php foreach ($templateParams["fields"] as $field): ?>
 
                     <div class="mb-3">
-                        <label for="<?php echo $field; ?>" class="visually-hidden"><?php echo ucfirst($field); ?></label>
+                        <label for="<?php echo $field; ?>" class="visually-hidden"><?php echo $field; ?></label>
                         <input type="<?php echo $field === 'password' ? 'password' : 'text'; ?>" id="<?php echo $field; ?>"
-                            name="<?php echo $field; ?>" class="form-control" placeholder="<?php echo ucfirst($field); ?>"
-                            required>
+                            name="<?php echo $field; ?>" class="form-control" placeholder="<?php echo $field; ?>"
+                            <?php if(isLoggedIn()) { echo "disabled"; } ?>
+                            required />
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>
@@ -30,7 +31,7 @@
 
         <div class="d-grid">
             <a href="<?php echo isLoggedIn() ? '?logout=true' : $templateParams["redirect-link"]; ?>"
-                class="btn btn-light border shadow">
+                class="btn <?php echo isLoggedIn()? "btn-danger": "btn-light shadow"; ?> border">
                 <?php echo $templateParams["redirect"]; ?>
             </a>
         </div>

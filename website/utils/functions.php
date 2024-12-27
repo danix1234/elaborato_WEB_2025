@@ -17,7 +17,7 @@ function registerUser($userData)
 }
 function isLoggedIn()
 {
-    return isset($_SESSION["userId"]);
+    return !empty($_SESSION["userId"]);
 }
 function isAdmin()
 {
@@ -33,9 +33,20 @@ function getCurrentUserId()
 function getCurrentUserName()
 {
     if (!isLoggedIn()) {
-        die("");
+        die("CANNOT GET CURRENT USER: NOT LOGGED IN!");
     }
     return $_SESSION["name"];
+}
+
+function setPreviousPage($page){
+    $_SESSION["previousPage"] = $page;
+}
+
+function getpreviousPage(){
+    if (empty($_SESSION["previousPage"])) {
+        die("CANNOT GET PREVIOUS PAGE: NOT SET!");
+    }
+    return $_SESSION["previousPage"];
 }
 function uploadImage($uploadDir, $image)
 {

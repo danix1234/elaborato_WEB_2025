@@ -135,6 +135,7 @@ class DatabaseHelper
                     WHERE nomeUtente = ?';
         return $this->parametrizedNoresultQuery($query, "s", $username);
     }
+    // ↓↓↓ FIRST FRANCO QUERY ↓↓↓
     /**
      * check if the email and password match in the database
      */
@@ -157,6 +158,16 @@ class DatabaseHelper
         return $this->parametrizedQuery($query, "s", $email);
     }
     /**
+     * get user by userId
+     */
+    public function getUserbyUserId($userId)
+    {
+        $query = "SELECT *
+                    FROM UTENTE
+                    WHERE codUtente = ?";
+        return $this->parametrizedQuery($query, "i", $userId);
+    }
+    /**
      * add a new use into the database
      */
     public function addUser($name, $email, $password, $address, $city)
@@ -165,4 +176,5 @@ class DatabaseHelper
                     VALUES(?,?,?,0,?,?)";
         return $this->parametrizedNoresultQuery($query, "sssss", $name, $email, $password, $address, $city);
     }
+    // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }
