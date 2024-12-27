@@ -47,7 +47,7 @@ function uploadImage($uploadDir, $image)
         return array(false, 'not actually an image!');
     }
 
-    if (!in_array($image["type"], array("image/png", "image/jpg"))) {
+    if (!in_array($image["type"], array("image/png", "image/jpg", "image/jpeg"))) {
         return array(false, 'image type not supported!');
     }
 

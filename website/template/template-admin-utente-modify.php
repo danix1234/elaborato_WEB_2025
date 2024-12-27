@@ -11,7 +11,7 @@
         <div class="d-none d-md-block col-md-6 pe-md-3">
             <img class="img-fluid" src="<?php echo UPLOAD_DIR . $user["immagine"] ?>" alt="immagine dell'utente" />
             <label class="form-label visually-hidden" for="preview">Scegli Immagine </label>
-            <input class="form-control image-custom-preview" type="file" accept="image/png, image/jpeg" name="preview"
+            <input class="form-control image-custom-preview" type="file" accept="image/*" name="preview"
                 id="preview" />
         </div>
         <div class="col-md-6 ps-md-3">

@@ -9,7 +9,7 @@
         <div class="d-none d-md-block col-md-6 pe-md-3">
             <img class="img-fluid" src="img/temp.jpg" alt="immagine dell'utente" />
             <label class="form-label visually-hidden" for="preview">Scegli Immagine </label>
-            <input class="form-control image-custom-preview" type="file" accept="image/png, image/jpeg" name="preview" id="preview" required />
+            <input class="form-control image-custom-preview" type="file" accept="image/*" name="preview" id="preview" required />
         </div>
         <div class="col-md-6 ps-md-3 my-3">
             <div class="mb-3">
