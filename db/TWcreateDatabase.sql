@@ -27,7 +27,7 @@ create table CARRELLO (
 
 create table CATEGORIA (
      codCategoria int not null auto_increment,
-     nome varchar(20) not null,
+     nome varchar(50) not null,
      descrizione varchar(511) not null,
      constraint ID_CATEGORIA_ID primary key (codCategoria));
 
