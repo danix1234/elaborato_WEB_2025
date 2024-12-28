@@ -12,11 +12,12 @@ if (!empty($_POST["email"]) && !empty($_POST["password"])) {
     $user = $dbh->getUserbyEmail($email);
     if (!empty($user)) {
         $hash = $user[0]["password"];
-        if (filter_var($email, FILTER_VALIDATE_EMAIL) && password_verify($password, $hash)) {
+        $ban = boolval($user[0]["disabilitato"]);
+        if (filter_var($email, FILTER_VALIDATE_EMAIL) && password_verify($password, $hash) && !$ban) {
             registerUser($user[0]);
             header("Location: " . getpreviousPage());
         } else {
-            $templateParams["erroresign"] = "Errore, email o password sbagliati.";
+            $templateParams["erroresign"] = $ban ? "Account bannato." : "Errore, email o password sbagliati.";
         }
     } else {
         $templateParams["erroresign"] = "Errore, email o password sbagliati.";
