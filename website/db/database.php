@@ -52,6 +52,15 @@ class DatabaseHelper
     }
 
     // ↓↓↓ FIRST DANIELE QUERY ↓↓↓
+    public function fixAllCartItems($userId)
+    {
+        $query = "UPDATE CARRELLO C
+                    SET quantita = LEAST(GREATEST(quantita, 0), (SELECT quantitaResidua 
+                        FROM PRODOTTO P
+                        WHERE P.codProdotto = C.codProdotto))
+                WHERE codUtente = ?;";
+        return $this->parametrizedNoresultQuery($query, "i", $userId);
+    }
     public function getAllCartItems($userId)
     {
         $query = "SELECT *
@@ -124,8 +133,8 @@ class DatabaseHelper
     {
         $query = 'SELECT *
                     FROM ORDINE O, DETTAGLIO_ORDINE D, PRODOTTO P
-                    WHERE O.codOrdine = D.codOrdine AND P.codProdotto = D.codProdotto AND U.codUtente = O.codUtente
-                        AND O.codOrdine = ? AND U.codUtente = ?;';
+                    WHERE O.codOrdine = D.codOrdine AND P.codProdotto = D.codProdotto
+                        AND O.codOrdine = ? AND O.codUtente = ?;';
         return $this->parametrizedQuery($query, "ii", $orderId, $userId);
     }
     public function checkCartInvalidRows($userId)
