@@ -18,8 +18,7 @@
     <!-- filtro -->
     <div class="col-12 col-md-4 order-3 order-md-2">
         <div class="btn-group d-flex bg-light rounded border border-1" role="group">
-            <button id="filter-ordini" type="button"
-                class="btn btn-light active rounded-right border border-0 w-100">Ordini</button>
+            <button id="filter-spedito" type="button" class="btn btn-light border border-0 w-100">Spedito</button>
             <button id="filter-attesa" type="button" class="btn btn-light border border-0 w-100">In
                 Attesa</button>
             <button id="filter-cancellato" type="button"
@@ -71,9 +70,9 @@
                         </div>
                         <div class="col-9">
                             <p class="text-body-secondary mb-0">
-                                <?php echo $ordine['totProdotti'] - 1 != 1 ? 
-                                $ordine['nomeProdotto'] . " e altri " . $ordine['totProdotti'] - 1 . " prodotti" : 
-                                $ordine['nomeProdotto'] . " e un altro prodotto"; ?>
+                                <?php echo $ordine['totProdotti'] - 1 != 1 ?
+                                    $ordine['nomeProdotto'] . " e altri " . $ordine['totProdotti'] - 1 . " prodotti" :
+                                    $ordine['nomeProdotto'] . " e un altro prodotto"; ?>
                             </p>
                         </div>
                     </div>
