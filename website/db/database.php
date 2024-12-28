@@ -153,7 +153,7 @@ class DatabaseHelper
         $query = "UPDATE PRODOTTO P
                     SET quantitaResidua = GREATEST(quantitaResidua - (SELECT COALESCE(MAX(quantita),0)
                         FROM CARRELLO C
-                        WHERE AND C.codProdotto = P.codProdotto AND C.codUtente = ?
+                        WHERE C.codProdotto = P.codProdotto AND C.codUtente = ?
                     ), 0);";
         return $this->parametrizedNoResultQuery($query, "i", $userId);
     }
