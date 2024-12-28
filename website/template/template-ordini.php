@@ -6,7 +6,7 @@
     <div class="col-5 col-md-2 order-2 order-md-3 mb-2 mb-md-0">
         <form method="GET" action="ordini.php">
             <label for="filter-time" class="visually-hidden form-label">Filtra per tempo</label>
-            <select id="filter-time" name="filter-time" class="form-select" onchange="this.form.submit()">
+            <select id="filter-time" name="filter-time" class="form-select">
                 <option value="">Tutti</option>
                 <option value="1" <?php echo isset($_GET["filter-time"]) && $_GET["filter-time"] == "1" ? "selected" : ""; ?>>entro 1 mese</option>
                 <option value="3" <?php echo isset($_GET["filter-time"]) && $_GET["filter-time"] == "3" ? "selected" : ""; ?>>entro 3 mesi</option>
@@ -27,64 +27,68 @@
         </div>
     </div>
 </div>
-<?php foreach ($templateParams["ordini"] as $ordine) { ?>
-    <div class="row mb-3 align-items-center">
-        <div class="col-12 col-md-8 mx-auto">
-            <div class="card shadow">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <!-- dati -->
-                        <div class="col-12">
-                            <div class="row">
-                                <p class="col-9 fw-bold mb-1">Ordine #<?php echo $ordine["codOrdine"]; ?> </p>
-                                <span class="col-3 bi text-success text-end mb-1">
-                                    <?php if ($ordine["statoOrdine"] == "Shipped") { ?>
-                                        <span class="bi bi-check-circle-fill text-success"></span> <!-- spedito -->
-                                    <?php } elseif ($ordine["statoOrdine"] == "Shipping") { ?>
-                                        <span class="bi bi-truck text-custom-gold"></span> <!-- in spedizione -->
-                                    <?php } elseif ($ordine["statoOrdine"] == "Pending") { ?>
-                                        <span class="bi bi-clock-history text-custom-gold"></span> <!-- in attesa -->
-                                    <?php } elseif ($ordine["statoOrdine"] == "Deleted") { ?>
-                                        <span class="bi bi-x-circle-fill text-danger"></span> <!-- cancellato -->
-                                    <?php } ?>
-                                </span>
+<div id="orders-container">
+    <?php foreach ($templateParams["ordini"] as $ordine) { ?>
+        <div class="row mb-3 align-items-center">
+            <div class="col-12 col-md-8 mx-auto">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <!-- dati -->
+                            <div class="col-12">
+                                <div class="row">
+                                    <p class="col-9 fw-bold mb-1">Ordine #<?php echo $ordine["codOrdine"]; ?> </p>
+                                    <span class="col-3 bi text-success text-end mb-1">
+                                        <?php if ($ordine["statoOrdine"] == "Shipped") { ?>
+                                            <span class="bi bi-check-circle-fill text-success"></span> <!-- spedito -->
+                                        <?php } elseif ($ordine["statoOrdine"] == "Shipping") { ?>
+                                            <span class="bi bi-truck text-custom-gold"></span> <!-- in spedizione -->
+                                        <?php } elseif ($ordine["statoOrdine"] == "Pending") { ?>
+                                            <span class="bi bi-clock-history text-custom-gold"></span> <!-- in attesa -->
+                                        <?php } elseif ($ordine["statoOrdine"] == "Deleted") { ?>
+                                            <span class="bi bi-x-circle-fill text-danger"></span> <!-- cancellato -->
+                                        <?php } ?>
+                                    </span>
+                                </div>
+                                <p class="text-body-secondary mb-1">Effettuato il: <?php echo $ordine["dataOrdine"]; ?></p>
+                                <p class="text-body-secondary mb-1">Pagato: <?php echo $ordine["pagato"] ? "Si" : "No"; ?>
+                                </p>
+                                <p class="text-body-secondary mb-1">Stato: <span class="badge <?php if ($ordine["statoOrdine"] == "Shipped") {
+                                    echo "bg-success";
+                                } else if ($ordine["statoOrdine"] == "Shipping" || $ordine["statoOrdine"] == "Pending") {
+                                    echo "bg-custom-lgold";
+                                } else {
+                                    echo "bg-danger";
+                                } ?>"><?php echo $ordine["statoOrdine"] ?></span></p>
+                                <p class="fw-bold mb-0">Totale: €<?php echo $ordine["totale"]; ?></p>
                             </div>
-                            <p class="text-body-secondary mb-1">Effettuato il: <?php echo $ordine["dataOrdine"]; ?></p>
-                            <p class="text-body-secondary mb-1">Pagato: <?php echo $ordine["pagato"] ? "Si" : "No"; ?></p>
-                            <p class="text-body-secondary mb-1">Stato: <span class="badge <?php if ($ordine["statoOrdine"] == "Shipped") {
-                                echo "bg-success";
-                            } else if ($ordine["statoOrdine"] == "Shipping" || $ordine["statoOrdine"] == "Pending") {
-                                echo "bg-custom-lgold";
-                            } else {
-                                echo "bg-danger";
-                            } ?>"><?php echo $ordine["statoOrdine"] ?></span></p>
-                            <p class="fw-bold mb-0">Totale: €<?php echo $ordine["totale"]; ?></p>
+
+                        </div>
+                        <hr />
+
+                        <!-- descr ordine -->
+                        <div class="row d-flex align-items-center mt-3">
+                            <div class="col-3">
+                                <img alt="" src="<?php echo UPLOAD_DIR . $ordine["immaginePreview"]; ?>"
+                                    class="img-fluid me-2">
+                            </div>
+                            <div class="col-9">
+                                <p class="text-body-secondary mb-0">
+                                    <?php echo $ordine['totProdotti'] - 1 != 1 ?
+                                        $ordine['nomeProdotto'] . " e altri " . $ordine['totProdotti'] - 1 . " prodotti" :
+                                        $ordine['nomeProdotto'] . " e un altro prodotto"; ?>
+                                </p>
+                            </div>
                         </div>
 
-                    </div>
-                    <hr />
-
-                    <!-- descr ordine -->
-                    <div class="row d-flex align-items-center mt-3">
-                        <div class="col-3">
-                            <img alt="" src="<?php echo UPLOAD_DIR . $ordine["immaginePreview"]; ?>" class="img-fluid me-2">
+                        <!-- dettagli ordine -->
+                        <div class="mt-3 d-flex justify-content-between">
+                            <a href="ordine.php?orderId=<?php echo $ordine["codOrdine"]; ?>"
+                                class="btn btn-outline-secondary">Dettagli</a>
                         </div>
-                        <div class="col-9">
-                            <p class="text-body-secondary mb-0">
-                                <?php echo $ordine['totProdotti'] - 1 != 1 ?
-                                    $ordine['nomeProdotto'] . " e altri " . $ordine['totProdotti'] - 1 . " prodotti" :
-                                    $ordine['nomeProdotto'] . " e un altro prodotto"; ?>
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- dettagli ordine -->
-                    <div class="mt-3 d-flex justify-content-between">
-                        <a href="ordine.php?orderId=<?php echo $ordine["codOrdine"]; ?>"
-                            class="btn btn-outline-secondary">Dettagli</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-<?php } ?>
+    <?php } ?>
+</div>

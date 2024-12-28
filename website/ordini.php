@@ -26,5 +26,4 @@ if (!empty($templateParams["ordini"])) {
 }
 
 require("template/base.php");
-require("api/filter_orders.php");
 ?>

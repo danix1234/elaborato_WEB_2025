@@ -283,6 +283,9 @@ class DatabaseHelper
         }
         if ($orderState !== null) {
             $query .= " AND statoOrdine = ?";
+            if ($orderState === "Pending") {
+                $query .= " OR statoOrdine = 'Shipping'";
+            }
             array_push($params, $orderState);
             $types .= "s";
         }
