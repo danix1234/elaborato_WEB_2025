@@ -7,6 +7,7 @@ if (!isLoggedIn()) {
 
 $templateParams["titolo"] = "Ordini";
 $templateParams["nome"] = "template-ordini.php";
+$templateParams["scripts"] = array("js/filter-orders.js");
 
 $filterTime = isset($_GET['filter-time']) ? intval($_GET['filter-time']) : 0;
 if ($filterTime > 0) {
