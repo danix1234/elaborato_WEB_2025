@@ -21,7 +21,7 @@ if (sizeof($validRows) == 0) {
     return;
 }
 
-$res = $dbh->buyCartAddOrder($userId, "TODO", true);
+$res = $dbh->buyCartAddOrder($userId, "Shipping", true);
 $res = $dbh->buyCartAddOrderDetails($userId);
 $res = $dbh->buyCartUpdateQuantityLeft($userId);
 $res = $dbh->buyCartDeleteCart($userId);
