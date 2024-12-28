@@ -25,6 +25,23 @@ class DatabaseHelper
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
+    /**
+     * Dynamic query with parameters
+     */
+    private function dynamicParametrizedQuery($query, $types, $array)
+    {
+        $stmt = $this->db->prepare($query);
+        $bind_names = array($types);
+        for ($i = 0; $i < count($array); $i++) {
+            $bind_name = "bind" . $i;
+            // es. primo ciclio $$bind_name = $bind0 -> $bind0 = $params[0]
+            $$bind_name = $array[$i];
+            $bind_names[] = &$$bind_name;
+        }
+        call_user_func_array([$stmt, "bind_param"], $bind_names);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
     private function parametrizedNoresultQuery($query, $types, &$var1, &...$vars)
     {
         $stmt = $this->db->prepare($query);
@@ -188,16 +205,30 @@ class DatabaseHelper
         return $this->parametrizedQuery($query, "i", $userId);
     }
     /**
-     * get all orders performed by and user filtered by months
+     * get all orders performed by and user filtered by months and order state
      */
-    public function getFilteredOrders($userId, $months)
+    public function getFilteredOrders($userId, $months = null, $orderState = null)
     {
         $query = "SELECT * 
                     FROM ORDINE 
-                    WHERE codUtente = ? 
-                    AND dataOrdine >= DATE_SUB(NOW(), INTERVAL ? MONTH)
-                    ORDER BY dataOrdine DESC";
-        return $this->parametrizedQuery($query, "ii", $userId, $months);
+                    WHERE codUtente = ? ";
+        $params = array($userId);
+        $types = "i";
+
+        if ($months !== null) {
+            $query .= " AND dataOrdine >= DATE_SUB(NOW(), INTERVAL ? MONTH)";
+            array_push($params, $months);
+            $types .= "i";
+        }
+        if ($orderState !== null) {
+            $query .= " AND statoOrdine = ?";
+            array_push($params, $orderState);
+            $types .= "s";
+        }
+        $query .= " ORDER BY dataOrdine DESC";
+
+        return $this->dynamicParametrizedQuery($query, $types, $params);
+
     }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }
