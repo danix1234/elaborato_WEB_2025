@@ -47,10 +47,10 @@ VALUES
 -- Insert Orders
 INSERT INTO ORDINE (dataOrdine, statoOrdine, totale, pagato, codUtente)
 VALUES 
-('2024-1-30', 'Shipped', 2000.00, 1, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
-('2024-12-01', 'Shipping', 1500.00, 1, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
-('2024-12-02', 'Pending', 1000.00, 0, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
-('2024-12-03', 'Deleted', 500.00, 0, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com'));
+('2024-1-30', 'Shipped', 2200.00, 1, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
+('2024-12-01', 'Shipping', 2300.00, 1, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
+('2024-12-02', 'Pending', 550.00, 0, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
+('2024-12-03', 'Deleted', 900.00, 0, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com'));
 
 -- Insert Order Details
 INSERT INTO DETTAGLIO_ORDINE (codOrdine, codProdotto, quantita)
