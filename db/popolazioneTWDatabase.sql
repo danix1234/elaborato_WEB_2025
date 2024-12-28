@@ -20,20 +20,20 @@ VALUES
 -- Insert Products
 INSERT INTO PRODOTTO (nome, descrizione, quantitaResidua, prezzo, immagine, disabilitato, codCategoria)
 VALUES 
-('Dell XPS 13', 'High performance laptop with 13-inch display', 10, 1200.00, 'temp.jpg', 0, 1),
-('MacBook Pro', 'Apple MacBook Pro with M1 chip', 8, 1500.00, 'temp.jpg', 0, 1),
-('Samsung Galaxy S21', 'Latest model smartphone from Samsung', 20, 800.00, 'temp.jpg', 0, 2),
-('iPhone 13', 'Apple iPhone 13 with A15 Bionic chip', 15, 1000.00, 'temp.jpg', 0, 2),
-('Sony WH-1000XM4', 'Noise cancelling over-ear headphones', 15, 200.00, 'temp.jpg', 0, 3),
-('Bose QuietComfort 35 II', 'Wireless noise cancelling headphones', 12, 250.00, 'temp.jpg', 0, 3),
-('iPad Pro', 'Apple iPad Pro with 12.9-inch display', 10, 600.00, 'temp.jpg', 0, 4),
-('Samsung Galaxy Tab S7', 'High resolution tablet from Samsung', 8, 700.00, 'temp.jpg', 0, 4),
-('Apple Watch Series 7', 'Smartwatch with fitness tracking', 20, 300.00, 'temp.jpg', 0, 5),
-('Samsung Galaxy Watch 4', 'Smartwatch with heart rate monitor', 18, 350.00, 'temp.jpg', 0, 5),
-('Canon EOS R5', 'Digital camera with high resolution', 10, 900.00, 'temp.jpg', 0, 6),
-('Sony Alpha a7 III', 'Compact camera with zoom lens', 12, 850.00, 'temp.jpg', 0, 6),
-('PlayStation 5', 'Next-gen gaming console from Sony', 5, 500.00, 'temp.jpg', 0, 7),
-('Nintendo Switch', 'Portable gaming console from Nintendo', 7, 400.00, 'temp.jpg', 0, 7);
+('Dell XPS 13', 'High performance laptop with 13-inch display', 10, 1200.00, 'dell_xps_13.jpg', 0, 1),
+('MacBook Pro', 'Apple MacBook Pro with M1 chip', 8, 1500.00, 'macbook_pro.jpg', 0, 1),
+('Samsung Galaxy S21', 'Latest model smartphone from Samsung', 20, 800.00, 'galaxy_s21.jpg', 0, 2),
+('iPhone 13', 'Apple iPhone 13 with A15 Bionic chip', 15, 1000.00, 'iphone_13.jpg', 0, 2),
+('Sony WH-1000XM4', 'Noise cancelling over-ear headphones', 15, 200.00, 'sony_wh1000xm4.jpg', 0, 3),
+('Bose QuietComfort 35 II', 'Wireless noise cancelling headphones', 12, 250.00, 'bose_qc35_ii.jpg', 0, 3),
+('iPad Pro', 'Apple iPad Pro with 12.9-inch display', 10, 600.00, 'ipad_pro.jpg', 0, 4),
+('Samsung Galaxy Tab S7', 'High resolution tablet from Samsung', 8, 700.00, 'galaxy_tab_s7.jpg', 0, 4),
+('Apple Watch Series 7', 'Smartwatch with fitness tracking', 20, 300.00, 'apple_watch_series_7.jpg', 0, 5),
+('Samsung Galaxy Watch 4', 'Smartwatch with heart rate monitor', 18, 350.00, 'galaxy_watch_4.jpg', 0, 5),
+('Canon EOS R5', 'Digital camera with high resolution', 10, 900.00, 'canon_eos_r5.jpg', 0, 6),
+('Sony Alpha a7 III', 'Compact camera with zoom lens', 12, 850.00, 'sony_alpha_a7_iii.jpg', 0, 6),
+('PlayStation 5', 'Next-gen gaming console from Sony', 5, 500.00, 'ps5.jpg', 0, 7),
+('Nintendo Switch', 'Portable gaming console from Nintendo', 7, 400.00, 'nintendo_switch.jpg', 0, 7);
 
 
 -- Insert Cart for Normal User
