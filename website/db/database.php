@@ -116,8 +116,8 @@ class DatabaseHelper
     {
         $query = 'SELECT *
                     FROM ORDINE O, DETTAGLIO_ORDINE D, PRODOTTO P
-                    WHERE O.codOrdine = D.codOrdine AND P.codProdotto = D.codProdotto AND U.codUtente = O.codUtente
-                        AND O.codOrdine = ? AND U.codUtente = ?;';
+                    WHERE O.codOrdine = D.codOrdine AND P.codProdotto = D.codProdotto
+                        AND O.codOrdine = ? AND O.codUtente = ?;';
         return $this->parametrizedQuery($query, "ii", $orderId, $userId);
     }
     public function checkCartInvalidRows($userId)
