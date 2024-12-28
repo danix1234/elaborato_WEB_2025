@@ -1,8 +1,12 @@
-for (const button of document.getElementsByClassName("button-custom-filter")) {
-    button.addEventListener("click", function() {
-        let filter = button.id
-        fetch(`./api/filter_orders.php?filter=${filter}`)
-            .then( () => location.reload())
-    })
+const buttons = document.getElementsByClassName("btn-group-custom-filter")
+
+for (let button of buttons) {
+    button.addEventListener("click", function () {
+        const filter = button.id;
+        const filterTime = document.getElementById("filter-time").value;
+        const url = new URL(window.location.href);
+        url.searchParams.set("filter", filter);
+        url.searchParams.set("filter-time", filterTime);
+        window.location.href = url.toString();
+    });
 }
-console.log("prova grascie");

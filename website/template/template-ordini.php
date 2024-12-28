@@ -18,11 +18,12 @@
     <!-- filtro -->
     <div class="col-12 col-md-4 order-3 order-md-2">
         <div class="btn-group d-flex bg-light rounded border border-1" role="group">
-            <button id="filter-spedito" type="button" class="btn btn-light border border-0 w-100">Spedito</button>
-            <button id="filter-attesa" type="button" class="btn btn-light border border-0 w-100">In
+            <button id="Shipped" type="button"
+                class="btn btn-light btn-group-custom-filter border border-0 w-100">Spedito</button>
+            <button id="Pending" type="button" class="btn btn-light btn-group-custom-filter border border-0 w-100">In
                 Attesa</button>
-            <button id="filter-cancellato" type="button"
-                class="btn btn-light rounded-left border border-0 w-100">Cancellato</button>
+            <button id="Deleted" type="button"
+                class="btn btn-light btn-group-custom-filter border border-0 w-100">Cancellato</button>
         </div>
     </div>
 </div>
