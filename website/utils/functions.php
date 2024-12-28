@@ -51,10 +51,6 @@ function uploadImage($uploadDir, $image)
         return array(false, 'uploaded files is not an image (' . $image["type"] . ') !');
     }
 
-    if (!in_array($image["type"], array("image/png", "image/jpg", "image/jpeg"))) {
-        return array(false, 'image type not supported!');
-    }
-
     do {
         $imageName = uniqid("uploaded") . '.' . pathinfo($image["name"], PATHINFO_EXTENSION);
     } while (file_exists($uploadDir . $imageName));
