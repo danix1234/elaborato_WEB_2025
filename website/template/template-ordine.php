@@ -26,22 +26,30 @@ if (sizeof($ordini) == 0) { ?>
             <?php for ($i = 0; $i < sizeof($ordini); $i++) {
                 $ordine = $ordini[$i];
             ?>
-                <div class="row border-bottom border-3 py-4">
-                    <div class="col-md-2">
-                        <img class="img-fluid" src="<?php echo UPLOAD_DIR . $ordine["immagine"] ?>" alt="" />
-                    </div>
-                    <div class="col-md-10">
-                        <a href="#" class="row link-custom">
-                            <h2><?php echo $ordine["nome"] ?></h2>
-                        </a>
-                        <div class="row">
-                            <span><?php echo $ordine["descrizione"] ?></span>
-                        </div>
-                        <div class="row">
-                            <span>Quantità: <?php echo $ordine["quantita"] ?></span>
-                        </div>
-                        <div class="row">
-                            <span>Prezzo: <?php echo $ordine["prezzo"] ?>€</span>
+                <div class="row mb-3 align-items-center">
+                    <div class="col-12 col-md-8 mx-auto">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <div class="row py-4">
+                                    <div class="col-md-2">
+                                        <img class="img-fluid" src="<?php echo UPLOAD_DIR . $ordine["immagine"] ?>" alt="" />
+                                    </div>
+                                    <div class="col-md-10">
+                                        <a href="#" class="row link-custom">
+                                            <h2><?php echo $ordine["nome"] ?></h2>
+                                        </a>
+                                        <div class="row">
+                                            <span><?php echo $ordine["descrizione"] ?></span>
+                                        </div>
+                                        <div class="row">
+                                            <span>Quantità: <?php echo $ordine["quantita"] ?></span>
+                                        </div>
+                                        <div class="row">
+                                            <span>Prezzo: <?php echo $ordine["prezzo"] ?>€</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
