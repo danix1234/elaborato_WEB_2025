@@ -187,5 +187,17 @@ class DatabaseHelper
                     ORDER BY dataOrdine DESC";
         return $this->parametrizedQuery($query, "i", $userId);
     }
+    /**
+     * get all orders performed by and user filtered by months
+     */
+    public function getFilteredOrders($userId, $months)
+    {
+        $query = "SELECT * 
+                    FROM ORDINE 
+                    WHERE codUtente = ? 
+                    AND dataOrdine >= DATE_SUB(NOW(), INTERVAL ? MONTH)
+                    ORDER BY dataOrdine DESC";
+        return $this->parametrizedQuery($query, "ii", $userId, $months);
+    }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }

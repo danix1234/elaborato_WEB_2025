@@ -4,13 +4,15 @@
     </div>
     <!-- filtro tempo -->
     <div class="col-5 col-md-2 order-2 order-md-3 mb-2 mb-md-0">
-        <label for="filter-time" class="visually-hidden form-label">Filtra per tempo</label>
-        <select id="filter-time" class="form-select">
-            <option value="">Tutti</option>
-            <option value="1">entro 1 mese</option>
-            <option value="2">entro 3 mesi</option>
-            <option value="2">entro 1 anno</option>
-        </select>
+        <form method="GET" action="ordini.php">
+            <label for="filter-time" class="visually-hidden form-label">Filtra per tempo</label>
+            <select id="filter-time" name="filter-time" class="form-select" onchange="this.form.submit()">
+                <option value="">Tutti</option>
+                <option value="1" <?php echo isset($_GET["filter-time"]) && $_GET["filter-time"] == "1" ? "selected" : ""; ?>>entro 1 mese</option>
+                <option value="3" <?php echo isset($_GET["filter-time"]) && $_GET["filter-time"] == "3" ? "selected" : ""; ?>>entro 3 mesi</option>
+                <option value="12" <?php echo isset($_GET["filter-time"]) && $_GET["filter-time"] == "12" ? "selected" : ""; ?>>entro 1 anno</option>
+            </select>
+        </form>
     </div>
 
     <!-- filtro -->
@@ -65,11 +67,13 @@
                     <!-- descr ordine -->
                     <div class="row d-flex align-items-center mt-3">
                         <div class="col-3">
-                            <img src="<?php echo UPLOAD_DIR . $ordine["immaginePreview"]; ?>" alt="" class="img-fluid me-2">
+                            <img alt="" src="<?php echo UPLOAD_DIR . $ordine["immaginePreview"]; ?>" class="img-fluid me-2">
                         </div>
                         <div class="col-9">
                             <p class="text-body-secondary mb-0">
-                                <?php echo $ordine['nomeProdotto'] . " e altri " . $ordine['totProdotti'] - 1 . " prodotti"; ?>
+                                <?php echo $ordine['totProdotti'] - 1 != 1 ? 
+                                $ordine['nomeProdotto'] . " e altri " . $ordine['totProdotti'] - 1 . " prodotti" : 
+                                $ordine['nomeProdotto'] . " e un altro prodotto"; ?>
                             </p>
                         </div>
                     </div>
