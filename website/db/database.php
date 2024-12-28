@@ -106,17 +106,33 @@ class DatabaseHelper
     public function getOrder($orderId, $userId)
     {
         $query = 'SELECT *
-                    FROM ORDINE O, DETTAGLIO_ORDINE D, PRODOTTO P, UTENTE U
+                    FROM ORDINE O, DETTAGLIO_ORDINE D, PRODOTTO P
                     WHERE O.codOrdine = D.codOrdine AND P.codProdotto = D.codProdotto AND U.codUtente = O.codUtente
                         AND O.codOrdine = ? AND U.codUtente = ?;';
         return $this->parametrizedQuery($query, "ii", $orderId, $userId);
+    }
+    public function checkCartInvalidRows($userId)
+    {
+        $query = 'SELECT *
+                    FROM CARRELLO C, PRODOTTO P
+                    WHERE C.codProdotto = P.codProdotto AND C.codUtente = ?
+                        AND (P.disabilitato OR C.quantita < 0 OR C.quantita > P.quantitaResidua);';
+        return $this->parametrizedQuery($query, "i", $userId);
+    }
+    public function checkCartValidRows($userId)
+    {
+        $query = 'SELECT *
+                    FROM CARRELLO C, PRODOTTO P
+                    WHERE C.codProdotto = P.codProdotto AND C.codUtente = ?
+                        AND NOT P.disabilitato AND C.quantita > 0 AND C.quantita <= P.quantitaResidua;';
+        return $this->parametrizedQuery($query, "i", $userId);
     }
     public function buyCartAddOrder($userId, $orderState, $payed)
     {
         $query = "INSERT INTO ORDINE(dataOrdine, statoOrdine, totale, pagato, codUtente)
                     VALUES(NOW(), ?, (SELECT COALESCE(SUM(quantita*prezzo),0)
-                        FROM CARRELLO C, PRODOTTO P, UTENTE U
-                        WHERE C.codProdotto = P.codProdotto AND U.codUtente = C.codUtente AND U.codUtente = ?),
+                        FROM CARRELLO C, PRODOTTO P
+                        WHERE C.codProdotto = P.codProdotto AND C.codUtente = ?),
                     ?, ?);";
         return $this->parametrizedNoResultQuery($query, "siii", $orderState, $userId, $payed, $userId);
     }
@@ -136,8 +152,8 @@ class DatabaseHelper
     {
         $query = "UPDATE PRODOTTO P
                     SET quantitaResidua = GREATEST(quantitaResidua - (SELECT COALESCE(MAX(quantita),0)
-                        FROM CARRELLO C, UTENTE U
-                        WHERE C.codUtente = U.codUtente AND C.codProdotto = P.codProdotto AND U.codUtente = ?
+                        FROM CARRELLO C
+                        WHERE AND C.codProdotto = P.codProdotto AND C.codUtente = ?
                     ), 0);";
         return $this->parametrizedNoResultQuery($query, "i", $userId);
     }
