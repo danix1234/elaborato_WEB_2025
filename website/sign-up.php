@@ -35,6 +35,7 @@ if (
 
 $templateParams["titolo"] = "Registrazione";
 $templateParams["nome"] = "template-sign.php";
+$templateParams["action"] = "sign-in.php";
 $templateParams["tipo"] = "Registrazione";
 $templateParams["fields"] = array("nome", "email", "password", "indirizzo", "citta");
 $templateParams["redirect"] = "Hai gia' un account? Accedi!";

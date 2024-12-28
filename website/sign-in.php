@@ -23,6 +23,7 @@ if (!empty($_POST["email"]) && !empty($_POST["password"])) {
     }
 }
 $templateParams["nome"] = "template-sign.php";
+$templateParams["action"] = "sign-in.php";
 
 if (isLoggedIn()) {
     $templateParams["titolo"] = "Il tuo Account";
