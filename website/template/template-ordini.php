@@ -4,7 +4,7 @@
     </div>
     <!-- filtro tempo -->
     <div class="col-5 col-md-2 order-2 order-md-3 mb-2 mb-md-0">
-        <form method="GET" action="ordini.php">
+        <form id="filter-time-form" method="GET" action="ordini.php">
             <label for="filter-time" class="visually-hidden form-label">Filtra per tempo</label>
             <select id="filter-time" name="filter-time" class="form-select">
                 <option value="">Tutti</option>
