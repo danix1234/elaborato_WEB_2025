@@ -38,7 +38,9 @@
                         <div class="card-body">
                             <div class="row py-4">
                                 <div class="col-md-4">
-                                    <img class="img-fluid" src="<?php echo UPLOAD_DIR . $item["immagine"] ?>" alt="" />
+                                    <div class="row justify-content-center">
+                                        <img class="img-fluid col-auto" src="<?php echo UPLOAD_DIR . $item["immagine"] ?>" alt="" />
+                                    </div>
                                 </div>
                                 <div class="col-md-8">
                                     <a href="#" class="row link-custom">
