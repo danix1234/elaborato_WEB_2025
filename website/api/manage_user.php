@@ -11,23 +11,26 @@ if (!isLoggedIn()) {
 if (!isset($_GET["userId"])) {
     // insert user
     $dbh->addUser(
-        $_POST["nomeUtente"], 
-        $_POST["password"], 
-        $_POST["email"], 
-        $_POST["privilegi"], 
-        $_POST["indirizzo"], 
+        $_POST["nomeUtente"],
+        $_POST["password"],
+        $_POST["email"],
+        $_POST["privilegi"],
+        $_POST["indirizzo"],
+        $_POST["citta"]
+    );
+} elseif (!isset($_GET["deleteuser"])) {
+    // modify user
+    $dbh->updateUser(
+        intval($_GET["userId"]),
+        $_POST["password"],
+        $_POST["email"],
+        $_POST["privilegi"],
+        $_POST["indirizzo"],
         $_POST["citta"]
     );
 } else {
-    // modify user
-    $dbh->updateUser(
-        $_POST["nomeUtente"], 
-        $_POST["password"], 
-        $_POST["email"], 
-        $_POST["privilegi"], 
-        $_POST["indirizzo"], 
-        $_POST["citta"]
-    );
+    // disable user
+    $dbh->disableUser(intval($_GET["userId"]));
 }
 
 header("Location: " . $_SERVER['HTTP_REFERER']);

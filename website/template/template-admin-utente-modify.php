@@ -47,7 +47,7 @@
     </div>
     <div class="row justify-content-evenly my-4">
         <button class="btn btn-custom-lgold col-auto" type="submit" id="submit">Modifica</button>
-        <button class="btn btn-danger col-auto" type="button" id="remove">Rimuovi</button>
+        <button class="btn btn-danger col-auto" type="button" id="removeuser">Rimuovi</button>
         <button class="btn border btn-light col-auto" type="reset" id="reset">Annulla</button>
     </div>
 </form>
