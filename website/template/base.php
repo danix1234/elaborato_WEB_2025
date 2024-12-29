@@ -52,7 +52,7 @@
                         <button type="submit" class="btn btn-custom-lgold rounded-end">
                             <span class="bi bi-search"></span>
                         </button>
-                        <div id="suggestions" class="list-group w-100 w-md-50"></div>
+                        <!-- <div id="suggestions" class="list-group w-100 w-md-50"></div> TODO: suggestionbar-->
                     </div>
                 </form>
             </div>
