@@ -16,16 +16,13 @@
              <div class="col-12 col-md-1 text-center">
                  <input class="form-check-input select-checkbox" type="checkbox" value="" id="flexCheckDefault">
              </div>
-             <div class="col-12 col-md-9 text-wrap text-break">
+             <div class="col-12 col-md-10 text-wrap text-break">
                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aliquid
                  doloremque, minus rem sint tempora, vero reiciendis repudiandae labore maxime aut facilis saepe,
                  nemo provident vel fugit. Et, saepe provident.
              </div>
              <div class="col-6 col-md-1 text-end text-sm-star text-center">
                  12:32
-             </div>
-             <div class="col-6 col-md-1 text-center">
-                 <button type="button" class="btn btn-custom-lgold" data-bs-toggle="button">Elimina</button>
              </div>
          </div>
      <?php } ?>
