@@ -7,7 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
-
     <link rel="stylesheet" href="./css/style.css" />
 
     <title>Nostro Sito<?php
@@ -18,8 +17,15 @@
 </head>
 
 <body class="bg-white">
+    <?php
+    require_once("bootstrap.php");
+    $categories = $dbh->getAllCategories();
+    $products = $dbh->getAllProducts();
+    ?>
+    <script>
+        window.products = <?php echo json_encode(array_column($products, 'nome')); ?>;
+    </script>
     <header class="container-fluid px-0 py-2 overflow-hidden bg-custom-blue">
-
         <div class="row align-items-center justify-content-between mx-1">
             <!-- Logo -->
             <div class="col-3 col-md-2 col-lg-1 order-1">
@@ -28,32 +34,31 @@
             </div>
 
             <!-- search bar -->
-            <div class="col-12 col-md-7 col-lg-8 mt-2 mt-md-0 order-4 order-md-2">
-                <div class="input-group">
-                    <label for="searchBar" class="visually-hidden form-label">Cerca</label>
-                    <input id="searchBar" type="search" class="form-control rounded-start border border-0"
-                        placeholder="Cerca" />
-                    <!-- category bar -->
-                    <?php
-                    require_once("bootstrap.php");
-                    $categories = $dbh->getAllCategories();
-                    ?>
-                    <label for="categoryBar" class="visually-hidden form-label">Categorie</label>
-                    <select id="categoryBar" class="form-select-md border border-0 d-none d-md-block">
-                        <option value="">Tutte le categorie</option>
-                        <?php foreach ($categories as $category): ?>
-                            <option value="<?php echo $category['codCategoria']; ?>"><?php echo $category['nome']; ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                    <button type="submit" class="btn btn-custom-lgold">
-                        <span class="bi bi-search"></span>
-                    </button>
-                </div>
+            <div class="col-12 col-md-6 col-lg-8 mt-2 mt-md-0 order-4 order-md-2">
+                <form method="GET" action="search.php">
+                    <div class="input-group">
+                        <label for="searchBar" class="visually-hidden form-label">Cerca</label>
+                        <input id="searchBar" type="search" class="form-control rounded-start border border-0"
+                            placeholder="Cerca" />
+                        <!-- category bar -->
+                        <label for="categoryBar" class="visually-hidden form-label">Categorie</label>
+                        <select id="categoryBar" class="form-select-md border border-0 d-none d-md-block">
+                            <option value="">Tutte le categorie</option>
+                            <?php foreach ($categories as $category): ?>
+                                <option value="<?php echo $category['codCategoria']; ?>"><?php echo $category['nome']; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        <button type="submit" class="btn btn-custom-lgold rounded-end">
+                            <span class="bi bi-search"></span>
+                        </button>
+                        <div id="suggestions" class="list-group position-absolute w-100"></div>
+                    </div>
+                </form>
             </div>
 
             <!-- log in -->
-            <div class="col-5 col-md-1 text-center order-2 order-md-3">
+            <div class="col-5 col-md-2 text-center order-2 order-md-3">
                 <a href="<?php checkFile("sign-in.php"); ?>" title="accedi"
                     class="link-light link-opacity-50-hover text-decoration-none">Ciao, <?php if (isLoggedIn()) {
                         echo getCurrentUserName();
@@ -63,7 +68,7 @@
             </div>
 
             <!-- icons -->
-            <div class="col-4 col-md-2 d-flex align-items-center order-3 order-md-4 justify-content-center">
+            <div class="col-4 col-md-2 col-lg-1 d-flex align-items-center order-3 order-md-4 justify-content-center">
                 <div class="w-100 d-flex justify-content-around">
                     <a href="<?php checkFile("notifiche.php"); ?>" title="notifica"
                         class="link-light link-opacity-50-hover"><span class="bi bi-bell"></span></a>
@@ -97,6 +102,7 @@
         }
     }
     ?>
+    <script src="js/suggestion-bar.js"></script>
 </body>
 
 </html>

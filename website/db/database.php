@@ -294,5 +294,12 @@ class DatabaseHelper
         return $this->dynamicParametrizedQuery($query, $types, $params);
 
     }
+    function getAllProducts(){
+        $query = "SELECT *
+                    FROM PRODOTTO
+                    WHERE NOT disabilitato
+                    ORDER BY nome";
+        return $this->simpleQuery($query);
+    }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }
