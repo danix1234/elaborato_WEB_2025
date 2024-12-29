@@ -1,6 +1,8 @@
 <?php $prodotto = $templateParams["prodotto"];
-function generateStarRating($votoInt, $votoDec)
+function generateStarRating($voto)
 {
+    $votoInt = intval(floor($voto));
+    $votoDec = intval(($voto - $votoInt) * 10);
     $output = "";
     for ($i = 1; $i <= 5; $i++) {
         if ($i <= $votoInt) {
@@ -29,7 +31,7 @@ function generateStarRating($votoInt, $votoDec)
             <div class="fw-bold fs-4">€<?php echo $prodotto["prezzo"]; ?></div>
             <div class="text-end">
                 <?php echo $prodotto["mediaVoto"]; ?>/5
-                <?php echo generateStarRating($prodotto["votoInt"], $prodotto["votoDec"]) ?>
+                <?php echo generateStarRating($prodotto["mediaVoto"]) ?>
             </div>
         </div>
     </div>
@@ -56,15 +58,9 @@ function generateStarRating($votoInt, $votoDec)
 
 <!-- recensioni -->
 <hr />
-<?php if (!empty($templateParams["recensioni"])): ?>
-    <script>
-        window.reviews = <?php echo json_encode($templateParams["recensioni"]); ?>;
-    </script>
-<?php else: ?>
-    <script>
-        window.reviews = [];
-    </script>
-<?php endif; ?>
+<script>
+    window.reviews = <?php echo json_encode($templateParams["recensioni"]); ?>;
+</script>
 <div class="row mx-md-2">
     <div class="col border rounded mb-2 mx-auto">
         <section class="mt-4">
@@ -76,10 +72,8 @@ function generateStarRating($votoInt, $votoDec)
                         <div>
                             <strong><?php echo $templateParams["recensioni"][$i]["nomeUtente"]; ?></strong>
                             <p class="mb-1"><?php echo $templateParams["recensioni"][$i]["votoRecensione"]; ?>/5
-                                <?php
-                                $votoInt = floor($templateParams["recensioni"][$i]["votoRecensione"]);
-                                $votoDec = ($templateParams["recensioni"][$i]["votoRecensione"] - $votoInt) * 10;
-                                echo generateStarRating($votoInt, $votoDec); ?>
+                                <?php echo generateStarRating($templateParams["recensioni"][$i]["votoRecensione"]); ?>
+                                <span class="text-secondary"> Recensito il <?php echo $templateParams["recensioni"][$i]["dataRecensione"]; ?></span>
                             </p>
                             <p class="text-body-secondary mb-0"><?php echo $templateParams["recensioni"][$i]["commento"]; ?>
                             </p>

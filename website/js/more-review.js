@@ -1,3 +1,33 @@
+const reviews = window.reviews;
+let currentIndex = reviews.length > 3 ? 3 : reviews.length;
+const reviewList = document.querySelector("ul.p-0");
+const otherReviewButton = document.getElementById("other-review");
+
+otherReviewButton.addEventListener("click", function () {
+    if (currentIndex < reviews.length) {
+        const review = reviews[currentIndex];
+        const reviewItem = document.createElement("li");
+        reviewItem.classList.add("d-flex", "align-items-start", "mb-3");
+        reviewItem.innerHTML = `
+                <img src="img/temp.jpg" class="rounded-circle me-3 user-avatar-size" alt="" />
+                <div>
+                    <strong>${review.nomeUtente}</strong>
+                    <p class="mb-1">${review.votoRecensione}/5
+                        ${generateStarRating(review.votoRecensione)}
+                        <span class="text-secondary"> Recensito il ${review.dataRecensione}</span>
+                    </p>
+                    <p class="text-body-secondary mb-0">${review.commento}</p>
+                </div>
+            `;
+
+        reviewList.appendChild(reviewItem);
+        currentIndex++;
+    }
+    if (currentIndex >= reviews.length) {
+        otherReviewButton.disabled = true;
+    }
+});
+
 function generateStarRating(votoRecensione) {
     const votoInt = Math.floor(votoRecensione);
     const votoDec = (votoRecensione - votoInt) * 10;
@@ -13,35 +43,3 @@ function generateStarRating(votoRecensione) {
     }
     return output;
 };
-
-const reviews = window.reviews;
-console.log(reviews.length);
-let currentIndex = reviews.length >= 3 ? 3 : reviews.length;
-const reviewList = document.querySelector("ul.p-0");
-const otherReviewButton = document.getElementById("other-review");
-
-if (reviews.length !== 0) {
-    otherReviewButton.addEventListener("click", function () {
-        if (currentIndex < reviews.length) {
-            const review = reviews[currentIndex];
-            const reviewItem = document.createElement("li");
-            reviewItem.classList.add("d-flex", "align-items-start", "mb-3");
-            reviewItem.innerHTML = `
-                <img src="img/temp.jpg" class="rounded-circle me-3 user-avatar-size" alt="" />
-                <div>
-                    <strong>${review.nomeUtente}</strong>
-                    <p class="mb-1">${review.votoRecensione}/5
-                        ${generateStarRating(review.votoRecensione)}
-                    </p>
-                    <p class="text-body-secondary mb-0">${review.commento}</p>
-                </div>
-            `;
-
-            reviewList.appendChild(reviewItem);
-            currentIndex++;
-        }
-        if (currentIndex >= reviews.length) {
-            otherReviewButton.disabled = true;
-        }
-    });
-}

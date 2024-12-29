@@ -303,13 +303,14 @@ class DatabaseHelper
         return $this->simpleQuery($query);
     }
     /**
-     * get product info for product page
+     * get product with the review rating, if there is no review will give an empty row
      */
-    public function getProductforProdotto($productId)
+    public function getProductwithRating($productId)
     {
         $query = "SELECT P.nome, P.descrizione, P.prezzo, P.immagine, P.quantitaResidua, CAST(AVG(R.votoRecensione) as DECIMAL(2,1)) mediaVoto
                     FROM PRODOTTO P, RECENSIONE R
                     WHERE P.codProdotto = R.codProdotto 
+                    AND NOT disabilitato
                     AND P.codProdotto = ?";
         return $this->parametrizedQuery($query, "i", $productId);
     }
@@ -318,7 +319,7 @@ class DatabaseHelper
      */
     public function getProductReviews($productId)
     {
-        $query = "SELECT *
+        $query = "SELECT U.nomeUtente, R.votoRecensione, R.commento, R.dataRecensione
                     FROM RECENSIONE R, UTENTE U
                     WHERE R.codUtente = U.codUtente
                     AND R.codProdotto = ?

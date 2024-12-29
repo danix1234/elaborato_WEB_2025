@@ -5,19 +5,19 @@ if (!isset($_GET["productId"])) {
     die("productId not set!");
 }
 
-$templateParams["nome"] = "template-prodotto.php";
-$templateParams["prodotto"] = $dbh->getProductforProdotto($_GET["productId"])[0];
+$templateParams["recensioni"] = $dbh->getProductReviews($_GET["productId"]);
+if (empty($templateParams["recensioni"])) {
+    $templateParams["prodotto"] = $dbh->getProduct($_GET["productId"])[0];
+    $templateParams["prodotto"]["mediaVoto"] = "0.0";
+} else {
+    $templateParams["prodotto"] = $dbh->getProductwithRating($_GET["productId"])[0];
+}
 if (empty($templateParams["prodotto"])) {
     die("Prodotto non trovato!");
 }
-$mediaVoto = $templateParams["prodotto"]["mediaVoto"];
-$mediaVotoInt = floor($mediaVoto);
-$mediaVotoDec = ($mediaVoto - $mediaVotoInt) * 10;
-$templateParams["prodotto"]["votoInt"] = $mediaVotoInt;
-$templateParams["prodotto"]["votoDec"] = $mediaVotoDec;
-$templateParams["recensioni"] = $dbh->getProductReviews($_GET["productId"]);
 
 $templateParams["titolo"] = $templateParams["prodotto"]["nome"];
+$templateParams["nome"] = "template-prodotto.php";
 $templateParams["scripts"] = array("js/number_button.js", "js/more-review.js");
 
 require("template/base.php");
