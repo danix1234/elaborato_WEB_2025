@@ -53,7 +53,9 @@ function generateStarRating($voto)
         <div class="d-grid gap-2 w-100">
             <button id="button-add-cart" type="button" class="btn btn-custom-lgold">Aggiungi al Carrello</button>
             <button id="button-buy-now" type="button" class="btn btn-custom-gold">Compra Subito</button>
+            <div id="message-container" class="d-none"></div>
         </div>
+
     </div>
 </div>
 
