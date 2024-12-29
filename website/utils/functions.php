@@ -17,7 +17,7 @@ function registerUser($userData)
 }
 function isLoggedIn()
 {
-    return isset($_SESSION["userId"]);
+    return !empty($_SESSION["userId"]);
 }
 function isAdmin()
 {
@@ -33,9 +33,20 @@ function getCurrentUserId()
 function getCurrentUserName()
 {
     if (!isLoggedIn()) {
-        die("");
+        die("CANNOT GET CURRENT USER: NOT LOGGED IN!");
     }
     return $_SESSION["name"];
+}
+
+function setPreviousPage($page){
+    $_SESSION["previousPage"] = $page;
+}
+
+function getpreviousPage(){
+    if (empty($_SESSION["previousPage"])) {
+        die("CANNOT GET PREVIOUS PAGE: NOT SET!");
+    }
+    return $_SESSION["previousPage"];
 }
 function uploadImage($uploadDir, $image)
 {
@@ -47,8 +58,8 @@ function uploadImage($uploadDir, $image)
         return array(false, 'not actually an image!');
     }
 
-    if (!in_array($image["type"], array("image/png", "image/jpg", "image/jpeg"))) {
-        return array(false, 'image type not supported!');
+    if (!str_starts_with($image["type"], "image/")) {
+        return array(false, 'uploaded files is not an image (' . $image["type"] . ') !');
     }
 
     do {

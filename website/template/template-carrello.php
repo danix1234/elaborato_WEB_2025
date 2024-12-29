@@ -32,35 +32,43 @@
             $item = $items[$i];
             $total_price += $item["quantita"] * $item["prezzo"];
         ?>
-            <div class="row border-bottom border-3 py-4">
-                <div class="col-md-4">
-                    <img class="img-fluid" src="<?php echo UPLOAD_DIR . $item["immagine"] ?>" alt="" />
-                </div>
-                <div class="col-md-8">
-                    <a href="#" class="row link-custom">
-                        <h2><?php echo $item["nome"] ?></h2>
-                    </a>
-                    <div class="row">
-                        <span><?php echo $item["descrizione"] ?></span>
-                    </div>
-                    <div class="row">
-                        <span class="text-custom-price">Prezzo: <?php echo $item["prezzo"] ?>€</span>
-                    </div>
-                    <div class="row justify-content-md-start justify-content-center">
-                        <label for="quantity<?php echo $i ?>" class="col-form-label pe-0 col-auto">Quantità:</label>
-                        <div class="col-auto ps-2">
-                            <div class="input-group">
-                                <button tabindex="-1" class="input-group-text font-monospace" type="button"
-                                    id="decrement<?php echo $i ?>">-</button>
-                                <input class="form-control button-custom-quantity" type="text" value="<?php echo $item["quantita"] ?>" name="<?php echo $item["codProdotto"] ?>"
-                                    max="<?php echo $item["quantitaResidua"] ?>" id="<?php echo $item["codProdotto"] ?>" required />
-                                <button tabindex="-1" class="input-group-text font-monospace" type="button"
-                                    id="increment<?php echo $i ?>">+</button>
+            <div class="row mb-3 align-items-center">
+                <div class="col-12 col-md-8 mx-auto">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <div class="row py-4">
+                                <div class="col-md-4">
+                                    <img class="img-fluid" src="<?php echo UPLOAD_DIR . $item["immagine"] ?>" alt="" />
+                                </div>
+                                <div class="col-md-8">
+                                    <a href="#" class="row link-custom">
+                                        <h2><?php echo $item["nome"] ?></h2>
+                                    </a>
+                                    <div class="row">
+                                        <span><?php echo $item["descrizione"] ?></span>
+                                    </div>
+                                    <div class="row">
+                                        <span class="text-custom-price">Prezzo: <?php echo $item["prezzo"] ?>€</span>
+                                    </div>
+                                    <div class="row justify-content-md-start justify-content-center">
+                                        <label for="quantity<?php echo $i ?>" class="col-form-label pe-0 col-auto">Quantità:</label>
+                                        <div class="col-auto ps-2">
+                                            <div class="input-group">
+                                                <button tabindex="-1" class="input-group-text font-monospace" type="button"
+                                                    id="decrement<?php echo $i ?>">-</button>
+                                                <input class="form-control button-custom-quantity" type="text" value="<?php echo $item["quantita"] ?>" name="<?php echo $item["codProdotto"] ?>"
+                                                    max="<?php echo $item["quantitaResidua"] ?>" id="<?php echo $item["codProdotto"] ?>" required />
+                                                <button tabindex="-1" class="input-group-text font-monospace" type="button"
+                                                    id="increment<?php echo $i ?>">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-md-start justify-content-center mt-2 ms-0">
+                                        <button class="btn btn-custom-lgold col-auto button-custom-remove" type="button">Remove</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row justify-content-md-start justify-content-center mt-2 ms-0">
-                        <button class="btn btn-custom-lgold col-auto button-custom-remove" type="button">Remove</button>
                     </div>
                 </div>
             </div>

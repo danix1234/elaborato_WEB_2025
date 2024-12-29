@@ -25,6 +25,23 @@ class DatabaseHelper
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
+    /**
+     * Dynamic query with parameters
+     */
+    private function dynamicParametrizedQuery($query, $types, $array)
+    {
+        $stmt = $this->db->prepare($query);
+        $bind_names = array($types);
+        for ($i = 0; $i < count($array); $i++) {
+            $bind_name = "bind" . $i;
+            // es. primo ciclio $$bind_name = $bind0 -> $bind0 = $params[0]
+            $$bind_name = $array[$i];
+            $bind_names[] = &$$bind_name;
+        }
+        call_user_func_array([$stmt, "bind_param"], $bind_names);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
     private function parametrizedNoresultQuery($query, $types, &$var1, &...$vars)
     {
         $stmt = $this->db->prepare($query);
@@ -34,6 +51,16 @@ class DatabaseHelper
         return array($ok, $rows);
     }
 
+    // ↓↓↓ FIRST DANIELE QUERY ↓↓↓
+    public function fixAllCartItems($userId)
+    {
+        $query = "UPDATE CARRELLO C
+                    SET quantita = LEAST(GREATEST(quantita, 0), (SELECT quantitaResidua 
+                        FROM PRODOTTO P
+                        WHERE P.codProdotto = C.codProdotto))
+                WHERE codUtente = ?;";
+        return $this->parametrizedNoresultQuery($query, "i", $userId);
+    }
     public function getAllCartItems($userId)
     {
         $query = "SELECT *
@@ -59,7 +86,7 @@ class DatabaseHelper
     {
         $query = "SELECT *
                     FROM PRODOTTO
-                    WHERE codProdotto = ?;";
+                    WHERE NOT disabilitato AND codProdotto = ?;";
         return $this->parametrizedQuery($query, "i", $productId);
     }
     public function getAllCategories()
@@ -78,24 +105,91 @@ class DatabaseHelper
     {
         $query = 'UPDATE PRODOTTO
                     SET nome = ?, descrizione = ?, quantitaResidua = ?, prezzo = ?, codCategoria = ?
-                    WHERE codProdotto = ?';
+                    WHERE codProdotto = ? AND NOT disabilitato';
         return $this->parametrizedNoresultQuery($query, "ssidii", $name, $desc, $quantity, $price, $cat, $productId);
     }
     public function updateProductImg($productId, $img)
     {
         $query = 'UPDATE PRODOTTO
                     SET immagine = ?
-                    WHERE codProdotto = ?';
+                    WHERE codProdotto = ? AND NOT disabilitato';
         return $this->parametrizedNoresultQuery($query, "si", $img, $productId);
+    }
+    public function disableProduct($productId)
+    {
+        $query = 'UPDATE PRODOTTO
+                    SET disabilitato = true, quantitaResidua = 0
+                    WHERE codProdotto = ?';
+        return $this->parametrizedNoresultQuery($query, "i", $productId);
+    }
+    public function isImageUsed($img)
+    {
+        $query = 'SELECT *
+                    FROM PRODOTTO
+                    WHERE immagine = ?';
+        return $this->parametrizedNoresultQuery($query, "s", $img);
     }
     public function getOrder($orderId, $userId)
     {
         $query = 'SELECT *
-                    FROM ORDINE O, DETTAGLIO_ORDINE D, PRODOTTO P, UTENTE U
-                    WHERE O.codOrdine = D.codOrdine AND P.codProdotto = D.codProdotto AND U.codUtente = O.codUtente
-                        AND O.codOrdine = ? AND U.codUtente = ?;';
+                    FROM ORDINE O, DETTAGLIO_ORDINE D, PRODOTTO P
+                    WHERE O.codOrdine = D.codOrdine AND P.codProdotto = D.codProdotto
+                        AND O.codOrdine = ? AND O.codUtente = ?;';
         return $this->parametrizedQuery($query, "ii", $orderId, $userId);
     }
+    public function checkCartInvalidRows($userId)
+    {
+        $query = 'SELECT *
+                    FROM CARRELLO C, PRODOTTO P
+                    WHERE C.codProdotto = P.codProdotto AND C.codUtente = ?
+                        AND (P.disabilitato OR C.quantita < 0 OR C.quantita > P.quantitaResidua);';
+        return $this->parametrizedQuery($query, "i", $userId);
+    }
+    public function checkCartValidRows($userId)
+    {
+        $query = 'SELECT *
+                    FROM CARRELLO C, PRODOTTO P
+                    WHERE C.codProdotto = P.codProdotto AND C.codUtente = ?
+                        AND NOT P.disabilitato AND C.quantita > 0 AND C.quantita <= P.quantitaResidua;';
+        return $this->parametrizedQuery($query, "i", $userId);
+    }
+    public function buyCartAddOrder($userId, $orderState, $payed)
+    {
+        $query = "INSERT INTO ORDINE(dataOrdine, statoOrdine, totale, pagato, codUtente)
+                    VALUES(NOW(), ?, (SELECT COALESCE(SUM(quantita*prezzo),0)
+                        FROM CARRELLO C, PRODOTTO P
+                        WHERE C.codProdotto = P.codProdotto AND C.codUtente = ?),
+                    ?, ?);";
+        return $this->parametrizedNoResultQuery($query, "siii", $orderState, $userId, $payed, $userId);
+    }
+    public function buyCartAddOrderDetails($userId)
+    {
+        $query = "INSERT INTO DETTAGLIO_ORDINE(codOrdine, codProdotto, quantita)
+                    SELECT (SELECT codOrdine
+                        FROM ORDINE            
+                        ORDER BY codOrdine desc
+                        LIMIT 1
+                    ), codProdotto, quantita
+                    FROM CARRELLO
+                    WHERE codUtente = ? AND quantita != 0;";
+        return $this->parametrizedNoResultQuery($query, "i", $userId);
+    }
+    public function buyCartUpdateQuantityLeft($userId)
+    {
+        $query = "UPDATE PRODOTTO P
+                    SET quantitaResidua = GREATEST(quantitaResidua - (SELECT COALESCE(MAX(quantita),0)
+                        FROM CARRELLO C
+                        WHERE C.codProdotto = P.codProdotto AND C.codUtente = ?
+                    ), 0);";
+        return $this->parametrizedNoResultQuery($query, "i", $userId);
+    }
+    public function buyCartDeleteCart($userId)
+    {
+        $query = "DELETE FROM CARRELLO
+                    WHERE codUtente = ?;";
+        return $this->parametrizedNoResultQuery($query, "i", $userId);
+    }
+    // ↑↑↑ LAST DANIELE QUERY ↑↑↑
 
     public function getUser($username)
     {
@@ -135,11 +229,59 @@ class DatabaseHelper
         return $this->parametrizedQuery($query, "s", $email);
     }
     /**
+     * get user by userId
+     */
+    public function getUserbyUserId($userId)
+    {
+        $query = "SELECT *
+                    FROM UTENTE
+                    WHERE codUtente = ?";
+        return $this->parametrizedQuery($query, "i", $userId);
+    }
+    /**
      * add a new use into the database
      */
-    public function addUser($name, $email, $password, $address, $city){
+    public function addUser($name, $email, $password, $address, $city)
+    {
         $query = "INSERT INTO UTENTE(nomeUtente, email, password, privilegi, indirizzo, citta)
                     VALUES(?,?,?,0,?,?)";
         return $this->parametrizedNoresultQuery($query, "sssss", $name, $email, $password, $address, $city);
     }
+    /**
+     * get all orders performed by and user
+     */
+    public function getOrders($userId)
+    {
+        $query = "SELECT *
+                    FROM ORDINE
+                    WHERE codUtente = ?
+                    ORDER BY dataOrdine DESC";
+        return $this->parametrizedQuery($query, "i", $userId);
+    }
+    /**
+     * get all orders performed by and user filtered by months and order state
+     */
+    public function getFilteredOrders($userId, $months = null, $orderState = null)
+    {
+        $query = "SELECT * 
+                    FROM ORDINE 
+                    WHERE codUtente = ? ";
+        $params = array($userId);
+        $types = "i";
+
+        if ($months !== null) {
+            $query .= " AND dataOrdine >= DATE_SUB(NOW(), INTERVAL ? MONTH)";
+            array_push($params, $months);
+            $types .= "i";
+        }
+        if ($orderState !== null) {
+            $query .= " AND statoOrdine = ?";
+            array_push($params, $orderState);
+            $types .= "s";
+        }
+        $query .= " ORDER BY dataOrdine DESC";
+
+        return $this->dynamicParametrizedQuery($query, $types, $params);
+    }
+    // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }
