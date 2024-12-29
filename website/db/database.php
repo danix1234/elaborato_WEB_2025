@@ -294,12 +294,36 @@ class DatabaseHelper
         return $this->dynamicParametrizedQuery($query, $types, $params);
 
     }
-    function getAllProducts(){
+    public function getAllProducts()
+    {
         $query = "SELECT *
                     FROM PRODOTTO
                     WHERE NOT disabilitato
                     ORDER BY nome";
         return $this->simpleQuery($query);
+    }
+    /**
+     * get product info for product page
+     */
+    public function getProductforProdotto($productId)
+    {
+        $query = "SELECT P.nome, P.descrizione, P.prezzo, P.immagine, P.quantitaResidua, CAST(AVG(R.votoRecensione) as DECIMAL(2,1)) mediaVoto
+                    FROM PRODOTTO P, RECENSIONE R
+                    WHERE P.codProdotto = R.codProdotto 
+                    AND P.codProdotto = ?";
+        return $this->parametrizedQuery($query, "i", $productId);
+    }
+    /**
+     * get all reviews for a product
+     */
+    public function getProductReviews($productId)
+    {
+        $query = "SELECT *
+                    FROM RECENSIONE R, UTENTE U
+                    WHERE R.codUtente = U.codUtente
+                    AND R.codProdotto = ?
+                    ORDER BY dataRecensione DESC";
+        return $this->parametrizedQuery($query, "i", $productId);
     }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }

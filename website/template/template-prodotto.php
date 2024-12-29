@@ -1,27 +1,35 @@
+<?php $prodotto = $templateParams["prodotto"];
+function generateStarRating($votoInt, $votoDec)
+{
+    $output = "";
+    for ($i = 1; $i <= 5; $i++) {
+        if ($i <= $votoInt) {
+            $output .= '<span class="bi bi-star-fill text-custom-lgold"></span>';
+        } elseif ($i == $votoInt + 1 && $votoDec >= 5) {
+            $output .= '<span class="bi bi-star-half text-custom-lgold"></span>';
+        } else {
+            $output .= '<span class="bi bi-star text-custom-lgold"></span>';
+        }
+    }
+    return $output;
+} ?>
 <div class="row mt-4 mx-md-2">
     <div class="col-12 col-md-5 text-center mb-3 mb-md-0">
-        <img src="img/temp.jpg" class="img-fluid" alt="Product Image" />
-        <!-- TODO add ref -->
+        <img src=<?php echo UPLOAD_DIR . $prodotto["immagine"]; ?> class="img-fluid" alt="" />
     </div>
 
     <!-- nome, descr, costo, voto -->
     <div class="col-12 col-md-4 d-flex flex-column align-items-center">
-        <h2>Nome Prodotto</h2>
+        <h2><?php echo $prodotto["nome"]; ?></h2>
         <p class="text-body-secondary mb-4">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit, ex non doloremque excepturi neque quia
-            fugiat aliquid ipsa autem mollitia modi tenetur dolores nesciunt odit expedita adipisci deleniti nobis
-            totam?
+            <?php echo $prodotto["descrizione"]; ?>
         </p>
 
         <div class="d-flex justify-content-between w-100 mb-3">
-            <div class="fw-bold fs-4">€10,70</div>
+            <div class="fw-bold fs-4">€<?php echo $prodotto["prezzo"]; ?></div>
             <div class="text-end">
-                4.5/5
-                <span class="bi bi-star-fill text-custom-lgold"></span>
-                <span class="bi bi-star-fill text-custom-lgold"></span>
-                <span class="bi bi-star-fill text-custom-lgold"></span>
-                <span class="bi bi-star-fill text-custom-lgold"></span>
-                <span class="bi bi-star-half text-custom-lgold"></span>
+                <?php echo $prodotto["mediaVoto"]; ?>/5
+                <?php echo generateStarRating($prodotto["votoInt"], $prodotto["votoDec"]) ?>
             </div>
         </div>
     </div>
@@ -32,57 +40,59 @@
             <label for="quantita" class="form-label mb-0 me-2">Quantità</label>
             <div class="input-group">
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement">-</button>
-                <input class="form-control button-custom-quantity" value="1" type="text" name="quantity" id="quantity" required />
+                <input class="form-control button-custom-quantity" value="1" type="text" name="quantity" id="quantity"
+                    max="<?php echo $prodotto["quantitaResidua"]; ?>" min="1" required />
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment">+</button>
             </div>
         </div>
 
         <!-- carrello -->
         <div class="d-grid gap-2 w-100">
-            <button class="btn btn-custom-lgold">Aggiungi al Carrello</button>
-            <button class="btn btn-custom-gold">Compra Subito</button>
+            <button type="button" class="btn btn-custom-lgold">Aggiungi al Carrello</button>
+            <button type="button" class="btn btn-custom-gold">Compra Subito</button>
         </div>
     </div>
 </div>
 
 <!-- recensioni -->
 <hr />
+<?php if (!empty($templateParams["recensioni"])): ?>
+    <script>
+        window.reviews = <?php echo json_encode($templateParams["recensioni"]); ?>;
+    </script>
+<?php else: ?>
+    <script>
+        window.reviews = [];
+    </script>
+<?php endif; ?>
 <div class="row mx-md-2">
     <div class="col border rounded mb-2 mx-auto">
         <section class="mt-4">
             <h3 class="fw-bold mb-3">Recensioni</h3>
             <ul class="p-0">
-                <li class="d-flex align-items-start mb-3">
-                    <img src="img/temp.jpg" class="rounded-circle me-3 user-avatar-size" alt="Profilo Utente" />
-                    <div>
-                        <strong>Pimpo Bello</strong>
-                        <p class="mb-1">4/5
-                            <span class="bi bi-star-fill text-custom-lgold"></span>
-                            <span class="bi bi-star-fill text-custom-lgold"></span>
-                            <span class="bi bi-star-fill text-custom-lgold"></span>
-                            <span class="bi bi-star-fill text-custom-lgold"></span>
-                            <span class="bi bi-star-fill text-custom-lgold"></span>
-                        </p>
-                        <p class="text-body-secondary mb-0">Bello!</p>
-                    </div>
-                </li>
-                <li class="d-flex align-items-start">
-                    <img src="img/temp.jpg" class="rounded-circle me-3 user-avatar-size" alt="Profilo Utente" />
-                    <div>
-                        <strong>Giulio Brutto</strong>
-                        <p class="mb-1"><span class="bi bi-star-fill text-custom-lgold"></span> 1/5</p>
-                        <p class="text-body-secondary mb-0">
-                            Brutto, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo quae, esse est debitis
-                            velit
-                            exercitationem corrupti voluptate magnam consectetur commodi error vel beatae aliquam minima
-                            repellat id ipsam perspiciatis mollitia!
-                        </p>
-                    </div>
-                </li>
+                <?php for ($i = 0; $i < (count($templateParams["recensioni"]) >= 3 ? 3 : count($templateParams["recensioni"])); $i++) { ?>
+                    <li class="d-flex align-items-start mb-3">
+                        <img src="img/temp.jpg" class="rounded-circle me-3 user-avatar-size" alt="" />
+                        <div>
+                            <strong><?php echo $templateParams["recensioni"][$i]["nomeUtente"]; ?></strong>
+                            <p class="mb-1"><?php echo $templateParams["recensioni"][$i]["votoRecensione"]; ?>/5
+                                <?php
+                                $votoInt = floor($templateParams["recensioni"][$i]["votoRecensione"]);
+                                $votoDec = ($templateParams["recensioni"][$i]["votoRecensione"] - $votoInt) * 10;
+                                echo generateStarRating($votoInt, $votoDec); ?>
+                            </p>
+                            <p class="text-body-secondary mb-0"><?php echo $templateParams["recensioni"][$i]["commento"]; ?>
+                            </p>
+                        </div>
+                    </li>
+                <?php } ?>
             </ul>
         </section>
         <hr />
-        <p>vedi altre Recensioni</p>
+        <div class="d-flex justify-content-between mb-3">
+            <button id="other-review" type="button"
+                class="btn btn-outline-secondary <?php echo (count($templateParams["recensioni"]) > 3 ? "" : "disabled") ?>">Vedi
+                altre recensioni</button>
+        </div>
     </div>
 </div>
-
