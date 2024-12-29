@@ -8,7 +8,7 @@
 
 <form class="mx-md-4 mx-1 mt-md-4" action="api/manage_user.php?productId=<?php echo $_GET["userId"] ?>" method="post" enctype="">
     <div class="row mb-4">
-        <div class="d-none d-md-block col-md-6 pe-md-3">
+        <div class="col-md-6 pe-md-3">
             <img class="img-fluid" src="<?php echo UPLOAD_DIR . $user["immagine"] ?>" alt="immagine dell'utente" />
             <label class="form-label visually-hidden" for="preview">Scegli Immagine </label>
             <input class="form-control image-custom-preview" type="file" accept="image/*" name="preview"
@@ -47,7 +47,7 @@
     </div>
     <div class="row justify-content-evenly my-4">
         <button class="btn btn-custom-lgold col-auto" type="submit" id="submit">Modifica</button>
-        <button class="btn btn-danger col-auto" type="button" id="remove">Rimuovi</button>
+        <button class="btn btn-danger col-auto" type="button" id="removeuser">Rimuovi</button>
         <button class="btn border btn-light col-auto" type="reset" id="reset">Annulla</button>
     </div>
 </form>
