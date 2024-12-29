@@ -20,7 +20,7 @@
     <?php
     require_once("bootstrap.php");
     $categories = $dbh->getAllCategories();
-    // $products = $dbh->getAllProducts(); TODO: sugggestion bar
+    $products = $dbh->getAllProducts(); //TODO: sugggestion bar
     ?>
     <script>
         window.products = <?php echo json_encode(array_column($products, 'nome')); ?>;
