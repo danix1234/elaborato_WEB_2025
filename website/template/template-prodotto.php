@@ -42,7 +42,8 @@ function generateStarRating($voto)
             <label for="quantita" class="form-label mb-0 me-2">Quantità</label>
             <div class="input-group">
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement">-</button>
-                <input class="form-control button-custom-quantity" value="1" type="text" name="quantity" id="quantity"
+                <input class="form-control button-custom-quantity" value="1" type="text"
+                    name="<?php echo $prodotto["codProdotto"]; ?>" id="<?php echo $prodotto["codProdotto"]; ?>"
                     max="<?php echo $prodotto["quantitaResidua"]; ?>" min="1" required />
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment">+</button>
             </div>
@@ -50,8 +51,8 @@ function generateStarRating($voto)
 
         <!-- carrello -->
         <div class="d-grid gap-2 w-100">
-            <button type="button" class="btn btn-custom-lgold">Aggiungi al Carrello</button>
-            <button type="button" class="btn btn-custom-gold">Compra Subito</button>
+            <button id="button-add-cart" type="button" class="btn btn-custom-lgold">Aggiungi al Carrello</button>
+            <button id="button-buy-now" type="button" class="btn btn-custom-gold">Compra Subito</button>
         </div>
     </div>
 </div>
@@ -73,7 +74,8 @@ function generateStarRating($voto)
                             <strong><?php echo $templateParams["recensioni"][$i]["nomeUtente"]; ?></strong>
                             <p class="mb-1"><?php echo $templateParams["recensioni"][$i]["votoRecensione"]; ?>/5
                                 <?php echo generateStarRating($templateParams["recensioni"][$i]["votoRecensione"]); ?>
-                                <span class="text-secondary"> Recensito il <?php echo $templateParams["recensioni"][$i]["dataRecensione"]; ?></span>
+                                <span class="text-secondary"> Recensito il
+                                    <?php echo $templateParams["recensioni"][$i]["dataRecensione"]; ?></span>
                             </p>
                             <p class="text-body-secondary mb-0"><?php echo $templateParams["recensioni"][$i]["commento"]; ?>
                             </p>

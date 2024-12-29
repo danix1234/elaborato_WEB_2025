@@ -225,9 +225,6 @@ class DatabaseHelper
                     AND password = ?";
         return $this->parametrizedQuery($query, "ss", $email, $password);
     }
-    /**
-     * get user by email
-     */
     public function getUserbyEmail($email)
     {
         $query = "SELECT *
@@ -235,9 +232,6 @@ class DatabaseHelper
                     WHERE email = ?";
         return $this->parametrizedQuery($query, "s", $email);
     }
-    /**
-     * get user by userId
-     */
     public function getUserbyUserId($userId)
     {
         $query = "SELECT *
@@ -245,18 +239,13 @@ class DatabaseHelper
                     WHERE codUtente = ?";
         return $this->parametrizedQuery($query, "i", $userId);
     }
-    /**
-     * add a new use into the database
-     */
     public function addUser($name, $email, $password, $address, $city)
     {
         $query = "INSERT INTO UTENTE(nomeUtente, email, password, privilegi, indirizzo, citta)
                     VALUES(?,?,?,0,?,?)";
         return $this->parametrizedNoresultQuery($query, "sssss", $name, $email, $password, $address, $city);
     }
-    /**
-     * get all orders performed by and user
-     */
+    // not used
     public function getOrders($userId)
     {
         $query = "SELECT *
@@ -307,16 +296,13 @@ class DatabaseHelper
      */
     public function getProductwithRating($productId)
     {
-        $query = "SELECT P.nome, P.descrizione, P.prezzo, P.immagine, P.quantitaResidua, CAST(AVG(R.votoRecensione) as DECIMAL(2,1)) mediaVoto
+        $query = "SELECT P.codProdotto, P.nome, P.descrizione, P.prezzo, P.immagine, P.quantitaResidua, CAST(AVG(R.votoRecensione) as DECIMAL(2,1)) mediaVoto
                     FROM PRODOTTO P, RECENSIONE R
                     WHERE P.codProdotto = R.codProdotto 
                     AND NOT disabilitato
                     AND P.codProdotto = ?";
         return $this->parametrizedQuery($query, "i", $productId);
     }
-    /**
-     * get all reviews for a product
-     */
     public function getProductReviews($productId)
     {
         $query = "SELECT U.nomeUtente, R.votoRecensione, R.commento, R.dataRecensione
@@ -325,6 +311,20 @@ class DatabaseHelper
                     AND R.codProdotto = ?
                     ORDER BY dataRecensione DESC";
         return $this->parametrizedQuery($query, "i", $productId);
+    }
+    public function addItemToCart($productId, $userId, $quantity)
+    {
+        $query = "INSERT INTO CARRELLO(codProdotto, codUtente, quantita)
+                    VALUES(?, ?, ?)";
+        return $this->parametrizedNoresultQuery($query, "iii", $productId, $userId, $quantity);
+    }
+    public function getSingleCartItem($productId, $userId)
+    {
+        $query = "SELECT *
+                    FROM CARRELLO
+                    WHERE codProdotto = ? 
+                    AND codUtente = ?";
+        return $this->parametrizedQuery($query, "ii", $productId, $userId);
     }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }
