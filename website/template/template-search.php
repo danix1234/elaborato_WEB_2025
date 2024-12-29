@@ -8,7 +8,8 @@
                      <p>descrizione</p>
                      <p>prezzo</p>
                      <p>recensione</p>
-                     <button type="button" class="btn btn-custom-gold">aggiungi al carrello</button>
+                     <button type="button" class="btn btn-custom-gold">acquista subito</button>
+                     <button type="button" class="btn"><i class="bi bi-cart"></i></button>
                  </div>
              <?php
                 } ?>
