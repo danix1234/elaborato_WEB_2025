@@ -162,26 +162,21 @@ class DatabaseHelper
                     ?, ?);";
         return $this->parametrizedNoResultQuery($query, "siii", $orderState, $userId, $payed, $userId);
     }
-    public function buyCartAddOrderDetails($userId)
+    public function buyCartGetLastOrderId()
+    {
+        $query = "SELECT codOrdine
+                    FROM ORDINE            
+                    ORDER BY codOrdine desc
+                    LIMIT 1;";
+        return $this->simpleQuery($query);
+    }
+    public function buyCartAddOrderDetails($userId, $orderId)
     {
         $query = "INSERT INTO DETTAGLIO_ORDINE(codOrdine, codProdotto, quantita)
-                    SELECT (SELECT codOrdine
-                        FROM ORDINE            
-                        ORDER BY codOrdine desc
-                        LIMIT 1
-                    ), codProdotto, quantita
+                    SELECT ?, codProdotto, quantita
                     FROM CARRELLO
                     WHERE codUtente = ? AND quantita != 0;";
-        return $this->parametrizedNoResultQuery($query, "i", $userId);
-    }
-    public function buyCartUpdateQuantityLeft($userId)
-    {
-        $query = "UPDATE PRODOTTO P
-                    SET quantitaResidua = GREATEST(quantitaResidua - (SELECT COALESCE(MAX(quantita),0)
-                        FROM CARRELLO C
-                        WHERE C.codProdotto = P.codProdotto AND C.codUtente = ?
-                    ), 0);";
-        return $this->parametrizedNoResultQuery($query, "i", $userId);
+        return $this->parametrizedNoResultQuery($query, "ii", $orderId, $userId);
     }
     public function buyCartDeleteCart($userId)
     {
