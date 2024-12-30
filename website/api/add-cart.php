@@ -3,10 +3,10 @@ require_once ("../bootstrap.php");
 
 if (!isLoggedIn()) {
     die("not currently logged in!");
-} elseif (!isset($_GET["product"]) || !isset($_GET["quantity"])) {
+} elseif (!isset($_GET["productId"]) || !isset($_GET["quantity"])) {
     die("product id and/or quantity not passed via GET method!");
 }
-$productId = intval($_GET["product"]);
+$productId = intval($_GET["productId"]);
 $quantity = intval($_GET["quantity"]);
 
 $items = $dbh->getSingleCartItem($productId, getCurrentUserId());

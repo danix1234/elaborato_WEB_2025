@@ -4,7 +4,7 @@ const messageContainer = document.getElementById("message-container");
 const addItemToCart = document.getElementById("button-add-cart");
 
 addItemToCart.addEventListener("click", function () {
-    fetch(`./api/add-cart.php?product=${productId}&quantity=${quantity.value}`)
+    fetch(`./api/add-cart.php?productId=${productId}&quantity=${quantity.value}`)
         .then(response => response.text())
         .then(data => {
             messageContainer.innerText = data;
