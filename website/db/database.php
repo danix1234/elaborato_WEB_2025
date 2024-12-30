@@ -354,12 +354,12 @@ class DatabaseHelper
     /**
      * query for the confirm to buy button
      */
-    public function confirmBuyOrder($orderId, $userId)
+    public function confirmBuyOrder($orderState, $orderId, $userId)
     {
         $query = "UPDATE ORDINE
-                    SET statoOrdine = 'Shipped', pagato = 1
+                    SET statoOrdine = ?, pagato = 1
                     WHERE codOrdine = ? AND codUtente = ?";
-        return $this->parametrizedNoresultQuery($query, "ii", $orderId, $userId);
+        return $this->parametrizedNoresultQuery($query, "sii",$orderState, $orderId, $userId);
     }
     /**
      * second part for confirm to buy button

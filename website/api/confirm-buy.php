@@ -28,5 +28,5 @@ foreach ($orderDetails as $detail) {
         die("Errore: quantita' richiesta superiore a quella disponibile!");
     }
 }
-$res = $dbh->confirmBuyOrder($orderId, getCurrentUserId());
+$res = $dbh->confirmBuyOrder("Shipping", $orderId, getCurrentUserId());
 ?>
