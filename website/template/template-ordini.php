@@ -74,9 +74,7 @@
                             </div>
                             <div class="col-9">
                                 <p class="text-body-secondary mb-0">
-                                    <?php echo $ordine['totProdotti'] - 1 != 1 ?
-                                        $ordine['nomeProdotto'] . " e altri " . $ordine['totProdotti'] - 1 . " prodotti" :
-                                        $ordine['nomeProdotto'] . " e un altro prodotto"; ?>
+                                    <?php echo $ordine["descrizioneOrdine"]?>
                                 </p>
                             </div>
                         </div>

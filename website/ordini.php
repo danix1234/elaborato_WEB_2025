@@ -19,7 +19,13 @@ if (!empty($templateParams["ordini"])) {
     foreach ($templateParams["ordini"] as $index => $ordine) {
         $prodotti = $dbh->getOrder($ordine["codOrdine"], getCurrentUserId());
         $prodottoPreview = $prodotti[0];
-        $templateParams["ordini"][$index]["nomeProdotto"] = $prodottoPreview["nome"];
+        $descrizioneOrdine = $prodottoPreview["nome"];
+        if (count($prodotti) == 2) {
+            $descrizioneOrdine .= " e un altro prodotto";
+        } else if (count($prodotti) > 2) {
+            $descrizioneOrdine .= " e altri " . (count($prodotti) - 1) . " prodotti";
+        }
+        $templateParams["ordini"][$index]["descrizioneOrdine"] = $descrizioneOrdine;
         $templateParams["ordini"][$index]["immaginePreview"] = $prodottoPreview["immagine"];
         $templateParams["ordini"][$index]["totProdotti"] = count($prodotti);
     }
