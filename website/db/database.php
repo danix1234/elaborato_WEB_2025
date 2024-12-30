@@ -242,14 +242,13 @@ class DatabaseHelper
                     VALUES(?,?,?,0,?,?)";
         return $this->parametrizedNoresultQuery($query, "sssss", $name, $email, $password, $address, $city);
     }
-    // not used
-    public function getOrders($userId)
+    public function getSingleOrder($userId, $orderId)
     {
         $query = "SELECT *
                     FROM ORDINE
-                    WHERE codUtente = ?
-                    ORDER BY dataOrdine DESC";
-        return $this->parametrizedQuery($query, "i", $userId);
+                    WHERE codUtente = ? 
+                    AND codOrdine = ?";
+        return $this->parametrizedQuery($query, "ii", $userId, $orderId);
     }
     /**
      * get all orders performed by and user filtered by months and order state
@@ -328,6 +327,26 @@ class DatabaseHelper
                     SET statoOrdine = ?
                     WHERE codOrdine = ? AND codUtente = ?";
         return $this->parametrizedNoresultQuery($query, "sii", $newOrderState, $orderId, $userId);
+    }
+    /**
+     * query for the confirm to buy button
+     */
+    public function confirmBuyOrder ($orderId, $userId){
+        $query = "UPDATE ORDINE
+                    SET statoOrdine = 'Shipped'
+                    AND pagato = 1
+                    WHERE codOrdine = ? AND codUtente = ?";
+        return $this->parametrizedNoresultQuery($query, "ii", $orderId, $userId);
+    }
+    /**
+     * second part for confirm to buy button
+     */
+    public function updateProductStock($productId, $quantity)
+    {
+        $query = "UPDATE PRODOTTO
+                    SET quantitaResidua = quantitaResidua + ?
+                    WHERE codProdotto = ?";
+        return $this->parametrizedNoresultQuery($query, "ii", $quantity, $productId);
     }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }
