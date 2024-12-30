@@ -1,6 +1,6 @@
 <?php
 require_once("bootstrap.php");
-$previousURL = isset($_SERVER['HTTP_REFERER']) ? basename($_SERVER['HTTP_REFERER']) : 'search.php';
+$previousURL = isset($_SERVER["HTTP_REFERER"]) ? basename($_SERVER["HTTP_REFERER"]) : "search.php";
 if ($previousURL != "sign-in.php" && $previousURL != "sign-up.php") {
     setPreviousPage($previousURL);
 }

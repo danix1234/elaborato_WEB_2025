@@ -1,6 +1,6 @@
 <?php
 require_once("bootstrap.php");
-
+echo getpreviousPage();
 if (!isLoggedIn()) {
     die("not currently logged in!");
 } else if (empty($_GET["orderId"])) {
@@ -14,8 +14,8 @@ if (empty($dettagliOrdine)) {
     die("order already processed");
 }
 
-$previousURL = isset($_SERVER['HTTP_REFERER']) ? basename($_SERVER['HTTP_REFERER']) : 'search.php';
-if ($previousURL != "payment.php") {
+$previousURL = isset($_SERVER["HTTP_REFERER"]) ? basename($_SERVER["HTTP_REFERER"]) : "search.php";
+if (!str_contains($_SERVER["HTTP_REFERER"], "payment.php")) {
     setPreviousPage($previousURL);
 }
 $orderId = intval($_GET["orderId"]);
