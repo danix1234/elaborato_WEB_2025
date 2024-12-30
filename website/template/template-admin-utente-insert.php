@@ -6,7 +6,7 @@
 
 <form class="mx-md-4 mx-1 mt-md-4" action="api/manage_product.php" method="post" enctype="">
     <div class="row mb-4">
-        <div class="d-none d-md-block col-md-6 pe-md-3">
+        <div class="col-12 col-md-6 pe-md-3">
             <img class="img-fluid" src="img/temp.jpg" alt="immagine dell'utente" />
             <label class="form-label visually-hidden" for="preview">Scegli Immagine </label>
             <input class="form-control image-custom-preview" type="file" accept="image/*" name="preview" id="preview" required />

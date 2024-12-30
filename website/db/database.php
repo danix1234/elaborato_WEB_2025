@@ -195,25 +195,27 @@ class DatabaseHelper
     {
         $query = "SELECT *
                     FROM UTENTE
-                    WHERE nomeUtente = ?;";
+                    WHERE nomeUtente = ? AND disabilitato = 'false';";
         return $this->parametrizedQuery($query, "s", $username);
     }
 
-    public function updateUser($username, $password, $email, $privileges, $address, $city)
+    public function updateUser($userId, $password, $email, $privileges, $address, $city)
     {
         $query = 'UPDATE UTENTE
                     SET password = ?, email = ?, privilegi = ?, indirizzo = ?, citta = ?
-                    WHERE nomeUtente = ?';
-        return $this->parametrizedNoresultQuery($query, "ssssss", $password, $email, $privileges, $address, $city, $username);
+                    WHERE codUtente = ? AND disabilitato = "false"';
+        return $this->parametrizedNoresultQuery($query, "sssssi", $password, $email, $privileges, $address, $city, $userId);
     }
 
-    public function deleteUser($username)
+
+    public function disableUser($userId)
     {
-        $query = 'DELETE FROM UTENTE
-                    WHERE nomeUtente = ?';
-        return $this->parametrizedNoresultQuery($query, "s", $username);
+        $query = 'UPDATE UTENTE
+                SET disabilitato = "true"
+                WHERE codUtente = ?';
+        return $this->parametrizedNoresultQuery($query, "i", $userId);
     }
-    // ↓↓↓ FIRST FRANCO QUERY ↓↓↓
+
     /**
      * check if the email and password match in the database
      */
@@ -281,7 +283,6 @@ class DatabaseHelper
         $query .= " ORDER BY dataOrdine DESC";
 
         return $this->dynamicParametrizedQuery($query, $types, $params);
-
     }
     public function getAllProducts()
     {
