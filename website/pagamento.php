@@ -14,7 +14,7 @@ if (empty($dettagliOrdine)) {
 }
 
 $previousURL = isset($_SERVER["HTTP_REFERER"]) ? basename($_SERVER["HTTP_REFERER"]) : "search.php";
-if (!str_contains($_SERVER["HTTP_REFERER"], "payment.php")) {
+if (!str_contains($_SERVER["HTTP_REFERER"], "pagamento.php")) {
     setPreviousPage($previousURL);
 }
 $orderId = intval($_GET["orderId"]);

@@ -29,4 +29,4 @@ $orderId = intval($dbh->buyCartGetLastOrderId()[0]["codOrdine"]);
 $res = $dbh->buyCartAddOrderDetails($userId, $orderId);
 $res = $dbh->buyCartDeleteCart($userId);
 
-header("Location: ../payment.php?orderId=" . $orderId);
+header("Location: ../pagamento.php?orderId=" . $orderId);
