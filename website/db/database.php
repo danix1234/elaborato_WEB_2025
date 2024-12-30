@@ -322,5 +322,12 @@ class DatabaseHelper
                     AND codUtente = ?";
         return $this->parametrizedQuery($query, "ii", $productId, $userId);
     }
+    public function modOrderState($orderId, $newOrderState, $userId)
+    {
+        $query = "UPDATE ORDINE
+                    SET statoOrdine = ?
+                    WHERE codOrdine = ? AND codUtente = ?";
+        return $this->parametrizedNoresultQuery($query, "sii", $newOrderState, $orderId, $userId);
+    }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }
