@@ -341,12 +341,12 @@ class DatabaseHelper
     /**
      * second part for confirm to buy button
      */
-    public function updateProductStock($productId, $quantity)
+    public function updateProductStock($productId, $setQuantity)
     {
         $query = "UPDATE PRODOTTO
-                    SET quantitaResidua = quantitaResidua + ?
+                    SET quantitaResidua = ?
                     WHERE codProdotto = ?";
-        return $this->parametrizedNoresultQuery($query, "ii", $quantity, $productId);
+        return $this->parametrizedNoresultQuery($query, "ii", $setQuantity, $productId);
     }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }

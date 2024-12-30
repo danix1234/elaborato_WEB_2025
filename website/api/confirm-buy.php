@@ -17,10 +17,17 @@ if (empty($order) || empty($orderDetails)) {
     die("order already processed");
 }
 
-$res = $dbh->confirmBuyOrder($orderId, getCurrentUserId());
 foreach ($orderDetails as $detail) {
-    $quantity = -$detail["quantita"];
-    $dbh->updateProductStock($detail["codProdotto"], $quantity);
+    $quantitaResidua = $dbh->getProduct($detail["codProdotto"])[0]["quantitaResidua"];
+    $quantitaFinale = $quantitaResidua - $detail["quantita"];
+    if ($quantitaFinale >= 0) {
+        $dbh->updateProductStock($detail["codProdotto"], $quantity);
+        header("Location: ordini.php");
+    } else {
+        //TODO: cancellare ordine? oppure lasciarlo in attesa
+        $dbh->modOrderState($orderId, "Deleted", getCurrentUserId());
+        die("Errore: quantita' richiesta superiore a quella disponibile!");
+    }
 }
-
+$res = $dbh->confirmBuyOrder($orderId, getCurrentUserId());
 ?>

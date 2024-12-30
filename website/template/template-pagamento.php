@@ -20,5 +20,6 @@
             <a href="?orderId=<?php echo $templateParams['ordine']['codOrdine']; ?>&deleted=true"
                 class="btn btn-danger">Cancel</a>
         </div>
+        <div id="message-container" class="d-none text-danger"></div>
     </div>
 </div>
