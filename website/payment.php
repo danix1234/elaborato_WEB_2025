@@ -1,6 +1,5 @@
 <?php
 require_once("bootstrap.php");
-echo getpreviousPage();
 if (!isLoggedIn()) {
     die("not currently logged in!");
 } else if (empty($_GET["orderId"])) {
