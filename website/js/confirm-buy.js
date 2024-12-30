@@ -14,7 +14,8 @@ confirm.addEventListener("click", function () {
                 for (let i = 0; i < buttons.length; i++) {
                     buttons[i].classList.add("disabled");
                 }
-            }
+            } else {
+                window.location.href = "ordini.php";}
         })
         .catch(error => {
             console.error("Error from confirm-buy.js: ", error);
