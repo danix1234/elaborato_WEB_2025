@@ -6,6 +6,7 @@ if (!isLoggedIn()) {
     exit();
 }
 
+$templateParams["titolo"] = "Notifiche";
 $templateParams["nome"] = "template-notifiche.php";
 $templateParams["scripts"] = ["js/notifiche.js"];
 
