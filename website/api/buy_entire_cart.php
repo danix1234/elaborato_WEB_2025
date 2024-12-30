@@ -21,7 +21,12 @@ if (sizeof($validRows) == 0) {
     return;
 }
 
-$res = $dbh->buyCartAddOrder($userId, "Shipping", true);
-$res = $dbh->buyCartAddOrderDetails($userId);
-$res = $dbh->buyCartUpdateQuantityLeft($userId);
+$res = $dbh->buyCartAddOrder($userId, "Pending", false);
+if ($res[0] != 0 && $res[1] != 1) {
+    die('add order query failed!');
+}
+$orderId = $dbh->buyCartGetLastOrderId()[0]["codOrdine"];
+$res = $dbh->buyCartAddOrderDetails($userId, $orderId);
 $res = $dbh->buyCartDeleteCart($userId);
+
+header("Location: TODO.php?orderId=" . $orderId);
