@@ -1,7 +1,9 @@
 <?php
 require_once("bootstrap.php");
 
-if (!isAdmin()) {
+if (!isLoggedIn()) {
+    header("Location: sign-in.php");
+} elseif (!isAdmin()) {
     die('cannot modify users, without admin privilegies!');
 }
 
