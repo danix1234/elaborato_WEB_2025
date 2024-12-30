@@ -1,5 +1,5 @@
 <?php
-require_once("bootstrap.php");
+require_once("../bootstrap.php");
 
 if (!isLoggedIn()) {
     die("not currently logged in!");
@@ -19,7 +19,7 @@ if (empty($order) || empty($orderDetails)) {
 
 $res = $dbh->confirmBuyOrder($orderId, getCurrentUserId());
 foreach ($orderDetails as $detail) {
-    $quantity = -$detail["quantity"];
+    $quantity = -$detail["quantita"];
     $dbh->updateProductStock($detail["codProdotto"], $quantity);
 }
 

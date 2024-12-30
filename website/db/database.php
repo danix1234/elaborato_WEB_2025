@@ -331,10 +331,10 @@ class DatabaseHelper
     /**
      * query for the confirm to buy button
      */
-    public function confirmBuyOrder ($orderId, $userId){
+    public function confirmBuyOrder($orderId, $userId)
+    {
         $query = "UPDATE ORDINE
-                    SET statoOrdine = 'Shipped'
-                    AND pagato = 1
+                    SET statoOrdine = 'Shipped', pagato = 1
                     WHERE codOrdine = ? AND codUtente = ?";
         return $this->parametrizedNoresultQuery($query, "ii", $orderId, $userId);
     }
