@@ -21,7 +21,7 @@ foreach ($orderDetails as $detail) {
     $quantitaResidua = $dbh->getProduct($detail["codProdotto"])[0]["quantitaResidua"];
     $quantitaFinale = $quantitaResidua - $detail["quantita"];
     if ($quantitaFinale >= 0) {
-        $dbh->updateProductStock($detail["codProdotto"], $quantity);
+        $dbh->updateProductStock($detail["codProdotto"], $quantitaFinale);
         header("Location: ordini.php");
     } else {
         //TODO: cancellare ordine? oppure lasciarlo in attesa
