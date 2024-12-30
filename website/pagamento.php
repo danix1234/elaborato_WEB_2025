@@ -25,7 +25,7 @@ foreach ($dettagliOrdine as $prodotto) {
 $templateParams["ordine"] = $dettagliOrdine[0];
 $templateParams["listaProdotti"] = $prodotti;
 $templateParams["titolo"] = "Pagamento";
-$templateParams["nome"] = "template-payment.php";
+$templateParams["nome"] = "template-pagamento.php";
 
 if (isset($_GET["deleted"]) && $_GET["deleted"] == true) {
     $res = $dbh->modOrderState($orderId, "Deleted", getCurrentUserId());
