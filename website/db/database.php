@@ -357,9 +357,9 @@ class DatabaseHelper
     public function confirmBuyOrder($orderState, $orderId, $userId)
     {
         $query = "UPDATE ORDINE
-                    SET statoOrdine = ?, pagato = 1
+                    SET statoOrdine = ?, pagato = 1, dataConsegna = DATE_ADD(NOW(), INTERVAL 10 SECOND)
                     WHERE codOrdine = ? AND codUtente = ?";
-        return $this->parametrizedNoresultQuery($query, "sii",$orderState, $orderId, $userId);
+        return $this->parametrizedNoresultQuery($query, "sii", $orderState, $orderId, $userId);
     }
     /**
      * second part for confirm to buy button
