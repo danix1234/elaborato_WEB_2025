@@ -35,7 +35,7 @@ if (sizeof($ordini) == 0) { ?>
                                         <img class="img-fluid" src="<?php echo UPLOAD_DIR . $ordine["immagine"] ?>" alt="" />
                                     </div>
                                     <div class="col-md-10">
-                                        <a href="#" class="row link-custom">
+                                        <a href="prodotto.php?productId=<?php echo $ordine["codProdotto"] ?>" class="row link-custom">
                                             <h2><?php echo $ordine["nome"] ?></h2>
                                         </a>
                                         <div class="row">

@@ -43,7 +43,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <a href="#" class="row link-custom">
+                                    <a href="prodotto.php?productId=<?php echo $item["codProdotto"] ?>" class="row link-custom">
                                         <h2><?php echo $item["nome"] ?></h2>
                                     </a>
                                     <div class="row">
