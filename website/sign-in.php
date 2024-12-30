@@ -30,7 +30,13 @@ if (isLoggedIn()) {
     $templateParams["titolo"] = "Il tuo Account";
     $templateParams["tipo"] = "Il tuo Account";
     $userData = $dbh->getUserbyUserId(getCurrentUserId())[0];
-    $templateParams["fields"] = array($userData["nomeUtente"], $userData["email"], $userData["indirizzo"], $userData["citta"]);
+    $fields = array("Nome Utente: ", "Email: ", "Indirizzo: ", "Citta': ");
+    $templateParams["fields"] = array(
+        $fields[0] . $userData["nomeUtente"],
+        $fields[1] . $userData["email"],
+        $fields[2] . $userData["indirizzo"],
+        $fields[3] . $userData["citta"]
+    );
     $templateParams["redirect"] = "Esci dal tuo Account";
     if (isset($_GET["logout"]) && $_GET["logout"] == true) {
         session_unset();
