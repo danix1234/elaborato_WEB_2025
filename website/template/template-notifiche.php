@@ -6,6 +6,7 @@
             <button type="button" class="btn btn-custom-lgold">Leggi Selezionate</button>
         </div>
         <div class="col-12 col-md-6 d-flex flex-wrap justify-content-center justify-content-md-end gap-2 gap-md-3">
+            <button type="button" class="btn btn-custom-lgold">Tutte</button>
             <button type="button" class="btn btn-custom-lgold">Gia' lette</button>
             <button type="button" class="btn btn-custom-lgold">Da leggere</button>
         </div>
