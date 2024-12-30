@@ -8,7 +8,6 @@ for (let i = 0; i < buttons.length; i++) {
         const filter = buttons[i].id;
         const filterTime = filterTimeSelect.value;
         const url = new URL(window.location.href);
-        console.log(url);
 
         if (buttons[i].classList.contains("active")) {
             buttons[i].classList.remove("active");
