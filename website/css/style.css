@@ -70,9 +70,9 @@
     border: none;
 }
 
-.btn.btn-custom-lgold:active,
-.btn.btn-custom-lgold:hover,
-.btn.btn-custom-lgold:focus {
+/* .btn.btn-custom-lgold:active,
+.btn.btn-custom-lgold:focus, */
+.btn.btn-custom-lgold:hover{
     background-color: #805D15;
     color: #000;
 }
