@@ -1,45 +1,45 @@
-const buttons = document.getElementsByClassName("btn-group-custom-filter")
+// Seleziona i bottoni tramite ID specifici
+const buttonAll = document.getElementById("btn-tutte");
+const buttonRead = document.getElementById("btn-gia-lette");
+const buttonUnread = document.getElementById("btn-da-leggere");
 
+// Funzione comune per gestire i click sui bottoni
+function handleButtonClick(button, filter) {
+    const url = new URL(window.location.href);
+    const buttons = [buttonAll, buttonRead, buttonUnread];
 
-for (let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", function () {
-        const filter = buttons[i].id;
-        const url = new URL(window.location.href);
-        console.log(url);
+    // Gestisci lo stato "active" dei bottoni
+    if (button.classList.contains("active")) {
+        button.classList.remove("active");
+        url.searchParams.delete("filter");
+    } else {
+        buttons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+        url.searchParams.set("filter", filter);
+    }
 
-        if (buttons[i].classList.contains("active")) {
-            buttons[i].classList.remove("active");
-            url.searchParams.delete("filter");
-        } else {
-            for (let btn of buttons) {
-                btn.classList.remove("active");
-            }
-            buttons[i].classList.add("active");
-            url.searchParams.set("filter", filter);
-
-        }
-        url.searchParams.set("filter-time", filterTime);
-
-        //window.location.href = url.toString();
-
-        updateContent(url);
-    });
+    // Aggiorna il contenuto dinamicamente
+    updateContent(url);
 }
 
+// Aggiungi event listener ai bottoni
+buttonAll.addEventListener("click", () => handleButtonClick(buttonAll, "Tutte"));
+buttonRead.addEventListener("click", () => handleButtonClick(buttonRead, "Gia' lette"));
+buttonUnread.addEventListener("click", () => handleButtonClick(buttonUnread, "Da leggere"));
+
+// Funzione per aggiornare il contenuto dinamicamente
 function updateContent(url) {
-    //update the URL without reloading the page
+    // Aggiorna l'URL senza ricaricare la pagina
     history.pushState({}, '', url.toString());
 
-    //fetch and update
+    // Fetch e aggiornamento dinamico del contenuto
     fetch(url.toString())
         .then(response => response.text())
         .then(data => {
-            //parse the response and update the content
             const parser = new DOMParser();
             const doc = parser.parseFromString(data, "text/html");
             const newContent = doc.getElementById("orders-container");
             document.getElementById("orders-container").innerHTML = newContent.innerHTML;
         })
-        .catch(error => console.error("Error:", error));
+        .catch(error => console.error("Errore durante l'aggiornamento del contenuto:", error));
 }
-
