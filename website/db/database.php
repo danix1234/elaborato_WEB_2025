@@ -186,6 +186,8 @@ class DatabaseHelper
     }
     // ↑↑↑ LAST DANIELE QUERY ↑↑↑
 
+    // ↓↓↓ FIRST GIUSEPPE QUERY ↓↓↓
+
     public function getUser($username)
     {
         $query = "SELECT *
@@ -210,6 +212,26 @@ class DatabaseHelper
                 WHERE codUtente = ?';
         return $this->parametrizedNoresultQuery($query, "i", $userId);
     }
+
+    public function getFilteredNotifications($userId, $notificationState = null)
+    {
+        $query = "SELECT * 
+                FROM NOTIFICHE 
+                WHERE codUtente = ?";
+        $params = [$userId]; // Parametri della query
+        $types = "i"; // Tipo del parametro (intero per userId)
+
+        if ($notificationState !== null) {
+            $query .= " AND statoNotifica = ?";
+            $params[] = $notificationState;
+            $types .= "s"; // Tipo stringa per statoNotifica
+        }
+
+        $query .= " ORDER BY dataNotifica DESC";
+
+        return $this->dynamicParametrizedQuery($query, $types, $params);
+    }
+    // ↑↑↑ LAST GIUSEPPE QUERY ↑↑↑
 
     /**
      * check if the email and password match in the database
