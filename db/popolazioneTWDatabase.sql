@@ -45,12 +45,12 @@ VALUES
 ((SELECT codUtente FROM UTENTE WHERE email = 'u@es.com'), (SELECT codProdotto FROM PRODOTTO WHERE nome = 'PlayStation 5'), 1);
 
 -- Insert Orders
-INSERT INTO ORDINE (dataOrdine, statoOrdine, totale, pagato, codUtente)
+INSERT INTO ORDINE (dataOrdine, dataConsegna, statoOrdine, totale, pagato, codUtente)
 VALUES 
-('2024-1-30', 'Shipped', 2200.00, 1, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
-('2024-12-01', 'Shipping', 2300.00, 1, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
-('2024-12-02', 'Pending', 550.00, 0, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
-('2024-12-03', 'Deleted', 900.00, 0, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com'));
+('2024-1-30', '2024-2-01','Shipped', 2200.00, 1, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
+('2024-12-01', '2027-12-05','Shipping', 2300.00, 1, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
+('2024-12-02', '2024-12-05','Pending', 550.00, 0, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
+('2024-12-03', '2024-12-05','Deleted', 900.00, 0, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com'));
 
 -- Insert Order Details
 INSERT INTO DETTAGLIO_ORDINE (codOrdine, codProdotto, quantita)
