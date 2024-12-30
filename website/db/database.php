@@ -162,7 +162,7 @@ class DatabaseHelper
                     ?, ?);";
         return $this->parametrizedNoResultQuery($query, "siii", $orderState, $userId, $payed, $userId);
     }
-    public function buyCartGetLastOrderId()
+    public function getLastOrderId()
     {
         $query = "SELECT codOrdine
                     FROM ORDINE            
@@ -211,6 +211,7 @@ class DatabaseHelper
         return $this->parametrizedNoresultQuery($query, "i", $userId);
     }
 
+    // ↓↓↓ FIRST FRANCO QUERY ↓↓↓
     /**
      * check if the email and password match in the database
      */
@@ -348,5 +349,25 @@ class DatabaseHelper
                     WHERE codProdotto = ?";
         return $this->parametrizedNoresultQuery($query, "ii", $setQuantity, $productId);
     }
+    /**
+     * add order for buy now button
+     */
+    public function addOrderBuyNow($productId, $userId, $quantity)
+    {
+        $query = "INSERT INTO ORDINE(dataOrdine, statoOrdine, totale, pagato, codUtente)
+                    VALUES(NOW(), 
+                    'Pending', 
+                    (SELECT prezzo * ? FROM PRODOTTO WHERE codProdotto = ?), 
+                    0, 
+                    ?)";
+        return $this->parametrizedNoresultQuery($query, "iii", $quantity, $productId, $userId);
+    }
+    public function addOrderDetail($orderId, $productId, $quantity)
+    {
+        $query = "INSERT INTO DETTAGLIO_ORDINE(codOrdine, codProdotto, quantita)
+                    VALUES(?, ?, ?)";
+        return $this->parametrizedNoresultQuery($query, "iii", $orderId, $productId, $quantity);
+    }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }
+?>

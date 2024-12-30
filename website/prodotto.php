@@ -20,7 +20,7 @@ if (empty($templateParams["prodotto"])) {
 
 $templateParams["titolo"] = $templateParams["prodotto"]["nome"];
 $templateParams["nome"] = "template-prodotto.php";
-$templateParams["scripts"] = array("js/number_button.js", "js/more-review.js", "js/add-cart.js");
+$templateParams["scripts"] = array("js/number_button.js", "js/more-review.js", "js/product-buttons.js");
 
 require("template/base.php");
 ?>
