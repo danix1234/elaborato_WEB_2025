@@ -51,6 +51,7 @@
                                     </span>
                                 </div>
                                 <p class="text-body-secondary mb-1">Effettuato il: <?php echo $ordine["dataOrdine"]; ?></p>
+                                <p class="text-body-secondary mb-1">Data Consegna: <?php echo $ordine["dataConsegna"]; ?></p>
                                 <p class="text-body-secondary mb-1">Pagato: <?php echo $ordine["pagato"] ? "Si" : "No"; ?>
                                 </p>
                                 <p class="text-body-secondary mb-1">Stato: <span class="badge <?php if ($ordine["statoOrdine"] == "Shipped") {
