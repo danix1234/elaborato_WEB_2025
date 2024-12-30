@@ -25,8 +25,8 @@ $res = $dbh->buyCartAddOrder($userId, "Pending", false);
 if ($res[0] != 0 && $res[1] != 1) {
     die('add order query failed!');
 }
-$orderId = $dbh->buyCartGetLastOrderId()[0]["codOrdine"];
+$orderId = intval($dbh->buyCartGetLastOrderId()[0]["codOrdine"]);
 $res = $dbh->buyCartAddOrderDetails($userId, $orderId);
 $res = $dbh->buyCartDeleteCart($userId);
 
-header("Location: TODO.php?orderId=" . $orderId);
+header("Location: ../pagamento.php?orderId=" . $orderId);

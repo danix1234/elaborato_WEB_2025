@@ -67,24 +67,24 @@
                         <hr />
 
                         <!-- descr ordine -->
-                        <div class="row d-flex align-items-center mt-3">
+                        <div class="row d-flex mt-3">
                             <div class="col-3">
                                 <img alt="" src="<?php echo UPLOAD_DIR . $ordine["immaginePreview"]; ?>"
                                     class="img-fluid me-2">
                             </div>
                             <div class="col-9">
                                 <p class="text-body-secondary mb-0">
-                                    <?php echo $ordine['totProdotti'] - 1 != 1 ?
-                                        $ordine['nomeProdotto'] . " e altri " . $ordine['totProdotti'] - 1 . " prodotti" :
-                                        $ordine['nomeProdotto'] . " e un altro prodotto"; ?>
+                                    <?php echo $ordine["descrizioneOrdine"] ?>
                                 </p>
                             </div>
                         </div>
 
                         <!-- dettagli ordine -->
-                        <div class="mt-3 d-flex justify-content-between">
+                        <div class="mt-3 d-flex gap-2">
                             <a href="ordine.php?orderId=<?php echo $ordine["codOrdine"]; ?>"
                                 class="btn btn-outline-secondary">Dettagli</a>
+                            <a href="pagamento.php?orderId=<?php echo $ordine["codOrdine"]; ?>"
+                                class="btn btn-outline-secondary <?php echo $ordine['statoOrdine'] != 'Pending' ? 'disabled' : ''; ?>">Paga</a>
                         </div>
                     </div>
                 </div>
