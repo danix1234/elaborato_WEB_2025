@@ -216,13 +216,13 @@ class DatabaseHelper
     public function getFilteredNotifications($userId, $notificationState = null)
     {
         $query = "SELECT * 
-                FROM NOTIFICHE 
+                FROM NOTIFICA 
                 WHERE codUtente = ?";
         $params = [$userId]; // Parametri della query
         $types = "i"; // Tipo del parametro (intero per userId)
 
         if ($notificationState !== null) {
-            $query .= " AND statoNotifica = ?";
+            $query .= " AND letto = ?";
             $params[] = $notificationState;
             $types .= "s"; // Tipo stringa per statoNotifica
         }
