@@ -4,9 +4,9 @@
         foreach ($templateParams["prodotticasuali"] as $prodotto) { ?>
             <div class="col mb-5">
                 <a href="prodotto.php?productId=<?php echo $prodotto["codProdotto"] ?>" class="row link-custom"><img
-                        src=<?php echo 'img/' . $prodotto["immagine"] ?> class="img-fluid" alt="Logo" /></a>
-                <h1><?php echo $prodotto["nome"] ?></h1>
-
+                        src=<?php echo 'img/' . $prodotto["immagine"] ?> class="img-fluid" alt="Logo" />
+                    <h1><?php echo $prodotto["nome"] ?></h1>
+                </a>
                 <p><?php echo $prodotto["descrizione"] ?></p>
                 <p><?php echo $prodotto["prezzo"] . '€' ?></p>
                 <p><?php echo 'recensione' ?></p>

@@ -232,8 +232,9 @@ class DatabaseHelper
         return $this->dynamicParametrizedQuery($query, $types, $params);
     }
 
-    public function getRandomProducts($n=12){
-        $query= "SELECT nome, descrizione, prezzo, immagine
+    public function getRandomProducts($n = 12)
+    {
+        $query = "SELECT codProdotto, nome, descrizione, prezzo, immagine
         FROM PRODOTTO
         ORDER BY RAND() LIMIT ?";
         return $this->parametrizedQuery($query, "i", $n);
