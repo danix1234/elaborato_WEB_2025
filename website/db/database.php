@@ -184,6 +184,13 @@ class DatabaseHelper
                     WHERE codUtente = ?;";
         return $this->parametrizedNoResultQuery($query, "i", $userId);
     }
+    public function updateOrdersState($userId)
+    {
+        $query = "UPDATE ORDINE
+                    SET dataConsegna=null, statoOrdine='Shipped'
+                    WHERE dataConsegna < NOW() AND statoOrdine='Shipping' AND codUtente = ?;";
+        return $this->parametrizedQuery($query, "i", $userId);
+    }
     // ↑↑↑ LAST DANIELE QUERY ↑↑↑
 
     // ↓↓↓ FIRST GIUSEPPE QUERY ↓↓↓
@@ -392,4 +399,4 @@ class DatabaseHelper
     }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }
-?>
+
