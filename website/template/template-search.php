@@ -2,10 +2,11 @@
     <div class="row row-cols-1 row-cols-md-3">
         <?php
         foreach ($templateParams["prodotticasuali"] as $prodotto) { ?>
-            <div class="col mb-5"><img src=<?php echo 'img/' . $prodotto["immagine"] ?> class="img-fluid" alt="Logo" />
-                <a href="prodotto.php?productId=<?php echo $prodotto["codProdotto"] ?>" class="row link-custom">
-                    <h1><?php echo $prodotto["nome"] ?></h1>
-                </a>
+            <div class="col mb-5">
+                <a href="prodotto.php?productId=<?php echo $prodotto["codProdotto"] ?>" class="row link-custom"><img
+                        src=<?php echo 'img/' . $prodotto["immagine"] ?> class="img-fluid" alt="Logo" /></a>
+                <h1><?php echo $prodotto["nome"] ?></h1>
+
                 <p><?php echo $prodotto["descrizione"] ?></p>
                 <p><?php echo $prodotto["prezzo"] . '€' ?></p>
                 <p><?php echo 'recensione' ?></p>
