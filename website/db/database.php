@@ -187,9 +187,9 @@ class DatabaseHelper
     public function updateOrdersState($userId)
     {
         $query = "UPDATE ORDINE
-                    SET dataConsegna=null, statoOrdine='Shipped'
+                    SET statoOrdine='Shipped'
                     WHERE dataConsegna < NOW() AND statoOrdine='Shipping' AND codUtente = ?;";
-        return $this->parametrizedQuery($query, "i", $userId);
+        return $this->parametrizedNoresultQuery($query, "i", $userId);
     }
     // ↑↑↑ LAST DANIELE QUERY ↑↑↑
 
@@ -399,4 +399,3 @@ class DatabaseHelper
     }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }
-

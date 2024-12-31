@@ -7,7 +7,8 @@ if (!isLoggedIn()) {
 }
 
 // called here, to make sure the arrived orders are marked as shipped, before you get all the orders via a query!
-require("api/ship-orders.php");
+$dbh->updateOrdersState(getCurrentUserId());
+// NOTE: THIS QUERY MUST BE EXECUTED BEFORE DOING ANYTHING ELSE!
 
 $templateParams["titolo"] = "Ordini";
 $templateParams["nome"] = "template-ordini.php";
