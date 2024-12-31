@@ -25,23 +25,6 @@ class DatabaseHelper
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
-    /**
-     * Dynamic query with parameters
-     */
-    private function dynamicParametrizedQuery($query, $types, $array)
-    {
-        $stmt = $this->db->prepare($query);
-        $bind_names = array($types);
-        for ($i = 0; $i < count($array); $i++) {
-            $bind_name = "bind" . $i;
-            // es. primo ciclio $$bind_name = $bind0 -> $bind0 = $params[0]
-            $$bind_name = $array[$i];
-            $bind_names[] = &$$bind_name;
-        }
-        call_user_func_array([$stmt, "bind_param"], $bind_names);
-        $stmt->execute();
-        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-    }
     private function parametrizedNoresultQuery($query, $types, &$var1, &...$vars)
     {
         $stmt = $this->db->prepare($query);
@@ -225,7 +208,7 @@ class DatabaseHelper
         $query = "SELECT * 
                 FROM NOTIFICHE 
                 WHERE codUtente = ?";
-        $params = [$userId]; // Parametri della query
+        $params = []; // Parametri della query
         $types = "i"; // Tipo del parametro (intero per userId)
 
         if ($notificationState !== null) {
@@ -236,7 +219,11 @@ class DatabaseHelper
 
         $query .= " ORDER BY dataNotifica DESC";
 
-        return $this->dynamicParametrizedQuery($query, $types, $params);
+        /* NOTA: modificata da daniele, per semplificare il codice.
+            semplicemente: passare la prima variabile normalmente, e tutte le variabili successive
+            vanno messe in un array e passarlo utilizzando l'operatore splat (...$array).
+            Se non vi crea problemi, scrivetemi pure ;-) */
+        return $this->parametrizedQuery($query, $types, $userId, ...$params);
     }
     // ↑↑↑ LAST GIUSEPPE QUERY ↑↑↑
 
@@ -288,7 +275,7 @@ class DatabaseHelper
         $query = "SELECT * 
                     FROM ORDINE 
                     WHERE codUtente = ? ";
-        $params = array($userId);
+        $params = array();
         $types = "i";
 
         if ($months !== null) {
@@ -306,7 +293,11 @@ class DatabaseHelper
         }
         $query .= " ORDER BY dataOrdine DESC";
 
-        return $this->dynamicParametrizedQuery($query, $types, $params);
+        /* NOTA: modificata da daniele, per semplificare il codice.
+            semplicemente: passare la prima variabile normalmente, e tutte le variabili successive
+            vanno messe in un array e passarlo utilizzando l'operatore splat (...$array).
+            Se non vi crea problemi, scrivetemi pure ;-) */
+        return $this->parametrizedQuery($query, $types, $userId, ...$params);
     }
     public function getAllProducts()
     {
