@@ -284,10 +284,12 @@ class DatabaseHelper
             $types .= "i";
         }
         if ($orderState !== null) {
-            $query .= " AND statoOrdine = ?";
+            // by daniele: ti ho aggiunto le parentesi tonde, per sistemare un bug nella query
+            $query .= " AND ( statoOrdine = ?";
             if ($orderState === "Pending") {
                 $query .= " OR statoOrdine = 'Shipping'";
             }
+            $query .= ")";
             array_push($params, $orderState);
             $types .= "s";
         }
