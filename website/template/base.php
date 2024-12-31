@@ -29,7 +29,7 @@
         <div class="row align-items-center justify-content-between mx-1">
             <!-- Logo -->
             <div class="col-3 col-md-2 col-lg-1 order-1">
-                <a href="<?php checkFile("search.php"); ?>"><img src="./img/temp.jpg" class="img-fluid"
+                <a href="<?php checkFile('search.php'); ?>"><img src="./img/temp.jpg" class="img-fluid"
                         alt="Logo" /></a>
             </div>
 
@@ -59,7 +59,7 @@
 
             <!-- log in -->
             <div class="col-5 col-md-2 text-center order-2 order-md-3">
-                <a href="<?php checkFile("sign-in.php"); ?>" title="accedi"
+                <a href="<?php checkFile('sign-in.php'); ?>" title="accedi"
                     class="link-light link-opacity-50-hover text-decoration-none">Ciao, <?php if (isLoggedIn()) {
                         echo getCurrentUserName();
                     } else {
@@ -70,11 +70,11 @@
             <!-- icons -->
             <div class="col-4 col-md-2 col-lg-1 d-flex align-items-center order-3 order-md-4 justify-content-center">
                 <div class="w-100 d-flex justify-content-around">
-                    <a href="<?php checkFile("notifiche.php"); ?>" title="notifica"
+                    <a href="<?php checkFile('notifiche.php'); ?>" title="notifica"
                         class="link-light link-opacity-50-hover"><span class="bi bi-bell"></span></a>
-                    <a href="<?php checkFile("ordini.php"); ?>" title="ordini"
+                    <a href="<?php checkFile('ordini.php'); ?>" title="ordini"
                         class="link-light link-opacity-50-hover"><span class="bi bi-clock-history"></span></a>
-                    <a href="<?php checkFile("carrello.php"); ?>" title="carrello" class="text-custom-gold"><span
+                    <a href="<?php checkFile('carrello.php'); ?>" title="carrello" class="text-custom-gold"><span
                             class="bi bi-cart"></span></a>
                 </div>
             </div>

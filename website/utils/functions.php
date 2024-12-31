@@ -1,7 +1,7 @@
 <?php
 function checkFile($pagename)
 {
-    $href = file_exists("$pagename") ? $pagename : "#";
+    $href = file_exists($pagename) ? $pagename : "#";
     echo $href;
 }
 function getIdFromName($name)

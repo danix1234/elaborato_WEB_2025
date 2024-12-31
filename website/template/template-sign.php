@@ -1,6 +1,6 @@
 <div class="row justify-content-center mx-1">
     <div class="col-12 col-md-6 col-lg-4 border rounded p-3">
-        <form action="<?php echo $templateParams["action"]; ?>" method="POST">
+        <form action="<?php echo $templateParams['action']; ?>" method="POST">
             <h2 class="text-center fw-bold mb-2"><?php echo $templateParams["tipo"]; ?></h2>
             <?php if (isset($templateParams["erroresign"])): ?>
                 <div class="text-danger mb-3">
@@ -30,8 +30,8 @@
         </form>
         <hr />
         <div class="d-grid">
-            <a href="<?php echo isLoggedIn() ? '?logout=true' : $templateParams["redirect-link"]; ?>"
-                class="btn <?php echo isLoggedIn() ? "btn-danger" : "btn-light shadow"; ?> border">
+            <a href="<?php echo isLoggedIn() ? '?logout=true' : $templateParams['redirect-link']; ?>"
+                class="btn <?php echo isLoggedIn() ? 'btn-danger' : 'btn-light shadow'; ?> border">
                 <?php echo $templateParams["redirect"]; ?>
             </a>
         </div>
