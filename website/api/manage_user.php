@@ -13,7 +13,7 @@ if (!isset($_GET["userId"])) {
 }
 if (!isset($_GET["deleteuser"])) {
     // modify user
-    $dbh->updateUser(intval($_GET["userId"]), $_POST["address"], $_POST["city"]);
+    $dbh->updateUser(intval($_GET["userId"]), $_POST["name"], $_POST["address"], $_POST["city"]);
     if (isset($_POST["privileges"])) {
         $dbh->updateUserPrivilegies(intval($_GET["userId"]), intval($_POST["privileges"] == "Admin"));
     }

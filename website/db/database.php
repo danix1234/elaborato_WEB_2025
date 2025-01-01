@@ -180,12 +180,12 @@ class DatabaseHelper
                     WHERE codUtente = ? AND NOT disabilitato;";
         return $this->parametrizedQuery($query, "i", $userId);
     }
-    public function updateUser($userId, $address, $city)
+    public function updateUser($userId, $name, $address, $city)
     {
         $query = 'UPDATE UTENTE
-                    SET indirizzo = ?, citta = ?
+                    SET nomeUtente = ?, indirizzo = ?, citta = ?
                     WHERE codUtente = ? AND NOT disabilitato';
-        return $this->parametrizedNoresultQuery($query, "ssi", $address, $city, $userId);
+        return $this->parametrizedNoresultQuery($query, "sssi", $name, $address, $city, $userId);
     }
     public function updateUserPrivilegies($userId, $privilegies)
     {
