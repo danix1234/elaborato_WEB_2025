@@ -82,6 +82,14 @@ class DatabaseHelper
                     WHERE codProdotto = ? AND NOT disabilitato';
         return $this->parametrizedNoresultQuery($query, "ssidii", $name, $desc, $quantity, $price, $cat, $productId);
     }
+    public function getLatestProduct()
+    {
+        $query = "SELECT *
+                    FROM PRODOTTO
+                    ORDER BY codProdotto DESC
+                    LIMIT 1";
+        return $this->simpleQuery($query);
+    }
     public function updateProductImg($productId, $img)
     {
         $query = 'UPDATE PRODOTTO
