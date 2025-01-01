@@ -16,9 +16,11 @@ if (isset($_GET["productId"])) {
     } else {
         $templateParams["product"] = $product[0];
     }
+    $templateParams["titolo"] = "Modifica prodotto";
 } else {
     $templateParams["scripts"] = array("js/number_button.js", "js/preview_image.js", "js/float_button.js");
     $templateParams["nome"] = "template-admin-prodotto-insert.php";
+    $templateParams["titolo"] = "Inserisci prodotto";
 }
 $templateParams["categories"] = $dbh->getAllCategories();
 
