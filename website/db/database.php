@@ -213,6 +213,17 @@ class DatabaseHelper
         return $this->parametrizedQuery($query, $types, $userId, ...$params);
     }
 
+    public function markNotificationAsRead($notificationId, $userId)
+    {
+        $query = "UPDATE NOTIFICA 
+              SET letto = 1 
+              WHERE codNotifica = ? AND codUtente = ?";
+        $types = "ii"; // Assumendo che codNotifica e codUtente siano entrambi interi
+
+        return $this->parametrizedNoresultQuery($query, $types, $notificationId, $userId);
+    }
+
+
 
     public function getRandomProducts($n = 12)
     {

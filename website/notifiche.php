@@ -12,6 +12,11 @@ $templateParams["scripts"] = ["js/notifiche.js"];
 
 $userId = getCurrentUserId();
 
+if (!empty($_GET['codNotifica'])) {
+    $codNotifica = htmlspecialchars($_GET['codNotifica']);
+    $dbh->markNotificationAsRead($codNotifica, $userId);
+}
+
 $filter = !empty($_GET['filter']) ? $_GET['filter'] : null;
 
 $templateParams["notifiche"] = $dbh->getFilteredNotifications($userId, $filter);

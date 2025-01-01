@@ -2,7 +2,9 @@
 const buttonAll = document.getElementById("btn-tutte");
 const buttonRead = document.getElementById("btn-gia-lette");
 const buttonUnread = document.getElementById("btn-da-leggere");
-const accordionButtons = document.querySelectorAll(".accordion-button collapsed")
+const buttonAllSelected = document.getElementById("btn-seleziona-tutte");
+const buttonReadSelecd = document.getElementById("btn-leggi-selezionate");
+const accordionButtons = document.querySelectorAll(".accordion-button")
 
 // Funzione per gestire il click sui bottoni
 function handleButtonClick(button, filter) {
@@ -49,30 +51,47 @@ function updateContent(url) {
         .catch(error => console.error("Errore durante l'aggiornamento delle notifiche:", error));
 }
 
-function showaccordion() {
-    accordionButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            const codNotifica = button.getAttribute('codNotifica');
-            console.log(codNotifica);
-            if (!codNotifica) {
-                console.warn('codNotifica non trovato per questo bottone');
-                return;
+
+// Funzione per gestire il click su un pulsante accordion
+function showAccordion(button) {
+    const codNotifica = button.getAttribute('codNotifica');
+    if (!codNotifica) {
+        console.warn('codNotifica non trovato per questo bottone:', button);
+        return;
+    }
+
+    console.log("Codice Notifica trovato:", codNotifica);
+
+    // Creazione URL con parametro codNotifica
+    const url = new URL(window.location.href);
+    url.searchParams.set('codNotifica', codNotifica);
+    history.pushState({}, '', url.toString());
+    // Richiesta fetch al server
+    fetch(url.toString())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Errore HTTP! Stato: ${response.status}`);
             }
-            fetch(`./api/read-notice.php?codNotifica=${codNotifica}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    console.log("Item fetched:", data);
-                    alert("Prodotto aggiunto al carrello!");
-                })
-                .catch(error => {
-                    console.error("Errore durante l'operazione:", error);
-                    alert("Errore nell'aggiunta al carrello. Riprova.");
-                });
+        })
+        .catch(error => {
+            console.error("Errore durante l'operazione:", error);
+            // Mostra un messaggio d'errore all'utente
+            alert("Si è verificato un errore. Riprova più tardi.");
         });
-    });
+
+    console.log(url.toString())
 }
+
+// Aggiunge listener a tutti i pulsanti accordion
+document.addEventListener('DOMContentLoaded', () => {
+    const accordionButtons = document.querySelectorAll('.accordion-button');
+
+    if (accordionButtons.length === 0) {
+        console.error("Nessun pulsante trovato con la classe 'accordion-button'.");
+        return;
+    }
+
+    accordionButtons.forEach(button => {
+        button.addEventListener('click', () => showAccordion(button));
+    });
+});

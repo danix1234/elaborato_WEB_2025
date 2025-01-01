@@ -15,11 +15,9 @@ if (buttonAddItemToCart) {
             })
             .then(data => {
                 console.log("Item added to cart:", data);
-                alert("Prodotto aggiunto al carrello!");
             })
             .catch(error => {
                 console.error("Errore durante l'aggiunta al carrello:", error);
-                alert("Errore nell'aggiunta al carrello. Riprova.");
             });
     });
 }
