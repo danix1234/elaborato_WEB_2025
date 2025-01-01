@@ -1,4 +1,6 @@
-<?php $prodotto = $templateParams["prodotto"];
+<?php 
+
+$prodotto = $templateParams["prodotto"];
 function generateStarRating($voto)
 {
     $votoInt = intval(floor($voto));
@@ -17,7 +19,7 @@ function generateStarRating($voto)
 } ?>
 <div class="row mt-4 mx-md-2">
     <div class="col-12 col-md-5 text-center mb-3 mb-md-0">
-        <img src=<?php echo UPLOAD_DIR . $prodotto["immagine"]; ?> class="img-fluid" alt="" />
+        <img src="<?php echo UPLOAD_DIR . $prodotto['immagine']; ?>" class="img-fluid" alt="" />
     </div>
 
     <!-- nome, descr, costo, voto -->
@@ -43,8 +45,8 @@ function generateStarRating($voto)
             <div class="input-group">
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement">-</button>
                 <input class="form-control button-custom-quantity" value="1" type="text"
-                    name="<?php echo $prodotto["codProdotto"]; ?>" id="<?php echo $prodotto["codProdotto"]; ?>"
-                    max="<?php echo $prodotto["quantitaResidua"]; ?>" min="1" required />
+                    name="<?php echo $prodotto['codProdotto']; ?>" id="<?php echo $prodotto['codProdotto']; ?>"
+                    max="<?php echo $prodotto['quantitaResidua']; ?>" min="1" required />
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment">+</button>
             </div>
         </div>
@@ -69,7 +71,10 @@ function generateStarRating($voto)
         <section class="mt-4">
             <h3 class="fw-bold mb-3">Recensioni</h3>
             <ul class="p-0">
-                <?php for ($i = 0; $i < (count($templateParams["recensioni"]) >= 3 ? 3 : count($templateParams["recensioni"])); $i++) { ?>
+                <?php 
+                $totRecensioni = count($templateParams["recensioni"]);
+                $max = $totRecensioni >= 3 ? 3 :$totRecensioni;
+                for ($i = 0; $i < $max; $i++) { ?>
                     <li class="d-flex align-items-start mb-3">
                         <img src="img/temp.jpg" class="rounded-circle me-3 user-avatar-size" alt="" />
                         <div>
@@ -89,7 +94,7 @@ function generateStarRating($voto)
         <hr />
         <div class="d-flex justify-content-between mb-3">
             <button id="other-review" type="button"
-                class="btn btn-outline-secondary <?php echo (count($templateParams["recensioni"]) > 3 ? "" : "disabled") ?>">Vedi
+                class="btn btn-outline-secondary <?php echo $totRecensioni > 3 ? '' : 'disabled' ?>">Vedi
                 altre recensioni</button>
         </div>
     </div>

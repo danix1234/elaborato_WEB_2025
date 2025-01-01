@@ -1,6 +1,6 @@
 <div class="row justify-content-center mx-1">
-    <div class="col-12 col-md-6 col-lg-4 border rounded p-4">
-        <form action="<?php echo $templateParams["action"]; ?>" method="POST">
+    <div class="col-12 col-md-6 col-lg-4 border rounded p-3">
+        <form action="<?php echo $templateParams['action']; ?>" method="POST">
             <h2 class="text-center fw-bold mb-2"><?php echo $templateParams["tipo"]; ?></h2>
             <?php if (isset($templateParams["erroresign"])): ?>
                 <div class="text-danger mb-3">
@@ -15,7 +15,8 @@
                         <label for="<?php echo $field; ?>" class="visually-hidden"><?php echo $field; ?></label>
                         <input type="<?php echo $field === 'password' ? 'password' : 'text'; ?>" id="<?php echo $field; ?>"
                             name="<?php echo $field; ?>" class="form-control" placeholder="<?php echo $field; ?>"
-                            <?php if(isLoggedIn()) { echo "disabled"; } ?>
+                            <?php echo isLoggedIn() ? "disabled" : "" ?>
+                            value="<?php echo isLoggedIn() ? $field : '' ?>"
                             required />
                     </div>
                 <?php endforeach; ?>
@@ -28,10 +29,9 @@
             <?php endif; ?>
         </form>
         <hr />
-
         <div class="d-grid">
-            <a href="<?php echo isLoggedIn() ? '?logout=true' : $templateParams["redirect-link"]; ?>"
-                class="btn <?php echo isLoggedIn()? "btn-danger": "btn-light shadow"; ?> border">
+            <a href="<?php echo isLoggedIn() ? '?logout=true' : $templateParams['redirect-link']; ?>"
+                class="btn <?php echo isLoggedIn() ? 'btn-danger' : 'btn-light shadow'; ?> border">
                 <?php echo $templateParams["redirect"]; ?>
             </a>
         </div>

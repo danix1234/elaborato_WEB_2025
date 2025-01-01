@@ -1,7 +1,7 @@
 <?php
 require_once("bootstrap.php");
-$previousURL = isset($_SERVER['HTTP_REFERER']) ? basename($_SERVER['HTTP_REFERER']) : 'search.php';
-if ($previousURL != "sign-in.php" && $previousURL != "sign-up.php") {
+$previousURL = isset($_SERVER["HTTP_REFERER"]) ? basename($_SERVER["HTTP_REFERER"]) : "search.php";
+if (!str_contains($_SERVER["HTTP_REFERER"], "sign")) {
     setPreviousPage($previousURL);
 }
 
@@ -35,7 +35,7 @@ if (
 
 $templateParams["titolo"] = "Registrazione";
 $templateParams["nome"] = "template-sign.php";
-$templateParams["action"] = "sign-in.php";
+$templateParams["action"] = "sign-up.php";
 $templateParams["tipo"] = "Registrazione";
 $templateParams["fields"] = array("nome", "email", "password", "indirizzo", "citta");
 $templateParams["redirect"] = "Hai gia' un account? Accedi!";

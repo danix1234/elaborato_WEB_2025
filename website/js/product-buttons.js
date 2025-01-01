@@ -1,10 +1,11 @@
 const quantity = document.getElementsByClassName("button-custom-quantity")[0];
 const productId = new URLSearchParams(window.location.search).get("productId");
 const messageContainer = document.getElementById("message-container");
-const addItemToCart = document.getElementById("button-add-cart");
+const buttonAddItemToCart = document.getElementById("button-add-cart");
+const buttonBuyNow = document.getElementById("button-buy-now");
 
-addItemToCart.addEventListener("click", function () {
-    fetch(`./api/add-cart.php?product=${productId}&quantity=${quantity.value}`)
+buttonAddItemToCart.addEventListener("click", function () {
+    fetch(`./api/add-cart.php?productId=${productId}&quantity=${quantity.value}`)
         .then(response => response.text())
         .then(data => {
             messageContainer.innerText = data;
@@ -19,6 +20,10 @@ addItemToCart.addEventListener("click", function () {
         .catch(error => {
             console.error("Error from add-cart.js: ", error);
         });
+});
+
+buttonBuyNow.addEventListener("click", function () {
+    window.location.href = `./api/buy-now.php?productId=${productId}&quantity=${quantity.value}`;
 });
 
 

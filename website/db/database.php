@@ -25,23 +25,6 @@ class DatabaseHelper
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
-    /**
-     * Dynamic query with parameters
-     */
-    private function dynamicParametrizedQuery($query, $types, $array)
-    {
-        $stmt = $this->db->prepare($query);
-        $bind_names = array($types);
-        for ($i = 0; $i < count($array); $i++) {
-            $bind_name = "bind" . $i;
-            // es. primo ciclio $$bind_name = $bind0 -> $bind0 = $params[0]
-            $$bind_name = $array[$i];
-            $bind_names[] = &$$bind_name;
-        }
-        call_user_func_array([$stmt, "bind_param"], $bind_names);
-        $stmt->execute();
-        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-    }
     private function parametrizedNoresultQuery($query, $types, &$var1, &...$vars)
     {
         $stmt = $this->db->prepare($query);
@@ -162,7 +145,7 @@ class DatabaseHelper
                     ?, ?);";
         return $this->parametrizedNoResultQuery($query, "siii", $orderState, $userId, $payed, $userId);
     }
-    public function buyCartGetLastOrderId()
+    public function getLastOrderId()
     {
         $query = "SELECT codOrdine
                     FROM ORDINE            
@@ -183,6 +166,13 @@ class DatabaseHelper
         $query = "DELETE FROM CARRELLO
                     WHERE codUtente = ?;";
         return $this->parametrizedNoResultQuery($query, "i", $userId);
+    }
+    public function updateOrdersState($userId)
+    {
+        $query = "UPDATE ORDINE
+                    SET statoOrdine='Shipped'
+                    WHERE dataConsegna < NOW() AND statoOrdine='Shipping' AND codUtente = ?;";
+        return $this->parametrizedNoresultQuery($query, "i", $userId);
     }
     // ↑↑↑ LAST DANIELE QUERY ↑↑↑
 
@@ -218,7 +208,7 @@ class DatabaseHelper
         $query = "SELECT * 
                 FROM NOTIFICA 
                 WHERE codUtente = ?";
-        $params = [$userId]; // Parametri della query
+        $params = []; // Parametri della query
         $types = "i"; // Tipo del parametro (intero per userId)
 
         if ($notificationState !== null) {
@@ -229,7 +219,11 @@ class DatabaseHelper
 
         $query .= " ORDER BY dataNotifica DESC";
 
-        return $this->dynamicParametrizedQuery($query, $types, $params);
+        /* NOTA: modificata da daniele, per semplificare il codice.
+            semplicemente: passare la prima variabile normalmente, e tutte le variabili successive
+            vanno messe in un array e passarlo utilizzando l'operatore splat (...$array).
+            Se non vi crea problemi, scrivetemi pure ;-) */
+        return $this->parametrizedQuery($query, $types, $userId, ...$params);
     }
 
     public function getRandomProducts($n = 12)
@@ -241,6 +235,7 @@ class DatabaseHelper
     }
     // ↑↑↑ LAST GIUSEPPE QUERY ↑↑↑
 
+    // ↓↓↓ FIRST FRANCO QUERY ↓↓↓
     /**
      * check if the email and password match in the database
      */
@@ -272,14 +267,13 @@ class DatabaseHelper
                     VALUES(?,?,?,0,?,?)";
         return $this->parametrizedNoresultQuery($query, "sssss", $name, $email, $password, $address, $city);
     }
-    // not used
-    public function getOrders($userId)
+    public function getSingleOrder($userId, $orderId)
     {
         $query = "SELECT *
                     FROM ORDINE
-                    WHERE codUtente = ?
-                    ORDER BY dataOrdine DESC";
-        return $this->parametrizedQuery($query, "i", $userId);
+                    WHERE codUtente = ? 
+                    AND codOrdine = ?";
+        return $this->parametrizedQuery($query, "ii", $userId, $orderId);
     }
     /**
      * get all orders performed by and user filtered by months and order state
@@ -289,25 +283,31 @@ class DatabaseHelper
         $query = "SELECT * 
                     FROM ORDINE 
                     WHERE codUtente = ? ";
-        $params = array($userId);
+        $params = array();
         $types = "i";
 
-        if ($months !== null) {
+        if ($months != null) {
             $query .= " AND dataOrdine >= DATE_SUB(NOW(), INTERVAL ? MONTH)";
             array_push($params, $months);
             $types .= "i";
         }
-        if ($orderState !== null) {
-            $query .= " AND statoOrdine = ?";
-            if ($orderState === "Pending") {
+        if ($orderState != null) {
+            // by daniele: ti ho aggiunto le parentesi tonde, per sistemare un bug nella query
+            $query .= " AND ( statoOrdine = ?";
+            if ($orderState == "Pending") {
                 $query .= " OR statoOrdine = 'Shipping'";
             }
+            $query .= ")";
             array_push($params, $orderState);
             $types .= "s";
         }
         $query .= " ORDER BY dataOrdine DESC";
 
-        return $this->dynamicParametrizedQuery($query, $types, $params);
+        /* NOTA: modificata da daniele, per semplificare il codice.
+            semplicemente: passare la prima variabile normalmente, e tutte le variabili successive
+            vanno messe in un array e passarlo utilizzando l'operatore splat (...$array).
+            Se non vi crea problemi, scrivetemi pure ;-) */
+        return $this->parametrizedQuery($query, $types, $userId, ...$params);
     }
     public function getAllProducts()
     {
@@ -351,6 +351,52 @@ class DatabaseHelper
                     WHERE codProdotto = ? 
                     AND codUtente = ?";
         return $this->parametrizedQuery($query, "ii", $productId, $userId);
+    }
+    public function modOrderState($orderId, $newOrderState, $userId)
+    {
+        $query = "UPDATE ORDINE
+                    SET statoOrdine = ?
+                    WHERE codOrdine = ? AND codUtente = ?";
+        return $this->parametrizedNoresultQuery($query, "sii", $newOrderState, $orderId, $userId);
+    }
+    /**
+     * query for the confirm to buy button
+     */
+    public function confirmBuyOrder($orderState, $orderId, $userId)
+    {
+        $query = "UPDATE ORDINE
+                    SET statoOrdine = ?, pagato = 1, dataConsegna = DATE_ADD(NOW(), INTERVAL 10 SECOND)
+                    WHERE codOrdine = ? AND codUtente = ?";
+        return $this->parametrizedNoresultQuery($query, "sii", $orderState, $orderId, $userId);
+    }
+    /**
+     * second part for confirm to buy button
+     */
+    public function updateProductStock($productId, $setQuantity)
+    {
+        $query = "UPDATE PRODOTTO
+                    SET quantitaResidua = ?
+                    WHERE codProdotto = ?";
+        return $this->parametrizedNoresultQuery($query, "ii", $setQuantity, $productId);
+    }
+    /**
+     * add order for buy now button
+     */
+    public function addOrderBuyNow($productId, $userId, $quantity)
+    {
+        $query = "INSERT INTO ORDINE(dataOrdine, statoOrdine, totale, pagato, codUtente)
+                    VALUES(NOW(), 
+                    'Pending', 
+                    (SELECT prezzo * ? FROM PRODOTTO WHERE codProdotto = ?), 
+                    0, 
+                    ?)";
+        return $this->parametrizedNoresultQuery($query, "iii", $quantity, $productId, $userId);
+    }
+    public function addOrderDetail($orderId, $productId, $quantity)
+    {
+        $query = "INSERT INTO DETTAGLIO_ORDINE(codOrdine, codProdotto, quantita)
+                    VALUES(?, ?, ?)";
+        return $this->parametrizedNoresultQuery($query, "iii", $orderId, $productId, $quantity);
     }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }

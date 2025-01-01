@@ -37,7 +37,9 @@
                             <!-- dati -->
                             <div class="col-12">
                                 <div class="row">
-                                    <p class="col-9 fw-bold mb-1">Ordine #<?php echo $ordine["codOrdine"]; ?> </p>
+                                    <a href="ordine.php?orderId=<?php echo $ordine['codOrdine']; ?>"
+                                        class="col-9 fw-bold link-custom mb-1">Ordine
+                                        #<?php echo $ordine["codOrdine"]; ?></a>
                                     <span class="col-3 bi text-success text-end mb-1">
                                         <?php if ($ordine["statoOrdine"] == "Shipped") { ?>
                                             <span class="bi bi-check-circle-fill text-success"></span> <!-- spedito -->
@@ -51,14 +53,16 @@
                                     </span>
                                 </div>
                                 <p class="text-body-secondary mb-1">Effettuato il: <?php echo $ordine["dataOrdine"]; ?></p>
+                                <p class="text-body-secondary mb-1">Data Consegna: <?php echo $ordine["dataConsegna"]; ?>
+                                </p>
                                 <p class="text-body-secondary mb-1">Pagato: <?php echo $ordine["pagato"] ? "Si" : "No"; ?>
                                 </p>
-                                <p class="text-body-secondary mb-1">Stato: <span class="badge <?php if ($ordine["statoOrdine"] == "Shipped") {
-                                    echo "bg-success";
-                                } else if ($ordine["statoOrdine"] == "Shipping" || $ordine["statoOrdine"] == "Pending") {
-                                    echo "bg-custom-lgold";
+                                <p class="text-body-secondary mb-1">Stato: <span class="badge <?php if ($ordine['statoOrdine'] == 'Shipped') {
+                                    echo 'bg-success';
+                                } else if ($ordine['statoOrdine'] == 'Shipping' || $ordine['statoOrdine'] == 'Pending') {
+                                    echo 'bg-custom-lgold';
                                 } else {
-                                    echo "bg-danger";
+                                    echo 'bg-danger';
                                 } ?>"><?php echo $ordine["statoOrdine"] ?></span></p>
                                 <p class="fw-bold mb-0">Totale: €<?php echo $ordine["totale"]; ?></p>
                             </div>
@@ -67,24 +71,24 @@
                         <hr />
 
                         <!-- descr ordine -->
-                        <div class="row d-flex align-items-center mt-3">
+                        <div class="row d-flex mt-3">
                             <div class="col-3">
-                                <img alt="" src="<?php echo UPLOAD_DIR . $ordine["immaginePreview"]; ?>"
+                                <img alt="" src="<?php echo UPLOAD_DIR . $ordine['immaginePreview']; ?>"
                                     class="img-fluid me-2">
                             </div>
                             <div class="col-9">
                                 <p class="text-body-secondary mb-0">
-                                    <?php echo $ordine['totProdotti'] - 1 != 1 ?
-                                        $ordine['nomeProdotto'] . " e altri " . $ordine['totProdotti'] - 1 . " prodotti" :
-                                        $ordine['nomeProdotto'] . " e un altro prodotto"; ?>
+                                    <?php echo $ordine["descrizioneOrdine"] ?>
                                 </p>
                             </div>
                         </div>
 
                         <!-- dettagli ordine -->
-                        <div class="mt-3 d-flex justify-content-between">
-                            <a href="ordine.php?orderId=<?php echo $ordine["codOrdine"]; ?>"
+                        <div class="mt-3 d-flex gap-2">
+                            <a href="ordine.php?orderId=<?php echo $ordine['codOrdine']; ?>"
                                 class="btn btn-outline-secondary">Dettagli</a>
+                            <a href="pagamento.php?orderId=<?php echo $ordine['codOrdine']; ?>"
+                                class="btn btn-outline-secondary <?php echo $ordine['statoOrdine'] != 'Pending' ? 'disabled' : ''; ?>">Paga</a>
                         </div>
                     </div>
                 </div>
