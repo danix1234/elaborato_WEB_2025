@@ -12,6 +12,7 @@
 .text-custom-gold {
     color: #AA8539;
 }
+
 .text-custom-gold:hover {
     color: #805D15;
 }
@@ -72,7 +73,7 @@
 
 /* .btn.btn-custom-lgold:active,
 .btn.btn-custom-lgold:focus, */
-.btn.btn-custom-lgold:hover{
+.btn.btn-custom-lgold:hover {
     background-color: #805D15;
     color: #000;
 }
@@ -93,4 +94,19 @@
 .user-avatar-size {
     width: 40px;
     height: 40px;
+}
+
+.image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    /* Altezza uniforme per tutte le immagini */
+}
+
+.image-container img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    /* Mantiene proporzioni senza tagliare l'immagine */
 }

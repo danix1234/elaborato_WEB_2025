@@ -3,15 +3,45 @@
         <?php
         foreach ($templateParams["prodotticasuali"] as $prodotto) { ?>
             <div class="col mb-5">
-                <a href="prodotto.php?productId=<?php echo $prodotto["codProdotto"] ?>" class="row link-custom"><img
-                        src=<?php echo 'img/' . $prodotto["immagine"] ?> class="img-fluid" alt="Logo" />
-                    <h1><?php echo $prodotto["nome"] ?></h1>
-                </a>
-                <p><?php echo $prodotto["descrizione"] ?></p>
-                <p><?php echo $prodotto["prezzo"] . '€' ?></p>
-                <p><?php echo 'recensione' ?></p>
-                <button type="button" class="btn btn-custom-gold">acquista subito</button>
-                <button type="button" class="btn"><i class="bi bi-cart"></i></button>
+                <div class="card h-100">
+                    <a href="prodotto.php?productId=<?php echo $prodotto["codProdotto"] ?>" class="link-custom">
+                        <div class="row py-1">
+                            <div class="col-12 image-container">
+                                <img src=<?php echo 'img/' . $prodotto["immagine"] ?> alt="image of product" />
+                            </div>
+                        </div>
+                        <div class="row py-1">
+                            <div class="col-12">
+                                <h1 class="card-title"><?php echo $prodotto["nome"] ?></h1>
+                            </div>
+                        </div>
+                        <div class="row py-1">
+                            <div class="col-12">
+                                <p class="card-text"><?php echo $prodotto["descrizione"] ?></p>
+                            </div>
+                        </div>
+                        <div class="row py-1">
+                            <div class="col-12">
+                                <p class="card-text"><strong><?php echo $prodotto["prezzo"] . '€' ?></strong></p>
+                            </div>
+                        </div>
+                        <div class="row py-1">
+                            <div class="col-12">
+                                <p class="card-text">recensione</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="card-footer mt-5">
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-custom-gold w-100">acquista subito</button>
+                            </div>
+                            <div class="col-6">
+                                <button type="button" class="btn w-100"><i class="bi bi-cart"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <?php
         } ?>
