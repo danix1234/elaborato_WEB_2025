@@ -31,7 +31,6 @@
         for ($i = 0; $i < sizeof($items); $i++) {
             $item = $items[$i];
             $total_price += $item["quantita"] * $item["prezzo"];
-            print_r($item);
         ?>
             <div class="row mb-3 align-items-center">
                 <div class="col-12 col-md-8 mx-auto">
@@ -65,6 +64,9 @@
                                                     id="increment<?php echo $i ?>">+</button>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row text-center text-md-start">
+                                        <span class="cart-element-msg text-danger" id="msg<?php echo $item["codProdotto"] ?>"></span>
                                     </div>
                                     <div class="row justify-content-md-start justify-content-center mt-2 ms-0">
                                         <button class="btn btn-danger col-auto button-custom-remove" type="button">Rimuovi</button>
