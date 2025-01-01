@@ -35,15 +35,6 @@ class DatabaseHelper
     }
 
     // ↓↓↓ FIRST DANIELE QUERY ↓↓↓
-    public function fixAllCartItems($userId)
-    {
-        $query = "UPDATE CARRELLO C
-                    SET quantita = LEAST(GREATEST(quantita, 0), (SELECT quantitaResidua 
-                        FROM PRODOTTO P
-                        WHERE P.codProdotto = C.codProdotto))
-                WHERE codUtente = ?;";
-        return $this->parametrizedNoresultQuery($query, "i", $userId);
-    }
     public function getAllCartItems($userId)
     {
         $query = "SELECT *
