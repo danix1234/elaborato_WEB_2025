@@ -3,8 +3,8 @@
     <div class="row justify-content-between align-items-center mb-4">
         <div
             class="col-12 col-md-6 d-flex flex-wrap justify-content-center justify-content-md-start gap-2 gap-md-3 my-2">
-            <button type="button" class="btn btn-custom-lgold">Seleziona tutto</button>
-            <button type="button" class="btn btn-custom-lgold">Leggi Selezionate</button>
+            <button id="btn-seleziona-tutte" type="button" class="btn btn-custom-lgold">Seleziona tutto</button>
+            <button id="btn-leggi-selezionate" type="button" class="btn btn-custom-lgold">Leggi Selezionate</button>
         </div>
         <div class="col-12 col-md-6 d-flex flex-wrap justify-content-center justify-content-md-end gap-2 gap-md-3">
             <button id="btn-tutte" type="button" class="btn btn-custom-lgold">Tutte</button>
@@ -24,16 +24,20 @@
                 </div>
 
                 <!-- Accordion -->
-                <!-- Accordion -->
                 <div class="flex-grow-1">
                     <div class="accordion" id="accordionExample-<?php echo $notifica["codNotifica"]; ?>">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapse<?php echo $notifica["codNotifica"]; ?>" aria-expanded="false"
-                                    aria-controls="collapse<?php echo $notifica["codNotifica"]; ?>">
-                                    <?php echo $notifica["tipoNotifica"] ?>
-                                </button>
+                                <form action="./api/read-notice.php?codNotifica=<?php echo $notifica["codNotifica"]; ?>"
+                                    method="get">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse<?php echo $notifica["codNotifica"]; ?>"
+                                        aria-expanded="false"
+                                        aria-controls="collapse<?php echo $notifica["codNotifica"]; ?>"
+                                        codNotifica="<?php echo $notifica["codNotifica"]; ?>">
+                                        <?php echo $notifica["tipoNotifica"] ?>
+                                    </button>
+                                </form>
                             </h2>
                             <div id="collapse<?php echo $notifica["codNotifica"]; ?>" class="accordion-collapse collapse"
                                 data-bs-parent="#accordionExample-<?php echo $notifica["codNotifica"]; ?>">
