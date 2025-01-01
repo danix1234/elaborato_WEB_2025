@@ -6,3 +6,7 @@ document.getElementById("remove").addEventListener("click", function() {
         alert("No product Id found!");
     }
 })
+
+document.getElementById("insert").addEventListener("click", function() {
+    window.location.href = `./admin-prodotto.php`
+})
