@@ -1,12 +1,23 @@
-<?php $user = $templateParams["user"];
-function select_privilegies($user, $priv)
+<?php
+$user = $templateParams["user"];
+$onlyAdmin = sizeof($templateParams["admins"]) == 0;
+function select_privilegies($priv)
 {
+    global $user;
     if ($user["privilegi"] == $priv) {
         echo 'selected';
     }
 }
-function getImage($user)
+function disable_perm()
 {
+    global $onlyAdmin, $user;
+    if ($onlyAdmin && $user["privilegi"]) {
+        echo 'disabled';
+    }
+}
+function getImage()
+{
+    global $user;
     if ($user["privilegi"]) {
         echo 'img/temp.jpg';
     } else {
@@ -24,7 +35,7 @@ function getImage($user)
 <form class="mx-md-4 mx-1 mt-md-4" action="api/manage_user.php?userId=<?php echo $_GET["userId"] ?>" method="post" enctype="">
     <div class="row mb-4">
         <div class="col-md-6 pe-md-3">
-            <img class="img-fluid" src="<?php getImage($user) ?>" alt="immagine dell'utente" />
+            <img class="img-fluid" src="<?php getImage() ?>" alt="immagine dell'utente" />
         </div>
         <div class="col-md-6 ps-md-3">
             <div class="mb-3">
@@ -34,9 +45,9 @@ function getImage($user)
             <label class="form-label" for="email">Email</label>
             <input class="form-control" type="email" name="email" id="email" value="<?php echo $user["email"] ?>" disabled />
             <label class="form-label" for="privileges">Privilegi</label>
-            <select class="form-select" id="privileges" name="privileges" required>
-                <option value="User" <?php select_privilegies($user, false) ?>>Utente</option>
-                <option value="Admin" <?php select_privilegies($user, true) ?>>Admin</option>
+            <select class="form-select" id="privileges" name="privileges" required <?php disable_perm() ?>>
+                <option value="User" <?php select_privilegies(false) ?>>Utente</option>
+                <option value="Admin" <?php select_privilegies(true) ?>>Admin</option>
             </select>
             <label class="form-label" for="address">Indirizzo</label>
             <input class="form-control" type="text" name="address" id="address" value="<?php echo $user["indirizzo"] ?>" required />

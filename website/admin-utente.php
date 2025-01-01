@@ -19,5 +19,6 @@ if (sizeof($user) == 0) {
 }
 
 $templateParams["user"] = $user[0];
+$templateParams["admins"] = $dbh->getAllAdminsButCurrentUser(intval($_GET["userId"]));
 
 require("template/base.php");

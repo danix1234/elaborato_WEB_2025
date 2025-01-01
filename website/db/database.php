@@ -180,12 +180,19 @@ class DatabaseHelper
                     WHERE codUtente = ? AND NOT disabilitato;";
         return $this->parametrizedQuery($query, "i", $userId);
     }
-    public function updateUser($userId, $privileges, $address, $city)
+    public function updateUser($userId, $address, $city)
     {
         $query = 'UPDATE UTENTE
-                    SET privilegi = ?, indirizzo = ?, citta = ?
-                    WHERE codUtente = ? AND disabilitato = "false"';
-        return $this->parametrizedNoresultQuery($query, "sssi", $privileges, $address, $city, $userId);
+                    SET indirizzo = ?, citta = ?
+                    WHERE codUtente = ? AND NOT disabilitato';
+        return $this->parametrizedNoresultQuery($query, "ssi", $address, $city, $userId);
+    }
+    public function updateUserPrivilegies($userId, $privilegies)
+    {
+        $query = 'UPDATE UTENTE
+                    SET privilegi = ?
+                    WHERE codUtente = ? AND NOT disabilitato';
+        return $this->parametrizedNoresultQuery($query, "ii", $privilegies, $userId);
     }
     public function disableUser($userId)
     {
@@ -193,6 +200,13 @@ class DatabaseHelper
                 SET disabilitato = "true"
                 WHERE codUtente = ?';
         return $this->parametrizedNoresultQuery($query, "i", $userId);
+    }
+    public function getAllAdminsButCurrentUser($userId)
+    {
+        $query = 'SELECT *
+                    FROM UTENTE
+                    WHERE privilegi AND NOT disabilitato AND codUtente != ?';
+        return $this->parametrizedQuery($query, "i", $userId);
     }
     // ↑↑↑ LAST DANIELE QUERY ↑↑↑
 
