@@ -43,7 +43,7 @@ function updateContent(url) {
             const newContent = doc.querySelector(".container-fluid");
 
             if (newContent) {
-                document.querySelector(".container-fluid").innerHTML = newContent.innerHTML;
+                document.getElementById("notice-container").innerHTML = newContent.innerHTML;
             } else {
                 console.error("Contenitore notifiche non trovato nella risposta del server.");
             }

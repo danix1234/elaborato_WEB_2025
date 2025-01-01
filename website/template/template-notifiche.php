@@ -15,7 +15,7 @@
 
     <!-- Sezione notifiche -->
     <?php foreach ($templateParams["notifiche"] as $notifica) { ?>
-        <div class="row border-bottom py-3">
+        <div id="notice-container" class="row border-bottom py-3">
             <div class="col-12 d-flex align-items-center">
                 <!-- Checkbox -->
                 <div class="me-3">
