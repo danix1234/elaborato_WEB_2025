@@ -34,10 +34,12 @@
                     <div class="card-footer mt-5">
                         <div class="row">
                             <div class="col-6">
-                                <button type="button" class="btn btn-custom-gold w-100">acquista subito</button>
+                                <button id="button-add-cart-home" type="button" class="btn btn-custom-gold w-100">acquista
+                                    subito</button>
                             </div>
                             <div class="col-6">
-                                <button type="button" class="btn w-100"><i class="bi bi-cart"></i></button>
+                                <button id="button-buy-now-home" type="button" class="btn w-100"><i
+                                        class="bi bi-cart"></i></button>
                             </div>
                         </div>
                     </div>

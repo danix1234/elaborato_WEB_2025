@@ -197,25 +197,22 @@ class DatabaseHelper
     public function getFilteredNotifications($userId, $notificationState = null)
     {
         $query = "SELECT * 
-                FROM NOTIFICA 
-                WHERE codUtente = ?";
-        $params = []; // Parametri della query
-        $types = "i"; // Tipo del parametro (intero per userId)
+              FROM NOTIFICA 
+              WHERE codUtente = ?";
+        $params = [];
+        $types = "i";
 
-        if ($notificationState !== null) {
+        if ($notificationState !== null && in_array($notificationState, ['0', '1'], true)) {
             $query .= " AND letto = ?";
             $params[] = $notificationState;
-            $types .= "s"; // Tipo stringa per statoNotifica
+            $types .= "s";
         }
 
         $query .= " ORDER BY dataNotifica DESC";
 
-        /* NOTA: modificata da daniele, per semplificare il codice.
-            semplicemente: passare la prima variabile normalmente, e tutte le variabili successive
-            vanno messe in un array e passarlo utilizzando l'operatore splat (...$array).
-            Se non vi crea problemi, scrivetemi pure ;-) */
         return $this->parametrizedQuery($query, $types, $userId, ...$params);
     }
+
 
     public function getRandomProducts($n = 12)
     {

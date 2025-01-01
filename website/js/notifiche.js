@@ -1,45 +1,49 @@
-// Seleziona i bottoni tramite ID specifici
+// Selezione dei bottoni per il filtro
 const buttonAll = document.getElementById("btn-tutte");
 const buttonRead = document.getElementById("btn-gia-lette");
 const buttonUnread = document.getElementById("btn-da-leggere");
 
-// Funzione comune per gestire i click sui bottoni
+// Funzione per gestire il click sui bottoni
 function handleButtonClick(button, filter) {
     const url = new URL(window.location.href);
     const buttons = [buttonAll, buttonRead, buttonUnread];
 
-    // Gestisci lo stato "active" dei bottoni
-    if (button.classList.contains("active")) {
-        button.classList.remove("active");
-        url.searchParams.delete("filter");
-    } else {
-        buttons.forEach(btn => btn.classList.remove("active"));
+    // Gestione dello stato "active" per i bottoni
+    buttons.forEach(btn => btn.classList.remove("active"));
+    if (filter) {
         button.classList.add("active");
         url.searchParams.set("filter", filter);
+    } else {
+        url.searchParams.delete("filter");
     }
 
     // Aggiorna il contenuto dinamicamente
     updateContent(url);
 }
 
-// Aggiungi event listener ai bottoni
-buttonAll.addEventListener("click", () => handleButtonClick(buttonAll, "Tutte"));
-buttonRead.addEventListener("click", () => handleButtonClick(buttonRead, "Gia' lette"));
-buttonUnread.addEventListener("click", () => handleButtonClick(buttonUnread, "Da leggere"));
+// Event listener per i bottoni
+if (buttonAll) buttonAll.addEventListener("click", () => handleButtonClick(buttonAll, null));
+if (buttonRead) buttonRead.addEventListener("click", () => handleButtonClick(buttonRead, "gia-lette"));
+if (buttonUnread) buttonUnread.addEventListener("click", () => handleButtonClick(buttonUnread, "da-leggere"));
 
-// Funzione per aggiornare il contenuto dinamicamente
+// Funzione per aggiornare la sezione notifiche dinamicamente
 function updateContent(url) {
     // Aggiorna l'URL senza ricaricare la pagina
     history.pushState({}, '', url.toString());
 
-    // Fetch e aggiornamento dinamico del contenuto
+    // Fetch per recuperare le notifiche filtrate
     fetch(url.toString())
         .then(response => response.text())
         .then(data => {
             const parser = new DOMParser();
             const doc = parser.parseFromString(data, "text/html");
-            const newContent = doc.getElementById("orders-container");
-            document.getElementById("orders-container").innerHTML = newContent.innerHTML;
+            const newContent = doc.querySelector(".container-fluid");
+
+            if (newContent) {
+                document.querySelector(".container-fluid").innerHTML = newContent.innerHTML;
+            } else {
+                console.error("Contenitore notifiche non trovato nella risposta del server.");
+            }
         })
-        .catch(error => console.error("Errore durante l'aggiornamento del contenuto:", error));
+        .catch(error => console.error("Errore durante l'aggiornamento delle notifiche:", error));
 }
