@@ -173,27 +173,20 @@ class DatabaseHelper
                     WHERE dataConsegna < NOW() AND statoOrdine='Shipping' AND codUtente = ?;";
         return $this->parametrizedNoresultQuery($query, "i", $userId);
     }
-    // ↑↑↑ LAST DANIELE QUERY ↑↑↑
-
-    // ↓↓↓ FIRST GIUSEPPE QUERY ↓↓↓
-
-    public function getUser($username)
+    public function getUser($userId)
     {
         $query = "SELECT *
                     FROM UTENTE
-                    WHERE nomeUtente = ? AND disabilitato = 'false';";
-        return $this->parametrizedQuery($query, "s", $username);
+                    WHERE codUtente = ? AND NOT disabilitato;";
+        return $this->parametrizedQuery($query, "i", $userId);
     }
-
-    public function updateUser($userId, $password, $email, $privileges, $address, $city)
+    public function updateUser($userId, $privileges, $address, $city)
     {
         $query = 'UPDATE UTENTE
-                    SET password = ?, email = ?, privilegi = ?, indirizzo = ?, citta = ?
+                    SET privilegi = ?, indirizzo = ?, citta = ?
                     WHERE codUtente = ? AND disabilitato = "false"';
-        return $this->parametrizedNoresultQuery($query, "sssssi", $password, $email, $privileges, $address, $city, $userId);
+        return $this->parametrizedNoresultQuery($query, "sssi", $privileges, $address, $city, $userId);
     }
-
-
     public function disableUser($userId)
     {
         $query = 'UPDATE UTENTE
@@ -201,7 +194,9 @@ class DatabaseHelper
                 WHERE codUtente = ?';
         return $this->parametrizedNoresultQuery($query, "i", $userId);
     }
+    // ↑↑↑ LAST DANIELE QUERY ↑↑↑
 
+    // ↓↓↓ FIRST GIUSEPPE QUERY ↓↓↓
     public function getFilteredNotifications($userId, $notificationState = null)
     {
         $query = "SELECT * 

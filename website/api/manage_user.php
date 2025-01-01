@@ -9,21 +9,12 @@ if (!isLoggedIn()) {
 }
 
 if (!isset($_GET["userId"])) {
-    // insert user
-    $dbh->addUser(
-        $_POST["nomeUtente"],
-        $_POST["password"],
-        $_POST["email"],
-        $_POST["privilegi"],
-        $_POST["indirizzo"],
-        $_POST["citta"]
-    );
-} elseif (!isset($_GET["deleteuser"])) {
+    die('no userid was passed!');
+}
+if (!isset($_GET["deleteuser"])) {
     // modify user
     $dbh->updateUser(
         intval($_GET["userId"]),
-        $_POST["password"],
-        $_POST["email"],
         $_POST["privilegi"],
         $_POST["indirizzo"],
         $_POST["citta"]
