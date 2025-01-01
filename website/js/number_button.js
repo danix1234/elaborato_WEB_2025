@@ -28,6 +28,7 @@ for (const number_input of document.getElementsByClassName("button-custom-quanti
     // we do some currying, and make the function local
     let validate = function(amount) {
         return function() {
+            const prevval_str = number_input.value
             const prev_val = parseInt(number_input.value)
             if (!prev_val && number_input.value != "0") {
                 if (amount == 0) {
@@ -37,6 +38,9 @@ for (const number_input of document.getElementsByClassName("button-custom-quanti
                 }
             } else {
                 number_input.value = Math.min(max, Math.max(min, prev_val + amount))
+            }
+            if (number_input.value != prevval_str) {
+                number_input.dispatchEvent(new Event('change'))
             }
         }
     }
