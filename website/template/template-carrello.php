@@ -11,13 +11,19 @@
 
     <!--title of entire page-->
     <header class="row my-2">
-        <div class="col-1"> </div>
-        <h1 class="col-10 text-center my-0">
-            Carrello
-        </h1>
-        <a href="#buy" title="button to go to buy button" class="col-1 d-flex align-items-center justify-content-center">
-            <span class="bi bi-arrow-down-circle-fill fs-5 text-custom-lblue"></span>
-        </a>
+        <div class="col-md-2"></div>
+        <div class="col-12 col-md-8">
+            <div class="row">
+                <div class="col-1"> </div>
+                <h1 class="col-10 text-center my-0">
+                    Carrello
+                </h1>
+                <a href="#buy" title="button to go to buy button" class="col-1 d-flex align-items-center justify-content-center">
+                    <span class="bi bi-arrow-down-circle-fill fs-5 text-custom-lblue"></span>
+                </a>
+
+            </div>
+        </div>
     </header>
 
     <!--lista dei prodotti-->
