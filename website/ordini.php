@@ -6,6 +6,10 @@ if (!isLoggedIn()) {
     header("Location: sign-in.php");
 }
 
+// called here, to make sure the arrived orders are marked as shipped, before you get all the orders via a query!
+$dbh->updateOrdersState(getCurrentUserId());
+// NOTE: THIS QUERY MUST BE EXECUTED BEFORE DOING ANYTHING ELSE!
+
 $templateParams["titolo"] = "Ordini";
 $templateParams["nome"] = "template-ordini.php";
 $templateParams["scripts"] = array("js/filter-orders.js");
@@ -32,4 +36,3 @@ if (!empty($templateParams["ordini"])) {
 }
 
 require("template/base.php");
-?>
