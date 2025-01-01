@@ -278,15 +278,15 @@ class DatabaseHelper
         $params = array();
         $types = "i";
 
-        if ($months !== null) {
+        if ($months != null) {
             $query .= " AND dataOrdine >= DATE_SUB(NOW(), INTERVAL ? MONTH)";
             array_push($params, $months);
             $types .= "i";
         }
-        if ($orderState !== null) {
+        if ($orderState != null) {
             // by daniele: ti ho aggiunto le parentesi tonde, per sistemare un bug nella query
             $query .= " AND ( statoOrdine = ?";
-            if ($orderState === "Pending") {
+            if ($orderState == "Pending") {
                 $query .= " OR statoOrdine = 'Shipping'";
             }
             $query .= ")";
