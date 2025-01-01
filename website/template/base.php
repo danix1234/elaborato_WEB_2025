@@ -38,8 +38,8 @@
                 <form method="GET" action="search.php">
                     <div class="input-group">
                         <label for="searchBar" class="visually-hidden form-label">Cerca</label>
-                        <input id="searchBar" type="search" class="form-control rounded-start border border-0"
-                            placeholder="Cerca" />
+                        <input name="searchBar" id="searchBar" type="search"
+                            class="form-control rounded-start border border-0" placeholder="Cerca" />
                         <!-- category bar -->
                         <label for="categoryBar" class="visually-hidden form-label">Categorie</label>
                         <select id="categoryBar" class="form-select-md border border-0 d-none d-md-block">
