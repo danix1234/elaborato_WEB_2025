@@ -19,6 +19,15 @@
 <body class="bg-white">
     <?php
     require_once("bootstrap.php");
+    if (isLoggedIn()) {
+        $user = $dbh->getUserbyUserId(getCurrentUserId());
+        $ban = boolval($user[0]["disabilitato"]);
+        if ($ban) {
+            session_unset();
+            header("Location: search.php");
+        }
+    }
+
     $categories = $dbh->getAllCategories();
     $products = $dbh->getAllProducts(); //TODO: sugggestion bar
     ?>
