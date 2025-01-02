@@ -5,7 +5,7 @@ if (!isLoggedIn()) {
     header("Location: sign-in.php");
 }
 $templateParams["nome"] = "template-admin-utente-modify.php";
-$templateParams["scripts"] = array("js/disable-user.js");
+$templateParams["scripts"] = array();
 $templateParams["user"] = $dbh->getUser(getCurrentUserId())[0];
 $templateParams["titolo"] = "Modifica dati personali";
 

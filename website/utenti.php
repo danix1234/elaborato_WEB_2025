@@ -8,7 +8,7 @@ if (!isLoggedIn()) {
 }
 
 $templateParams["nome"] = "template-utenti.php";
-$templateParams["scripts"] = array();
+$templateParams["scripts"] = array("js/disable-user.js");
 $templateParams["titolo"] = "Utenti";
 
 $userId = getCurrentUserId();

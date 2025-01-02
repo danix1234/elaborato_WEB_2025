@@ -16,7 +16,7 @@ for (let i = 0; i < number_inputs.length; i++) {
     number_input.nextElementSibling.addEventListener("click", update)
     document.getElementsByClassName("button-custom-remove")[i].addEventListener("click", function() {
         fetch(`./api/update_cart.php?product=${number_inputs[i].id}&delete=`)
-            .then(_ => location.reload())
+            .then(_ => location.reload(true))
     })
     if (i == 0) {
         update()

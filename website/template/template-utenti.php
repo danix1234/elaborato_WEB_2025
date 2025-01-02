@@ -30,7 +30,7 @@
             $disabilitato = $item["disabilitato"];
             $btnDisable = $disabilitato ? "Abilita" : "Disabilita";
             $privilegies = ($item["privilegi"]) ? "Admin" : "User";
-            $img = "temp.jpg"; // change: add admin and user img
+            $img = getUserImage($item["privilegi"]); // change: add admin and user img
         ?>
             <div class="row mb-3 align-items-center">
                 <div class="col-12 col-md-8 mx-auto">
@@ -39,7 +39,7 @@
                             <div class="row py-4">
                                 <div class="col-md-4">
                                     <div class="row justify-content-center">
-                                        <img class="img-fluid col-auto" src="<?php echo UPLOAD_DIR . $img ?>" alt="" />
+                                        <img class="img-fluid col-auto user-avatar-big-size" src="<?php echo $img ?>" alt="" />
                                     </div>
                                 </div>
                                 <div class="col-md-8">
@@ -61,11 +61,13 @@
                                     <div>
                                         <?php if ($disabilitato) { ?>
                                             <span class="text-danger">Account Disabilitato!</span>
+                                        <?php  } elseif (getCurrentUserId() == $item["codUtente"]) { ?>
+                                            <!--<span class="text-danger">Non puo disabilitare il tuo account!</span>-->
                                         <?php } ?>
                                     </div>
                                     <div class="row justify-content-md-start justify-content-center mt-2 ms-0">
-                                        <?php if (!$disabilitato) { ?>
-                                            <button class="btn btn-danger col-auto me-4">Disabilita</button>
+                                        <?php if (!$disabilitato && getCurrentUserId() != $item["codUtente"]) { ?>
+                                            <button class="btn btn-danger col-auto me-4 custom-remove-button" id="<?php echo $item["codUtente"] ?>">Disabilita</button>
                                         <?php } ?>
                                     </div>
                                 </div>

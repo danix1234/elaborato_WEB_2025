@@ -4,7 +4,7 @@ require_once "../bootstrap.php";
 
 if (!isLoggedIn()) {
     die('not currently logged in!');
-} 
+}
 $location = "../search.php";
 
 if (!isset($_GET["userId"])) {
@@ -18,6 +18,9 @@ if (!isset($_GET["deleteuser"])) {
     }
     $location = "../utente-modifica.php?userId=" . $_GET["userId"];
 } else {
+    if (!isAdmin()) {
+        die('ptff, you are barely a StAndArd user! Come back when you have some admin powers, you noob!!!');
+    }
     // disable user
     $dbh->disableUser(intval($_GET["userId"]));
 }
