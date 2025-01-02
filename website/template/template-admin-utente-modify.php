@@ -21,10 +21,8 @@ function select_privilegies($priv)
             <img class="img-fluid user-avatar-big-size" src="<?php echo getUserImage(isAdmin()) ?>" alt="immagine dell'utente" />
         </div>
         <div class="col-md-6 ps-md-3">
-            <div class="mb-3">
-                <label class="form-label" for="name">Nome</label>
-                <input class="form-control" type="text" name="name" id="name" value="<?php echo $user["nomeUtente"] ?>" required />
-            </div>
+            <label class="form-label" for="name">Nome</label>
+            <input class="form-control" type="text" name="name" id="name" value="<?php echo $user["nomeUtente"] ?>" required />
             <label class="form-label" for="address">Indirizzo</label>
             <input class="form-control" type="text" name="address" id="address" value="<?php echo $user["indirizzo"] ?>" required />
             <label class="form-label" for="city">Città</label>
