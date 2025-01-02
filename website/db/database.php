@@ -208,6 +208,13 @@ class DatabaseHelper
                     WHERE privilegi AND NOT disabilitato AND codUtente != ?';
         return $this->parametrizedQuery($query, "i", $userId);
     }
+    public function getCartItemPlusProductData($userId, $productId)
+    {
+        $query = 'SELECT *
+                    FROM CARRELLO C, PRODOTTO P
+                    WHERE C.codProdotto = P.codProdotto AND C.codutente = ? AND C.codProdotto = ?';
+        return $this->parametrizedQuery($query, "ii", $userId, $productId);
+    }
     // ↑↑↑ LAST DANIELE QUERY ↑↑↑
 
     // ↓↓↓ FIRST GIUSEPPE QUERY ↓↓↓
