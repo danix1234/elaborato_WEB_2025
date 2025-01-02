@@ -10,7 +10,7 @@ $location = "../search.php";
 if (!isset($_GET["userId"])) {
     die('no userid was passed!');
 }
-if (!isset($_GET["deleteuser"])) {
+if (!isset($_GET["toggleuser"])) {
     // modify user
     $dbh->updateUser(intval($_GET["userId"]), $_POST["name"], $_POST["address"], $_POST["city"]);
     if (isset($_POST["privileges"])) {
@@ -22,7 +22,7 @@ if (!isset($_GET["deleteuser"])) {
         die('ptff, you are barely a StAndArd user! Come back when you have some admin powers, you noob!!!');
     }
     // disable user
-    $dbh->disableUser(intval($_GET["userId"]));
+    $dbh->toggleUser(intval($_GET["userId"]));
 }
 
 header("Location: " . $location);

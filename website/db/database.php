@@ -194,10 +194,10 @@ class DatabaseHelper
                     WHERE codUtente = ? AND NOT disabilitato';
         return $this->parametrizedNoresultQuery($query, "ii", $privilegies, $userId);
     }
-    public function disableUser($userId)
+    public function toggleUser($userId)
     {
         $query = 'UPDATE UTENTE
-                SET disabilitato = true
+                SET disabilitato = NOT disabilitato
                 WHERE codUtente = ?';
         return $this->parametrizedNoresultQuery($query, "i", $userId);
     }

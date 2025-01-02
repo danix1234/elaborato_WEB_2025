@@ -58,16 +58,11 @@
                                     <div class="row">
                                         <span>Residenza: <?php echo $item["indirizzo"] ?>, <?php echo $item["citta"] ?></span>
                                     </div>
-                                    <div>
-                                        <?php if ($disabilitato) { ?>
-                                            <span class="text-danger">Account Disabilitato!</span>
-                                        <?php  } elseif (getCurrentUserId() == $item["codUtente"]) { ?>
-                                            <!--<span class="text-danger">Non puo disabilitare il tuo account!</span>-->
-                                        <?php } ?>
-                                    </div>
                                     <div class="row justify-content-md-start justify-content-center mt-2 ms-0">
                                         <?php if (!$disabilitato && getCurrentUserId() != $item["codUtente"]) { ?>
                                             <button class="btn btn-danger col-auto me-4 custom-remove-button" id="<?php echo $item["codUtente"] ?>">Disabilita</button>
+                                        <?php } else if ($disabilitato) { ?>
+                                            <button class="btn btn-danger col-auto me-4 custom-remove-button" id="<?php echo $item["codUtente"] ?>">Abilita</button>
                                         <?php } ?>
                                     </div>
                                 </div>
