@@ -328,16 +328,17 @@ class DatabaseHelper
      */
     public function getProductwithRating($productId)
     {
-        $query = "SELECT P.codProdotto, P.nome, P.descrizione, P.prezzo, P.immagine, P.quantitaResidua, CAST(AVG(R.votoRecensione) as DECIMAL(2,1)) mediaVoto
-                    FROM PRODOTTO P, RECENSIONE R
+        $query = "SELECT U.privilegi, P.codProdotto, P.nome, P.descrizione, P.prezzo, P.immagine, P.quantitaResidua, CAST(AVG(R.votoRecensione) as DECIMAL(2,1)) mediaVoto
+                    FROM PRODOTTO P, RECENSIONE R, UTENTE U
                     WHERE P.codProdotto = R.codProdotto 
-                    AND NOT disabilitato
+                    AND U.codUtente = R.codUtente
+                    AND NOT U.disabilitato
                     AND P.codProdotto = ?";
         return $this->parametrizedQuery($query, "i", $productId);
     }
     public function getProductReviews($productId)
     {
-        $query = "SELECT U.nomeUtente, R.votoRecensione, R.commento, R.dataRecensione
+        $query = "SELECT U.privilegi, U.nomeUtente, R.votoRecensione, R.commento, R.dataRecensione
                     FROM RECENSIONE R, UTENTE U
                     WHERE R.codUtente = U.codUtente
                     AND R.codProdotto = ?

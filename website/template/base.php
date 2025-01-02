@@ -70,6 +70,10 @@
             <!-- icons -->
             <div class="col-4 col-md-2 col-lg-1 d-flex align-items-center order-3 order-md-4 justify-content-center">
                 <div class="w-100 d-flex justify-content-around">
+                    <?php if (isAdmin()): ?>
+                        <a href="<?php checkFile('admin.php'); ?>" title="admin"
+                            class="link-light link-opacity-50-hover"><span class="bi bi-gear"></span></a>
+                    <?php endif; ?>
                     <a href="<?php checkFile('notifiche.php'); ?>" title="notifica"
                         class="link-light link-opacity-50-hover"><span class="bi bi-bell"></span></a>
                     <a href="<?php checkFile('ordini.php'); ?>" title="ordini"

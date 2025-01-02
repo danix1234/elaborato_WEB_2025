@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $prodotto = $templateParams["prodotto"];
 function generateStarRating($voto)
@@ -41,7 +41,7 @@ function generateStarRating($voto)
     <div class="col-12 col-md-3 d-flex flex-column align-items-center align-items-md-end">
         <!-- quantità -->
         <div class="d-flex align-items-center mb-3">
-            <label for="quantita" class="form-label mb-0 me-2">Quantità</label>
+            <label for="quantita" class="form-label m-0 me-2">Quantità</label>
             <div class="input-group">
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement">-</button>
                 <input class="form-control button-custom-quantity" value="1" type="text"
@@ -55,6 +55,8 @@ function generateStarRating($voto)
         <div class="d-grid gap-2 w-100">
             <button id="button-add-cart" type="button" class="btn btn-custom-lgold">Aggiungi al Carrello</button>
             <button id="button-buy-now" type="button" class="btn btn-custom-gold">Compra Subito</button>
+            <a href=<?php echo "admin-prodotto.php?productId=" . $_GET["productId"] ?>
+                class="btn btn-light border">Modifica</a>
             <div id="message-container" class="d-none"></div>
         </div>
 
@@ -71,12 +73,13 @@ function generateStarRating($voto)
         <section class="mt-4">
             <h3 class="fw-bold mb-3">Recensioni</h3>
             <ul class="p-0">
-                <?php 
+                <?php
                 $totRecensioni = count($templateParams["recensioni"]);
-                $max = $totRecensioni >= 3 ? 3 :$totRecensioni;
+                $max = $totRecensioni >= 3 ? 3 : $totRecensioni;
                 for ($i = 0; $i < $max; $i++) { ?>
                     <li class="d-flex align-items-start mb-3">
-                        <img src="img/temp.jpg" class="rounded-circle me-3 user-avatar-size" alt="" />
+                        <img src="<?php echo $templateParams["recensioni"][$i]["immagineProfilo"]; ?>"
+                            class="rounded-circle me-3 user-avatar-size" alt="" />
                         <div>
                             <strong><?php echo $templateParams["recensioni"][$i]["nomeUtente"]; ?></strong>
                             <p class="mb-1"><?php echo $templateParams["recensioni"][$i]["votoRecensione"]; ?>/5
