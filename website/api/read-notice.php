@@ -4,8 +4,6 @@ require_once "../bootstrap.php";
 
 if (!isLoggedIn()) {
     die('Non sei attualmente loggato.');
-} elseif (!isAdmin()) {
-    die('Non hai i privilegi di amministratore.');
 }
 
 // Ottieni l'userId all'inizio dello script
@@ -13,8 +11,7 @@ $userId = getCurrentUserId();
 
 // Gestione del metodo POST per aggiornare più notifiche
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $input = json_decode(file_get_contents('php://input'), true);
-
+    $input = $_POST;
     if (!isset($input['notificheIds']) || !is_array($input['notificheIds'])) {
         http_response_code(400);
         die('Richiesta non valida: notificheIds mancante o non è un array.');
@@ -26,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         http_response_code(200);
         echo 'Tutte le notifiche sono state segnate come lette.';
+        header("Location: " . $_SERVER['HTTP_REFERER']);
     } catch (PDOException $e) {
         http_response_code(500);
         echo 'Errore interno del server: ' . $e->getMessage();
