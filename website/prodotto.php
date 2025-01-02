@@ -13,6 +13,11 @@ if (empty($templateParams["recensioni"])) {
     $templateParams["prodotto"]["mediaVoto"] = "0.0";
 } else {
     $templateParams["prodotto"] = $dbh->getProductwithRating($productId)[0];
+    for ($i = 0; $i < count($templateParams["recensioni"]); $i++) {
+        $src = UPLOAD_DIR;
+        $src .= boolval($templateParams["recensioni"][$i]["privilegi"]) ? "admin.jpg" : "user.jpg";
+        $templateParams["recensioni"][$i]["immagineProfilo"] = $src;
+    }
 }
 if (empty($templateParams["prodotto"])) {
     die("Prodotto non trovato!");
