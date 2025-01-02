@@ -227,16 +227,37 @@ class DatabaseHelper
 
         return $this->parametrizedNoresultQuery($query, $types, $notificationId, $userId);
     }
-
-
-
     public function getRandomProducts($n = 12)
     {
-        $query = "SELECT codProdotto, nome, descrizione, prezzo, immagine
+        $query = "SELECT *
         FROM PRODOTTO
         ORDER BY RAND() LIMIT ?";
         return $this->parametrizedQuery($query, "i", $n);
     }
+
+    public function getSearchedProduct($productId)
+    {
+        $query = "SELECT *
+                    FROM PRODOTTO
+                    WHERE NOT disabilitato AND codProdotto LIKE ?;";
+        return $this->parametrizedQuery($query, "i", $productId);
+    }
+
+    public function getProductOnCategory($codCategoria)
+    {
+        $query = "SELECT *
+                    FROM PRODOTTO
+                    WHERE NOT disabilitato AND codCategoria LIKE ?;";
+        return $this->parametrizedQuery($query, "i", $codCategoria);
+    }
+    public function getProductForCategoryAndSearch($productId, $categoryId)
+    {
+        $query = "SELECT *
+                    FROM PRODOTTO
+                    WHERE NOT disabilitato AND codProdotto = ? AND codCategoria= ?;";
+        return $this->parametrizedQuery($query, "i", $productId, $categoryId);
+    }
+
     // ↑↑↑ LAST GIUSEPPE QUERY ↑↑↑
 
     // ↓↓↓ FIRST FRANCO QUERY ↓↓↓

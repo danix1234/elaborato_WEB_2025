@@ -1,7 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light d-md-none">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Categorie</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav flex-row flex-nowrap overflow-auto w-100">
+                <?php foreach ($templateParams["categorie"] as $categoria) {
+                    $codCategoria = $categoria["codCategoria"]; ?>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-outline-primary me-2"
+                            onclick="filtrocategorie('<?php echo htmlspecialchars($codCategoria, ENT_QUOTES, 'UTF-8'); ?>')">
+                            <?php echo htmlspecialchars($categoria["nome"], ENT_QUOTES, 'UTF-8'); ?>
+                        </button>
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
 <div class="container text-center">
-    <div class="row row-cols-1 row-cols-md-3">
+    <div class="row row-cols-1 row-cols-md-3 mt-3">
         <?php
-        foreach ($templateParams["prodotticasuali"] as $prodotto) { ?>
+        foreach ($templateParams["prodotti"] as $prodotto) { ?>
             <div class="col mb-5">
                 <div class="card h-100">
                     <a href="prodotto.php?productId=<?php echo $prodotto["codProdotto"] ?>" class="link-custom">
@@ -27,11 +51,11 @@
                         </div>
                         <div class="row py-1">
                             <div class="col-12">
-                                <p class="card-text">recensione</p>
+                                <p class="card-text"><?php echo $prodotto["codProdotto"] ?></p>
                             </div>
                         </div>
                     </a>
-                    <div class="card-footer mt-5">
+                    <div class="card-footer mt-5 align-bottom">
                         <div class="row">
                             <div class="col-6">
                                 <button id="button-add-cart-home" type="button" class="btn btn-custom-gold w-100">acquista
