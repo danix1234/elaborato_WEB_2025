@@ -11,7 +11,7 @@ if (!isLoggedIn()) {
 
 
 $templateParams["nome"] = "template-admin-utente-modify.php";
-$templateParams["scripts"] = array("js/remove_user.js");
+$templateParams["scripts"] = array("js/disable-user.js");
 
 $user = $dbh->getUser(intval($_GET["userId"]));
 if (sizeof($user) == 0) {

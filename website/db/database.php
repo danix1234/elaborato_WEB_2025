@@ -197,7 +197,7 @@ class DatabaseHelper
     public function disableUser($userId)
     {
         $query = 'UPDATE UTENTE
-                SET disabilitato = "true"
+                SET disabilitato = true
                 WHERE codUtente = ?';
         return $this->parametrizedNoresultQuery($query, "i", $userId);
     }

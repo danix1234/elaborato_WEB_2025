@@ -8,6 +8,8 @@ if (!isLoggedIn()) {
     die("current user doesn't have admin privileges!");
 }
 
+$location = "../search.php";
+
 if (!isset($_GET["userId"])) {
     die('no userid was passed!');
 }
@@ -17,9 +19,10 @@ if (!isset($_GET["deleteuser"])) {
     if (isset($_POST["privileges"])) {
         $dbh->updateUserPrivilegies(intval($_GET["userId"]), intval($_POST["privileges"] == "Admin"));
     }
+    $location = "../admin-utente.php?userId=" . $_GET["userId"];
 } else {
     // disable user
     $dbh->disableUser(intval($_GET["userId"]));
 }
 
-header("Location: " . $_SERVER['HTTP_REFERER']);
+header("Location: " . $location);
