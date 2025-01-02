@@ -10,7 +10,7 @@ if (!isset($_GET["codCategoria"]) && !isset($_GET["searchBar"])) {
 } elseif (isset($_GET["codCategorie"]) && !isset($_GET["searchBar"])) {
     $templateParams["prodotti"] = $dbh->getProductOnCategory($_GET["codCategorie"]);
 } elseif (!isset($_GET["codCategorie"]) && isset($_GET["searchBar"])) {
-    $templateParams["prodotti"] = $dbh->getSearchedProduct($_GET["searchBar"]);
+    $templateParams["prodotti"] = $dbh->getSearchedProductByName($_GET["searchBar"]);
 } else {
     $templateParams["prodotti"] = $dbh->getProductForCategoryAndSearch($_GET["codCategorie"], $_GET["searchBar"]);
 }

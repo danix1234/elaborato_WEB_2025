@@ -235,28 +235,30 @@ class DatabaseHelper
         return $this->parametrizedQuery($query, "i", $n);
     }
 
-    public function getSearchedProduct($productId)
+    public function getSearchedProductByName($productName)
     {
         $query = "SELECT *
                     FROM PRODOTTO
-                    WHERE NOT disabilitato AND codProdotto LIKE ?;";
-        return $this->parametrizedQuery($query, "i", $productId);
+                    WHERE NOT disabilitato AND nomeProdotto LIKE CONCAT('%', ?, '%');";
+        return $this->parametrizedQuery($query, "s", $productName);
     }
 
     public function getProductOnCategory($codCategoria)
     {
         $query = "SELECT *
                     FROM PRODOTTO
-                    WHERE NOT disabilitato AND codCategoria LIKE ?;";
+                    WHERE NOT disabilitato AND codCategoria = ?;";
         return $this->parametrizedQuery($query, "i", $codCategoria);
     }
-    public function getProductForCategoryAndSearch($productId, $categoryId)
+
+    public function getProductForCategoryAndSearch($productName, $categoryId)
     {
         $query = "SELECT *
                     FROM PRODOTTO
-                    WHERE NOT disabilitato AND codProdotto = ? AND codCategoria= ?;";
-        return $this->parametrizedQuery($query, "i", $productId, $categoryId);
+                    WHERE NOT disabilitato AND nomeProdotto LIKE CONCAT('%', ?, '%') AND codCategoria = ?;";
+        return $this->parametrizedQuery($query, "si", $productName, $categoryId);
     }
+
 
     // ↑↑↑ LAST GIUSEPPE QUERY ↑↑↑
 
