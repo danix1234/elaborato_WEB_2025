@@ -65,7 +65,7 @@
                                     </div>
                                     <div class="row justify-content-md-start justify-content-center mt-2 ms-0">
                                         <?php if (!$disabilitato) { ?>
-                                            <a class="btn btn-custom-lgold col-auto me-4" href="admin-utente.php?userId=<?php echo $item["codUtente"] ?>">Modifica</a>
+                                            <button class="btn btn-danger col-auto me-4">Disabilita</button>
                                         <?php } ?>
                                     </div>
                                 </div>

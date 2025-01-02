@@ -201,13 +201,6 @@ class DatabaseHelper
                 WHERE codUtente = ?';
         return $this->parametrizedNoresultQuery($query, "i", $userId);
     }
-    public function getAllAdminsButCurrentUser($userId)
-    {
-        $query = 'SELECT *
-                    FROM UTENTE
-                    WHERE privilegi AND NOT disabilitato AND codUtente != ?';
-        return $this->parametrizedQuery($query, "i", $userId);
-    }
     public function getCartItemPlusProductData($userId, $productId)
     {
         $query = 'SELECT *

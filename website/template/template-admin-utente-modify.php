@@ -1,6 +1,5 @@
 <?php
 $user = $templateParams["user"];
-$onlyAdmin = sizeof($templateParams["admins"]) == 0;
 function select_privilegies($priv)
 {
     global $user;
@@ -8,47 +7,24 @@ function select_privilegies($priv)
         echo 'selected';
     }
 }
-function disable_perm()
-{
-    global $onlyAdmin, $user;
-    if ($onlyAdmin && $user["privilegi"]) {
-        echo 'disabled';
-    }
-}
-function getImage()
-{
-    global $user;
-    if ($user["privilegi"]) {
-        echo 'img/temp.jpg';
-    } else {
-        echo 'img/temp.jpg';
-    }
-}
 ?>
 
 <header class="row my-2">
     <h1 class="text-center m-0">
-        Modifica utente
+        Modifica dati personali
     </h1>
 </header>
 
-<form class="mx-md-4 mx-1 mt-md-4" action="api/manage_user.php?userId=<?php echo $_GET["userId"] ?>" method="post" enctype="">
+<form class="mx-md-4 mx-1 mt-md-4" action="api/manage_user.php?userId=<?php echo getCurrentUserId() ?>" method="post">
     <div class="row mb-4">
         <div class="col-md-6 pe-md-3">
-            <img class="img-fluid" src="<?php getImage() ?>" alt="immagine dell'utente" />
+            <img class="img-fluid" src="<?php getUserImage(isAdmin()) ?>" alt="immagine dell'utente" />
         </div>
         <div class="col-md-6 ps-md-3">
             <div class="mb-3">
                 <label class="form-label" for="name">Nome</label>
                 <input class="form-control" type="text" name="name" id="name" value="<?php echo $user["nomeUtente"] ?>" required />
             </div>
-            <label class="form-label" for="email">Email</label>
-            <input class="form-control" type="email" name="email" id="email" value="<?php echo $user["email"] ?>" disabled />
-            <label class="form-label" for="privileges">Privilegi</label>
-            <select class="form-select" id="privileges" name="privileges" required <?php disable_perm() ?>>
-                <option value="User" <?php select_privilegies(false) ?>>Utente</option>
-                <option value="Admin" <?php select_privilegies(true) ?>>Admin</option>
-            </select>
             <label class="form-label" for="address">Indirizzo</label>
             <input class="form-control" type="text" name="address" id="address" value="<?php echo $user["indirizzo"] ?>" required />
             <label class="form-label" for="city">Città</label>
@@ -57,7 +33,6 @@ function getImage()
     </div>
     <div class="row justify-content-evenly my-4">
         <button class="btn btn-custom-lgold col-auto" type="submit" id="submit">Modifica</button>
-        <button class="btn btn-danger col-auto" type="button" id="removeuser" <?php disable_perm() ?>>Rimuovi</button>
         <button class="btn border btn-light col-auto" type="reset" id="reset">Annulla</button>
     </div>
 </form>

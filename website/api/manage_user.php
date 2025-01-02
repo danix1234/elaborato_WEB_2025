@@ -4,10 +4,7 @@ require_once "../bootstrap.php";
 
 if (!isLoggedIn()) {
     die('not currently logged in!');
-} elseif (!isAdmin()) {
-    die("current user doesn't have admin privileges!");
-}
-
+} 
 $location = "../search.php";
 
 if (!isset($_GET["userId"])) {
@@ -19,7 +16,7 @@ if (!isset($_GET["deleteuser"])) {
     if (isset($_POST["privileges"])) {
         $dbh->updateUserPrivilegies(intval($_GET["userId"]), intval($_POST["privileges"] == "Admin"));
     }
-    $location = "../admin-utente.php?userId=" . $_GET["userId"];
+    $location = "../utente-modifica.php?userId=" . $_GET["userId"];
 } else {
     // disable user
     $dbh->disableUser(intval($_GET["userId"]));
