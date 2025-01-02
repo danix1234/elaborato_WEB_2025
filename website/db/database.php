@@ -196,22 +196,27 @@ class DatabaseHelper
 
     public function getFilteredNotifications($userId, $notificationState = null)
     {
+        // Query di base
         $query = "SELECT * 
               FROM NOTIFICA 
               WHERE codUtente = ?";
-        $params = [];
-        $types = "i";
+        $params = [$userId];  // Parametri della query
+        $types = "i";         // Tipi per i parametri (es. i = integer, s = string)
 
+        // Filtro opzionale per stato della notifica
         if ($notificationState !== null && in_array($notificationState, ['0', '1'], true)) {
             $query .= " AND letto = ?";
             $params[] = $notificationState;
             $types .= "s";
         }
 
+        // Ordina per data decrescente
         $query .= " ORDER BY dataNotifica DESC";
 
-        return $this->parametrizedQuery($query, $types, $userId, ...$params);
+        // Esegui la query parametrizzata
+        return $this->parametrizedQuery($query, $types, ...$params);
     }
+
 
     public function markNotificationAsRead($notificationId, $userId)
     {
