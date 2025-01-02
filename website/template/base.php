@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="./css/style.css" />
 
     <title>Nostro Sito<?php
@@ -71,8 +71,10 @@
             <div class="col-4 col-md-2 col-lg-1 d-flex align-items-center order-3 order-md-4 justify-content-center">
                 <div class="w-100 d-flex justify-content-around">
                     <?php if (isAdmin()): ?>
-                        <a href="<?php checkFile('admin.php'); ?>" title="admin"
-                            class="link-light link-opacity-50-hover"><span class="bi bi-gear"></span></a>
+                        <a href="<?php checkFile('admin-prodotto.php'); ?>" title="aggiungi prodotto"
+                            class="link-light link-opacity-50-hover"><span class="bi bi-database-add"></span></a>
+                        <a href="<?php checkFile('utenti.php'); ?>" title="ban utenti"
+                            class="link-light link-opacity-50-hover"><span class="bi bi-ban"></span></a>
                     <?php endif; ?>
                     <a href="<?php checkFile('notifiche.php'); ?>" title="notifica"
                         class="link-light link-opacity-50-hover"><span class="bi bi-bell"></span></a>
