@@ -34,7 +34,7 @@
             </div>
             <label class="form-label" for="category">Categoria</label>
             <select class="form-select" id="category" name="category" required>
-                <option value="" selected>Scegli Categoria</option>
+                <option value="">Scegli Categoria</option>
                 <?php foreach ($templateParams["categories"] as $cat) { ?>
                     <option id="<?php echo $cat["codCategoria"] ?>" value="<?php echo $cat["codCategoria"] ?>"
                         <?php

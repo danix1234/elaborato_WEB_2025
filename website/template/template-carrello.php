@@ -59,7 +59,7 @@
                                         <span class="text-custom-price">Prezzo: <?php echo $item["prezzo"] ?>€</span>
                                     </div>
                                     <div class="row justify-content-md-start justify-content-center">
-                                        <label for="quantity<?php echo $i ?>" class="col-form-label pe-0 col-auto">Quantità:</label>
+                                        <label for="<?php echo $item["codProdotto"] ?>" class="col-form-label pe-0 col-auto">Quantità:</label>
                                         <div class="col-auto ps-2">
                                             <div class="input-group">
                                                 <button tabindex="-1" class="input-group-text font-monospace" type="button"
