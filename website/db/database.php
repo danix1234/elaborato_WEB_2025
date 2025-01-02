@@ -215,6 +215,12 @@ class DatabaseHelper
                     WHERE C.codProdotto = P.codProdotto AND C.codutente = ? AND C.codProdotto = ?';
         return $this->parametrizedQuery($query, "ii", $userId, $productId);
     }
+    public function getAllUsers()
+    {
+        $query = 'SELECT *
+                    FROM UTENTE';
+        return $this->simpleQuery($query);
+    }
     // ↑↑↑ LAST DANIELE QUERY ↑↑↑
 
     // ↓↓↓ FIRST GIUSEPPE QUERY ↓↓↓
