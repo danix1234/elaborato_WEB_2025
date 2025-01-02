@@ -12,6 +12,7 @@
 .text-custom-gold {
     color: #AA8539;
 }
+
 .text-custom-gold:hover {
     color: #805D15;
 }
@@ -72,7 +73,7 @@
 
 /* .btn.btn-custom-lgold:active,
 .btn.btn-custom-lgold:focus, */
-.btn.btn-custom-lgold:hover{
+.btn.btn-custom-lgold:hover {
     background-color: #805D15;
     color: #000;
 }
@@ -93,4 +94,9 @@
 .user-avatar-size {
     width: 40px;
     height: 40px;
+}
+
+.user-avatar-big-size {
+    width: 200px;
+    height: 200px;
 }

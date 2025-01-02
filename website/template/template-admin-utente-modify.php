@@ -17,8 +17,8 @@ function select_privilegies($priv)
 
 <form class="mx-md-4 mx-1 mt-md-4" action="api/manage_user.php?userId=<?php echo getCurrentUserId() ?>" method="post">
     <div class="row mb-4">
-        <div class="col-md-6 pe-md-3">
-            <img class="img-fluid" src="<?php getUserImage(isAdmin()) ?>" alt="immagine dell'utente" />
+        <div class="col-md-6 pe-md-3 text-center">
+            <img class="img-fluid user-avatar-big-size" src="<?php echo getUserImage(isAdmin()) ?>" alt="immagine dell'utente" />
         </div>
         <div class="col-md-6 ps-md-3">
             <div class="mb-3">
