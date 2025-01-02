@@ -1,5 +1,12 @@
 <div class="mx-1 mx-md-4">
-    <?php if (isset($templateParams["utenti"]) && sizeof($templateParams["utenti"]) == 0) { ?>
+    <?php
+    function disabled($disabled)
+    {
+        if ($disabled) {
+            echo "L'utente è stato bannato!";
+        }
+    }
+    if (isset($templateParams["utenti"]) && sizeof($templateParams["utenti"]) == 0) { ?>
         <header class="row my-2">
             <h1 class="col text-center my-0">
                 Nessun Utente!
@@ -35,7 +42,7 @@
             <div class="row mb-3 align-items-center">
                 <div class="col-12 col-md-8 mx-auto">
                     <div class="card shadow">
-                        <div class="card-body color-secondary">
+                        <div class="card-body">
                             <div class="row py-4">
                                 <div class="col-md-4">
                                     <div class="row justify-content-center">
@@ -57,6 +64,9 @@
                                     </div>
                                     <div class="row">
                                         <span>Residenza: <?php echo $item["indirizzo"] ?>, <?php echo $item["citta"] ?></span>
+                                    </div>
+                                    <div class="row">
+                                        <span class="text-danger"><?php disabled($item["disabilitato"]) ?></span>
                                     </div>
                                     <div class="row justify-content-md-start justify-content-center mt-2 ms-0">
                                         <?php if (!$disabilitato && getCurrentUserId() != $item["codUtente"]) { ?>
