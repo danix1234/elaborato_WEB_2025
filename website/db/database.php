@@ -405,5 +405,22 @@ class DatabaseHelper
                     VALUES(?, ?, ?)";
         return $this->parametrizedNoresultQuery($query, "iii", $orderId, $productId, $quantity);
     }
+    public function hasboughtProduct($userId, $productId)
+    {
+        $query = "SELECT *
+                    FROM ORDINE O, DETTAGLIO_ORDINE D
+                    WHERE O.codOrdine = D.codOrdine
+                    AND O.statoOrdine = 'Shipped'
+                    AND O.codUtente = ?
+                    AND D.codProdotto = ?";
+        $result = $this->parametrizedQuery($query, "ii", $userId, $productId);
+        return !empty($result);
+    }
+    public function insertReview ($userId, $productId, $vote, $comment)
+    {
+        $query = "INSERT INTO RECENSIONE(codUtente, codProdotto, votoRecensione, commento, dataRecensione)
+                    VALUES(?, ?, ?, ?, NOW())";
+        return $this->parametrizedNoresultQuery($query, "iiis", $userId, $productId, $vote, $comment);
+    }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }
