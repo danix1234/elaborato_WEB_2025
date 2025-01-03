@@ -11,13 +11,19 @@
 
     <!--title of entire page-->
     <header class="row my-2">
-        <div class="col-1"> </div>
-        <h1 class="col-10 text-center my-0">
-            Carrello
-        </h1>
-        <a href="#buy" title="button to go to buy button" class="col-1 d-flex align-items-center justify-content-center">
-            <span class="bi bi-arrow-down-circle-fill fs-5 text-custom-lblue"></span>
-        </a>
+        <div class="col-md-2"></div>
+        <div class="col-12 col-md-8">
+            <div class="row">
+                <div class="col-1"> </div>
+                <h1 class="col-10 text-center my-0">
+                    Carrello
+                </h1>
+                <a href="#buy" title="button to go to buy button" class="col-1 d-flex align-items-center justify-content-center">
+                    <span class="bi bi-arrow-down-circle-fill fs-5 text-custom-lblue"></span>
+                </a>
+
+            </div>
+        </div>
     </header>
 
     <!--lista dei prodotti-->
@@ -53,17 +59,19 @@
                                         <span class="text-custom-price">Prezzo: <?php echo $item["prezzo"] ?>€</span>
                                     </div>
                                     <div class="row justify-content-md-start justify-content-center">
-                                        <label for="quantity<?php echo $i ?>" class="col-form-label pe-0 col-auto">Quantità:</label>
+                                        <label for="<?php echo $item["codProdotto"] ?>" class="col-form-label pe-0 col-auto">Quantità:</label>
                                         <div class="col-auto ps-2">
                                             <div class="input-group">
                                                 <button tabindex="-1" class="input-group-text font-monospace" type="button"
                                                     id="decrement<?php echo $i ?>">-</button>
-                                                <input class="form-control button-custom-quantity" type="text" value="<?php echo $item["quantita"] ?>" name="<?php echo $item["codProdotto"] ?>"
-                                                    max="<?php echo $item["quantitaResidua"] ?>" id="<?php echo $item["codProdotto"] ?>" required />
+                                                <input class="form-control button-custom-quantity" type="text" previous="<?php echo $item["quantita"] ?>" value="<?php echo $item["quantita"] ?>" name="<?php echo $item["codProdotto"] ?>" max="<?php echo $item["quantitaResidua"] ?>" id="<?php echo $item["codProdotto"] ?>" min="<?php echo $item["quantitaResidua"] == 0 ? 0 : 1 ?>" required />
                                                 <button tabindex="-1" class="input-group-text font-monospace" type="button"
                                                     id="increment<?php echo $i ?>">+</button>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row text-center text-md-start">
+                                        <span class="cart-element-msg text-danger" id="msg<?php echo $item["codProdotto"] ?>"></span>
                                     </div>
                                     <div class="row justify-content-md-start justify-content-center mt-2 ms-0">
                                         <button class="btn btn-danger col-auto button-custom-remove" type="button">Rimuovi</button>

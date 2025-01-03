@@ -16,17 +16,20 @@
                         <input type="<?php echo $field === 'password' ? 'password' : 'text'; ?>" id="<?php echo $field; ?>"
                             name="<?php echo $field; ?>" class="form-control" placeholder="<?php echo $field; ?>"
                             <?php echo isLoggedIn() ? "disabled" : "" ?>
-                            value="<?php echo isLoggedIn() ? $field : '' ?>"
-                            required />
+                            value="<?php echo isLoggedIn() ? $field : '' ?>" required />
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>
 
-            <?php if (!isLoggedIn()): ?>
+            <?php if (!isLoggedIn()) { ?>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-custom-lgold">Conferma</button>
                 </div>
-            <?php endif; ?>
+            <?php } else { ?>
+                <div class="d-grid">
+                    <a href="utente-modifica.php" class="btn btn-custom-lgold">Modifica dati</a>
+                </div>
+            <?php } ?>
         </form>
         <hr />
         <div class="d-grid">

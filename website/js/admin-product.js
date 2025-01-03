@@ -1,9 +1,12 @@
 document.getElementById("remove").addEventListener("click", function() {
     let productId = new URLSearchParams(window.location.search).get("productId");
     if (productId) {
-        fetch(`./api/manage_product.php?productId=${productId}&delete=`)
-            .then(() => location.reload());
+        window.location.href = `./api/manage_product.php?productId=${productId}&delete=`
     } else {
         alert("No product Id found!");
     }
+})
+
+document.getElementById("insert").addEventListener("click", function() {
+    window.location.href = `./admin-prodotto.php`
 })

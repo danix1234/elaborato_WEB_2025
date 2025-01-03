@@ -9,5 +9,6 @@ if (!isLoggedIn()) {
 
 $templateParams["nome"] = "template-ordine.php";
 $templateParams["ordine"] = $dbh->getOrder($_GET["orderId"], getCurrentUserId());
+$templateParams["titolo"] = "Ordine";
 
 require("template/base.php");

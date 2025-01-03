@@ -3,13 +3,14 @@ let currentIndex = reviews.length > 3 ? 3 : reviews.length;
 const reviewList = document.querySelector("ul.p-0");
 const otherReviewButton = document.getElementById("other-review");
 
-otherReviewButton.addEventListener("click", function () {
+otherReviewButton.addEventListener("click", function() {
     if (currentIndex < reviews.length) {
         const review = reviews[currentIndex];
         const reviewItem = document.createElement("li");
+        const profile = reviews[currentIndex]
         reviewItem.classList.add("d-flex", "align-items-start", "mb-3");
         reviewItem.innerHTML = `
-                <img src="img/temp.jpg" class="rounded-circle me-3 user-avatar-size" alt="" />
+                <img src="${review.immagineProfilo}" class="rounded-circle me-3 user-avatar-size" alt="" />
                 <div>
                     <strong>${review.nomeUtente}</strong>
                     <p class="mb-1">${review.votoRecensione}/5

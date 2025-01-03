@@ -1,9 +1,7 @@
-document.getElementById("removeuser").addEventListener("click", function () {
-    let userId = new URLSearchParams(window.location.search).get("userId");
-    if (userId) {
-        fetch(`./api/manage_user.php?userId=${userId}&deleteuser=`)
-            .then(() => location.reload());
-    } else {
-        alert("No user Id found!");
-    }
-})
+for (const btn of document.getElementsByClassName("custom-remove-button")) {
+    btn.addEventListener("click", function() {
+        const id = this.id
+        fetch(`./api/manage_user.php?userId=${id}&toggleuser=true`)
+            .then(_ => location.reload())
+    })
+}

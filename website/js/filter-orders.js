@@ -1,7 +1,13 @@
 const buttons = document.getElementsByClassName("btn-group-custom-filter")
+const buttonFilter = new URLSearchParams(window.location.search).get("filter");
 const filterTimeSelect = document.getElementById("filter-time");
 const filterTimeForm = document.getElementById("filter-time-form");
 
+for (let i = 0; i < buttons.length; i++) {
+    if (buttons[i].id === buttonFilter) {
+        buttons[i].classList.add("active");
+    }
+}
 
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", function () {
@@ -20,7 +26,9 @@ for (let i = 0; i < buttons.length; i++) {
             url.searchParams.set("filter", filter);
 
         }
+
         url.searchParams.set("filter-time", filterTime);
+
 
         //window.location.href = url.toString();
 

@@ -50,7 +50,7 @@ create table RECENSIONE (
      codRecensione int not null auto_increment,
      codUtente int not null,
      codProdotto int not null,
-     votoRecensione decimal(2,1) not null,
+     votoRecensione int not null,
      commento varchar(511) not null,
      dataRecensione datetime not null,
      constraint ID_RECENSIONE_ID primary key (codRecensione));

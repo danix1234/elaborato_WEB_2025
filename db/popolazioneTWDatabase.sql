@@ -75,8 +75,8 @@ VALUES
 -- Insert Reviews
 INSERT INTO RECENSIONE (codUtente, codProdotto, votoRecensione, commento, dataRecensione) 
 VALUES
-(2, 1, 4.5, 'Great product, highly recommend!', '2023-10-01 10:30:00'),
-(2, 1, 3.0, 'Average quality, could be better.', '2023-10-02 14:45:00'),
-(2, 1, 5.0, 'Excellent! Exceeded my expectations.', '2023-10-03 09:20:00'),
-(2, 1, 2.5, 'Not satisfied with the product.', '2023-10-04 16:10:00'),
-(2, 1, 4.0, 'Good value for the price.', '2023-10-05 11:00:00');
+(2, 1, 5, 'Great product, highly recommend!', '2023-10-01 10:30:00'),
+(2, 1, 3, 'Average quality, could be better.', '2023-10-02 14:45:00'),
+(2, 1, 5, 'Excellent! Exceeded my expectations.', '2023-10-03 09:20:00'),
+(2, 1, 2, 'Not satisfied with the product.', '2023-10-04 16:10:00'),
+(2, 1, 4, 'Good value for the price.', '2023-10-05 11:00:00');

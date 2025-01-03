@@ -82,6 +82,14 @@ class DatabaseHelper
                     WHERE codProdotto = ? AND NOT disabilitato';
         return $this->parametrizedNoresultQuery($query, "ssidii", $name, $desc, $quantity, $price, $cat, $productId);
     }
+    public function getLatestProduct()
+    {
+        $query = "SELECT *
+                    FROM PRODOTTO
+                    ORDER BY codProdotto DESC
+                    LIMIT 1";
+        return $this->simpleQuery($query);
+    }
     public function updateProductImg($productId, $img)
     {
         $query = 'UPDATE PRODOTTO
@@ -165,35 +173,50 @@ class DatabaseHelper
                     WHERE dataConsegna < NOW() AND statoOrdine='Shipping' AND codUtente = ?;";
         return $this->parametrizedNoresultQuery($query, "i", $userId);
     }
-    // ↑↑↑ LAST DANIELE QUERY ↑↑↑
-
-    // ↓↓↓ FIRST GIUSEPPE QUERY ↓↓↓
-
-    public function getUser($username)
+    public function getUser($userId)
     {
         $query = "SELECT *
                     FROM UTENTE
-                    WHERE nomeUtente = ? AND disabilitato = 'false';";
-        return $this->parametrizedQuery($query, "s", $username);
+                    WHERE codUtente = ? AND NOT disabilitato;";
+        return $this->parametrizedQuery($query, "i", $userId);
     }
-
-    public function updateUser($userId, $password, $email, $privileges, $address, $city)
+    public function updateUser($userId, $name, $address, $city)
     {
         $query = 'UPDATE UTENTE
-                    SET password = ?, email = ?, privilegi = ?, indirizzo = ?, citta = ?
-                    WHERE codUtente = ? AND disabilitato = "false"';
-        return $this->parametrizedNoresultQuery($query, "sssssi", $password, $email, $privileges, $address, $city, $userId);
+                    SET nomeUtente = ?, indirizzo = ?, citta = ?
+                    WHERE codUtente = ? AND NOT disabilitato';
+        return $this->parametrizedNoresultQuery($query, "sssi", $name, $address, $city, $userId);
     }
-
-
-    public function disableUser($userId)
+    public function updateUserPrivilegies($userId, $privilegies)
     {
         $query = 'UPDATE UTENTE
-                SET disabilitato = "true"
+                    SET privilegi = ?
+                    WHERE codUtente = ? AND NOT disabilitato';
+        return $this->parametrizedNoresultQuery($query, "ii", $privilegies, $userId);
+    }
+    public function toggleUser($userId)
+    {
+        $query = 'UPDATE UTENTE
+                SET disabilitato = NOT disabilitato
                 WHERE codUtente = ?';
         return $this->parametrizedNoresultQuery($query, "i", $userId);
     }
+    public function getCartItemPlusProductData($userId, $productId)
+    {
+        $query = 'SELECT *
+                    FROM CARRELLO C, PRODOTTO P
+                    WHERE C.codProdotto = P.codProdotto AND C.codutente = ? AND C.codProdotto = ?';
+        return $this->parametrizedQuery($query, "ii", $userId, $productId);
+    }
+    public function getAllUsers()
+    {
+        $query = 'SELECT *
+                    FROM UTENTE';
+        return $this->simpleQuery($query);
+    }
+    // ↑↑↑ LAST DANIELE QUERY ↑↑↑
 
+    // ↓↓↓ FIRST GIUSEPPE QUERY ↓↓↓
     public function getFilteredNotifications($userId, $notificationState = null)
     {
         // Query di base
@@ -357,16 +380,17 @@ class DatabaseHelper
      */
     public function getProductwithRating($productId)
     {
-        $query = "SELECT P.codProdotto, P.nome, P.descrizione, P.prezzo, P.immagine, P.quantitaResidua, CAST(AVG(R.votoRecensione) as DECIMAL(2,1)) mediaVoto
-                    FROM PRODOTTO P, RECENSIONE R
+        $query = "SELECT U.privilegi, P.codProdotto, P.nome, P.descrizione, P.prezzo, P.immagine, P.quantitaResidua, CAST(AVG(R.votoRecensione) as DECIMAL(2,1)) mediaVoto
+                    FROM PRODOTTO P, RECENSIONE R, UTENTE U
                     WHERE P.codProdotto = R.codProdotto 
-                    AND NOT disabilitato
+                    AND U.codUtente = R.codUtente
+                    AND NOT U.disabilitato
                     AND P.codProdotto = ?";
         return $this->parametrizedQuery($query, "i", $productId);
     }
     public function getProductReviews($productId)
     {
-        $query = "SELECT U.nomeUtente, R.votoRecensione, R.commento, R.dataRecensione
+        $query = "SELECT U.privilegi, U.nomeUtente, R.votoRecensione, R.commento, R.dataRecensione
                     FROM RECENSIONE R, UTENTE U
                     WHERE R.codUtente = U.codUtente
                     AND R.codProdotto = ?
@@ -432,6 +456,23 @@ class DatabaseHelper
         $query = "INSERT INTO DETTAGLIO_ORDINE(codOrdine, codProdotto, quantita)
                     VALUES(?, ?, ?)";
         return $this->parametrizedNoresultQuery($query, "iii", $orderId, $productId, $quantity);
+    }
+    public function hasboughtProduct($userId, $productId)
+    {
+        $query = "SELECT *
+                    FROM ORDINE O, DETTAGLIO_ORDINE D
+                    WHERE O.codOrdine = D.codOrdine
+                    AND O.statoOrdine = 'Shipped'
+                    AND O.codUtente = ?
+                    AND D.codProdotto = ?";
+        $result = $this->parametrizedQuery($query, "ii", $userId, $productId);
+        return !empty($result);
+    }
+    public function insertReview ($userId, $productId, $vote, $comment)
+    {
+        $query = "INSERT INTO RECENSIONE(codUtente, codProdotto, votoRecensione, commento, dataRecensione)
+                    VALUES(?, ?, ?, ?, NOW())";
+        return $this->parametrizedNoresultQuery($query, "iiis", $userId, $productId, $vote, $comment);
     }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }

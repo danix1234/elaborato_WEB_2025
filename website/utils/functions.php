@@ -38,11 +38,13 @@ function getCurrentUserName()
     return $_SESSION["name"];
 }
 
-function setPreviousPage($page){
+function setPreviousPage($page)
+{
     $_SESSION["previousPage"] = $page;
 }
 
-function getpreviousPage(){
+function getpreviousPage()
+{
     if (empty($_SESSION["previousPage"])) {
         die("CANNOT GET PREVIOUS PAGE: NOT SET!");
     }
@@ -70,5 +72,13 @@ function uploadImage($uploadDir, $image)
         return array(false, 'error in moving uploaded image!');
     } else {
         return array(true, $imageName);
+    }
+}
+function getUserImage($isAdmin)
+{
+    if ($isAdmin) {
+        return UPLOAD_DIR . "admin.jpg"; // modify once images are uploaded to this repo!!!
+    } else {
+        return UPLOAD_DIR . "user.jpg"; // modify once images are uploaded to this repo!!!
     }
 }

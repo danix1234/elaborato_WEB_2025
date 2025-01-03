@@ -11,7 +11,7 @@
 <form class="mx-md-4 mx-1 mt-md-4" action="api/manage_product.php?productId=<?php echo $_GET["productId"] ?>" method="post" enctype="multipart/form-data">
     <div class="row mb-4">
         <div class="col-md-6 pe-md-3">
-            <img class="img-fluid" src="<?php echo UPLOAD_DIR . $product["immagine"] ?>" alt="immagine descrittiva del prodotto" />
+            <img class="img-fluid" src="<?php echo UPLOAD_DIR . $product["immagine"] ?>" init="<?php echo UPLOAD_DIR . $product["immagine"] ?>" alt="immagine descrittiva del prodotto" />
             <label class="form-label visually-hidden" for="preview">Scegli Immagine </label>
             <input class="form-control image-custom-preview" type="file" accept="image/*" name="preview"
                 id="preview" />
@@ -34,7 +34,7 @@
             </div>
             <label class="form-label" for="category">Categoria</label>
             <select class="form-select" id="category" name="category" required>
-                <option value="" selected>Scegli Categoria</option>
+                <option value="">Scegli Categoria</option>
                 <?php foreach ($templateParams["categories"] as $cat) { ?>
                     <option id="<?php echo $cat["codCategoria"] ?>" value="<?php echo $cat["codCategoria"] ?>"
                         <?php
@@ -47,6 +47,7 @@
         </div>
     </div>
     <div class="row justify-content-evenly my-4">
+        <button class="btn btn-custom-lgold col-auto" type="button" id="insert">Inserisci</button>
         <button class="btn btn-custom-lgold col-auto" type="submit" id="submit">Modifica</button>
         <button class="btn btn-danger col-auto" type="button" id="remove">Rimuovi</button>
         <button class="btn border btn-light col-auto" type="reset" id="reset">Annulla</button>

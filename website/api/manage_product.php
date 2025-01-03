@@ -17,12 +17,16 @@ if (isset($_FILES["preview"]) && $_FILES["preview"]["error"] != UPLOAD_ERR_NO_FI
     }
 }
 
+$redirect = "../admin-prodotto.php?productId=";
+
 if (!isset($_GET["productId"])) {
     // insert product
     $dbh->addProduct($_POST["name"], $_POST["description"], intval($_POST["quantity"]), floatval($_POST["price"]), $msg, intval($_POST["category"]));
+    $redirect .= $dbh->getLatestProduct()[0]["codProdotto"];
 } else if (!isset($_GET["delete"])) {
     // modify product
     $dbh->updateProduct(intval($_GET["productId"]), $_POST["name"], $_POST["description"], intval($_POST["quantity"]), floatval($_POST["price"]), intval($_POST["category"]));
+    $redirect .= $_GET["productId"];
     if (isset($msg)) {
         $product = $dbh->getProduct(intval($_GET["productId"]));
         $dbh->updateProductImg(intval($_GET["productId"]), $msg);
@@ -33,6 +37,7 @@ if (!isset($_GET["productId"])) {
 } else {
     // disable product
     $dbh->disableProduct(intval($_GET["productId"]));
+    $redirect = "../search.php";
 }
 
-header("Location: " . $_SERVER['HTTP_REFERER']);
+header("Location: " . $redirect);

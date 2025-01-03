@@ -9,7 +9,7 @@
 <form class="mx-md-4 mx-1 mt-md-4" action="api/manage_product.php" method="post" enctype="multipart/form-data">
     <div class="row mb-4">
         <div class="col-md-6 pe-md-3">
-            <img class="img-fluid" src="img/temp.jpg" alt="immagine descrittiva del prodotto" />
+            <img class="img-fluid" src="img/temp.jpg" init="img/temp.jpg" alt="immagine descrittiva del prodotto" />
             <label class="form-label visually-hidden" for="preview">Scegli Immagine </label>
             <input class="form-control image-custom-preview" type="file" accept="image/*" name="preview" id="preview" required />
         </div>

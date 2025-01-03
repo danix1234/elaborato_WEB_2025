@@ -18,7 +18,7 @@ for (let i = 0; i < number_inputs.length; i++) {
         fetch(`./api/update_cart.php?product=${number_inputs[i].id}&delete=`)
             .then(_ => location.reload())
     })
-    if (i == 0) {
+    if (i === 0) {
         update()
     }
 }

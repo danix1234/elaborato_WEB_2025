@@ -7,7 +7,7 @@
         <form id="filter-time-form" method="GET" action="ordini.php">
             <label for="filter-time" class="visually-hidden form-label">Filtra per tempo</label>
             <select id="filter-time" name="filter-time" class="form-select">
-                <option value="">Tutti</option>
+                <option value="all">Tutti</option>
                 <option value="1" <?php echo isset($_GET["filter-time"]) && $_GET["filter-time"] == "1" ? "selected" : ""; ?>>1 mese</option>
                 <option value="3" <?php echo isset($_GET["filter-time"]) && $_GET["filter-time"] == "3" ? "selected" : ""; ?>>3 mesi</option>
                 <option value="12" <?php echo isset($_GET["filter-time"]) && $_GET["filter-time"] == "12" ? "selected" : ""; ?>>1 anno</option>
