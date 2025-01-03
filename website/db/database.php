@@ -211,7 +211,16 @@ class DatabaseHelper
     public function getAllUsers()
     {
         $query = 'SELECT *
-                    FROM UTENTE';
+                    FROM UTENTE
+                    ORDER BY codUtente';
+        return $this->simpleQuery($query);
+    }
+    public function getAllProductsEvenDisabled()
+    {
+        $query = 'SELECT *, C.nome AS nomeCategoria
+                    FROM PRODOTTO P, CATEGORIA C
+                    WHERE P.codCategoria = C.codCategoria
+                    ORDER BY P.codProdotto';
         return $this->simpleQuery($query);
     }
     // ↑↑↑ LAST DANIELE QUERY ↑↑↑
@@ -468,7 +477,7 @@ class DatabaseHelper
         $result = $this->parametrizedQuery($query, "ii", $userId, $productId);
         return !empty($result);
     }
-    public function insertReview ($userId, $productId, $vote, $comment)
+    public function insertReview($userId, $productId, $vote, $comment)
     {
         $query = "INSERT INTO RECENSIONE(codUtente, codProdotto, votoRecensione, commento, dataRecensione)
                     VALUES(?, ?, ?, ?, NOW())";
