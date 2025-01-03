@@ -239,7 +239,7 @@ class DatabaseHelper
     {
         $query = "SELECT *
                     FROM PRODOTTO
-                    WHERE NOT disabilitato AND nomeProdotto LIKE CONCAT('%', ?, '%');";
+                    WHERE NOT disabilitato AND nome LIKE CONCAT('%', ?, '%');";
         return $this->parametrizedQuery($query, "s", $productName);
     }
 
@@ -255,7 +255,7 @@ class DatabaseHelper
     {
         $query = "SELECT *
                     FROM PRODOTTO
-                    WHERE NOT disabilitato AND nomeProdotto LIKE CONCAT('%', ?, '%') AND codCategoria = ?;";
+                    WHERE NOT disabilitato AND nome LIKE CONCAT('%', ?, '%') AND codCategoria = ?;";
         return $this->parametrizedQuery($query, "si", $productName, $categoryId);
     }
 

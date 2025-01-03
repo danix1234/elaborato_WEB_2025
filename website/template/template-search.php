@@ -7,6 +7,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav flex-row flex-nowrap overflow-auto w-100">
+                <li class="nav-item">
+                    <button type="button" class="btn btn-outline-primary me-2" onclick="filtrocategorie('')">
+                        Tutte le categorie</button>
+                </li>
                 <?php foreach ($templateParams["categorie"] as $categoria) {
                     $codCategoria = $categoria["codCategoria"]; ?>
                     <li class="nav-item">
