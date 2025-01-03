@@ -100,7 +100,7 @@ class DatabaseHelper
     public function disableProduct($productId)
     {
         $query = 'UPDATE PRODOTTO
-                    SET disabilitato = true, quantitaResidua = 0
+                    SET disabilitato = NOT disabilitato
                     WHERE codProdotto = ?';
         return $this->parametrizedNoresultQuery($query, "i", $productId);
     }
