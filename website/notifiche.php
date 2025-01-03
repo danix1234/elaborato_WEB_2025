@@ -6,19 +6,19 @@ if (!isLoggedIn()) {
     exit();
 }
 
+$templateParams["titolo"] = "Notifiche";
 $templateParams["nome"] = "template-notifiche.php";
 $templateParams["scripts"] = ["js/notifiche.js"];
 
 $userId = getCurrentUserId();
 
+if (!empty($_GET['codNotifica'])) {
+    $codNotifica = htmlspecialchars($_GET['codNotifica']);
+    $dbh->markNotificationAsRead($codNotifica, $userId);
+}
+
 $filter = !empty($_GET['filter']) ? $_GET['filter'] : null;
 
 $templateParams["notifiche"] = $dbh->getFilteredNotifications($userId, $filter);
-
-if (!empty($templateParams["notifiche"])) {
-    foreach ($templateParams["notifiche"] as $index => $notifica) {
-        $templateParams["notifiche"][$index]["data"] = date("d/m/Y H:i", strtotime($notifica["data"]));
-    }
-}
 
 require("template/base.php");

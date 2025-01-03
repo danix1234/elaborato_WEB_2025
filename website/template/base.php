@@ -34,6 +34,7 @@
     <script>
         window.products = <?php echo json_encode(array_column($products, 'nome')); ?>;
     </script>
+    <script type="text/javascript" src="search.js"></script>
     <header class="container-fluid px-0 py-2 overflow-hidden bg-custom-blue">
         <div class="row align-items-center justify-content-between mx-1">
             <!-- Logo -->
@@ -44,26 +45,30 @@
 
             <!-- search bar -->
             <div class="col-12 col-md-6 col-lg-8 mt-2 mt-md-0 order-4 order-md-2">
-                <form method="GET" action="search.php">
+                <form method="get" action="search.php" id="searchForm">
                     <div class="input-group">
                         <label for="searchBar" class="visually-hidden form-label">Cerca</label>
-                        <input id="searchBar" type="search" class="form-control rounded-start border border-0"
-                            placeholder="Cerca" />
+                        <input name="searchBar" id="searchBar" type="search"
+                            class="form-control rounded-start border border-0" placeholder="Cerca" />
+
                         <!-- category bar -->
                         <label for="categoryBar" class="visually-hidden form-label">Categorie</label>
-                        <select id="categoryBar" class="form-select-md border border-0 d-none d-md-block">
+                        <select id="categoryBar" name="codCategoria"
+                            class="form-select-md border border-0 d-none d-md-block">
                             <option value="">Tutte le categorie</option>
                             <?php foreach ($categories as $category): ?>
-                                <option value="<?php echo $category['codCategoria']; ?>"><?php echo $category['nome']; ?>
+                                <option value="<?php echo $category['codCategoria']; ?>">
+                                    <?php echo $category['nome']; ?>
                                 </option>
                             <?php endforeach; ?>
                         </select>
+
                         <button type="submit" class="btn btn-custom-lgold rounded-end">
                             <span class="bi bi-search"></span>
                         </button>
-                        <!-- <div id="suggestions" class="list-group w-100 w-md-50"></div> TODO: suggestionbar-->
                     </div>
                 </form>
+
             </div>
 
             <!-- log in -->

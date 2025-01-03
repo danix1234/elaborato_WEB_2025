@@ -1,45 +1,59 @@
-// Seleziona i bottoni tramite ID specifici
-const buttonAll = document.getElementById("btn-tutte");
-const buttonRead = document.getElementById("btn-gia-lette");
-const buttonUnread = document.getElementById("btn-da-leggere");
-
-// Funzione comune per gestire i click sui bottoni
-function handleButtonClick(button, filter) {
-    const url = new URL(window.location.href);
-    const buttons = [buttonAll, buttonRead, buttonUnread];
-
-    // Gestisci lo stato "active" dei bottoni
-    if (button.classList.contains("active")) {
-        button.classList.remove("active");
-        url.searchParams.delete("filter");
-    } else {
-        buttons.forEach(btn => btn.classList.remove("active"));
-        button.classList.add("active");
-        url.searchParams.set("filter", filter);
-    }
-
-    // Aggiorna il contenuto dinamicamente
-    updateContent(url);
+function selezionaTutte() {
+    const checkboxes = document.querySelectorAll('.select-checkbox');
+    checkboxes.forEach(checkbox => checkbox.checked = true);
 }
 
-// Aggiungi event listener ai bottoni
-buttonAll.addEventListener("click", () => handleButtonClick(buttonAll, "Tutte"));
-buttonRead.addEventListener("click", () => handleButtonClick(buttonRead, "Gia' lette"));
-buttonUnread.addEventListener("click", () => handleButtonClick(buttonUnread, "Da leggere"));
+function resetContent(allNotifications) {
+    allNotifications.forEach(item => {
+        item.style.display = "block"; // Mostra tutti gli elementi
+    });
+}
 
-// Funzione per aggiornare il contenuto dinamicamente
-function updateContent(url) {
-    // Aggiorna l'URL senza ricaricare la pagina
-    history.pushState({}, '', url.toString());
+function filtraNotifiche(filter) {
+    const allNotifications = document.querySelectorAll(".notification-item");
+    resetContent(allNotifications)
+    allNotifications.forEach(item => {
+        if (!filter || filter === "tutte" || item.dataset.filter === filter) {
+            item.style.display = "block"; // Mostra l'elemento
+        } else {
+            item.style.display = "none"; // Nascondi l'elemento
+        }
+    });
+}
 
-    // Fetch e aggiornamento dinamico del contenuto
-    fetch(url.toString())
-        .then(response => response.text())
-        .then(data => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(data, "text/html");
-            const newContent = doc.getElementById("orders-container");
-            document.getElementById("orders-container").innerHTML = newContent.innerHTML;
+// Funzione per gestire il click su un pulsante accordion
+function showAccordion(codNotifica) {
+    if (!codNotifica) {
+        console.warn('Errore: codNotifica non fornito.');
+        return;
+    }
+
+    console.log("Invio richiesta per Codice Notifica:", codNotifica);
+
+    // Creazione URL con parametro codNotifica
+    const url = new URL('./api/read-notice.php', window.location.origin);
+    url.searchParams.set('codNotifica', codNotifica);
+
+    // Richiesta fetch al server
+    fetch(url.toString(), { method: 'GET' })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Errore HTTP! Stato: ${response.status}`);
+            }
+            return response.text();
         })
-        .catch(error => console.error("Errore durante l'aggiornamento del contenuto:", error));
+        .then(data => {
+            console.log("Risposta dal server:", data);
+
+            // Aggiorna visivamente la notifica come "letta"
+            const notificationElement = document.querySelector(`[data-notifica-id="${codNotifica}"]`);
+            if (notificationElement) {
+                notificationElement.setAttribute('data-filter', 'gia-lette');
+                notificationElement.classList.add('read'); // Aggiunge una classe per lo stile visivo
+            }
+        })
+        .catch(error => {
+            console.error("Errore durante l'operazione:", error);
+            alert("Si è verificato un errore. Riprova più tardi.");
+        });
 }

@@ -219,26 +219,78 @@ class DatabaseHelper
     // ↓↓↓ FIRST GIUSEPPE QUERY ↓↓↓
     public function getFilteredNotifications($userId, $notificationState = null)
     {
+        // Query di base
         $query = "SELECT * 
-                FROM NOTIFICHE 
-                WHERE codUtente = ?";
-        $params = []; // Parametri della query
-        $types = "i"; // Tipo del parametro (intero per userId)
+              FROM NOTIFICA 
+              WHERE codUtente = ?";
+        $params = [$userId];  // Parametri della query
+        $types = "i";         // Tipi per i parametri (es. i = integer, s = string)
 
-        if ($notificationState !== null) {
-            $query .= " AND statoNotifica = ?";
+        // Filtro opzionale per stato della notifica
+        if ($notificationState !== null && in_array($notificationState, ['0', '1'], true)) {
+            $query .= " AND letto = ?";
             $params[] = $notificationState;
-            $types .= "s"; // Tipo stringa per statoNotifica
+            $types .= "s";
         }
 
+        // Ordina per data decrescente
         $query .= " ORDER BY dataNotifica DESC";
 
-        /* NOTA: modificata da daniele, per semplificare il codice.
-            semplicemente: passare la prima variabile normalmente, e tutte le variabili successive
-            vanno messe in un array e passarlo utilizzando l'operatore splat (...$array).
-            Se non vi crea problemi, scrivetemi pure ;-) */
-        return $this->parametrizedQuery($query, $types, $userId, ...$params);
+        // Esegui la query parametrizzata
+        return $this->parametrizedQuery($query, $types, ...$params);
     }
+
+
+    public function markNotificationAsRead($notificationId, $userId)
+    {
+        $query = "UPDATE NOTIFICA 
+              SET letto = 1 
+              WHERE codNotifica = ? AND codUtente = ?";
+        $types = "ii"; // Assumendo che codNotifica e codUtente siano entrambi interi
+
+        return $this->parametrizedNoresultQuery($query, $types, $notificationId, $userId);
+    }
+    public function getRandomProducts($n = 12)
+    {
+        $query = "SELECT *
+        FROM PRODOTTO
+        ORDER BY RAND() LIMIT ?";
+        return $this->parametrizedQuery($query, "i", $n);
+    }
+
+    public function getSearchedProductByName($productName)
+    {
+        $query = "SELECT *
+                    FROM PRODOTTO
+                    WHERE NOT disabilitato AND nome LIKE CONCAT('%', ?, '%');";
+        return $this->parametrizedQuery($query, "s", $productName);
+    }
+
+    public function getProductOnCategory($codCategoria)
+    {
+        $query = "SELECT *
+                    FROM PRODOTTO
+                    WHERE NOT disabilitato AND codCategoria = ?;";
+        return $this->parametrizedQuery($query, "i", $codCategoria);
+    }
+
+    public function getProductForCategoryAndSearch($productName, $categoryId)
+    {
+        $query = "SELECT *
+                    FROM PRODOTTO
+                    WHERE NOT disabilitato AND nome LIKE CONCAT('%', ?, '%') AND codCategoria = ?;";
+        return $this->parametrizedQuery($query, "si", $productName, $categoryId);
+    }
+
+    public function getAverageRating($productId)
+    {
+        $query = "SELECT CAST(AVG(R.votoRecensione) AS DECIMAL(2,1)) AS mediaVoto
+              FROM RECENSIONE R
+              WHERE R.codProdotto = ?";
+        $result = $this->parametrizedQuery($query, "i", $productId);
+        return $result[0]['mediaVoto'] ?? 0.0; // Restituisce la media o null se non ci sono recensioni
+    }
+
     // ↑↑↑ LAST GIUSEPPE QUERY ↑↑↑
 
     // ↓↓↓ FIRST FRANCO QUERY ↓↓↓
