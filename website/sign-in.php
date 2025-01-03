@@ -1,8 +1,8 @@
 <?php
 require_once("bootstrap.php");
-$previousURL = isset($_SERVER["HTTP_REFERER"]) ? basename($_SERVER["HTTP_REFERER"]) : "search.php";
-if (!str_contains($_SERVER["HTTP_REFERER"], "sign")) {
-    setPreviousPage($previousURL);
+
+if (empty($_SESSION["previousPage"])) {
+    setPreviousPage("search.php");
 }
 
 if (!empty($_POST["email"]) && !empty($_POST["password"])) {

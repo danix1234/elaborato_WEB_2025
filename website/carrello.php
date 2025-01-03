@@ -2,6 +2,7 @@
 require_once("bootstrap.php");
 
 if (!isLoggedIn()) {
+    setPreviousPage("carrello.php");
     header("Location: sign-in.php");
 }
 

@@ -5,6 +5,8 @@ if (!isset($_GET["productId"])) {
     die("productId not set!");
 }
 
+setPreviousPage(basename($_SERVER['REQUEST_URI']));
+
 $productId = intval($_GET["productId"]);
 if (!empty($_POST["votoRecensione"]) && !empty($_POST["commento"])) {
     if ($dbh->hasboughtProduct(getCurrentUserId(), $productId)){

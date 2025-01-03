@@ -2,6 +2,7 @@
 require_once("bootstrap.php");
 
 if (!isLoggedIn()) {
+    setPreviousPage("notifiche.php");
     header("Location: sign-in.php");
     exit();
 }

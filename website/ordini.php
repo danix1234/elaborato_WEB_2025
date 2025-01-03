@@ -3,6 +3,7 @@ require_once("bootstrap.php");
 
 
 if (!isLoggedIn()) {
+    setPreviousPage("ordini.php");
     header("Location: sign-in.php");
 }
 
