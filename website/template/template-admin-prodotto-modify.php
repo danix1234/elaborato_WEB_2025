@@ -13,7 +13,7 @@
         <div class="col-md-6 pe-md-3">
             <img class="img-fluid" src="<?php echo UPLOAD_DIR . $product["immagine"] ?>" init="<?php echo UPLOAD_DIR . $product["immagine"] ?>" alt="immagine descrittiva del prodotto" />
             <label class="form-label visually-hidden" for="preview">Scegli Immagine </label>
-            <input class="form-control image-custom-preview" type="file" accept="image/*" name="preview"
+            <input class="form-control image-custom-preview mt-2" type="file" accept="image/*" name="preview"
                 id="preview" />
         </div>
         <div class="col-md-6 ps-md-3">

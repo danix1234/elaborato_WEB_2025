@@ -11,7 +11,7 @@
         <div class="col-md-6 pe-md-3">
             <img class="img-fluid" src="img/temp.jpg" init="img/temp.jpg" alt="immagine descrittiva del prodotto" />
             <label class="form-label visually-hidden" for="preview">Scegli Immagine </label>
-            <input class="form-control image-custom-preview" type="file" accept="image/*" name="preview" id="preview" required />
+            <input class="form-control image-custom-preview mt-2" type="file" accept="image/*" name="preview" id="preview" required />
         </div>
         <div class="col-md-6 ps-md-3">
             <label class="form-label" for="name">Nome</label>
