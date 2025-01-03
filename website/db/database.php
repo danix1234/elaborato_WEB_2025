@@ -259,6 +259,14 @@ class DatabaseHelper
         return $this->parametrizedQuery($query, "si", $productName, $categoryId);
     }
 
+    public function getAverageRating($productId)
+    {
+        $query = "SELECT CAST(AVG(R.votoRecensione) AS DECIMAL(2,1)) AS mediaVoto
+              FROM RECENSIONE R
+              WHERE R.codProdotto = ?";
+        $result = $this->parametrizedQuery($query, "i", $productId);
+        return $result[0]['mediaVoto'] ?? null; // Restituisce la media o null se non ci sono recensioni
+    }
 
     // ↑↑↑ LAST GIUSEPPE QUERY ↑↑↑
 

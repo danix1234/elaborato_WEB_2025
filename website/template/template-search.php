@@ -55,7 +55,10 @@
                         </div>
                         <div class="row py-1">
                             <div class="col-12">
-                                <p class="card-text"><?php echo $prodotto["codProdotto"] ?></p>
+                                <p class="card-text">
+                                    <?php $review = $dbh->getAverageRating($prodotto["codProdotto"]);
+                                    var_dump($review); ?>
+                                </p>
                             </div>
                         </div>
                     </a>
