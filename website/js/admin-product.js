@@ -7,6 +7,6 @@ document.getElementById("remove").addEventListener("click", function() {
     }
 })
 
-document.getElementById("insert").addEventListener("click", function() {
-    window.location.href = `./admin-prodotto.php`
-})
+//document.getElementById("insert").addEventListener("click", function() {
+//    window.location.href = `./admin-prodotto.php`
+//})
