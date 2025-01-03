@@ -8,7 +8,7 @@ if (!isLoggedIn()) {
 }
 
 $templateParams["nome"] = "template-prodotti.php";
-$templateParams["scripts"] = array();
+$templateParams["scripts"] = array("js/disable-product.js");
 $templateParams["titolo"] = "Prodotti";
 
 $userId = getCurrentUserId();
