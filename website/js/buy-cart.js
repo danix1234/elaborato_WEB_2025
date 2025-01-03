@@ -18,7 +18,7 @@ function checkerValidityCartItem(quantityButton) {
         .then(_ => {
             buyButton.disabled = false
             for (const innerQuantityButton of document.getElementsByClassName("button-custom-quantity")) {
-                if (document.getElementById(`msg${innerQuantityButton.id}`).innerText != "") {
+                if (document.getElementById(`msg${innerQuantityButton.id}`).innerText !== "") {
                     buyButton.disabled = true
                 }
             }

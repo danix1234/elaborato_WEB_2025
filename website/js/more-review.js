@@ -3,7 +3,7 @@ let currentIndex = reviews.length > 3 ? 3 : reviews.length;
 const reviewList = document.querySelector("ul.p-0");
 const otherReviewButton = document.getElementById("other-review");
 
-otherReviewButton.addEventListener("click", function () {
+otherReviewButton.addEventListener("click", function() {
     if (currentIndex < reviews.length) {
         const review = reviews[currentIndex];
         const reviewItem = document.createElement("li");

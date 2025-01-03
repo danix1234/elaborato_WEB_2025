@@ -7,7 +7,7 @@ for (const float_input of document.getElementsByClassName("button-custom-float")
         return function() {
             float_input.value = float_input.value.trim()
             const prev_val = parseFloat(float_input.value)
-            if (!prev_val && float_input.value != "0" && !float_input.value.startsWith("0.")) {
+            if (!prev_val && float_input.value !== "0" && !float_input.value.startsWith("0.")) {
                 float_input.value = ""
             } else {
                 // yeah, i am starting to hate js. Why couldn't we just build the web on lua???
