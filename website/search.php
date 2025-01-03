@@ -5,12 +5,9 @@ $templateParams["nome"] = "template-search.php";
 $templateParams["scripts"] = ["js/search.js"];
 $templateParams["categorie"] = $dbh->getAllCategories();
 
-try {
-    $nomeprod = isset($_GET["searchBar"]) ? $_GET["searchBar"] : null;
-    $codCategoria = isset($_GET["codCategoria"]) ? $_GET["codCategoria"] : null;
-} catch (Exception $e) {
-    echo 'Caught exception: ', $e->getMessage(), "\n";
-}
+$nomeprod = isset($_GET["searchBar"]) ? $_GET["searchBar"] : null;
+$codCategoria = isset($_GET["codCategoria"]) ? $_GET["codCategoria"] : null;
+
 
 if (!empty($nomeprod)) {
     if (empty($codCategoria)) {

@@ -265,7 +265,7 @@ class DatabaseHelper
               FROM RECENSIONE R
               WHERE R.codProdotto = ?";
         $result = $this->parametrizedQuery($query, "i", $productId);
-        return $result[0]['mediaVoto'] ?? null; // Restituisce la media o null se non ci sono recensioni
+        return $result[0]['mediaVoto'] ?? 0.0; // Restituisce la media o null se non ci sono recensioni
     }
 
     // ↑↑↑ LAST GIUSEPPE QUERY ↑↑↑
