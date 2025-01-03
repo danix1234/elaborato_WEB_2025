@@ -250,11 +250,12 @@ class DatabaseHelper
 
         return $this->parametrizedNoresultQuery($query, $types, $notificationId, $userId);
     }
-    public function getRandomProducts($n = 12)
+    public function getRandomProducts()
     {
         $query = "SELECT *
         FROM PRODOTTO
-        ORDER BY RAND() LIMIT ?";
+        WHERE NOT disabilitato
+        ORDER BY RAND()";
         return $this->parametrizedQuery($query, "i", $n);
     }
 
@@ -468,7 +469,7 @@ class DatabaseHelper
         $result = $this->parametrizedQuery($query, "ii", $userId, $productId);
         return !empty($result);
     }
-    public function insertReview ($userId, $productId, $vote, $comment)
+    public function insertReview($userId, $productId, $vote, $comment)
     {
         $query = "INSERT INTO RECENSIONE(codUtente, codProdotto, votoRecensione, commento, dataRecensione)
                     VALUES(?, ?, ?, ?, NOW())";
