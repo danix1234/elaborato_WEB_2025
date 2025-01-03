@@ -35,7 +35,7 @@
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapse<?php echo $codNotifica; ?>" aria-expanded="false"
                                         aria-controls="collapse<?php echo $codNotifica; ?>"
-                                        onclick="showaccordion('<?php echo $codNotifica; ?>')">
+                                        onclick="showAccordion('<?php echo $codNotifica; ?>')">
                                         <?php echo htmlspecialchars($notifica["tipoNotifica"]); ?>
                                     </button>
                                 </h2>
