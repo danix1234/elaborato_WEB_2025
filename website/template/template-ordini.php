@@ -76,11 +76,12 @@
 
                         <!-- descr ordine -->
                         <div class="row d-flex mt-3">
-                            <div class="col-3">
-                                <img alt="" src="<?php echo UPLOAD_DIR . $ordine['immaginePreview']; ?>"
-                                    class="img-fluid me-2">
+                            <div class="col-3 col-md-1">
+                                <a href="ordine.php?orderId=<?php echo $ordine['codOrdine']; ?>"><img alt=""
+                                        src="<?php echo UPLOAD_DIR . $ordine['immaginePreview']; ?>"
+                                        class="img-fluid me-2" /></a>
                             </div>
-                            <div class="col-9">
+                            <div class="col-9 col-md-11">
                                 <p class="text-body-secondary mb-0">
                                     <?php echo $ordine["descrizioneOrdine"] ?>
                                 </p>
