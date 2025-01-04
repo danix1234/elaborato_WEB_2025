@@ -43,7 +43,7 @@
             </div>
 
             <!-- search bar -->
-            <div class="col-12 col-md-6 col-lg-8 mt-2 mt-md-0 order-4 order-md-2">
+            <div class="col-12 col-md-6 col-lg-7 mt-2 mt-md-0 order-4 order-md-2">
                 <form method="get" action="search.php" id="searchForm">
                     <div class="input-group">
                         <label for="searchBar" class="visually-hidden form-label">Cerca</label>
@@ -81,13 +81,16 @@
             </div>
 
             <!-- icons -->
-            <div class="col-4 col-md-2 col-lg-1 d-flex align-items-center order-3 order-md-4 justify-content-center">
+            <div class="col-4 col-md-2 d-flex align-items-center order-3 order-md-4 justify-content-center">
                 <div class="w-100 d-flex justify-content-around">
                     <?php if (isAdmin()): ?>
+                        
                         <a href="<?php checkFile('admin-prodotto.php'); ?>" title="aggiungi prodotto"
-                            class="link-light link-opacity-50-hover"><span class="bi bi-database-add"></span></a>
+                            class="link-light link-opacity-50-hover"><span class="bi bi-database-add text-custom-lgold"></span></a>
+                            <a href="<?php checkFile('admin-prodotto.php'); ?>" title="aggiungi prodotto"
+                            class="link-light link-opacity-50-hover"><span class="bi bi-database-add text-custom-lgold"></span></a>
                         <a href="<?php checkFile('utenti.php'); ?>" title="ban utenti"
-                            class="link-light link-opacity-50-hover"><span class="bi bi-ban"></span></a>
+                            class="link-light link-opacity-50-hover"><span class="bi bi-ban text-custom-lgold"></span></a>
                     <?php endif; ?>
                     <a href="<?php checkFile('notifiche.php'); ?>" title="notifica"
                         class="link-light link-opacity-50-hover"><span class="bi bi-bell"></span></a>
