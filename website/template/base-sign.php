@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" type="image/png" href="./img/logo.jpg" />
 
     <title>Nostro Sito<?php
     if (isset($templateParams["titolo"])) {
@@ -18,12 +19,22 @@
 </head>
 
 <body class="bg-white">
+    <?php
+    require_once("bootstrap.php");
+    if (isLoggedIn()) {
+        $user = $dbh->getUserbyUserId(getCurrentUserId());
+        $ban = boolval($user[0]["disabilitato"]);
+        if ($ban) {
+            session_unset();
+            header("Location: search.php");
+        }
+    } ?>
 
     <header class="container-fluid overflow-hidden bg-custom-blue py-2">
         <div class="row align-items-center justify-content-center">
-            <div class="col-6 col-md-2">
+            <div class="col-6 col-md-2 text-center ">
                 <a href="<?php checkFile("search.php"); ?>">
-                    <img src="./img/temp.jpg" alt="Logo" class="img-fluid">
+                    <img src="<?php echo UPLOAD_DIR; ?>logo.jpg" alt="" class="img-fluid w-25">
                 </a>
             </div>
         </div>

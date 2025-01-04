@@ -39,7 +39,7 @@
         <div class="row align-items-center justify-content-between mx-1">
             <!-- Logo -->
             <div class="col-3 col-md-2 col-lg-1 order-1">
-                <a href="<?php checkFile('search.php'); ?>"><img src="<?php echo UPLOAD_DIR;?>logo.jpg" class="img-fluid"
+                <a href="<?php checkFile('search.php'); ?>"><img src="<?php echo UPLOAD_DIR;?>logo.jpg" class="img-fluid w-25"
                         alt="Logo" /></a>
             </div>
 
