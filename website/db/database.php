@@ -483,5 +483,12 @@ class DatabaseHelper
                     VALUES(?, ?, ?, ?, NOW())";
         return $this->parametrizedNoresultQuery($query, "iiis", $userId, $productId, $vote, $comment);
     }
+    public function updateUserPassword($userId, $newPassword)
+    {
+        $query = "UPDATE UTENTE
+                    SET password = ?
+                    WHERE codUtente = ?";
+        return $this->parametrizedNoresultQuery($query, "si", $newPassword, $userId);
+    }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }

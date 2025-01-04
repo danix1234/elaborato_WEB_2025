@@ -24,7 +24,7 @@ function generateStarRating($voto)
 
     <!-- nome, descr, costo, voto -->
     <div class="col-12 col-md-4 d-flex flex-column align-items-center">
-        <h2><?php echo $prodotto["nome"]; ?></h2>
+        <h1><?php echo $prodotto["nome"]; ?></h1>
         <p class="text-body-secondary mb-4">
             <?php echo $prodotto["descrizione"]; ?>
         </p>
@@ -77,7 +77,7 @@ function generateStarRating($voto)
 <div class="row mx-md-2">
     <div class="col border rounded mb-2 mx-auto">
         <section class="mt-4">
-            <h3 class="fw-bold mb-3">Recensioni</h3>
+            <h2 class="fw-bold mb-3">Recensioni</h2>
             <ul class="p-0">
                 <?php
                 $totRecensioni = count($templateParams["recensioni"]);
@@ -107,7 +107,7 @@ function generateStarRating($voto)
                 altre recensioni</button>
         </div>
         <!-- scrivi recensione -->
-        <h3 id="recensione" class="fw-bold mb-3">Scrivi una Recensione</h3>
+        <h2 id="recensione" class="fw-bold mb-3">Scrivi una Recensione</h2>
         <?php if (isset($templateParams["erroreRecensione"])): ?>
             <div class="text-danger mb-3">
                 <?php echo $templateParams["erroreRecensione"] ?>
