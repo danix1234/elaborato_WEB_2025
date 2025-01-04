@@ -34,7 +34,7 @@
         <div class="row align-items-center justify-content-center">
             <div class="col-6 col-md-2 text-center ">
                 <a href="<?php checkFile("search.php"); ?>">
-                    <img src="<?php echo UPLOAD_DIR; ?>logo.jpg" alt="" class="img-fluid w-25">
+                    <img src="<?php echo UPLOAD_DIR; ?>logo.jpg" alt="Logo" class="img-fluid w-25">
                 </a>
             </div>
         </div>

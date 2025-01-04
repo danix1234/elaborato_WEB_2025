@@ -44,6 +44,7 @@ function generateStarRating($voto)
             <label for="quantita" class="form-label m-0 me-2">Quantità</label>
             <div class="input-group">
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement">-</button>
+                <label for="<?php echo $prodotto['codProdotto']; ?>">Quantita'</label>
                 <input class="form-control button-custom-quantity" value="1" type="text"
                     name="<?php echo $prodotto['codProdotto']; ?>" id="<?php echo $prodotto['codProdotto']; ?>"
                     max="<?php echo $prodotto['quantitaResidua']; ?>" min="1" required />
@@ -125,7 +126,7 @@ function generateStarRating($voto)
                 </div>
             </div>
             <div class="mb-3">
-                <label for="comment" class="form-label">Commento</label>
+                <label for="commento" class="form-label">Commento</label>
                 <textarea class="form-control" id="commento" name="commento" rows="3" maxlength="512"
                     required></textarea>
             </div>
