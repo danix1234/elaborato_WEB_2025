@@ -217,7 +217,7 @@ class DatabaseHelper
     }
     public function getAllProductsEvenDisabled()
     {
-        $query = 'SELECT *, C.nome AS nomeCategoria
+        $query = 'SELECT *, P.nome AS nome, P.descrizione AS descrizione, C.nome AS nomeCategoria
                     FROM PRODOTTO P, CATEGORIA C
                     WHERE P.codCategoria = C.codCategoria
                     ORDER BY P.codProdotto';
