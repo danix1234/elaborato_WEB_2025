@@ -13,7 +13,7 @@ $dbh->updateOrdersState(getCurrentUserId());
 
 $templateParams["titolo"] = "Ordini";
 $templateParams["nome"] = "template-ordini.php";
-$templateParams["scripts"] = array("js/filter-orders.js");
+
 
 $filterTime = !empty($_GET['filter-time']) ? intval($_GET['filter-time']) : null;
 $filter = !empty($_GET['filter']) ? $_GET['filter'] : null;
@@ -34,6 +34,7 @@ if (!empty($templateParams["ordini"])) {
         $templateParams["ordini"][$index]["immaginePreview"] = $prodottoPreview["immagine"];
         $templateParams["ordini"][$index]["totProdotti"] = count($prodotti);
     }
+    $templateParams["scripts"] = array("js/filter-orders.js");
 }
 
 require("template/base.php");

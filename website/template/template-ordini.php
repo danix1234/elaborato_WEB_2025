@@ -1,7 +1,10 @@
 <div class="row my-2 align-items-center justify-content-evenly">
-    <div class="col-7 col-md-12 text-center order-1 mb-2">
-        <h2>Storico Ordini</h2>
-    </div>
+    <header class="col-7 col-md-12 text-center order-1 mb-2">
+        <h1><?php if (empty($templateParams["ordini"])) {
+            echo "Nessun Ordine";
+            return;
+        } ?>Storico Ordini</h1>
+    </header>
     <!-- filtro tempo -->
     <div class="col-5 col-md-2 order-2 order-md-3 mb-2 mb-md-0">
         <form id="filter-time-form" method="GET" action="ordini.php">
@@ -27,6 +30,7 @@
         </div>
     </div>
 </div>
+
 <div id="orders-container">
     <?php foreach ($templateParams["ordini"] as $ordine) { ?>
         <div class="row mb-3 align-items-center">
