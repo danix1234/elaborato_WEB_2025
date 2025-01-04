@@ -12,7 +12,7 @@
 -- Database Section
 -- ________________ 
 
-create database twdatabase;
+create database if not exists twdatabase;
 use twdatabase;
 
 
