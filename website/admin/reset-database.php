@@ -1,6 +1,6 @@
 <?php
 
-$conn = new mysqli("localhost", "root", "");
+$conn = new mysqli("localhost", "root", "", "", 3306);
 $conn->query("DROP DATABASE IF EXISTS twdatabase");
 $conn->query("CREATE DATABASE IF NOT EXISTS twdatabase");
 $conn->multi_query(file_get_contents("../../db/TWcreateDatabase.sql"));
