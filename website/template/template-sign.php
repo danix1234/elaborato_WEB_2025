@@ -1,7 +1,7 @@
 <div class="row justify-content-center mx-1">
     <div class="col-12 col-md-6 col-lg-4 border rounded p-3">
         <form action="<?php echo $templateParams['action']; ?>" method="POST">
-            <h2 class="text-center fw-bold mb-2"><?php echo $templateParams["tipo"]; ?></h2>
+            <h1 class="text-center fw-bold mb-2"><?php echo $templateParams["tipo"]; ?></h1>
             <?php if (isset($templateParams["erroresign"])): ?>
                 <div class="text-danger mb-3">
                     <?php echo $templateParams["erroresign"] ?>
@@ -27,7 +27,7 @@
                 </div>
             <?php } else { ?>
                 <div class="d-grid">
-                    <a href="utente-modifica.php" class="btn btn-custom-lgold">Modifica dati</a>
+                    <a href="conferma-password.php" class="btn btn-custom-lgold">Modifica dati</a>
                 </div>
             <?php } ?>
         </form>
