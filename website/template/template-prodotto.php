@@ -51,13 +51,16 @@ function generateStarRating($voto)
             </div>
         </div>
 
+        <script>
+            const isLoggedIn = <?php echo json_encode(isLoggedIn())?>;
+        </script>
         <!-- carrello -->
         <div class="d-grid gap-2 w-100">
             <button id="button-add-cart" type="button" class="btn btn-custom-lgold">Aggiungi al Carrello</button>
             <button id="button-buy-now" type="button" class="btn btn-custom-gold">Compra Subito</button>
-            <?php if (isAdmin()){ ?>
-            <a href=<?php echo "admin-prodotto.php?productId=" . $_GET["productId"] ?>
-                class="btn btn-light border">Modifica</a>
+            <?php if (isAdmin()) { ?>
+                <a href=<?php echo "admin-prodotto.php?productId=" . $_GET["productId"] ?>
+                    class="btn btn-light border">Modifica</a>
             <?php } ?>
             <div id="message-container" class="d-none"></div>
         </div>
@@ -105,10 +108,10 @@ function generateStarRating($voto)
         <!-- scrivi recensione -->
         <h3 id="recensione" class="fw-bold mb-3">Scrivi una Recensione</h3>
         <?php if (isset($templateParams["erroreRecensione"])): ?>
-                <div class="text-danger mb-3">
-                    <?php echo $templateParams["erroreRecensione"] ?>
-                </div>
-            <?php endif; ?>
+            <div class="text-danger mb-3">
+                <?php echo $templateParams["erroreRecensione"] ?>
+            </div>
+        <?php endif; ?>
         <form action="prodotto.php?productId=<?php echo $_GET['productId']; ?>#recensione" method="POST">
             <div class="d-flex align-items-center">
                 <div>
@@ -123,7 +126,8 @@ function generateStarRating($voto)
             </div>
             <div class="mb-3">
                 <label for="comment" class="form-label">Commento</label>
-                <textarea class="form-control" id="commento" name="commento" rows="3" maxlength="512" required></textarea>
+                <textarea class="form-control" id="commento" name="commento" rows="3" maxlength="512"
+                    required></textarea>
             </div>
             <div class="d-flex mb-3">
                 <?php if (isLoggedIn()) { ?>
