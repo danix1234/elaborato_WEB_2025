@@ -87,11 +87,11 @@
                     <?php if (isAdmin()): ?>
                         
                         <a href="<?php checkFile('admin-prodotto.php'); ?>" title="aggiungi prodotto"
-                            class="link-light link-opacity-50-hover"><span class="bi bi-database-add text-custom-lgold"></span></a>
-                            <a href="<?php checkFile('admin-prodotto.php'); ?>" title="aggiungi prodotto"
-                            class="link-light link-opacity-50-hover"><span class="bi bi-database-add text-custom-lgold"></span></a>
+                            class="link-light link-opacity-50-hover"><span class="bi bi-database-add"></span></a>
+                            <a href="<?php checkFile('prodotti.php'); ?>" title="modifica prodotti"
+                            class="link-light link-opacity-50-hover"><span class="bi bi-database-gear"></span></a>
                         <a href="<?php checkFile('utenti.php'); ?>" title="ban utenti"
-                            class="link-light link-opacity-50-hover"><span class="bi bi-ban text-custom-lgold"></span></a>
+                            class="link-light link-opacity-50-hover"><span class="bi bi-ban"></span></a>
                     <?php endif; ?>
                     <a href="<?php checkFile('notifiche.php'); ?>" title="notifica"
                         class="link-light link-opacity-50-hover"><span class="bi bi-bell"></span></a>
