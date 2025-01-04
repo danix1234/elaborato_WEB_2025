@@ -39,13 +39,12 @@ function generateStarRating($voto)
     </div>
 
     <div class="col-12 col-md-3 d-flex flex-column align-items-center align-items-md-end">
-        <!-- quantità -->
-        <div class="d-flex align-items-center mb-3">
-            <label for="quantita" class="form-label m-0 me-2">Quantità</label>
+        <!-- quantita' -->
+        <div class="d-flex align-items-center mb-2 w-100">
+            <label for="<?php echo $prodotto['codProdotto']; ?>" class="form-label m-0 me-2">Quantita'</label>
             <div class="input-group">
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement">-</button>
-                <label for="<?php echo $prodotto['codProdotto']; ?>">Quantita'</label>
-                <input class="form-control button-custom-quantity" value="1" type="text"
+                <input class="form-control button-custom-quantity" value="1" type="number"
                     name="<?php echo $prodotto['codProdotto']; ?>" id="<?php echo $prodotto['codProdotto']; ?>"
                     max="<?php echo $prodotto['quantitaResidua']; ?>" min="1" required />
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment">+</button>
@@ -53,7 +52,7 @@ function generateStarRating($voto)
         </div>
 
         <script>
-            const isLoggedIn = <?php echo json_encode(isLoggedIn())?>;
+            const isLoggedIn = <?php echo json_encode(isLoggedIn()) ?>;
         </script>
         <!-- carrello -->
         <div class="d-grid gap-2 w-100">
@@ -116,13 +115,13 @@ function generateStarRating($voto)
         <form action="prodotto.php?productId=<?php echo $_GET['productId']; ?>#recensione" method="POST">
             <div class="d-flex align-items-center">
                 <div>
-                    <label for="votoRecensione" class="form-label">Voto Recensione: </label>
+                    <label class="form-label">Voto Recensione: </label>
                     <span class="star bi bi-star-fill text-custom-lgold" data-value="1"></span><span
                         class="star bi bi-star text-custom-lgold" data-value="2"></span><span
                         class="star bi bi-star text-custom-lgold" data-value="3"></span><span
                         class="star bi bi-star text-custom-lgold" data-value="4"></span><span
                         class="star bi bi-star text-custom-lgold" data-value="5"></span>
-                    <input type="hidden" id="votoRecensione" name="votoRecensione" value="1" required>
+                    <input type="hidden" id="votoRecensione" name="votoRecensione" value="1">
                 </div>
             </div>
             <div class="mb-3">

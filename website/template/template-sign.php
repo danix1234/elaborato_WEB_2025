@@ -16,7 +16,7 @@
                         <input type="<?php echo $field === 'password' ? 'password' : 'text'; ?>" id="<?php echo $field; ?>"
                             name="<?php echo $field; ?>" class="form-control" placeholder="<?php echo $field; ?>"
                             <?php echo isLoggedIn() ? "disabled" : "" ?>
-                            value="<?php echo isLoggedIn() ? $field : '' ?>" required />
+                            value="<?php echo isLoggedIn() ? $field. ": $templateParams[$field]" : '' ?>" required />
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>

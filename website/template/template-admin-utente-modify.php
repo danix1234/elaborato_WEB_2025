@@ -27,7 +27,7 @@ function select_privilegies($priv)
             <input class="form-control" type="password" name="new-password" id="new-password" />
             <label class="form-label" for="address">Indirizzo</label>
             <input class="form-control" type="text" name="address" id="address" value="<?php echo $user["indirizzo"] ?>" required />
-            <label class="form-label" for="city">Città</label>
+            <label class="form-label" for="city">Citta'</label>
             <input class="form-control" type="text" name="city" id="city" value="<?php echo $user["citta"] ?>" required />
         </div>
     </div>
