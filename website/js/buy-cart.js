@@ -30,6 +30,6 @@ for (const quantityButton of document.getElementsByClassName("button-custom-quan
     quantityButton.addEventListener("change", function() { checkerValidityCartItem(this) })
 }
 
-document.getElementById("buy").addEventListener("click", function() {
+document.getElementById("buy")?.addEventListener("click", function() {
     window.location.href = "./api/buy_entire_cart.php";
 })
