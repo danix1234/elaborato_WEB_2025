@@ -11,9 +11,11 @@ buttonAddItemToCart.addEventListener("click", function () {
             messageContainer.innerText = data;
             messageContainer.classList.remove("d-none");
             if (data.includes("success")) {
+                messageContainer.classList.remove("text-danger");
                 messageContainer.classList.add("text-success");
                 return;
             } else {
+                messageContainer.classList.remove("text-success");
                 messageContainer.classList.add("text-danger");
             }
         })

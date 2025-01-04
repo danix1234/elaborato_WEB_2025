@@ -58,8 +58,8 @@ function generateStarRating($voto)
             <?php if (isAdmin()){ ?>
             <a href=<?php echo "admin-prodotto.php?productId=" . $_GET["productId"] ?>
                 class="btn btn-light border">Modifica</a>
-            <div id="message-container" class="d-none"></div>
             <?php } ?>
+            <div id="message-container" class="d-none"></div>
         </div>
 
     </div>
