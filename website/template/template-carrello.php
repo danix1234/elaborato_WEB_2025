@@ -1,5 +1,5 @@
 <div class="mx-1 mx-md-4">
-    <?php if (isset($templateParams["carrello"]) && sizeof($templateParams["carrello"]) == 0) { ?>
+    <?php if (empty($templateParams["carrello"])) { ?>
         <header class="row my-2">
             <h1 class="col text-center my-0">
                 Il Carrello è vuoto!
