@@ -1,6 +1,6 @@
 <div class="row my-2 align-items-center justify-content-evenly">
     <header class="col-7 col-md-12 text-center order-1 mb-2">
-        <h1><?php if (empty($templateParams["ordini"])) {
+        <h1><?php if ($templateParams["vuoto"]) {
             echo "Nessun Ordine";
             return;
         } ?>Storico Ordini</h1>

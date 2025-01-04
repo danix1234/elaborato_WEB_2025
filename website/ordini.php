@@ -18,6 +18,7 @@ $templateParams["nome"] = "template-ordini.php";
 $filterTime = !empty($_GET['filter-time']) ? intval($_GET['filter-time']) : null;
 $filter = !empty($_GET['filter']) ? $_GET['filter'] : null;
 $userId = getCurrentUserId();
+$templateParams["vuoto"] = empty($dbh->getFilteredOrders($userId));
 $templateParams["ordini"] = $dbh->getFilteredOrders($userId, $filterTime, $filter);
 
 if (!empty($templateParams["ordini"])) {
