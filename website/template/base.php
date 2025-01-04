@@ -8,6 +8,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" type="image/png" href="./img/logo.jpg" />
 
     <title>Nostro Sito<?php
     if (isset($templateParams["titolo"])) {
@@ -38,7 +39,7 @@
         <div class="row align-items-center justify-content-between mx-1">
             <!-- Logo -->
             <div class="col-3 col-md-2 col-lg-1 order-1">
-                <a href="<?php checkFile('search.php'); ?>"><img src="./img/temp.jpg" class="img-fluid"
+                <a href="<?php checkFile('search.php'); ?>"><img src="<?php echo UPLOAD_DIR;?>logo.jpg" class="img-fluid"
                         alt="Logo" /></a>
             </div>
 
