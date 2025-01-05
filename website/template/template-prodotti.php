@@ -12,7 +12,8 @@
                 Nessun prodotto!
             </h1>
         </header>
-    <?php return;
+    <?php echo '</div>';
+        return;
     } ?>
 
 

@@ -5,7 +5,8 @@
                 Il Carrello è vuoto!
             </h1>
         </header>
-    <?php return;
+    <?php echo '</div>';
+        return;
     } ?>
 
 
