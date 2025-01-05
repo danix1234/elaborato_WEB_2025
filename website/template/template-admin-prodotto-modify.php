@@ -31,6 +31,9 @@
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement">-</button>
                 <input class="form-control button-custom-quantity" type="text" name="quantity" id="quantity" value="<?php echo $product["quantitaResidua"] ?>" required />
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment">+</button>
+                <span class="visually-hidden"></span>
+                <span class="visually-hidden"></span>
+                <span class="visually-hidden"></span>
             </div>
             <label class="form-label" for="category">Categoria</label>
             <select class="form-select" id="category" name="category" required>
