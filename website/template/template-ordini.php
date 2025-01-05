@@ -1,7 +1,10 @@
 <div class="row my-2 align-items-center justify-content-evenly">
-    <div class="col-7 col-md-12 text-center order-1 mb-2">
-        <h2>Storico Ordini</h2>
-    </div>
+    <header class="col-7 col-md-12 text-center order-1 mb-2">
+        <h1><?php if (empty($templateParams["ordini"])) {
+            echo "Nessun Ordine";
+            return;
+        } ?>Storico Ordini</h1>
+    </header>
     <!-- filtro tempo -->
     <div class="col-5 col-md-2 order-2 order-md-3 mb-2 mb-md-0">
         <form id="filter-time-form" method="GET" action="ordini.php">
@@ -27,6 +30,7 @@
         </div>
     </div>
 </div>
+
 <div id="orders-container">
     <?php foreach ($templateParams["ordini"] as $ordine) { ?>
         <div class="row mb-3 align-items-center">
@@ -72,11 +76,12 @@
 
                         <!-- descr ordine -->
                         <div class="row d-flex mt-3">
-                            <div class="col-3">
-                                <img alt="" src="<?php echo UPLOAD_DIR . $ordine['immaginePreview']; ?>"
-                                    class="img-fluid me-2">
+                            <div class="col-3 col-md-1">
+                                <a href="ordine.php?orderId=<?php echo $ordine['codOrdine']; ?>"><img alt="preview-image"
+                                        src="<?php echo UPLOAD_DIR . $ordine['immaginePreview']; ?>"
+                                        class="img-fluid me-2" /></a>
                             </div>
-                            <div class="col-9">
+                            <div class="col-9 col-md-11">
                                 <p class="text-body-secondary mb-0">
                                     <?php echo $ordine["descrizioneOrdine"] ?>
                                 </p>
