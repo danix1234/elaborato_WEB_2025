@@ -45,16 +45,15 @@ function generateStarRating($voto)
             <div class="input-group">
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement">-</button>
                 <label for="<?php echo $prodotto['codProdotto']; ?>">Quantita'</label>
-                <input class="form-control button-custom-quantity" value="1" type="text" name="<?php echo $prodotto['codProdotto']; ?>" id="<?php echo $prodotto['codProdotto']; ?>" required />
+                <input class="form-control button-custom-quantity" value="1" type="text"
+                    name="<?php echo $prodotto['codProdotto']; ?>" id="<?php echo $prodotto['codProdotto']; ?>"
+                    max="<?php echo $prodotto['quantitaResidua']; ?>" min="1" required />
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment">+</button>
-                <span class="visually-hidden">1</span>
-                <span class="visually-hidden"><?php echo $prodotto['quantitaResidua']; ?></span>
-                <span class="visually-hidden"></span>
             </div>
         </div>
 
         <script>
-            const isLoggedIn = <?php echo json_encode(isLoggedIn()) ?>;
+            const isLoggedIn = <?php echo json_encode(isLoggedIn())?>;
         </script>
         <!-- carrello -->
         <div class="d-grid gap-2 w-100">
