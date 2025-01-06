@@ -5,7 +5,8 @@
                 Il Carrello è vuoto!
             </h1>
         </header>
-    <?php return;
+    <?php echo '</div>';
+        return;
     } ?>
 
 
@@ -62,11 +63,12 @@
                                         <label for="<?php echo $item["codProdotto"] ?>" class="col-form-label pe-0 col-auto">Quantità:</label>
                                         <div class="col-auto ps-2">
                                             <div class="input-group">
-                                                <button tabindex="-1" class="input-group-text font-monospace" type="button"
-                                                    id="decrement<?php echo $i ?>">-</button>
-                                                <input class="form-control button-custom-quantity" type="text" previous="<?php echo $item["quantita"] ?>" value="<?php echo $item["quantita"] ?>" name="<?php echo $item["codProdotto"] ?>" max="<?php echo $item["quantitaResidua"] ?>" id="<?php echo $item["codProdotto"] ?>" min="<?php echo $item["quantitaResidua"] == 0 ? 0 : 1 ?>" required />
-                                                <button tabindex="-1" class="input-group-text font-monospace" type="button"
-                                                    id="increment<?php echo $i ?>">+</button>
+                                                <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement<?php echo $i ?>">-</button>
+                                                <input class="form-control button-custom-quantity" type="text" value="<?php echo $item["quantita"] ?>" name="<?php echo $item["codProdotto"] ?>" id="<?php echo $item["codProdotto"] ?>" required />
+                                                <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment<?php echo $i ?>">+</button>
+                                                <span class="visually-hidden"><?php echo $item["quantitaResidua"] == 0 ? 0 : 1 ?></span>
+                                                <span class="visually-hidden"><?php echo $item["quantitaResidua"] ?></span>
+                                                <span class="visually-hidden"><?php echo $item["quantita"] ?></span>
                                             </div>
                                         </div>
                                     </div>

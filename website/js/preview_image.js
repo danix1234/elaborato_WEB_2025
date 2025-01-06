@@ -15,6 +15,6 @@ document.getElementById("reset").addEventListener("click", function() {
     for (const file_picker of document.getElementsByClassName("image-custom-preview")) {
         let image_preview = file_picker.previousElementSibling.previousElementSibling
         URL.revokeObjectURL(image_preview.src);
-        image_preview.src = image_preview.getAttribute("init")
+        image_preview.src = document.getElementById("init").innerText
     }
 })

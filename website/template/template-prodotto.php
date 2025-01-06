@@ -48,10 +48,14 @@ function generateStarRating($voto)
                     name="<?php echo $prodotto['codProdotto']; ?>" id="<?php echo $prodotto['codProdotto']; ?>"
                     max="<?php echo $prodotto['quantitaResidua']; ?>" min="1" required />
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment">+</button>
+                <span class="visually-hidden">1</span>
+                <span class="visually-hidden"><?php echo $prodotto['quantitaResidua']; ?></span>
+                <span class="visually-hidden"></span>
             </div>
         </div>
 
         <script>
+            const isLoggedIn = <?php echo json_encode(isLoggedIn()) ?>;
             const isLoggedIn = <?php echo json_encode(isLoggedIn()) ?>;
         </script>
         <!-- carrello -->

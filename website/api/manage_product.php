@@ -31,7 +31,9 @@ if (!isset($_GET["productId"])) {
         $product = $dbh->getProduct(intval($_GET["productId"]));
         $dbh->updateProductImg(intval($_GET["productId"]), $msg);
         if (sizeof($product) != 0 && sizeof($dbh->isImageUsed($product[0]["immagine"])) != 0) {
-            unlink($uploadDir . $product[0]["immagine"]);
+            if (str_starts_with($product[0]["immagine"], "uploaded")) {
+                unlink($uploadDir . $product[0]["immagine"]);
+            }
         }
     }
 } else {

@@ -12,7 +12,8 @@
                 Nessun prodotto!
             </h1>
         </header>
-    <?php return;
+    <?php echo '</div>';
+        return;
     } ?>
 
 
@@ -71,7 +72,7 @@
                                     </div>
                                     <div class="row justify-content-md-start justify-content-center mt-2 ms-0">
                                         <?php if (!$disabilitato) { ?>
-                                            <a class="btn btn-danger col-auto me-4 btn-custom-lgold" id="<?php echo $item["codProdotto"] ?>" href="admin-prodotto.php?productId=<?php echo $item["codProdotto"] ?>">Modifica</a>
+                                            <a class="btn btn-danger col-auto me-4 btn-custom-lgold" href="admin-prodotto.php?productId=<?php echo $item["codProdotto"] ?>">Modifica</a>
                                             <button class="btn btn-danger col-auto me-4 custom-toggle-button" id="<?php echo $item["codProdotto"] ?>" type="button">Rimuovi</button>
                                         <?php } else { ?>
                                             <button class="btn btn-danger col-auto me-4 custom-toggle-button" id="<?php echo $item["codProdotto"] ?>">Riabilita</button>

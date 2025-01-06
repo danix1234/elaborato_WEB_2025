@@ -9,7 +9,7 @@
 <form class="mx-md-4 mx-1 mt-md-4" action="api/manage_product.php" method="post" enctype="multipart/form-data">
     <div class="row mb-4">
         <div class="col-md-6 pe-md-3">
-            <img class="img-fluid" src="img/temp.jpg" init="img/temp.jpg" alt="immagine descrittiva del prodotto" />
+            <img class="img-fluid" src="img/temp.jpg" alt="immagine descrittiva del prodotto" />
             <label class="form-label visually-hidden" for="preview">Scegli Immagine </label>
             <input class="form-control image-custom-preview mt-2" type="file" accept="image/*" name="preview" id="preview" required />
         </div>
@@ -28,6 +28,9 @@
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement">-</button>
                 <input class="form-control button-custom-quantity" type="text" name="quantity" id="quantity" required />
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment">+</button>
+                <span class="visually-hidden"></span>
+                <span class="visually-hidden"></span>
+                <span class="visually-hidden"></span>
             </div>
             <label class="form-label" for="category">Categoria</label>
             <select class="form-select" id="category" name="category" required>
@@ -43,3 +46,5 @@
         <button class="btn border col-auto" type="reset" id="reset">Annulla</button>
     </div>
 </form>
+
+<span class="visually-hidden" id="init"><?php echo UPLOAD_DIR ?>temp.jpg</span>
