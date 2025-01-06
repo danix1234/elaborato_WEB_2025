@@ -11,7 +11,7 @@
             <?php if (!empty($templateParams["fields"])): ?>
                 <?php foreach ($templateParams["fields"] as $field): ?>
 
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="<?php echo $field; ?>" class="visually-hidden"><?php echo $field; ?></label>
                         <input type="<?php echo $field === 'password' ? 'password' : 'text'; ?>" id="<?php echo $field; ?>"
                             name="<?php echo $field; ?>" class="form-control" placeholder="<?php echo $field; ?>"
@@ -26,7 +26,7 @@
                     <button type="submit" class="btn btn-custom-lgold">Conferma</button>
                 </div>
             <?php } else { ?>
-                <div class="d-grid gap-3">
+                <div class="d-grid gap-2">
                     <a href="conferma-password.php?redirect=modifica-dati" class="btn btn-custom-lgold">Modifica dati</a>
                     <a href="conferma-password.php?redirect=modifica-password" class="btn btn-custom-lgold">Modifica password</a>
                 </div>

@@ -6,21 +6,25 @@ if (!empty($_POST["password"])) {
     $user = $dbh->getUserbyUserId(getCurrentUserId())[0];
     $hash = $user["password"];
     if (password_verify($password, $hash)) {
-        $redirect = $_GET["redirect"];
+        $redirect = empty($_GET["redirect"]) ? "" : $_GET["redirect"];
         if ($redirect === "modifica-dati") {
             header("Location: utente-modifica.php");
         } else if ($redirect === "modifica-password") {
             header("Location: utente-modifica-password.php");
+        } else {
+            $templateParams["errore"] = "Unknown redirect";
         }
     } else {
         $templateParams["errore"] = "Password errata.";
     }
 }
 
-$templateParams["nome"] = "template-confirm-password.php";
+$templateParams["nome"] = "template-password.php";
 $templateParams["titolo"] = "Conferma Password";
 $templateParams["tipo"] = "Conferma Password";
-$templateParams["action"] = "conferma-password.php";
+$templateParams["fields"] = array("password");
+$templateParams["placeHolder"] = array("Password");
 
 
 require("template/base-sign.php");
+?>
