@@ -34,4 +34,6 @@ for (const float_input of document.getElementsByClassName("button-custom-float")
 
     float_input.addEventListener("change", validate())
     float_input.addEventListener("input", disallowInvalidChars(float_input))
+
+    float_input.setAttribute("inputmode", "decimal")
 }

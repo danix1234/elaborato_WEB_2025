@@ -63,4 +63,6 @@ for (const number_input of document.getElementsByClassName("button-custom-quanti
     inc_button.addEventListener("input", disallowInvalidChars(inc_button))
     dec_button.addEventListener("input", disallowInvalidChars(dec_button))
     number_input.addEventListener("input", disallowInvalidChars(number_input))
+
+    number_input.setAttribute("inputmode", "numeric")
 }
