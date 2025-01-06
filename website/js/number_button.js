@@ -45,12 +45,17 @@ for (const number_input of document.getElementsByClassName("button-custom-quanti
         }
     }
 
+    function disallowInvalidChars(element) {
+        return function() {
+            element.value = element.value.replace(/[^0-9]/g, '')
+        }
+    }
+
     inc_button.addEventListener("click", validate(-1))
     dec_button.addEventListener("click", validate(1))
-
-    // if we want to disable writing wrong things inside input field
-    //number_input.addEventListener("input", validate_int(0))
-    //number_input.addEventListener("paste", validate_int(0))
     number_input.addEventListener("change", validate(0))
-    //number_input.addEventListener("keypress", validate_int(0))
+
+    inc_button.addEventListener("input", disallowInvalidChars(inc_button))
+    dec_button.addEventListener("input", disallowInvalidChars(dec_button))
+    number_input.addEventListener("input", disallowInvalidChars(number_input))
 }
