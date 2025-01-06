@@ -56,7 +56,6 @@ function generateStarRating($voto)
 
         <script>
             const isLoggedIn = <?php echo json_encode(isLoggedIn()) ?>;
-            const isLoggedIn = <?php echo json_encode(isLoggedIn()) ?>;
         </script>
         <!-- carrello -->
         <div class="d-grid gap-2 w-100">
