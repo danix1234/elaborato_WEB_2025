@@ -4,7 +4,12 @@ VALUES ('admin', '$2y$10$3TVwpYu41fudJSgJVFf3FOgXn/RQspOUtpBXwAbd7vVBXKybbosHS',
 
 -- Insert Normal User
 INSERT INTO UTENTE (nomeUtente, password, email, privilegi, indirizzo, disabilitato, citta)
-VALUES ('normaluser', '$2y$10$XzGO/2cpEPf1nTT4k9FgKeyot4IbxNABOJkS1NGyNO8McbTnr/75y', 'u@es.com', 0, 'pw=user', 0, 'User City');
+VALUES ('normaluser', '$2y$10$XzGO/2cpEPf1nTT4k9FgKeyot4IbxNABOJkS1NGyNO8McbTnr/75y', 'u@es.com', 0, 'pw=user', 0, 'User City'),
+('testRecensione', 'no', '1@es.com', 0, 'pw=user', 0, 'User City'),
+('testRecensione', 'no', '2@es.com', 0, 'pw=user', 0, 'User City'),
+('testRecensione', 'no', '3@es.com', 0, 'pw=user', 0, 'User City'),
+('testRecensione', 'no', '4@es.com', 0, 'pw=user', 0, 'User City'),
+('testRecensione', 'no', '5@es.com', 0, 'pw=user', 0, 'User City');
 
 -- Insert Categories
 INSERT INTO CATEGORIA (nome, descrizione)
@@ -72,11 +77,77 @@ VALUES
 ('Your order is pending', 'Order', 0, '2024-12-02 10:00:00', (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
 ('Your order has been deleted', 'Order', 0, '2024-12-03 10:00:00', (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com'));
 
--- Insert Reviews
-INSERT INTO RECENSIONE (codUtente, codProdotto, votoRecensione, commento, dataRecensione) 
-VALUES
-(2, 1, 5, 'Great product, highly recommend!', '2023-10-01 10:30:00'),
-(2, 1, 3, 'Average quality, could be better.', '2023-10-02 14:45:00'),
-(2, 1, 5, 'Excellent! Exceeded my expectations.', '2023-10-03 09:20:00'),
-(2, 1, 2, 'Not satisfied with the product.', '2023-10-04 16:10:00'),
-(2, 1, 4, 'Good value for the price.', '2023-10-05 11:00:00');
+create table temp (
+     review varchar(511) not null,
+     rating int not null,
+     constraint ID_TEMP_ID primary key (review));
+
+INSERT INTO temp (rating, review)
+VALUES 
+(5,'Great product!'),
+(1,'Not satisfied with the quality.'),
+(5,'Excellent customer service.'),
+(4,'Will buy again.'),
+(5,'Highly recommend this product.'),
+(4,'Good product.'),
+(3,'Average product.'),
+(2,'Not so good.'),
+(1,'Bad product.'),
+(5,'Excellent!'),
+(4,'Very good!'),
+(3,'It is okay.'),
+(2,'Could be better.'),
+(1,'Terrible, not recommended.'),
+(4,'Good value for the price'),
+(1,'Terrible customer service'),
+(5,'Amazing battery life on this phone.'),
+(5,'The laptop is super fast and reliable.'),
+(5,'Camera quality is outstanding.'),
+(5,'The screen resolution is crystal clear.'),
+(4,'Very lightweight and portable.'),
+(2,'The phone overheats quickly.'),
+(3,'The laptop keyboard is very comfortable.'),
+(4,'The sound quality is top-notch.'),
+(2,'The phone has a sleek design.'),
+(5,'The computer runs all my programs smoothly.');
+
+DROP PROCEDURE IF EXISTS loopReview;
+
+DELIMITER $$
+
+CREATE PROCEDURE loopReview(IN userId INT, IN maxProducts INT)
+BEGIN
+    DECLARE counter INT DEFAULT 1;
+    DECLARE randomRating INT;
+    DECLARE randomComment VARCHAR(511);
+    DECLARE randomDate DATE;
+
+    my_loop: LOOP
+    
+        SET randomDate = DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 365) DAY);
+        
+        SELECT review, rating INTO randomComment, randomRating
+			FROM temp
+			ORDER BY RAND()
+			LIMIT 1;
+		INSERT INTO RECENSIONE (codUtente, codProdotto, votoRecensione, commento, dataRecensione)
+		VALUES (userId, counter, randomRating, randomComment, randomDate);
+
+        SET counter = counter + 1;
+
+        IF counter > maxProducts THEN
+            LEAVE my_loop;
+        END IF;
+    END LOOP;
+END$$
+
+DELIMITER ;
+
+CALL loopReview(3, 14);
+CALL loopReview(4, 14);
+CALL loopReview(5, 14);
+CALL loopReview(6, 14);
+CALL loopReview(7, 14);
+
+DROP PROCEDURE IF EXISTS loopReview;
+DROP TABLE IF EXISTS temp;

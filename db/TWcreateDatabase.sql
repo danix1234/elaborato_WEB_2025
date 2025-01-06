@@ -47,13 +47,12 @@ create table NOTIFICA (
      constraint ID_NOTIFICA_ID primary key (codNotifica));
 
 create table RECENSIONE (
-     codRecensione int not null auto_increment,
      codUtente int not null,
      codProdotto int not null,
      votoRecensione int not null,
      commento varchar(511) not null,
      dataRecensione datetime not null,
-     constraint ID_RECENSIONE_ID primary key (codRecensione));
+     constraint ID_RECENSIONE_ID primary key (codUtente, codProdotto));
 
 create table ORDINE (
      codOrdine int not null auto_increment,
@@ -153,8 +152,8 @@ create unique index ID_NOTIFICA_IND
 create index FKpossiede__IND
      on NOTIFICA (codUtente);
 
-create index FKscrive_IND
-     on RECENSIONE (codUtente);
+create unique index ID_RECENSIONE_IND
+     on RECENSIONE (codUtente, codProdotto);
 
 create index FKriceve_IND
      on RECENSIONE (codProdotto);
