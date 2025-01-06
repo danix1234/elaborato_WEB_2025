@@ -5,11 +5,11 @@ VALUES ('admin', '$2y$10$3TVwpYu41fudJSgJVFf3FOgXn/RQspOUtpBXwAbd7vVBXKybbosHS',
 -- Insert Normal User
 INSERT INTO UTENTE (nomeUtente, password, email, privilegi, indirizzo, disabilitato, citta)
 VALUES ('normaluser', '$2y$10$XzGO/2cpEPf1nTT4k9FgKeyot4IbxNABOJkS1NGyNO8McbTnr/75y', 'u@es.com', 0, 'pw=user', 0, 'User City'),
-('testRecensione', 'no', '1@es.com', 0, 'pw=user', 0, 'User City'),
-('testRecensione', 'no', '2@es.com', 0, 'pw=user', 0, 'User City'),
-('testRecensione', 'no', '3@es.com', 0, 'pw=user', 0, 'User City'),
-('testRecensione', 'no', '4@es.com', 0, 'pw=user', 0, 'User City'),
-('testRecensione', 'no', '5@es.com', 0, 'pw=user', 0, 'User City');
+('testRecensione1', 'no', '1@es.com', 0, 'pw=user', 0, 'User City'),
+('testRecensione2', 'no', '2@es.com', 0, 'pw=user', 0, 'User City'),
+('testRecensione3', 'no', '3@es.com', 0, 'pw=user', 0, 'User City'),
+('testRecensione4', 'no', '4@es.com', 0, 'pw=user', 0, 'User City'),
+('testRecensione5', 'no', '5@es.com', 0, 'pw=user', 0, 'User City');
 
 -- Insert Categories
 INSERT INTO CATEGORIA (nome, descrizione)
