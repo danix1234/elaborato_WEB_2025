@@ -1,19 +1,23 @@
 <?php
-
 $prodotto = $templateParams["prodotto"];
-function generateStarRating($voto)
+function generateStarRating($voto, $extraClass = "", $dataValue = null)
 {
     $votoInt = intval(floor($voto));
     $votoDec = intval(($voto - $votoInt) * 10);
     $output = "";
     for ($i = 1; $i <= 5; $i++) {
+        $output .= "<span class= '" . $extraClass;
         if ($i <= $votoInt) {
-            $output .= '<span class="bi bi-star-fill text-custom-lgold"></span>';
+            $output .= " bi bi-star-fill text-custom-lgold'";
         } elseif ($i == $votoInt + 1 && $votoDec >= 5) {
-            $output .= '<span class="bi bi-star-half text-custom-lgold"></span>';
+            $output .= " bi bi-star-half text-custom-lgold'";
         } else {
-            $output .= '<span class="bi bi-star text-custom-lgold"></span>';
+            $output .= " bi bi-star text-custom-lgold'";
         }
+        if (!empty($dataValue)) {
+            $output .= " data-value='" . $dataValue[$i - 1] . "'";
+        }
+        $output .= "></span>";
     }
     return $output;
 } ?>
@@ -119,22 +123,28 @@ function generateStarRating($voto)
             <div class="d-flex align-items-center">
                 <div>
                     <label class="form-label">Voto Recensione: </label>
-                    <span class="star bi bi-star-fill text-custom-lgold" data-value="1"></span><span
-                        class="star bi bi-star text-custom-lgold" data-value="2"></span><span
-                        class="star bi bi-star text-custom-lgold" data-value="3"></span><span
-                        class="star bi bi-star text-custom-lgold" data-value="4"></span><span
-                        class="star bi bi-star text-custom-lgold" data-value="5"></span>
-                    <input type="hidden" id="votoRecensione" name="votoRecensione" value="1">
+                    <?php
+                    $dataValue = array("1", "2", "3", "4", "5");
+                    $votoRecensione = empty($templateParams["recensionePrecedente"]) ? 1 : $templateParams["recensionePrecedente"]["votoRecensione"];
+                    echo generateStarRating(
+                        $votoRecensione,
+                        "star-rating",
+                        $dataValue
+                    ); ?>
+                    <input type="hidden" id="votoRecensione" name="votoRecensione"
+                        value="<?php echo $votoRecensione; ?>">
                 </div>
             </div>
             <div class="mb-3">
                 <label for="commento" class="form-label">Commento</label>
-                <textarea class="form-control" id="commento" name="commento" rows="3" maxlength="512"
-                    required></textarea>
+                <textarea class="form-control" id="commento" name="commento" rows="3" maxlength="512" required><?php
+                $commento = empty($templateParams["recensionePrecedente"]) ? "" : $templateParams["recensionePrecedente"]["commento"];
+                echo $commento ?></textarea>
             </div>
             <div class="d-flex mb-3">
                 <?php if (isLoggedIn()) { ?>
-                    <button type="submit" class="btn btn-custom-lgold">Invia Recensione</button>
+                    <button type="submit"
+                        class="btn btn-custom-lgold"><?php echo empty($templateParams["recensionePrecedente"]) ? "Invia Recensione" : "Modifica Recensione" ?></button>
                 <?php } else { ?>
                     <a href="sign-in.php" class="btn btn-custom-lgold">Accedi per scrivere una recensione</a>
                 <?php } ?>

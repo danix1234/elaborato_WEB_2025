@@ -38,7 +38,7 @@ buttonBuyNow.addEventListener("click", function () {
 });
 
 // star rating
-const stars = document.getElementsByClassName("star");
+const stars = document.getElementsByClassName("star-rating");
 const votoRecensione = document.getElementById("votoRecensione");
 
 for (let i = 0; i < stars.length; i++) {

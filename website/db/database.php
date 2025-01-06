@@ -466,7 +466,7 @@ class DatabaseHelper
                     VALUES(?, ?, ?)";
         return $this->parametrizedNoresultQuery($query, "iii", $orderId, $productId, $quantity);
     }
-    public function hasboughtProduct($userId, $productId)
+    public function hasBoughtProduct($userId, $productId)
     {
         $query = "SELECT *
                     FROM ORDINE O, DETTAGLIO_ORDINE D
@@ -477,11 +477,25 @@ class DatabaseHelper
         $result = $this->parametrizedQuery($query, "ii", $userId, $productId);
         return !empty($result);
     }
+    public function getUserReviewByProductId($userId, $productId)
+    {
+        $query = "SELECT * FROM RECENSIONE
+                    WHERE codUtente = ?
+                    AND codProdotto = ?";
+        return $this->parametrizedQuery($query, "ii", $userId, $productId);
+    }
     public function insertReview($userId, $productId, $vote, $comment)
     {
         $query = "INSERT INTO RECENSIONE(codUtente, codProdotto, votoRecensione, commento, dataRecensione)
                     VALUES(?, ?, ?, ?, NOW())";
         return $this->parametrizedNoresultQuery($query, "iiis", $userId, $productId, $vote, $comment);
+    }
+    public function updateReview($userId, $productId, $vote, $comment)
+    {
+        $query = "UPDATE RECENSIONE
+        SET votoRecensione = ?, commento = ?, dataRecensione = NOW()
+        WHERE codUtente = ? AND codProdotto = ?";
+        return $this->parametrizedNoresultQuery($query, "isii", $vote, $comment, $userId, $productId);
     }
     public function updateUserPassword($userId, $newPassword)
     {
