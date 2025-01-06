@@ -28,6 +28,7 @@ for (const number_input of document.getElementsByClassName("button-custom-quanti
     // we do some currying, and make the function local
     let validate = function(amount) {
         return function() {
+
             const prevval_str = number_input.value
             const prev_val = parseInt(number_input.value)
             if (!prev_val && number_input.value !== "0") {
@@ -47,7 +48,11 @@ for (const number_input of document.getElementsByClassName("button-custom-quanti
 
     function disallowInvalidChars(element) {
         return function() {
+            const cursorStart = number_input.selectionStart
+            const cursorEnd = number_input.selectionEnd
             element.value = element.value.replace(/[^0-9]/g, '')
+            number_input.selectionStart = cursorStart
+            number_input.selectionEnd = cursorEnd
         }
     }
 

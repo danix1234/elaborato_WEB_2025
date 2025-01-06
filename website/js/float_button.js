@@ -4,14 +4,12 @@ for (const float_input of document.getElementsByClassName("button-custom-float")
 
     function disallowInvalidChars(element) {
         return function() {
-            console.log(element.value)
             const cursorStart = element.selectionStart
             const cursorEnd = element.selectionEnd
 
             let value = element.value.replace(/[^0-9.]/g, '')
             let parts = value.split('.');
             value = parts[0] + (parts.length > 1 ? '.' + parts.slice(1).join('') : '')
-
             parts = value.split('.')
             value = (parts.length > 1 && parts[1].length > 2) ? (parts[0] + '.' + parts[1].slice(0, 2)) : (value)
 
