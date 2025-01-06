@@ -1,12 +1,17 @@
 <?php
 require_once("bootstrap.php");
 
-if (!empty($_POST["password"])){
+if (!empty($_POST["password"])) {
     $password = $_POST["password"];
     $user = $dbh->getUserbyUserId(getCurrentUserId())[0];
     $hash = $user["password"];
-    if (password_verify($password, $hash)){
-        header("Location: utente-modifica.php");
+    if (password_verify($password, $hash)) {
+        $redirect = $_GET["redirect"];
+        if ($redirect === "modifica-dati") {
+            header("Location: utente-modifica.php");
+        } else if ($redirect === "modifica-password") {
+            header("Location: utente-modifica-password.php");
+        }
     } else {
         $templateParams["errore"] = "Password errata.";
     }

@@ -26,8 +26,9 @@
                     <button type="submit" class="btn btn-custom-lgold">Conferma</button>
                 </div>
             <?php } else { ?>
-                <div class="d-grid">
-                    <a href="conferma-password.php" class="btn btn-custom-lgold">Modifica dati</a>
+                <div class="d-grid gap-3">
+                    <a href="conferma-password.php?redirect=modifica-dati" class="btn btn-custom-lgold">Modifica dati</a>
+                    <a href="conferma-password.php?redirect=modifica-password" class="btn btn-custom-lgold">Modifica password</a>
                 </div>
             <?php } ?>
         </form>
