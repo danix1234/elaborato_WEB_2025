@@ -44,9 +44,9 @@ function generateStarRating($voto)
             <label for="<?php echo $prodotto['codProdotto']; ?>" class="form-label m-0 me-2">Quantita'</label>
             <div class="input-group">
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement">-</button>
-                <input class="form-control button-custom-quantity" value="1" type="number"
+                <input class="form-control button-custom-quantity" value="1" type="text"
                     name="<?php echo $prodotto['codProdotto']; ?>" id="<?php echo $prodotto['codProdotto']; ?>"
-                    max="<?php echo $prodotto['quantitaResidua']; ?>" min="1" required />
+                    required />
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment">+</button>
                 <span class="visually-hidden">1</span>
                 <span class="visually-hidden"><?php echo $prodotto['quantitaResidua']; ?></span>
