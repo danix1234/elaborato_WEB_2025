@@ -5,13 +5,24 @@ if (!isset($_GET["productId"])) {
     die("productId not set!");
 }
 
+setPreviousPage(basename($_SERVER['REQUEST_URI']));
+
 $productId = intval($_GET["productId"]);
+
+$recensionePrecedente = $dbh->getUserReviewByProductId(getCurrentUserId(), $productId);
+
 if (!empty($_POST["votoRecensione"]) && !empty($_POST["commento"])) {
-    if ($dbh->hasboughtProduct(getCurrentUserId(), $productId)){
+    if ($dbh->hasBoughtProduct(getCurrentUserId(), $productId)) {
         $commento = $_POST["commento"];
         $votoRecensione = $_POST["votoRecensione"];
-        $dbh->insertReview(getCurrentUserId(), $productId, $votoRecensione, $commento);
-    }else{
+
+        if (empty($recensionePrecedente)) {
+            $dbh->insertReview(getCurrentUserId(), $productId, $votoRecensione, $commento);
+        } else {
+            $dbh->updateReview(getCurrentUserId(), $productId, $votoRecensione, $commento);
+        }
+        $recensionePrecedente = $dbh->getUserReviewByProductId(getCurrentUserId(), $productId);
+    } else {
         $templateParams["erroreRecensione"] = "Devi acquistare il prodotto per poter recensire!";
     }
 }
@@ -32,9 +43,12 @@ if (empty($templateParams["prodotto"])) {
     die("Prodotto non trovato!");
 }
 
+if (!empty($recensionePrecedente)){
+    $templateParams["recensionePrecedente"] = $recensionePrecedente[0];
+}
 $templateParams["titolo"] = $templateParams["prodotto"]["nome"];
 $templateParams["nome"] = "template-prodotto.php";
-$templateParams["scripts"] = array("js/number_button.js", "js/more-review.js", "js/product-buttons.js", "js/star-rating.js");
+$templateParams["scripts"] = array("js/number_button.js", "js/more-review.js", "js/product-buttons.js");
 
 require("template/base.php");
 ?>

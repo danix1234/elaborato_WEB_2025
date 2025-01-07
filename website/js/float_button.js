@@ -2,7 +2,23 @@ for (const float_input of document.getElementsByClassName("button-custom-float")
     let min = 0
     let max = 10000
 
-    // we do some currying
+    function disallowInvalidChars(element) {
+        return function() {
+            const cursorStart = element.selectionStart
+            const cursorEnd = element.selectionEnd
+
+            let value = element.value.replace(/[^0-9.]/g, '')
+            let parts = value.split('.');
+            value = parts[0] + (parts.length > 1 ? '.' + parts.slice(1).join('') : '')
+            parts = value.split('.')
+            value = (parts.length > 1 && parts[1].length > 2) ? (parts[0] + '.' + parts[1].slice(0, 2)) : (value)
+
+            element.value = value
+            element.selectionStart = cursorStart
+            element.selectionEnd = cursorEnd
+        }
+    }
+
     let validate = function() {
         return function() {
             float_input.value = float_input.value.trim()
@@ -16,9 +32,8 @@ for (const float_input of document.getElementsByClassName("button-custom-float")
         }
     }
 
-    // if we want to disable writing wrong things inside input field
-    //float_input.addEventListener("input", validate_float())
-    //float_input.addEventListener("paste", validate_float())
     float_input.addEventListener("change", validate())
-    //float_input.addEventListener("keypress", validate_float())
+    float_input.addEventListener("input", disallowInvalidChars(float_input))
+
+    float_input.setAttribute("inputmode", "decimal")
 }

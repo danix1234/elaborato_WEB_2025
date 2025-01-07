@@ -16,7 +16,12 @@ if (!isset($_GET["toggleuser"])) {
     if (isset($_POST["privileges"])) {
         $dbh->updateUserPrivilegies(intval($_GET["userId"]), intval($_POST["privileges"] == "Admin"));
     }
-    $location = "../utente-modifica.php?userId=" . $_GET["userId"];
+    if (!empty($_POST["new-password"])) {
+        $password = $_POST["new-password"];
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+        $dbh->updateUserPassword(intval($_GET["userId"]), $hash);
+    }
+    $location = "../utente-modifica.php"; //?userId=" . $_GET["userId"]; Non serve by franco
 } else {
     if (!isAdmin()) {
         die('ptff, you are barely a StAndArd user! Come back when you have some admin powers, you noob!!!');

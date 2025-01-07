@@ -23,7 +23,7 @@ if (!isset($_GET["productId"])) {
     // insert product
     $dbh->addProduct($_POST["name"], $_POST["description"], intval($_POST["quantity"]), floatval($_POST["price"]), $msg, intval($_POST["category"]));
     $redirect .= $dbh->getLatestProduct()[0]["codProdotto"];
-} else if (!isset($_GET["delete"])) {
+} else if (!isset($_GET["toggle"])) {
     // modify product
     $dbh->updateProduct(intval($_GET["productId"]), $_POST["name"], $_POST["description"], intval($_POST["quantity"]), floatval($_POST["price"]), intval($_POST["category"]));
     $redirect .= $_GET["productId"];
@@ -31,7 +31,9 @@ if (!isset($_GET["productId"])) {
         $product = $dbh->getProduct(intval($_GET["productId"]));
         $dbh->updateProductImg(intval($_GET["productId"]), $msg);
         if (sizeof($product) != 0 && sizeof($dbh->isImageUsed($product[0]["immagine"])) != 0) {
-            unlink($uploadDir . $product[0]["immagine"]);
+            if (str_starts_with($product[0]["immagine"], "uploaded")) {
+                unlink($uploadDir . $product[0]["immagine"]);
+            }
         }
     }
 } else {

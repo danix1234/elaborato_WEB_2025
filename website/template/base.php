@@ -8,6 +8,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" type="image/png" href="./img/logo.jpg" />
 
     <title>Nostro Sito<?php
     if (isset($templateParams["titolo"])) {
@@ -18,7 +19,6 @@
 
 <body class="bg-white">
     <?php
-    require_once("bootstrap.php");
     if (isLoggedIn()) {
         $user = $dbh->getUserbyUserId(getCurrentUserId());
         $ban = boolval($user[0]["disabilitato"]);
@@ -38,18 +38,23 @@
         <div class="row align-items-center justify-content-between mx-1">
             <!-- Logo -->
             <div class="col-3 col-md-2 col-lg-1 order-1">
-                <a href="<?php checkFile('search.php'); ?>"><img src="./img/temp.jpg" class="img-fluid"
-                        alt="Logo" /></a>
+                <a href="<?php checkFile('search.php'); ?>"><img src="<?php echo UPLOAD_DIR; ?>logo.jpg"
+                        class="img-fluid w-25" alt="Logo" /></a>
             </div>
 
             <!-- search bar -->
-            <div class="col-12 col-md-6 col-lg-8 mt-2 mt-md-0 order-4 order-md-2">
-                <form method="get" action="search.php" id="searchForm">
+            <div class="col-12 col-md-6 col-lg-7 mt-2 mt-md-0 order-4 order-md-2">
+                <form method="get" action="search.php" id="searchForm" autocomplete="off">
                     <div class="input-group">
                         <label for="searchBar" class="visually-hidden form-label">Cerca</label>
                         <input name="searchBar" id="searchBar" type="search"
-                            class="form-control rounded-start border border-0" placeholder="Cerca" />
-
+                            class="form-control rounded-start border border-0" placeholder="Cerca"
+                            list="list-products" />
+                        <datalist id="list-products">
+                            <?php foreach ($products as $product): ?>
+                                <option><?php echo $product["nome"]; ?></option>
+                            <?php endforeach; ?> 
+                        </datalist>
                         <!-- category bar -->
                         <label for="categoryBar" class="visually-hidden form-label">Categorie</label>
                         <select id="categoryBar" name="codCategoria"
@@ -65,6 +70,7 @@
                         <button type="submit" class="btn btn-custom-lgold rounded-end">
                             <span class="bi bi-search"></span>
                         </button>
+                        <div id="suggestions" class="list-group z-3 w-100"></div>
                     </div>
                 </form>
 
@@ -73,19 +79,19 @@
             <!-- log in -->
             <div class="col-5 col-md-2 text-center order-2 order-md-3">
                 <a href="<?php checkFile('sign-in.php'); ?>" title="accedi"
-                    class="link-light link-opacity-50-hover text-decoration-none">Ciao, <?php if (isLoggedIn()) {
-                        echo getCurrentUserName();
-                    } else {
-                        echo "Accedi";
-                    } ?></a>
+                    class="link-light link-opacity-50-hover text-decoration-none">Ciao,
+                    <?php echo isLoggedIn() ? getCurrentUserName() : "Accedi" ?></a>
             </div>
 
             <!-- icons -->
-            <div class="col-4 col-md-2 col-lg-1 d-flex align-items-center order-3 order-md-4 justify-content-center">
+            <div class="col-4 col-md-2 d-flex align-items-center order-3 order-md-4 justify-content-center">
                 <div class="w-100 d-flex justify-content-around">
                     <?php if (isAdmin()): ?>
+
                         <a href="<?php checkFile('admin-prodotto.php'); ?>" title="aggiungi prodotto"
                             class="link-light link-opacity-50-hover"><span class="bi bi-database-add"></span></a>
+                        <a href="<?php checkFile('prodotti.php'); ?>" title="modifica prodotti"
+                            class="link-light link-opacity-50-hover"><span class="bi bi-database-gear"></span></a>
                         <a href="<?php checkFile('utenti.php'); ?>" title="ban utenti"
                             class="link-light link-opacity-50-hover"><span class="bi bi-ban"></span></a>
                     <?php endif; ?>
@@ -121,7 +127,7 @@
         }
     }
     ?>
-    <!-- <script src="js/suggestion-bar.js"></script> TODO: sugggestion bar -->
+    <!-- <script src="js/suggestion-bar.js"></script> -->
 </body>
 
 </html>

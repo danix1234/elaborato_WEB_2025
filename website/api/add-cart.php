@@ -3,7 +3,7 @@ require_once ("../bootstrap.php");
 
 if (!isLoggedIn()) {
     die("not currently logged in!");
-} elseif (!isset($_GET["productId"]) || !isset($_GET["quantity"])) {
+} elseif (empty($_GET["productId"]) || empty($_GET["quantity"])) {
     die("product id and/or quantity not passed via GET method!");
 }
 $productId = intval($_GET["productId"]);

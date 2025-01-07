@@ -1,7 +1,7 @@
 <div class="row justify-content-center mx-1">
     <div class="col-12 col-md-6 col-lg-4 border rounded p-3">
         <form action="<?php echo $templateParams['action']; ?>" method="POST">
-            <h2 class="text-center fw-bold mb-2"><?php echo $templateParams["tipo"]; ?></h2>
+            <h1 class="text-center fw-bold mb-2"><?php echo $templateParams["tipo"]; ?></h1>
             <?php if (isset($templateParams["erroresign"])): ?>
                 <div class="text-danger mb-3">
                     <?php echo $templateParams["erroresign"] ?>
@@ -9,16 +9,20 @@
             <?php endif; ?>
 
             <?php if (!empty($templateParams["fields"])): ?>
-                <?php foreach ($templateParams["fields"] as $field): ?>
+                <?php for ($i = 0; $i < count($templateParams["fields"]); $i++) { ?>
 
-                    <div class="mb-3">
-                        <label for="<?php echo $field; ?>" class="visually-hidden"><?php echo $field; ?></label>
-                        <input type="<?php echo $field === 'password' ? 'password' : 'text'; ?>" id="<?php echo $field; ?>"
-                            name="<?php echo $field; ?>" class="form-control" placeholder="<?php echo $field; ?>"
-                            <?php echo isLoggedIn() ? "disabled" : "" ?>
-                            value="<?php echo isLoggedIn() ? $field : '' ?>" required />
+                    <div class="mb-2">
+                        <label for="<?php echo $templateParams["fields"][$i]; ?>"
+                            class="visually-hidden"><?php echo $templateParams["fields"][$i]; ?></label>
+                        <input type="<?php echo $templateParams["fields"][$i] === "password" ? "password" : "text"; ?>"
+                            id="<?php echo $templateParams["fields"][$i]; ?>"
+                            name="<?php echo $templateParams["fields"][$i]; ?>" class="form-control"
+                            placeholder="<?php echo isLoggedIn() ? "" : $templateParams["placeHolder"][$i]; ?>"
+                            value="<?php echo isLoggedIn() ? $templateParams["value"][$i] : "" ?>" required
+                            <?php echo isLoggedIn()? "disabled" : ""?> />
                     </div>
-                <?php endforeach; ?>
+
+                <?php } ?>
             <?php endif; ?>
 
             <?php if (!isLoggedIn()) { ?>
@@ -26,8 +30,10 @@
                     <button type="submit" class="btn btn-custom-lgold">Conferma</button>
                 </div>
             <?php } else { ?>
-                <div class="d-grid">
-                    <a href="utente-modifica.php" class="btn btn-custom-lgold">Modifica dati</a>
+                <div class="d-grid gap-2">
+                    <a href="conferma-password.php?redirect=modifica-dati" class="btn btn-custom-lgold">Modifica dati</a>
+                    <a href="conferma-password.php?redirect=modifica-password" class="btn btn-custom-lgold">Modifica
+                        password</a>
                 </div>
             <?php } ?>
         </form>

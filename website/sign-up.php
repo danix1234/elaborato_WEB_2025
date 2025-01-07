@@ -1,8 +1,8 @@
 <?php
 require_once("bootstrap.php");
-$previousURL = isset($_SERVER["HTTP_REFERER"]) ? basename($_SERVER["HTTP_REFERER"]) : "search.php";
-if (!str_contains($_SERVER["HTTP_REFERER"], "sign")) {
-    setPreviousPage($previousURL);
+
+if (empty($_SESSION["previousPage"])) {
+    setPreviousPage("search.php");
 }
 
 if (
@@ -38,6 +38,13 @@ $templateParams["nome"] = "template-sign.php";
 $templateParams["action"] = "sign-up.php";
 $templateParams["tipo"] = "Registrazione";
 $templateParams["fields"] = array("nome", "email", "password", "indirizzo", "citta");
+$templateParams["placeHolder"] = array(
+    "Nome",
+    "Email: es. Mario.Rossi@example.com",
+    "Password",
+    "Indirizzo: es. Via Emilia",
+    "Citta': es. Cesena"
+);
 $templateParams["redirect"] = "Hai gia' un account? Accedi!";
 $templateParams["redirect-link"] = "sign-in.php";
 require("template/base-sign.php");

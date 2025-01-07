@@ -3,9 +3,9 @@ class DatabaseHelper
 {
     private $db;
 
-    public function __construct($servername, $username, $password, $dbname, $port)
+    public function __construct()
     {
-        $this->db = new mysqli($servername, $username, $password, $dbname, $port);
+        $this->db = new mysqli("localhost", "root", "", "twdatabase", 3306);
 
         if ($temp = $this->db->connect_error) {
             die("Connection failed: " . $temp);
@@ -100,7 +100,7 @@ class DatabaseHelper
     public function disableProduct($productId)
     {
         $query = 'UPDATE PRODOTTO
-                    SET disabilitato = true, quantitaResidua = 0
+                    SET disabilitato = NOT disabilitato
                     WHERE codProdotto = ?';
         return $this->parametrizedNoresultQuery($query, "i", $productId);
     }
@@ -211,7 +211,16 @@ class DatabaseHelper
     public function getAllUsers()
     {
         $query = 'SELECT *
-                    FROM UTENTE';
+                    FROM UTENTE
+                    ORDER BY codUtente';
+        return $this->simpleQuery($query);
+    }
+    public function getAllProductsEvenDisabled()
+    {
+        $query = 'SELECT *, P.nome AS nome, P.descrizione AS descrizione, C.nome AS nomeCategoria
+                    FROM PRODOTTO P, CATEGORIA C
+                    WHERE P.codCategoria = C.codCategoria
+                    ORDER BY P.codProdotto';
         return $this->simpleQuery($query);
     }
     // ↑↑↑ LAST DANIELE QUERY ↑↑↑
@@ -457,7 +466,7 @@ class DatabaseHelper
                     VALUES(?, ?, ?)";
         return $this->parametrizedNoresultQuery($query, "iii", $orderId, $productId, $quantity);
     }
-    public function hasboughtProduct($userId, $productId)
+    public function hasBoughtProduct($userId, $productId)
     {
         $query = "SELECT *
                     FROM ORDINE O, DETTAGLIO_ORDINE D
@@ -468,11 +477,32 @@ class DatabaseHelper
         $result = $this->parametrizedQuery($query, "ii", $userId, $productId);
         return !empty($result);
     }
+    public function getUserReviewByProductId($userId, $productId)
+    {
+        $query = "SELECT * FROM RECENSIONE
+                    WHERE codUtente = ?
+                    AND codProdotto = ?";
+        return $this->parametrizedQuery($query, "ii", $userId, $productId);
+    }
     public function insertReview($userId, $productId, $vote, $comment)
     {
         $query = "INSERT INTO RECENSIONE(codUtente, codProdotto, votoRecensione, commento, dataRecensione)
                     VALUES(?, ?, ?, ?, NOW())";
         return $this->parametrizedNoresultQuery($query, "iiis", $userId, $productId, $vote, $comment);
+    }
+    public function updateReview($userId, $productId, $vote, $comment)
+    {
+        $query = "UPDATE RECENSIONE
+        SET votoRecensione = ?, commento = ?, dataRecensione = NOW()
+        WHERE codUtente = ? AND codProdotto = ?";
+        return $this->parametrizedNoresultQuery($query, "isii", $vote, $comment, $userId, $productId);
+    }
+    public function updateUserPassword($userId, $newPassword)
+    {
+        $query = "UPDATE UTENTE
+                    SET password = ?
+                    WHERE codUtente = ?";
+        return $this->parametrizedNoresultQuery($query, "si", $newPassword, $userId);
     }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }

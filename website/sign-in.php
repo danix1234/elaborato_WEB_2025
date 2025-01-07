@@ -1,8 +1,8 @@
 <?php
 require_once("bootstrap.php");
-$previousURL = isset($_SERVER["HTTP_REFERER"]) ? basename($_SERVER["HTTP_REFERER"]) : "search.php";
-if (!str_contains($_SERVER["HTTP_REFERER"], "sign")) {
-    setPreviousPage($previousURL);
+
+if (empty($_SESSION["previousPage"])) {
+    setPreviousPage("search.php");
 }
 
 if (!empty($_POST["email"]) && !empty($_POST["password"])) {
@@ -30,12 +30,12 @@ if (isLoggedIn()) {
     $templateParams["titolo"] = "Il tuo Account";
     $templateParams["tipo"] = "Il tuo Account";
     $userData = $dbh->getUserbyUserId(getCurrentUserId())[0];
-    $fields = array("Nome Utente: ", "Email: ", "Indirizzo: ", "Citta': ");
-    $templateParams["fields"] = array(
-        $fields[0] . $userData["nomeUtente"],
-        $fields[1] . $userData["email"],
-        $fields[2] . $userData["indirizzo"],
-        $fields[3] . $userData["citta"]
+    $templateParams["fields"] = array("nome", "email", "indirizzo", "citta'");
+    $templateParams["value"] = array(
+        "Nome Utente: " . $userData["nomeUtente"],
+        "Email: " . $userData["email"],
+        "Indirizzo: ". $userData["indirizzo"],
+        "Citta': ". $userData["citta"]
     );
     $templateParams["redirect"] = "Esci dal tuo Account";
     if (isset($_GET["logout"]) && $_GET["logout"] == true) {
@@ -46,6 +46,7 @@ if (isLoggedIn()) {
     $templateParams["titolo"] = "Accedi";
     $templateParams["tipo"] = "Accedi";
     $templateParams["fields"] = array("email", "password");
+    $templateParams["placeHolder"] = array("Email: es. Mario.Rossi@example.com", "Password");
     $templateParams["redirect"] = "Sei nuovo? Registrati!";
     $templateParams["redirect-link"] = "sign-up.php";
 }

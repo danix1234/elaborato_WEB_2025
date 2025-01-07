@@ -11,9 +11,9 @@
 <form class="mx-md-4 mx-1 mt-md-4" action="api/manage_product.php?productId=<?php echo $_GET["productId"] ?>" method="post" enctype="multipart/form-data">
     <div class="row mb-4">
         <div class="col-md-6 pe-md-3">
-            <img class="img-fluid" src="<?php echo UPLOAD_DIR . $product["immagine"] ?>" init="<?php echo UPLOAD_DIR . $product["immagine"] ?>" alt="immagine descrittiva del prodotto" />
+            <img class="img-fluid" src="<?php echo UPLOAD_DIR . $product["immagine"] ?>" alt="immagine descrittiva del prodotto" />
             <label class="form-label visually-hidden" for="preview">Scegli Immagine </label>
-            <input class="form-control image-custom-preview" type="file" accept="image/*" name="preview"
+            <input class="form-control image-custom-preview mt-2" type="file" accept="image/*" name="preview"
                 id="preview" />
         </div>
         <div class="col-md-6 ps-md-3">
@@ -31,6 +31,9 @@
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement">-</button>
                 <input class="form-control button-custom-quantity" type="text" name="quantity" id="quantity" value="<?php echo $product["quantitaResidua"] ?>" required />
                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment">+</button>
+                <span class="visually-hidden"></span>
+                <span class="visually-hidden"></span>
+                <span class="visually-hidden"></span>
             </div>
             <label class="form-label" for="category">Categoria</label>
             <select class="form-select" id="category" name="category" required>
@@ -47,9 +50,9 @@
         </div>
     </div>
     <div class="row justify-content-evenly my-4">
-        <button class="btn btn-custom-lgold col-auto" type="button" id="insert">Inserisci</button>
         <button class="btn btn-custom-lgold col-auto" type="submit" id="submit">Modifica</button>
-        <button class="btn btn-danger col-auto" type="button" id="remove">Rimuovi</button>
         <button class="btn border btn-light col-auto" type="reset" id="reset">Annulla</button>
     </div>
 </form>
+
+<span class="visually-hidden" id="init"><?php echo UPLOAD_DIR . $product["immagine"] ?></span>
