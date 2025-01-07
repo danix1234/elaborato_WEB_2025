@@ -226,10 +226,10 @@ class DatabaseHelper
     public function notificationFromShippedOrder($orderId)
     {
         $query = 'INSERT INTO NOTIFICA(messaggio, tipoNotifica, letto, dataNotifica, codUtente)
-                    SELECT CONCAT("La spedizione dell\'Ordine del ", dataOrdine, " è avvenuta con successo!"), "Ordine", 0, dataConsegna, codUtente
+                    SELECT CONCAT("La spedizione dell\'Ordine #",?," del ", dataOrdine, " è avvenuta con successo!"), "Ordine", 0, dataConsegna, codUtente
                     FROM ORDINE
                     WHERE codOrdine = ? ';
-        return $this->parametrizedNoresultQuery($query, "i", $orderId);
+        return $this->parametrizedNoresultQuery($query, "ii", $orderId, $orderId);
     }
     public function getNotificationShippedButWithShippingState($userId)
     {
