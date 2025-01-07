@@ -49,11 +49,14 @@
                         <label for="searchBar" class="visually-hidden form-label">Cerca</label>
                         <input name="searchBar" id="searchBar" type="search"
                             class="form-control rounded-start border border-0" placeholder="Cerca"
-                            list="list-products" />
-                        <datalist id="list-products">
+                            list="list-suggestion" />
+                        <datalist id="list-suggestion">
                             <?php foreach ($products as $product): ?>
-                                <option><?php echo $product["nome"]; ?></option>
-                            <?php endforeach; ?> 
+                                <option value="<?php echo $product["nome"]; ?>"></option>
+                            <?php endforeach; ?>
+                            <?php foreach ($categories as $category): ?>
+                                <option value="<?php echo $category["nome"]; ?>"></option>
+                            <?php endforeach; ?>
                         </datalist>
                         <!-- category bar -->
                         <label for="categoryBar" class="visually-hidden form-label">Categorie</label>
@@ -61,16 +64,13 @@
                             class="form-select-md border border-0 d-none d-md-block">
                             <option value="">Tutte le categorie</option>
                             <?php foreach ($categories as $category): ?>
-                                <option value="<?php echo $category['codCategoria']; ?>">
-                                    <?php echo $category['nome']; ?>
-                                </option>
+                                <option value="<?php echo $category['codCategoria']; ?>"><?php echo $category['nome']; ?></option>
                             <?php endforeach; ?>
                         </select>
 
                         <button type="submit" class="btn btn-custom-lgold rounded-end">
                             <span class="bi bi-search"></span>
                         </button>
-                        <div id="suggestions" class="list-group z-3 w-100"></div>
                     </div>
                 </form>
 
@@ -127,7 +127,6 @@
         }
     }
     ?>
-    <!-- <script src="js/suggestion-bar.js"></script> -->
 </body>
 
 </html>
