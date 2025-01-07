@@ -223,6 +223,21 @@ class DatabaseHelper
                     ORDER BY P.codProdotto';
         return $this->simpleQuery($query);
     }
+    public function notificationFromShippedOrder($orderId)
+    {
+        $query = 'INSERT INTO NOTIFICA(messaggio, tipoNotifica, letto, dataNotifica, codUtente)
+                    SELECT CONCAT("La spedizione dell\'Ordine del ", dataOrdine, " è avvenuta con successo!"), "Ordine", 0, dataConsegna, codUtente
+                    FROM ORDINE
+                    WHERE codOrdine = ? ';
+        return $this->parametrizedNoresultQuery($query, "i", $orderId);
+    }
+    public function getNotificationShippedButWithShippingState($userId)
+    {
+        $query = "SELECT *
+                    FROM ORDINE
+                    WHERE CodUtente = ? AND dataConsegna < NOW() AND statoOrdine='Shipping'";
+        return $this->parametrizedQuery($query, "i", $userId);
+    }
     // ↑↑↑ LAST DANIELE QUERY ↑↑↑
 
     // ↓↓↓ FIRST GIUSEPPE QUERY ↓↓↓

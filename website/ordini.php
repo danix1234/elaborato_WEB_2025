@@ -8,6 +8,10 @@ if (!isLoggedIn()) {
 }
 
 // called here, to make sure the arrived orders are marked as shipped, before you get all the orders via a query!
+$orders = $dbh->getNotificationShippedButWithShippingState(getCurrentUserId());
+foreach ($orders as $order) {
+    $dbh->notificationFromShippedOrder(intval($order["codOrdine"]));
+}
 $dbh->updateOrdersState(getCurrentUserId());
 // NOTE: THIS QUERY MUST BE EXECUTED BEFORE DOING ANYTHING ELSE!
 
