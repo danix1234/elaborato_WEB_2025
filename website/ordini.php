@@ -7,13 +7,13 @@ if (!isLoggedIn()) {
     header("Location: sign-in.php");
 }
 
-// called here, to make sure the arrived orders are marked as shipped, before you get all the orders via a query!
+// SNIPPED OF CODE HANDLED BY Daniele: check if any order got shipped, and in such case, also send a notification
 $orders = $dbh->getNotificationShippedButWithShippingState(getCurrentUserId());
 foreach ($orders as $order) {
     $dbh->notificationFromShippedOrder(intval($order["codOrdine"]));
 }
 $dbh->updateOrdersState(getCurrentUserId());
-// NOTE: THIS QUERY MUST BE EXECUTED BEFORE DOING ANYTHING ELSE!
+// END OF SNIPPET OF CODE HANDLED BY Daniele!
 
 $templateParams["titolo"] = "Ordini";
 $templateParams["nome"] = "template-ordini.php";
