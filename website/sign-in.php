@@ -30,11 +30,13 @@ if (isLoggedIn()) {
     $templateParams["titolo"] = "Il tuo Account";
     $templateParams["tipo"] = "Il tuo Account";
     $userData = $dbh->getUserbyUserId(getCurrentUserId())[0];
-    $templateParams["fields"] = array("Nome", "Email", "Indirizzo", "Citta'");
-    $templateParams["Nome"] = $userData["nomeUtente"];
-    $templateParams["Email"] = $userData["email"];
-    $templateParams["Indirizzo"] = $userData["indirizzo"];
-    $templateParams["Citta'"] = $userData["citta"];
+    $templateParams["fields"] = array("nome", "email", "indirizzo", "citta'");
+    $templateParams["value"] = array(
+        "Nome Utente: " . $userData["nomeUtente"],
+        "Email: " . $userData["email"],
+        "Indirizzo: ". $userData["indirizzo"],
+        "Citta': ". $userData["citta"]
+    );
     $templateParams["redirect"] = "Esci dal tuo Account";
     if (isset($_GET["logout"]) && $_GET["logout"] == true) {
         session_unset();
@@ -44,6 +46,7 @@ if (isLoggedIn()) {
     $templateParams["titolo"] = "Accedi";
     $templateParams["tipo"] = "Accedi";
     $templateParams["fields"] = array("email", "password");
+    $templateParams["placeHolder"] = array("Email: es. Mario.Rossi@example.com", "Password");
     $templateParams["redirect"] = "Sei nuovo? Registrati!";
     $templateParams["redirect-link"] = "sign-up.php";
 }
