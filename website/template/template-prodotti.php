@@ -50,7 +50,9 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="row">
-                                        <h2>Prodotto #<?php echo $item["codProdotto"] ?></h2>
+                                        <a class="link-custom" href="prodotto.php?productId=<?php echo $item["codProdotto"] ?>">
+                                            <h2>Prodotto #<?php echo $item["codProdotto"] ?></h2>
+                                        </a>
                                     </div>
                                     <div class="row">
                                         <span>Nome: <?php echo $item["nome"] ?></span>
