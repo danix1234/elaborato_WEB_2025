@@ -255,7 +255,7 @@ class DatabaseHelper
         FROM PRODOTTO
         WHERE NOT disabilitato
         ORDER BY RAND()";
-        return $this->parametrizedQuery($query, "i", $n);
+        return $this->simpleQuery($query);
     }
 
     public function getSearchedProductByName($productName)
