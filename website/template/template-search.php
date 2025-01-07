@@ -66,8 +66,8 @@
                                     subito</button>
                             </div>
                             <div class="col-6">
-                                <button id="button-buy-now-home" type="button" class="btn w-100"><i
-                                        class="bi bi-cart"></i></button>
+                                <button id="button-buy-now-home" type="button" class="btn w-100"><span
+                                        class="bi bi-cart"></span></button>
                             </div>
                         </div>
                     </div>
