@@ -66,10 +66,10 @@
                                                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement<?php echo $i ?>">-</button>
                                                 <input class="form-control button-custom-quantity" type="text" value="<?php echo $item["quantita"] ?>" name="<?php echo $item["codProdotto"] ?>" id="<?php echo $item["codProdotto"] ?>" required />
                                                 <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment<?php echo $i ?>">+</button>
-                                                <span class="visually-hidden"><?php echo $item["quantitaResidua"] == 0 ? 0 : 1 ?></span>
-                                                <span class="visually-hidden"><?php echo $item["quantitaResidua"] ?></span>
-                                                <span class="visually-hidden"><?php echo $item["quantita"] ?></span>
                                             </div>
+                                            <span class="visually-hidden"><?php echo $item["quantitaResidua"] == 0 ? 0 : 1 ?></span>
+                                            <span class="visually-hidden"><?php echo $item["quantitaResidua"] ?></span>
+                                            <span class="visually-hidden"><?php echo $item["quantita"] ?></span>
                                         </div>
                                     </div>
                                     <div class="row text-center text-md-start">
