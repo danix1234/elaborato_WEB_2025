@@ -30,6 +30,17 @@
 
     $categories = $dbh->getAllCategories();
     $products = $dbh->getAllProducts(); //TODO: sugggestion bar
+    
+    // Recupera la categoria selezionata
+    $selectedCategoryId = isset($_GET['codCategoria']) ? $_GET["codCategoria"] : null;
+
+    $selectedCategoryName = 'Tutte le categorie';
+    if ($selectedCategoryId) {
+        $category = $dbh->getNameofcategory($selectedCategoryId);
+        if (!empty($category)) {
+            $selectedCategoryName = htmlspecialchars($category[0]['nome']);
+        }
+    }
     ?>
     <script>
         window.products = <?php echo json_encode(array_column($products, 'nome')); ?>;
@@ -53,16 +64,20 @@
                         <datalist id="list-products">
                             <?php foreach ($products as $product): ?>
                                 <option><?php echo $product["nome"]; ?></option>
-                            <?php endforeach; ?> 
+                            <?php endforeach; ?>
                         </datalist>
+
                         <!-- category bar -->
                         <label for="categoryBar" class="visually-hidden form-label">Categorie</label>
                         <select id="categoryBar" name="codCategoria"
                             class="form-select-md border border-0 d-none d-md-block">
+                            <!-- Anteprima della categoria selezionata -->
+                            <option value="" disabled selected><?php echo $selectedCategoryName; ?></option>
+                            <!-- Opzioni della lista -->
                             <option value="">Tutte le categorie</option>
                             <?php foreach ($categories as $category): ?>
-                                <option value="<?php echo $category['codCategoria']; ?>">
-                                    <?php echo $category['nome']; ?>
+                                <option value="<?php echo htmlspecialchars($category['codCategoria']); ?>">
+                                    <?php echo htmlspecialchars($category['nome']); ?>
                                 </option>
                             <?php endforeach; ?>
                         </select>
