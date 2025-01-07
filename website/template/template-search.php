@@ -19,7 +19,7 @@
 </nav>
 
 
-<div class="container text-center">
+<div class="container text-center overflow-auto">
     <div class="row row-cols-1 row-cols-md-3 mt-3">
         <?php
         foreach ($templateParams["prodotti"] as $prodotto) { ?>
@@ -53,6 +53,9 @@
                             </div>
                         </div>
                     </a>
+                    <script>
+                        const isLoggedIn = <?php echo json_encode(isLoggedIn()) ?>;
+                    </script>
                     <div class="card-footer mt-5 align-bottom">
                         <div class="row">
                             <div class="col-6">
