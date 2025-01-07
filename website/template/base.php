@@ -19,7 +19,6 @@
 
 <body class="bg-white">
     <?php
-    require_once("bootstrap.php");
     if (isLoggedIn()) {
         $user = $dbh->getUserbyUserId(getCurrentUserId());
         $ban = boolval($user[0]["disabilitato"]);

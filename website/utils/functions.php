@@ -82,3 +82,24 @@ function getUserImage($isAdmin)
         return UPLOAD_DIR . "user.jpg"; // modify once images are uploaded to this repo!!!
     }
 }
+function generateStarRating($voto, $extraClass = "", $dataValue = null)
+{
+    $votoInt = intval(floor($voto));
+    $votoDec = intval(($voto - $votoInt) * 10);
+    $output = "";
+    for ($i = 1; $i <= 5; $i++) {
+        $output .= "<span class= '" . $extraClass;
+        if ($i <= $votoInt) {
+            $output .= " bi bi-star-fill text-custom-lgold'";
+        } elseif ($i == $votoInt + 1 && $votoDec >= 5) {
+            $output .= " bi bi-star-half text-custom-lgold'";
+        } else {
+            $output .= " bi bi-star text-custom-lgold'";
+        }
+        if (!empty($dataValue)) {
+            $output .= " data-value='" . $dataValue[$i - 1] . "'";
+        }
+        $output .= "></span>";
+    }
+    return $output;
+}
