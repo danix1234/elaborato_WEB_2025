@@ -1,39 +1,60 @@
 const allNotifications = document.querySelectorAll(".notification-item");
+const btnRead = document.getElementById("btnRead");
+const btnUnread = document.getElementById("btnUnread");
 
-/* function leggiTutte() {
-    const url = new URL(window.location.href);
-    url.searchParams.set('leggiTutte', codNotifica);
-    // Richiesta fetch al server
-    fetch(url.toString(), { method: 'GET' })
-        .then(data => {
-            console.log("Risposta dal server:", data);
+// Variabile globale per tracciare il filtro attivo
+let activeFilter = null;
 
-            // Aggiorna visivamente la notifica come "letta"
-            const notificationElement = document.querySelector(`[data-notifica-id="${codNotifica}"]`);
-            if (notificationElement) {
-                notificationElement.setAttribute('data-filter', 'gia-lette');
-                notificationElement.classList.add('read'); // Aggiunge una classe per lo stile visivo
-            }
-        })
-} */
-
-
+// Funzione per filtrare le notifiche
 function filtraNotifiche(filter) {
-    resetContent(allNotifications)
+    // Controlla se il filtro richiesto è già attivo
+    if (activeFilter === filter) {
+        resetContent(allNotifications); // Mostra tutte le notifiche
+        activeFilter = null; // Nessun filtro attivo
+        updateButtonState(); // Aggiorna lo stato dei bottoni
+        return;
+    }
+
+    // Imposta il nuovo filtro attivo
+    activeFilter = filter;
+
+    // Ripristina tutte le notifiche
+    resetContent(allNotifications);
+
+    // Applica il filtro, mostrando solo le notifiche corrispondenti
     allNotifications.forEach(item => {
-        if (!filter || item.dataset.filter === filter) {
-            item.style.display = "block"; // Mostra l'elemento
+        if (item.dataset.filter === filter) {
+            item.style.display = "block"; // Mostra gli elementi corrispondenti al filtro
         } else {
-            item.style.display = "none"; // Nascondi l'elemento
+            item.style.display = "none"; // Nascondi gli elementi che non corrispondono
         }
     });
+
+    // Aggiorna lo stato dei bottoni
+    updateButtonState();
 }
 
+// Funzione per resettare le notifiche
 function resetContent(allNotifications) {
     allNotifications.forEach(item => {
         item.style.display = "block"; // Mostra tutti gli elementi
     });
 }
+
+// Funzione per aggiornare lo stato dei bottoni
+function updateButtonState() {
+    // Rimuove lo stato attivo da entrambi i bottoni
+    btnRead.classList.remove("active");
+    btnUnread.classList.remove("active");
+
+    // Aggiunge lo stato attivo al bottone corrispondente al filtro attivo
+    if (activeFilter === "gia-lette") {
+        btnRead.classList.add("active");
+    } else if (activeFilter === "da-leggere") {
+        btnUnread.classList.add("active");
+    }
+}
+
 
 // Funzione per gestire il click su un pulsante accordion
 function leggiNotifica(codNotifica) {
