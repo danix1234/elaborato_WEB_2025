@@ -240,7 +240,6 @@ class DatabaseHelper
         return $this->parametrizedQuery($query, $types, ...$params);
     }
 
-
     public function markNotificationAsRead($notificationId, $userId)
     {
         $query = "UPDATE NOTIFICA 
