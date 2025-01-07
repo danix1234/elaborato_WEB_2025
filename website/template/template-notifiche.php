@@ -2,9 +2,9 @@
     <div class="btn-group col-md-3 d-flex flex-wrap justify-content-md-start my-2">
         <button type="button" class="col btn btn-custom-lgold" onclick="leggiNotifica('tutte')">Leggi
             Tutte</button>
-        <button id="btnRead" type="button" class="col btn btn-light" onclick="filtraNotifiche('gia-lette')">Gia'
+        <button id="btnRead" type="button" class="col btn btn-light" onclick="filtraNotifiche('read')">Gia'
             lette</button>
-        <button id="btnUnread" type="button" class="col btn btn-light" onclick="filtraNotifiche('da-leggere')">Da
+        <button id="btnUnread" type="button" class="col btn btn-light" onclick="filtraNotifiche('unread')">Da
             leggere</button>
     </div>
 </div>
@@ -17,7 +17,7 @@
     foreach ($templateParams["notifiche"] as $notifica):
         $codNotifica = $notifica["codNotifica"]; // Preleva codNotifica all'inizio del ciclo
         ?>
-        <div class="notification-item" data-filter="<?php echo $notifica['letto'] ? 'gia-lette' : 'da-leggere'; ?>">
+        <div class="notification-item" data-filter="<?php echo $notifica['letto'] ? 'read' : 'unread'; ?>">
             <div class="row border-bottom py-3">
                 <div class="col-12 d-flex align-items-center">
                     <!-- Accordion -->

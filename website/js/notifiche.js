@@ -48,9 +48,9 @@ function updateButtonState() {
     btnUnread.classList.remove("active");
 
     // Aggiunge lo stato attivo al bottone corrispondente al filtro attivo
-    if (activeFilter === "gia-lette") {
+    if (activeFilter === "read") {
         btnRead.classList.add("active");
-    } else if (activeFilter === "da-leggere") {
+    } else if (activeFilter === "unread") {
         btnUnread.classList.add("active");
     }
 }
