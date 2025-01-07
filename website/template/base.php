@@ -53,20 +53,27 @@
                         <datalist id="list-products">
                             <?php foreach ($products as $product): ?>
                                 <option><?php echo $product["nome"]; ?></option>
-                            <?php endforeach; ?> 
+                            <?php endforeach; ?>
                         </datalist>
                         <!-- category bar -->
                         <label for="categoryBar" class="visually-hidden form-label">Categorie</label>
                         <select id="categoryBar" name="codCategoria"
                             class="form-select-md border border-0 d-none d-md-block">
-                            <option value="">Tutte le categorie</option>
-                            <?php foreach ($categories as $category): ?>
-                                <option value="<?php echo $category['codCategoria']; ?>">
-                                    <?php echo $category['nome']; ?>
-                                </option>
-                            <?php endforeach; ?>
+                            <optgroup label="<?php
+                            if (isset($_GET["codCategoria"])) {
+                                $category = $dbh->getNameofcategory($_GET["codCategoria"]);
+                                echo $category[0]['nome'];
+                            } else {
+                                echo 'Tutte le categorie';
+                            } ?>">
+                                <option value="">Tutte le categorie</option>
+                                <?php foreach ($categories as $category): ?>
+                                    <option value="<?php echo $category['codCategoria']; ?>">
+                                        <?php echo $category['nome']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </optgroup>
                         </select>
-
                         <button type="submit" class="btn btn-custom-lgold rounded-end">
                             <span class="bi bi-search"></span>
                         </button>

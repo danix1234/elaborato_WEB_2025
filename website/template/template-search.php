@@ -1,27 +1,20 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light d-md-none">
+<nav class="navbar navbar-expand-lg navbar-light bg-light d-md-none overflow-auto">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Categorie</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav flex-row flex-nowrap overflow-auto w-100">
+        <ul class="navbar-nav flex-row flex-nowrap overflow-auto w-100">
+            <li class="nav-item">
+                <button type="button" class="btn btn-outline-primary me-2" onclick="filtrocategorie('')">
+                    Tutte le categorie</button>
+            </li>
+            <?php foreach ($templateParams["categorie"] as $categoria) {
+                $codCategoria = $categoria["codCategoria"]; ?>
                 <li class="nav-item">
-                    <button type="button" class="btn btn-outline-primary me-2" onclick="filtrocategorie('')">
-                        Tutte le categorie</button>
+                    <button type="button" class="btn btn-outline-primary me-2"
+                        onclick="filtrocategorie('<?php echo htmlspecialchars($codCategoria, ENT_QUOTES, 'UTF-8'); ?>')">
+                        <?php echo htmlspecialchars($categoria["nome"], ENT_QUOTES, 'UTF-8'); ?>
+                    </button>
                 </li>
-                <?php foreach ($templateParams["categorie"] as $categoria) {
-                    $codCategoria = $categoria["codCategoria"]; ?>
-                    <li class="nav-item">
-                        <button type="button" class="btn btn-outline-primary me-2"
-                            onclick="filtrocategorie('<?php echo htmlspecialchars($codCategoria, ENT_QUOTES, 'UTF-8'); ?>')">
-                            <?php echo htmlspecialchars($categoria["nome"], ENT_QUOTES, 'UTF-8'); ?>
-                        </button>
-                    </li>
-                <?php } ?>
-            </ul>
-        </div>
+            <?php } ?>
+        </ul>
     </div>
 </nav>
 
@@ -63,15 +56,21 @@
                     <div class="card-footer mt-5 align-bottom">
                         <div class="row">
                             <div class="col-6">
-                                <button id="button-add-cart-home" type="button" class="btn btn-custom-gold w-100">acquista
-                                    subito</button>
+                                <button id="button-add-cart-home" onclick="buyNow(<?php echo $prodotto['codProdotto']; ?>)"
+                                    type="button" class="btn btn-custom-gold w-100">
+                                    Acquista subito
+                                </button>
                             </div>
                             <div class="col-6">
-                                <button id="button-buy-now-home" type="button" class="btn w-100"><span
-                                        class="bi bi-cart"></span></button>
+                                <button id="button-buy-now-home"
+                                    onclick="addToCart(<?php echo $prodotto['codProdotto']; ?>)" type="button"
+                                    class="btn w-100">
+                                    <span class="bi bi-cart"></span>
+                                </button>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
             <?php

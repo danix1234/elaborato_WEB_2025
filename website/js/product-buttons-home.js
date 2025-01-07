@@ -1,29 +1,20 @@
-const quantity = 1;
-const productId = new URLSearchParams(window.location.search).get("productId");
+function addToCart(productId) {
+    //if (isLoggedIn) {
+    fetch(`./api/add-cart.php?productId=${productId}&quantity=1`)
+        .then(response => response.text())
+        .catch(error => {
+            console.error("Error from product-buttons-home.js: ", error);
+        });
+} /*else {
+        window.location.href = `./sign-in.php`;
+    }
+}*/;
 
-const buttonAddItemToCart = document.getElementById("button-add-cart-home");
-const buttonBuyNow = document.getElementById("button-buy-now-home");
-
-if (buttonAddItemToCart) {
-    buttonAddItemToCart.addEventListener("click", function () {
-        fetch(`./api/add-cart.php?productId=${productId}&quantity=${quantity}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.text();
-            })
-            .then(data => {
-                console.log("Item added to cart:", data);
-            })
-            .catch(error => {
-                console.error("Errore durante l'aggiunta al carrello:", error);
-            });
-    });
+function buyNow(productId) {
+    //if (isLoggedIn) {
+    window.location.href = `./api/buy-now.php?productId=${productId}&quantity=1`;
 }
-
-if (buttonBuyNow) {
-    buttonBuyNow.addEventListener("click", function () {
-        window.location.href = `./api/buy-now.php?productId=${productId}&quantity=${quantity}`;
-    });
+/*} else {
+    window.location.href = `./sign-in.php`;
 }
+};*/

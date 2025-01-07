@@ -300,6 +300,14 @@ class DatabaseHelper
         return $result[0]['mediaVoto'] ?? 0.0; // Restituisce la media o null se non ci sono recensioni
     }
 
+    public function getNameofcategory($codCategoria)
+    {
+        $query = $query = "SELECT *
+                    FROM CATEGORIA
+                    WHERE codCategoria=?";
+        return $this->parametrizedQuery($query, "i", $codCategoria);
+    }
+
     // ↑↑↑ LAST GIUSEPPE QUERY ↑↑↑
 
     // ↓↓↓ FIRST FRANCO QUERY ↓↓↓
