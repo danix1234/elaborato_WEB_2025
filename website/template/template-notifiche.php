@@ -1,6 +1,6 @@
 <div class="row justify-content-start align-items-center mb-4">
     <div class="btn-group col-md-3 d-flex flex-wrap justify-content-md-start my-2">
-        <button type="button" class="col btn bg-custom-blue text-white" onclick="leggiNotifica('tutte')">Leggi
+        <button type="button" class="col btn btn-custom-lgold" onclick="leggiNotifica('tutte')">Leggi
             Tutte</button>
         <button type="button" class="col btn btn-light" onclick="filtraNotifiche('gia-lette')">Gia' lette</button>
         <button type="button" class="col btn btn-light" onclick="filtraNotifiche('da-leggere')">Da leggere</button>

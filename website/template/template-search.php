@@ -55,6 +55,7 @@
                             <div class="col-12">
                                 <p class="card-text">
                                     <?php echo $review = $dbh->getAverageRating($prodotto["codProdotto"]); ?>
+                                    <?php echo generateStarRating($review); ?>
                                 </p>
                             </div>
                         </div>
