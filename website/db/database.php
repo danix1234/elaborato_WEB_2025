@@ -346,18 +346,45 @@ class DatabaseHelper
         return $this->parametrizedNoresultQuery($query, "si", $message, $codUtente);
     }
 
+
+
     public function getProductForSales($productsid, $codUtente, $quantity)
     {
         $query = "SELECT codProdotto
               FROM PRODOTTO
-              WHERE NOT disabilitato AND quantitaResidua = ? AND codProdotto=?";
+              WHERE NOT disabilitato AND quantitaResidua = ? AND codProdotto = ?";
 
         $res = $this->parametrizedQuery($query, "ii", $quantity, $productsid);
 
-        foreach ($res as $row) {
-            $this->notificationForFinishProduct($row['codProdotto'], $codUtente);
+        if (!empty($res)) {
+            foreach ($res as $row) {
+                $this->notificationForGoodSales($row['codProdotto'], $codUtente, $quantity);
+            }
         }
     }
+
+    public function notificationForGoodSales($codProduct, $codUtente, $quantity)
+    {
+        $query = "INSERT INTO NOTIFICA (messaggio, tipoNotifica, letto, dataNotifica, codUtente)
+              VALUES (?, 'Order', '0', NOW(), ?)";
+
+        $message = "The product #$codProduct has been sold $quantity times.";
+
+        return $this->parametrizedNoresultQuery($query, "si", $message, $codUtente);
+    }
+
+    public function getQuantityProduct($productId)
+    {
+        $query = "SELECT quantita
+              FROM DETTAGLIO_ORDINE
+              WHERE codProdotto = ?";
+
+        return $this->parametrizedQuery($query, "i", $productId);
+
+    }
+    //da usare in un cinclo con un contatore per ottenre la quantita' totale
+    //e se e' maggiore di una soglia chimare le altre query
+
 
     // ↑↑↑ LAST GIUSEPPE QUERY ↑↑↑
 
