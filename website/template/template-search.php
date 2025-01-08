@@ -59,14 +59,13 @@
                     <div class="card-footer mt-5 align-bottom">
                         <div class="row">
                             <div class="col-6">
-                                <button id="button-add-cart-home" onclick="buyNow(<?php echo $prodotto['codProdotto']; ?>)"
-                                    type="button" class="btn btn-custom-gold w-100">
+                                <button onclick="buyNow(<?php echo $prodotto['codProdotto']; ?>)" type="button"
+                                    class="btn btn-custom-gold w-100">
                                     Acquista subito
                                 </button>
                             </div>
                             <div class="col-6">
-                                <button id="button-buy-now-home"
-                                    onclick="addToCart(<?php echo $prodotto['codProdotto']; ?>)" type="button"
+                                <button onclick="addToCart(<?php echo $prodotto['codProdotto']; ?>)" type="button"
                                     class="btn w-100">
                                     <span class="bi bi-cart"></span>
                                 </button>

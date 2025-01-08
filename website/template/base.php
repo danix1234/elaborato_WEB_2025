@@ -36,7 +36,7 @@
 
     $selectedCategoryName = 'Tutte le categorie';
     if ($selectedCategoryId) {
-        $category = $dbh->getNameofcategory($selectedCategoryId);
+        $category = $dbh->getNameOfCategory($selectedCategoryId);
         if (!empty($category)) {
             $selectedCategoryName = htmlspecialchars($category[0]['nome']);
         }
