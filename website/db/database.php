@@ -323,29 +323,28 @@ class DatabaseHelper
         return $this->parametrizedQuery($query, "i", $codCategoria);
     }
 
-    public function getFinishProduct($productsid)
+    public function getFinishProduct($productsid, $codUtente)
     {
         $query = "SELECT codProdotto
               FROM PRODOTTO
-              WHERE NOT disabilitato AND quantitaResidua = 0";
+              WHERE NOT disabilitato AND quantitaResidua = 0 AND codProdotto=?";
 
-        $res = $this->parametrizedQuery($query, "s", $productsid);
+        $res = $this->parametrizedQuery($query, "i", $productsid);
 
         foreach ($res as $row) {
-            $this->notificationForFinishProduct($row['codProdotto']);
+            $this->notificationForFinishProduct($row['codProdotto'], $codUtente);
         }
     }
 
-    public function notificationForFinishProduct($codProduct)
+    public function notificationForFinishProduct($codProduct, $codUtente)
     {
         $query = "INSERT INTO NOTIFICA (messaggio, tipoNotifica, letto, dataNotifica, codUtente)
               VALUES (?, 'Order', '0', NOW(), ?)";
 
         $message = "The product #$codProduct is terminated";
 
-        return $this->parametrizedNoresultQuery($query, "si", $message, 2);
+        return $this->parametrizedNoresultQuery($query, "si", $message, $codUtente);
     }
-
 
     // ↑↑↑ LAST GIUSEPPE QUERY ↑↑↑
 
