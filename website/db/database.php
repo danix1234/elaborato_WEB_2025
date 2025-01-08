@@ -346,6 +346,19 @@ class DatabaseHelper
         return $this->parametrizedNoresultQuery($query, "si", $message, $codUtente);
     }
 
+    public function getProductForSales($productsid, $codUtente, $quantity)
+    {
+        $query = "SELECT codProdotto
+              FROM PRODOTTO
+              WHERE NOT disabilitato AND quantitaResidua = ? AND codProdotto=?";
+
+        $res = $this->parametrizedQuery($query, "ii", $quantity, $productsid);
+
+        foreach ($res as $row) {
+            $this->notificationForFinishProduct($row['codProdotto'], $codUtente);
+        }
+    }
+
     // ↑↑↑ LAST GIUSEPPE QUERY ↑↑↑
 
     // ↓↓↓ FIRST FRANCO QUERY ↓↓↓
