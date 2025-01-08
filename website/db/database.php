@@ -315,13 +315,37 @@ class DatabaseHelper
         return $result[0]['mediaVoto'] ?? 0.0; // Restituisce la media o null se non ci sono recensioni
     }
 
-    public function getNameofcategory($codCategoria)
+    public function getNameOfCategory($codCategoria)
     {
         $query = $query = "SELECT *
                     FROM CATEGORIA
                     WHERE codCategoria=?";
         return $this->parametrizedQuery($query, "i", $codCategoria);
     }
+
+    public function getFinishProduct($productsid)
+    {
+        $query = "SELECT codProdotto
+              FROM PRODOTTO
+              WHERE NOT disabilitato AND quantitaResidua = 0";
+
+        $res = $this->parametrizedQuery($query, "s", $productsid);
+
+        foreach ($res as $row) {
+            $this->notificationForFinishProduct($row['codProdotto']);
+        }
+    }
+
+    public function notificationForFinishProduct($codProduct)
+    {
+        $query = "INSERT INTO NOTIFICA (messaggio, tipoNotifica, letto, dataNotifica, codUtente)
+              VALUES (?, 'Order', '0', NOW(), ?)";
+
+        $message = "The product #$codProduct is terminated";
+
+        return $this->parametrizedNoresultQuery($query, "si", $message, 2);
+    }
+
 
     // ↑↑↑ LAST GIUSEPPE QUERY ↑↑↑
 
