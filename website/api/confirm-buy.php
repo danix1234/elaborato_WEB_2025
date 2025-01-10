@@ -10,7 +10,6 @@ if (!isLoggedIn()) {
 $orderId = intval($_GET["orderId"]);
 $order = $dbh->getSingleOrder(getCurrentUserId(), $orderId)[0];
 $orderDetails = $dbh->getOrder($orderId, getCurrentUserId());
-$message = "Ciao " . getCurrentUserName() . ", ";
 
 if (empty($order) || empty($orderDetails)) {
     die("order not found");
@@ -36,8 +35,8 @@ foreach ($orderDetails as $detail) {
 
 $dbh->updateOrderState("Shipping", $orderId, getCurrentUserId());
 
-
+$message = "Ciao " . getCurrentUserName() . ", ";
 $message .= "Hai completato il pagamento dell'ordine #" . $orderId;
-$dbh->inserNotification(getCurrentUserId(), $message, "Ordine");
+$dbh->inserNotification(getCurrentUserId(), $message, "Pagamento Ordine");
 
 ?>
