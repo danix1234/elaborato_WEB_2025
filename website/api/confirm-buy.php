@@ -34,5 +34,5 @@ foreach ($orderDetails as $detail) {
 }
 
 
-$res = $dbh->confirmBuyOrder("Shipping", $orderId, getCurrentUserId());
+$res = $dbh->updateOrderState("Shipping", $orderId, getCurrentUserId());
 ?>

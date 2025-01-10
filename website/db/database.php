@@ -513,19 +513,13 @@ class DatabaseHelper
                     WHERE codOrdine = ? AND codUtente = ?";
         return $this->parametrizedNoresultQuery($query, "sii", $newOrderState, $orderId, $userId);
     }
-    /**
-     * query for the confirm to buy button
-     */
-    public function confirmBuyOrder($orderState, $orderId, $userId)
+    public function updateOrderState($orderState, $orderId, $userId)
     {
         $query = "UPDATE ORDINE
                     SET statoOrdine = ?, pagato = 1, dataConsegna = DATE_ADD(NOW(), INTERVAL 10 SECOND)
                     WHERE codOrdine = ? AND codUtente = ?";
         return $this->parametrizedNoresultQuery($query, "sii", $orderState, $orderId, $userId);
     }
-    /**
-     * second part for confirm to buy button
-     */
     public function updateProductStock($productId, $setQuantity)
     {
         $query = "UPDATE PRODOTTO
