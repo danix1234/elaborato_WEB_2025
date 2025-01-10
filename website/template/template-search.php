@@ -1,3 +1,6 @@
+<script>
+    const isLoggedIn = <?php echo json_encode(isLoggedIn()) ?>;
+</script>
 <nav class="navbar navbar-expand-lg navbar-light bg-light d-md-none overflow-auto">
     <div class="container-fluid">
         <ul class="navbar-nav flex-row flex-nowrap overflow-auto w-100">
@@ -53,9 +56,6 @@
                             </div>
                         </div>
                     </a>
-                    <script>
-                        const isLoggedIn = <?php echo json_encode(isLoggedIn()) ?>;
-                    </script>
                     <div class="card-footer mt-5 align-bottom">
                         <div class="row">
                             <div class="col-6">
