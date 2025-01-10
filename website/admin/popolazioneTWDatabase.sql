@@ -113,8 +113,6 @@ VALUES
 
 DROP PROCEDURE IF EXISTS loopReview;
 
-DELIMITER $$
-
 CREATE PROCEDURE loopReview(IN userId INT, IN maxProducts INT)
 BEGIN
     DECLARE counter INT DEFAULT 1;
@@ -139,9 +137,7 @@ BEGIN
             LEAVE my_loop;
         END IF;
     END LOOP;
-END$$
-
-DELIMITER ;
+END;
 
 CALL loopReview(3, 14);
 CALL loopReview(4, 14);

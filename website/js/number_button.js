@@ -1,9 +1,9 @@
 for (const number_input of document.getElementsByClassName("button-custom-quantity")) {
     const inc_button = number_input.previousElementSibling
     const dec_button = number_input.nextElementSibling
-    let min_attr = number_input.nextElementSibling.nextElementSibling.innerText
-    let max_attr = number_input.nextElementSibling.nextElementSibling.nextElementSibling.innerText
-    let previous_attr = number_input.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerText
+    let min_attr = number_input.parentElement.nextElementSibling.innerText
+    let max_attr = number_input.parentElement.nextElementSibling.nextElementSibling.innerText
+    let previous_attr = number_input.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.innerText
     let min = 0
     let max = 1_000_000
     if (min_attr !== "") {

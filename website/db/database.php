@@ -223,6 +223,21 @@ class DatabaseHelper
                     ORDER BY P.codProdotto';
         return $this->simpleQuery($query);
     }
+    public function notificationFromShippedOrder($orderId)
+    {
+        $query = 'INSERT INTO NOTIFICA(messaggio, tipoNotifica, letto, dataNotifica, codUtente)
+                    SELECT CONCAT("La spedizione dell\'Ordine #",?," del ", dataOrdine, " è avvenuta con successo!"), "Ordine", 0, dataConsegna, codUtente
+                    FROM ORDINE
+                    WHERE codOrdine = ? ';
+        return $this->parametrizedNoresultQuery($query, "ii", $orderId, $orderId);
+    }
+    public function getNotificationShippedButWithShippingState($userId)
+    {
+        $query = "SELECT *
+                    FROM ORDINE
+                    WHERE CodUtente = ? AND dataConsegna < NOW() AND statoOrdine='Shipping'";
+        return $this->parametrizedQuery($query, "i", $userId);
+    }
     // ↑↑↑ LAST DANIELE QUERY ↑↑↑
 
     // ↓↓↓ FIRST GIUSEPPE QUERY ↓↓↓
@@ -249,7 +264,6 @@ class DatabaseHelper
         return $this->parametrizedQuery($query, $types, ...$params);
     }
 
-
     public function markNotificationAsRead($notificationId, $userId)
     {
         $query = "UPDATE NOTIFICA 
@@ -259,12 +273,13 @@ class DatabaseHelper
 
         return $this->parametrizedNoresultQuery($query, $types, $notificationId, $userId);
     }
-    public function getRandomProducts($n = 12)
+    public function getRandomProducts()
     {
         $query = "SELECT *
         FROM PRODOTTO
-        ORDER BY RAND() LIMIT ?";
-        return $this->parametrizedQuery($query, "i", $n);
+        WHERE NOT disabilitato
+        ORDER BY RAND()";
+        return $this->simpleQuery($query);
     }
 
     public function getSearchedProductByName($productName)
@@ -299,6 +314,77 @@ class DatabaseHelper
         $result = $this->parametrizedQuery($query, "i", $productId);
         return $result[0]['mediaVoto'] ?? 0.0; // Restituisce la media o null se non ci sono recensioni
     }
+
+    public function getNameOfCategory($codCategoria)
+    {
+        $query = $query = "SELECT *
+                    FROM CATEGORIA
+                    WHERE codCategoria=?";
+        return $this->parametrizedQuery($query, "i", $codCategoria);
+    }
+
+    public function getFinishProduct($productsid, $codUtente)
+    {
+        $query = "SELECT codProdotto
+              FROM PRODOTTO
+              WHERE NOT disabilitato AND quantitaResidua = 0 AND codProdotto=?";
+
+        $res = $this->parametrizedQuery($query, "i", $productsid);
+
+        foreach ($res as $row) {
+            $this->notificationForFinishProduct($row['codProdotto'], $codUtente);
+        }
+    }
+
+    public function notificationForFinishProduct($codProduct, $codUtente)
+    {
+        $query = "INSERT INTO NOTIFICA (messaggio, tipoNotifica, letto, dataNotifica, codUtente)
+              VALUES (?, 'Order', '0', NOW(), ?)";
+
+        $message = "The product #$codProduct is terminated";
+
+        return $this->parametrizedNoresultQuery($query, "si", $message, $codUtente);
+    }
+
+
+
+    public function getProductForSales($productsid, $codUtente, $quantity)
+    {
+        $query = "SELECT codProdotto
+              FROM PRODOTTO
+              WHERE NOT disabilitato AND quantitaResidua = ? AND codProdotto = ?";
+
+        $res = $this->parametrizedQuery($query, "ii", $quantity, $productsid);
+
+        if (!empty($res)) {
+            foreach ($res as $row) {
+                $this->notificationForGoodSales($row['codProdotto'], $codUtente, $quantity);
+            }
+        }
+    }
+
+    public function notificationForGoodSales($codProduct, $codUtente, $quantity)
+    {
+        $query = "INSERT INTO NOTIFICA (messaggio, tipoNotifica, letto, dataNotifica, codUtente)
+              VALUES (?, 'Order', '0', NOW(), ?)";
+
+        $message = "The product #$codProduct has been sold $quantity times.";
+
+        return $this->parametrizedNoresultQuery($query, "si", $message, $codUtente);
+    }
+
+    public function getQuantityProduct($productId)
+    {
+        $query = "SELECT quantita
+              FROM DETTAGLIO_ORDINE
+              WHERE codProdotto = ?";
+
+        return $this->parametrizedQuery($query, "i", $productId);
+
+    }
+    //da usare in un cinclo con un contatore per ottenre la quantita' totale
+    //e se e' maggiore di una soglia chimare le altre query
+
 
     // ↑↑↑ LAST GIUSEPPE QUERY ↑↑↑
 

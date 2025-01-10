@@ -2,7 +2,7 @@
 require_once("bootstrap.php");
 
 $templateParams["nome"] = "template-search.php";
-$templateParams["scripts"] = ["js/search.js"];
+$templateParams["scripts"] = ["js/search.js", "js/product-buttons-home.js"];
 $templateParams["categorie"] = $dbh->getAllCategories();
 
 $nomeprod = isset($_GET["searchBar"]) ? $_GET["searchBar"] : null;

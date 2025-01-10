@@ -1,47 +1,69 @@
-function selezionaTutte() {
-    const checkboxes = document.querySelectorAll('.select-checkbox');
-    checkboxes.forEach(checkbox => checkbox.checked = true);
+const allNotifications = document.querySelectorAll(".notification-item");
+const btnRead = document.getElementById("btnRead");
+const btnUnread = document.getElementById("btnUnread");
+
+// Variabile globale per tracciare il filtro attivo
+let activeFilter = null;
+
+// Funzione per filtrare le notifiche
+function filtraNotifiche(filter) {
+    // Controlla se il filtro richiesto è già attivo
+    if (activeFilter === filter) {
+        resetContent(allNotifications); // Mostra tutte le notifiche
+        activeFilter = null; // Nessun filtro attivo
+        updateButtonState(); // Aggiorna lo stato dei bottoni
+        return;
+    }
+
+    // Imposta il nuovo filtro attivo
+    activeFilter = filter;
+
+    // Ripristina tutte le notifiche
+    resetContent(allNotifications);
+
+    // Applica il filtro, mostrando solo le notifiche corrispondenti
+    allNotifications.forEach(item => {
+        if (item.dataset.filter === filter) {
+            item.style.display = "block"; // Mostra gli elementi corrispondenti al filtro
+        } else {
+            item.style.display = "none"; // Nascondi gli elementi che non corrispondono
+        }
+    });
+
+    // Aggiorna lo stato dei bottoni
+    updateButtonState();
 }
 
+// Funzione per resettare le notifiche
 function resetContent(allNotifications) {
     allNotifications.forEach(item => {
         item.style.display = "block"; // Mostra tutti gli elementi
     });
 }
 
-function filtraNotifiche(filter) {
-    const allNotifications = document.querySelectorAll(".notification-item");
-    resetContent(allNotifications)
-    allNotifications.forEach(item => {
-        if (!filter || filter === "tutte" || item.dataset.filter === filter) {
-            item.style.display = "block"; // Mostra l'elemento
-        } else {
-            item.style.display = "none"; // Nascondi l'elemento
-        }
-    });
+// Funzione per aggiornare lo stato dei bottoni
+function updateButtonState() {
+    // Rimuove lo stato attivo da entrambi i bottoni
+    btnRead.classList.remove("active");
+    btnUnread.classList.remove("active");
+
+    // Aggiunge lo stato attivo al bottone corrispondente al filtro attivo
+    if (activeFilter === "read") {
+        btnRead.classList.add("active");
+    } else if (activeFilter === "unread") {
+        btnUnread.classList.add("active");
+    }
 }
 
+
 // Funzione per gestire il click su un pulsante accordion
-function showAccordion(codNotifica) {
-    if (!codNotifica) {
-        console.warn('Errore: codNotifica non fornito.');
-        return;
-    }
-
-    console.log("Invio richiesta per Codice Notifica:", codNotifica);
-
+function leggiNotifica(codNotifica) {
     // Creazione URL con parametro codNotifica
-    const url = new URL('./api/read-notice.php', window.location.origin);
+    const url = new URL(window.location.href);
     url.searchParams.set('codNotifica', codNotifica);
-
+    history.pushState({}, '', url.toString());
     // Richiesta fetch al server
     fetch(url.toString(), { method: 'GET' })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Errore HTTP! Stato: ${response.status}`);
-            }
-            return response.text();
-        })
         .then(data => {
             console.log("Risposta dal server:", data);
 
@@ -52,8 +74,4 @@ function showAccordion(codNotifica) {
                 notificationElement.classList.add('read'); // Aggiunge una classe per lo stile visivo
             }
         })
-        .catch(error => {
-            console.error("Errore durante l'operazione:", error);
-            alert("Si è verificato un errore. Riprova più tardi.");
-        });
 }
