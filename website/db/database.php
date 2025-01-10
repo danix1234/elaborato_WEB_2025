@@ -516,7 +516,7 @@ class DatabaseHelper
     public function updateOrderState($orderState, $orderId, $userId)
     {
         $query = "UPDATE ORDINE
-                    SET statoOrdine = ?, pagato = 1, dataConsegna = DATE_ADD(NOW(), INTERVAL 10 SECOND)
+                    SET statoOrdine = ?, pagato = 1/* , dataConsegna = DATE_ADD(NOW(), INTERVAL 10 SECOND) */
                     WHERE codOrdine = ? AND codUtente = ?";
         return $this->parametrizedNoresultQuery($query, "sii", $orderState, $orderId, $userId);
     }
