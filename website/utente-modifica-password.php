@@ -15,6 +15,14 @@ if (!empty($_POST["vecchia"]) && !empty($_POST["nuova"]) && !empty($_POST["confe
     } else if ($verify && $nuova === $conferma) {
         $newHash = password_hash($nuova, PASSWORD_DEFAULT);
         $dbh->updateUserPassword(getCurrentUserId(), $newHash);
+
+        $userData = $dbh->getUserbyUserId(getCurrentUserId())[0];
+        $message = "Ciao " . $userData["nomeUtente"] . ", ";
+        $date = new DateTime();
+        $current_time = $date->format("Y-m-d H:i:s");
+        $message .= "nel " . $current_time . " Hai cambiato il password, ed l'operazione è avvenuta con successo!";
+        $dbh->inserNotification(getCurrentUserId(), $message, "Modifica Password");
+
         header("Location: search.php");
     }
 }

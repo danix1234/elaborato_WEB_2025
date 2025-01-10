@@ -590,5 +590,11 @@ class DatabaseHelper
                     WHERE codUtente = ?";
         return $this->parametrizedNoresultQuery($query, "si", $newPassword, $userId);
     }
+    public function inserNotification($userId, $message, $notificationType)
+    {
+        $query = "INSERT INTO NOTIFICA(messaggio, tipoNotifica, letto, dataNotifica, codUtente)
+                    VALUES(?,?,0,NOW(),?)";
+        return $this->parametrizedNoresultQuery($query, "ssi", $message, $notificationType, $userId);
+    }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }
