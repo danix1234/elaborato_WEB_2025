@@ -34,16 +34,14 @@ if (empty($templateParams["recensioni"])) {
 } else {
     $templateParams["prodotto"] = $dbh->getProductwithRating($productId)[0];
     for ($i = 0; $i < count($templateParams["recensioni"]); $i++) {
-        $src = UPLOAD_DIR;
-        $src .= boolval($templateParams["recensioni"][$i]["privilegi"]) ? "admin.jpg" : "user.jpg";
-        $templateParams["recensioni"][$i]["immagineProfilo"] = $src;
+        $templateParams["recensioni"][$i]["immagineProfilo"] = getUserImage(boolval($templateParams["recensioni"][$i]["privilegi"]));
     }
 }
 if (empty($templateParams["prodotto"])) {
     die("Prodotto non trovato!");
 }
 
-if (!empty($recensionePrecedente)){
+if (!empty($recensionePrecedente)) {
     $templateParams["recensionePrecedente"] = $recensionePrecedente[0];
 }
 $templateParams["titolo"] = $templateParams["prodotto"]["nome"];

@@ -10,6 +10,7 @@ if (!isLoggedIn()) {
 $orderId = intval($_GET["orderId"]);
 $order = $dbh->getSingleOrder(getCurrentUserId(), $orderId)[0];
 $orderDetails = $dbh->getOrder($orderId, getCurrentUserId());
+$message = "Ciao " . getCurrentUserName() . ", ";
 
 if (empty($order) || empty($orderDetails)) {
     die("order not found");
@@ -24,8 +25,8 @@ foreach ($orderDetails as $detail) {
     if ($quantitaFinale < 0) {
         $dbh->modOrderState($orderId, "Deleted", getCurrentUserId());
         die("Errore: quantita' richiesta superiore a quella disponibile!");
-        
-    } 
+
+    }
 }
 foreach ($orderDetails as $detail) {
     $quantitaResidua = $dbh->getProduct($detail["codProdotto"])[0]["quantitaResidua"];
@@ -33,6 +34,10 @@ foreach ($orderDetails as $detail) {
     $dbh->updateProductStock($detail["codProdotto"], $quantitaFinale);
 }
 
+$dbh->updateOrderState("Shipping", $orderId, getCurrentUserId());
 
-$res = $dbh->updateOrderState("Shipping", $orderId, getCurrentUserId());
+
+$message .= "Hai completato il pagamento dell'ordine #" . $orderId;
+$dbh->inserNotification(getCurrentUserId(), $message, "Ordine");
+
 ?>
