@@ -10,7 +10,7 @@ do {
         $result->free();
     }
 } while ($conn->more_results() && $conn->next_result());
-$conn->multi_query(file_get_contents("./popolazioneTWDatabase.sql"));
+$conn->multi_query(file_get_contents("../../db/popolazioneTWDatabase.sql"));
 do {
     if ($result = $conn->store_result()) {
         $result->free();
