@@ -47,9 +47,6 @@
         } */
     }
     ?>
-    <script>
-        window.products = <?php echo json_encode(array_column($products, 'nome')); ?>;
-    </script>
     <header class="container-fluid px-0 py-2 overflow-hidden bg-custom-blue">
         <div class="row align-items-center justify-content-between mx-1">
             <!-- Logo -->
