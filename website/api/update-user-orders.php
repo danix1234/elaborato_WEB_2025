@@ -5,11 +5,13 @@ if (!isLoggedIn()) {
     die('not currently logged in!');
 }
 
-$orders = $dbh->getFilteredOrders(getCurrentUserId(), null, "Shipping");
-foreach ($orders as $order){
-    // update the order state, since i removed setting the dataConsegna, we can set it here
-    $dbh->updateOrderState("Spedito", $order["codOrdine"], getCurrentUserId());
-    $message="";
-    $dbh->inserNotification(getCurrentUserId(), "L'ordine #".$order["codOrdine"],"");
+$orders = $dbh->getNotificationShippedButWithShippingState(getCurrentUserId());
+var_dump($orders);
+foreach ($orders as $order) {
+    $dbh->updateOrdersState(getCurrentUserId());
+    $dbh->updateOrderShippedDate(date('Y-m-d H:i:s'), $order["codOrdine"], getCurrentUserId());
+    $message = "Ciao " . getCurrentUserName() . ", ";
+    $message.="L'ordine #" . $order["codOrdine"]. "è arrivata al suo indirizzo!";
+    $dbh->inserNotification(getCurrentUserId(), $message, "Arrivo Ordine");
 }
 ?>

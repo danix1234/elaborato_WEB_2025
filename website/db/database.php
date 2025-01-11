@@ -518,19 +518,26 @@ class DatabaseHelper
                     AND codUtente = ?";
         return $this->parametrizedQuery($query, "ii", $productId, $userId);
     }
-    public function modOrderState($orderId, $newOrderState, $userId)
+    public function updateOrderState($orderId, $newOrderState, $userId)
     {
         $query = "UPDATE ORDINE
                     SET statoOrdine = ?
                     WHERE codOrdine = ? AND codUtente = ?";
         return $this->parametrizedNoresultQuery($query, "sii", $newOrderState, $orderId, $userId);
     }
-    public function updateOrderState($orderState, $orderId, $userId)
+    public function updateOrderShippedDate($orderDate, $orderId, $userId)
     {
         $query = "UPDATE ORDINE
-                    SET statoOrdine = ?, pagato = 1, dataConsegna = DATE_ADD(NOW(), INTERVAL 10 SECOND)
+                    SET dataConsegna = ?
                     WHERE codOrdine = ? AND codUtente = ?";
-        return $this->parametrizedNoresultQuery($query, "sii", $orderState, $orderId, $userId);
+        return $this->parametrizedNoresultQuery($query, "sii", $orderDate, $orderId, $userId);
+    }
+    public function updateOrderStateConfirmBuy($orderId, $userId)
+    {
+        $query = "UPDATE ORDINE
+                    SET statoOrdine = 'In Spedizione', pagato = 1, dataConsegna = DATE_ADD(NOW(), INTERVAL 10 SECOND)
+                    WHERE codOrdine = ? AND codUtente = ?";
+        return $this->parametrizedNoresultQuery($query, "ii", $orderId, $userId);
     }
     public function updateProductStock($productId, $setQuantity)
     {

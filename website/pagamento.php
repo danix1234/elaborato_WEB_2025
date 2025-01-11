@@ -25,7 +25,7 @@ $templateParams["nome"] = "template-pagamento.php";
 $templateParams["scripts"] = array("js/confirm-buy.js");
 
 if (isset($_GET["deleted"]) && $_GET["deleted"] == true) {
-    $dbh->modOrderState($orderId, "Cancellato", getCurrentUserId());
+    $dbh->updateOrderState($orderId, "Cancellato", getCurrentUserId());
     $message = "Ciao " . getCurrentUserName() . ", ";
     $message .= "Hai cancellato il pagamento dell'ordine #" . $orderId;
     $dbh->inserNotification(getCurrentUserId(), $message, "Pagamento Ordine");

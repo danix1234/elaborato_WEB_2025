@@ -21,9 +21,12 @@
     <!-- filtro -->
     <div class="col-12 col-md-4 order-3 order-md-2">
         <div class="btn-group d-flex bg-light rounded border border-1" role="group">
-            <button id="Shipped" value="Spedito" type="button" class="btn btn-light border border-0 w-100">Spedito</button>
-            <button id="Pending" value="In Attesa" type="button" class="btn btn-light border border-0 w-100">In Attesa</button>
-            <button id="Deleted" value="Cancellato" type="button" class="btn btn-light border border-0 w-100">Cancellato</button>
+            <button id="Shipped" value="Spedito" type="button"
+                class="btn btn-light border border-0 w-100">Spedito</button>
+            <button id="Pending" value="In Attesa" type="button" class="btn btn-light border border-0 w-100">In
+                Attesa</button>
+            <button id="Deleted" value="Cancellato" type="button"
+                class="btn btn-light border border-0 w-100">Cancellato</button>
         </div>
     </div>
 </div>
@@ -54,7 +57,9 @@
                                     </span>
                                 </div>
                                 <p class="text-body-secondary mb-1">Effettuato il: <?php echo $ordine["dataOrdine"]; ?></p>
-                                <p class="text-body-secondary mb-1">Data Consegna: <?php echo $ordine["dataConsegna"]; ?>
+                                <p class="text-body-secondary mb-1">Data
+                                    consegna<?php echo $ordine["statoOrdine"] === "In Spedizione" ? " prevista" : "" ?>:
+                                    <?php echo $ordine["dataConsegna"]; ?>
                                 </p>
                                 <p class="text-body-secondary mb-1">Pagato: <?php echo $ordine["pagato"] ? "Si" : "No"; ?>
                                 </p>
