@@ -1,13 +1,16 @@
 <?php if (!empty($templateParams["notifiche"])) { ?>
     <div class="row justify-content-start align-items-center mb-4">
-        <div class="btn-group col-md-3 d-flex flex-wrap justify-content-md-start my-2">
-            <button type="button" class="col btn btn-custom-lgold" onclick="leggiNotifica('tutte')">Leggi
-                Tutte</button>
-            <button id="btnUnread" type="button" class="col btn btn-light" onclick="filtraNotifiche('unread')">Da
-                leggere</button>
-            <button id="btnRead" type="button" class="col btn btn-light" onclick="filtraNotifiche('read')">Gia'
-                lette</button>
-        </div>
+        <form action="notifiche.php?codNotifica=tutte" method="get">
+            <div class="btn-group col-md-3 d-flex flex-wrap justify-content-md-start my-2">
+                <button type="submit" name="codNotifica" value="tutte" class="col btn btn-custom-lgold">
+                    Leggi Tutte
+                </button>
+                <button id="btnUnread" type="button" class="col btn btn-light" onclick="filtraNotifiche('unread')">Da
+                    leggere</button>
+                <button id="btnRead" type="button" class="col btn btn-light" onclick="filtraNotifiche('read')">Gia'
+                    lette</button>
+            </div>
+        </form>
     </div>
 <?php } ?>
 
