@@ -1,4 +1,4 @@
-const buttons = document.getElementsByClassName("btn-group-custom-filter")
+const buttons = document.getElementsByClassName("btn btn-light");
 const buttonFilter = new URLSearchParams(window.location.search).get("filter");
 const filterTimeSelect = document.getElementById("filter-time");
 const filterTimeForm = document.getElementById("filter-time-form");
@@ -11,7 +11,7 @@ for (let i = 0; i < buttons.length; i++) {
 
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", function () {
-        const filter = buttons[i].id;
+        const filter = buttons[i].value;
         const filterTime = filterTimeSelect.value;
         const url = new URL(window.location.href);
 

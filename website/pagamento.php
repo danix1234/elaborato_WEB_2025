@@ -9,7 +9,7 @@ if (!isLoggedIn()) {
 $dettagliOrdine = $dbh->getOrder($_GET["orderId"], getCurrentUserId());
 if (empty($dettagliOrdine)) {
     die("order not found");
-} else if (!empty($dettagliOrdine) && $dettagliOrdine[0]["statoOrdine"] != "Pending") {
+} else if (!empty($dettagliOrdine) && $dettagliOrdine[0]["statoOrdine"] != "In Attesa") {
     die("order already processed");
 }
 
@@ -25,10 +25,10 @@ $templateParams["nome"] = "template-pagamento.php";
 $templateParams["scripts"] = array("js/confirm-buy.js");
 
 if (isset($_GET["deleted"]) && $_GET["deleted"] == true) {
-    $dbh->modOrderState($orderId, "Deleted", getCurrentUserId());
+    $dbh->modOrderState($orderId, "Cancellato", getCurrentUserId());
     $message = "Ciao " . getCurrentUserName() . ", ";
     $message .= "Hai cancellato il pagamento dell'ordine #" . $orderId;
-    $dbh->inserNotification(getCurrentUserId(), $message, "Pagamento    Ordine");
+    $dbh->inserNotification(getCurrentUserId(), $message, "Pagamento Ordine");
     header("Location: ordini.php");
 }
 

@@ -21,12 +21,9 @@
     <!-- filtro -->
     <div class="col-12 col-md-4 order-3 order-md-2">
         <div class="btn-group d-flex bg-light rounded border border-1" role="group">
-            <button id="Shipped" type="button"
-                class="btn btn-light btn-group-custom-filter border border-0 w-100">Spedito</button>
-            <button id="Pending" type="button" class="btn btn-light btn-group-custom-filter border border-0 w-100">In
-                Attesa</button>
-            <button id="Deleted" type="button"
-                class="btn btn-light btn-group-custom-filter border border-0 w-100">Cancellato</button>
+            <button id="Shipped" value="Spedito" type="button" class="btn btn-light border border-0 w-100">Spedito</button>
+            <button id="Pending" value="In Attesa" type="button" class="btn btn-light border border-0 w-100">In Attesa</button>
+            <button id="Deleted" value="Cancellato" type="button" class="btn btn-light border border-0 w-100">Cancellato</button>
         </div>
     </div>
 </div>
@@ -45,13 +42,13 @@
                                         class="col-9 fw-bold link-custom mb-1">Ordine
                                         #<?php echo $ordine["codOrdine"]; ?></a>
                                     <span class="col-3 bi text-success text-end mb-1">
-                                        <?php if ($ordine["statoOrdine"] == "Shipped") { ?>
+                                        <?php if ($ordine["statoOrdine"] === "Spedito") { ?>
                                             <span class="bi bi-check-circle-fill text-success"></span> <!-- spedito -->
-                                        <?php } elseif ($ordine["statoOrdine"] == "Shipping") { ?>
+                                        <?php } elseif ($ordine["statoOrdine"] === "In Spedizione") { ?>
                                             <span class="bi bi-truck text-custom-gold"></span> <!-- in spedizione -->
-                                        <?php } elseif ($ordine["statoOrdine"] == "Pending") { ?>
+                                        <?php } elseif ($ordine["statoOrdine"] === "In Attesa") { ?>
                                             <span class="bi bi-clock-history text-custom-gold"></span> <!-- in attesa -->
-                                        <?php } elseif ($ordine["statoOrdine"] == "Deleted") { ?>
+                                        <?php } elseif ($ordine["statoOrdine"] === "Cancellato") { ?>
                                             <span class="bi bi-x-circle-fill text-danger"></span> <!-- cancellato -->
                                         <?php } ?>
                                     </span>
@@ -61,9 +58,9 @@
                                 </p>
                                 <p class="text-body-secondary mb-1">Pagato: <?php echo $ordine["pagato"] ? "Si" : "No"; ?>
                                 </p>
-                                <p class="text-body-secondary mb-1">Stato: <span class="badge <?php if ($ordine['statoOrdine'] == 'Shipped') {
+                                <p class="text-body-secondary mb-1">Stato: <span class="badge <?php if ($ordine['statoOrdine'] === 'Spedito') {
                                     echo 'bg-success';
-                                } else if ($ordine['statoOrdine'] == 'Shipping' || $ordine['statoOrdine'] == 'Pending') {
+                                } else if ($ordine['statoOrdine'] === 'In Spedizione' || $ordine['statoOrdine'] === 'In Attesa') {
                                     echo 'bg-custom-lgold';
                                 } else {
                                     echo 'bg-danger';

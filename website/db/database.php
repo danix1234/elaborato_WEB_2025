@@ -169,8 +169,8 @@ class DatabaseHelper
     public function updateOrdersState($userId)
     {
         $query = "UPDATE ORDINE
-                    SET statoOrdine='Shipped'
-                    WHERE dataConsegna < NOW() AND statoOrdine='Shipping' AND codUtente = ?;";
+                    SET statoOrdine='Spedito'
+                    WHERE dataConsegna < NOW() AND statoOrdine='In Spedizione' AND codUtente = ?;";
         return $this->parametrizedNoresultQuery($query, "i", $userId);
     }
     public function getUser($userId)
@@ -235,7 +235,7 @@ class DatabaseHelper
     {
         $query = "SELECT *
                     FROM ORDINE
-                    WHERE CodUtente = ? AND dataConsegna < NOW() AND statoOrdine='Shipping'";
+                    WHERE CodUtente = ? AND dataConsegna < NOW() AND statoOrdine='In Spedizione'";
         return $this->parametrizedQuery($query, "i", $userId);
     }
     // ↑↑↑ LAST DANIELE QUERY ↑↑↑
@@ -462,10 +462,9 @@ class DatabaseHelper
             $types .= "i";
         }
         if ($orderState != null) {
-            // by daniele: ti ho aggiunto le parentesi tonde, per sistemare un bug nella query
             $query .= " AND ( statoOrdine = ?";
-            if ($orderState === "Pending") {
-                $query .= " OR statoOrdine = 'Shipping'";
+            if ($orderState === "In Attesa") {
+                $query .= " OR statoOrdine = 'In Spedizione'";
             }
             $query .= ")";
             array_push($params, $orderState);
@@ -473,10 +472,6 @@ class DatabaseHelper
         }
         $query .= " ORDER BY dataOrdine DESC";
 
-        /* NOTA: modificata da daniele, per semplificare il codice.
-            semplicemente: passare la prima variabile normalmente, e tutte le variabili successive
-            vanno messe in un array e passarlo utilizzando l'operatore splat (...$array).
-            Se non vi crea problemi, scrivetemi pure ;-) */
         return $this->parametrizedQuery($query, $types, $userId, ...$params);
     }
     public function getAllProducts()
@@ -533,7 +528,7 @@ class DatabaseHelper
     public function updateOrderState($orderState, $orderId, $userId)
     {
         $query = "UPDATE ORDINE
-                    SET statoOrdine = ?, pagato = 1/* , dataConsegna = DATE_ADD(NOW(), INTERVAL 10 SECOND) */
+                    SET statoOrdine = ?, pagato = 1, dataConsegna = DATE_ADD(NOW(), INTERVAL 10 SECOND)
                     WHERE codOrdine = ? AND codUtente = ?";
         return $this->parametrizedNoresultQuery($query, "sii", $orderState, $orderId, $userId);
     }
@@ -551,7 +546,7 @@ class DatabaseHelper
     {
         $query = "INSERT INTO ORDINE(dataOrdine, statoOrdine, totale, pagato, codUtente)
                     VALUES(NOW(), 
-                    'Pending', 
+                    'In Attesa', 
                     (SELECT prezzo * ? FROM PRODOTTO WHERE codProdotto = ?), 
                     0, 
                     ?)";
@@ -568,7 +563,7 @@ class DatabaseHelper
         $query = "SELECT *
                     FROM ORDINE O, DETTAGLIO_ORDINE D
                     WHERE O.codOrdine = D.codOrdine
-                    AND O.statoOrdine = 'Shipped'
+                    AND O.statoOrdine = 'Spedito'
                     AND O.codUtente = ?
                     AND D.codProdotto = ?";
         $result = $this->parametrizedQuery($query, "ii", $userId, $productId);

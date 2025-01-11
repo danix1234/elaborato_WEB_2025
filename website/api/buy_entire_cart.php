@@ -21,7 +21,7 @@ if (sizeof($validRows) == 0) {
     return;
 }
 
-$res = $dbh->buyCartAddOrder($userId, "Pending", false);
+$res = $dbh->buyCartAddOrder($userId, "In Attesa", false);
 if ($res[0] != 0 && $res[1] != 1) {
     die('add order query failed!');
 }

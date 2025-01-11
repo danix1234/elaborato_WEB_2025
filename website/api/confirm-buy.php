@@ -13,7 +13,7 @@ $orderDetails = $dbh->getOrder($orderId, getCurrentUserId());
 
 if (empty($order) || empty($orderDetails)) {
     die("order not found");
-} else if ($order["statoOrdine"] != "Pending") {
+} else if ($order["statoOrdine"] != "In Attesa") {
     die("order already processed");
 }
 
@@ -22,7 +22,7 @@ foreach ($orderDetails as $detail) {
     $quantitaResidua = $dbh->getProduct($detail["codProdotto"])[0]["quantitaResidua"];
     $quantitaFinale = $quantitaResidua - $detail["quantita"];
     if ($quantitaFinale < 0) {
-        $dbh->modOrderState($orderId, "Deleted", getCurrentUserId());
+        $dbh->modOrderState($orderId, "Cancellato", getCurrentUserId());
         die("Errore: quantita' richiesta superiore a quella disponibile!");
 
     }
@@ -33,7 +33,7 @@ foreach ($orderDetails as $detail) {
     $dbh->updateProductStock($detail["codProdotto"], $quantitaFinale);
 }
 
-$dbh->updateOrderState("Shipping", $orderId, getCurrentUserId());
+$dbh->updateOrderState("In Spedizione", $orderId, getCurrentUserId());
 
 $message = "Ciao " . getCurrentUserName() . ", ";
 $message .= "Hai completato il pagamento dell'ordine #" . $orderId;
