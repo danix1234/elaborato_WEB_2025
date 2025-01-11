@@ -73,13 +73,13 @@ $prodotto = $templateParams["prodotto"];
                         <img src="<?php echo $templateParams["recensioni"][$i]["immagineProfilo"]; ?>"
                             class="rounded-circle me-3 user-avatar-size" alt="" />
                         <div>
-                            <strong><?php echo $templateParams["recensioni"][$i]["nomeUtente"]; ?></strong>
+                            <strong><?php echo htmlspecialchars($templateParams["recensioni"][$i]["nomeUtente"]); ?></strong>
                             <p class="mb-1"><?php echo $templateParams["recensioni"][$i]["votoRecensione"]; ?>/5
                                 <?php echo generateStarRating($templateParams["recensioni"][$i]["votoRecensione"]); ?>
                                 <span class="text-secondary"> Recensito il
                                     <?php echo $templateParams["recensioni"][$i]["dataRecensione"]; ?></span>
                             </p>
-                            <p class="text-body-secondary mb-0"><?php echo $templateParams["recensioni"][$i]["commento"]; ?>
+                            <p class="text-body-secondary mb-0"><?php echo htmlspecialchars($templateParams["recensioni"][$i]["commento"]); ?>
                             </p>
                         </div>
                     </li>

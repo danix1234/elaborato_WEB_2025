@@ -35,7 +35,7 @@ function getCurrentUserName()
     if (!isLoggedIn()) {
         die("CANNOT GET CURRENT USER: NOT LOGGED IN!");
     }
-    return $_SESSION["name"];
+    return htmlspecialchars($_SESSION["name"]);
 }
 
 function setPreviousPage($page)
