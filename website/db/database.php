@@ -282,22 +282,39 @@ class DatabaseHelper
         return $this->simpleQuery($query);
     }
 
-    public function getSearchedProductByName($productName)
+    public function getCategoryFromName($nomeCategoria)
     {
-        $query = "SELECT *
-                    FROM PRODOTTO
-                    WHERE NOT disabilitato AND nome LIKE CONCAT('%', ?, '%');";
-        return $this->parametrizedQuery($query, "s", $productName);
+        $query = "SELECT codCategoria 
+              FROM CATEGORIA 
+              WHERE nome LIKE CONCAT('%', ?, '%');";
+        return $this->parametrizedQuery($query, "s", $nomeCategoria);
     }
 
     public function getProductOnCategory($codCategoria)
     {
         $query = "SELECT *
-                    FROM PRODOTTO
-                    WHERE NOT disabilitato AND codCategoria = ?;";
+              FROM PRODOTTO
+              WHERE NOT disabilitato AND codCategoria = ?;";
         return $this->parametrizedQuery($query, "i", $codCategoria);
     }
 
+    public function getSearchedProductByName($productName)
+    {
+        // Recupera la categoria dal nome
+        $categoryResult = $this->getCategoryFromName($productName);
+
+        if (!empty($categoryResult)) {
+            // Se corrisponde a una categoria, restituisci tutti i prodotti di quella categoria
+            $codCategoria = $categoryResult[0]['codCategoria'];
+            return $this->getProductOnCategory($codCategoria);
+        }
+
+        // Altrimenti, cerca prodotti che contengono il nome
+        $query = "SELECT *
+              FROM PRODOTTO
+              WHERE NOT disabilitato AND nome LIKE CONCAT('%', ?, '%');";
+        return $this->parametrizedQuery($query, "s", $productName);
+    }
     public function getProductForCategoryAndSearch($productName, $categoryId)
     {
         $query = "SELECT *

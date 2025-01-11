@@ -4,13 +4,13 @@
 $conn = new mysqli("localhost", "root", "", "", 3306);
 $conn->query("DROP DATABASE IF EXISTS twdatabase");
 $conn->query("CREATE DATABASE IF NOT EXISTS twdatabase");
-$conn->multi_query(file_get_contents("./TWcreateDatabase.sql"));
+$conn->multi_query(file_get_contents("../db/TWcreateDatabase.sql"));
 do {
     if ($result = $conn->store_result()) {
         $result->free();
     }
 } while ($conn->more_results() && $conn->next_result());
-$conn->multi_query(file_get_contents("./popolazioneTWDatabase.sql"));
+$conn->multi_query(file_get_contents("../db/popolazioneTWDatabase_php.sql"));
 do {
     if ($result = $conn->store_result()) {
         $result->free();

@@ -73,25 +73,25 @@ $prodotto = $templateParams["prodotto"];
                         <img src="<?php echo $templateParams["recensioni"][$i]["immagineProfilo"]; ?>"
                             class="rounded-circle me-3 user-avatar-size" alt="" />
                         <div>
-                            <strong><?php echo $templateParams["recensioni"][$i]["nomeUtente"]; ?></strong>
+                            <strong><?php echo htmlspecialchars($templateParams["recensioni"][$i]["nomeUtente"]); ?></strong>
                             <p class="mb-1"><?php echo $templateParams["recensioni"][$i]["votoRecensione"]; ?>/5
                                 <?php echo generateStarRating($templateParams["recensioni"][$i]["votoRecensione"]); ?>
                                 <span class="text-secondary"> Recensito il
                                     <?php echo $templateParams["recensioni"][$i]["dataRecensione"]; ?></span>
                             </p>
-                            <p class="text-body-secondary mb-0"><?php echo $templateParams["recensioni"][$i]["commento"]; ?>
+                            <p class="text-body-secondary mb-0"><?php echo htmlspecialchars($templateParams["recensioni"][$i]["commento"]); ?>
                             </p>
                         </div>
                     </li>
                 <?php } ?>
             </ul>
         </section>
-        <hr />
         <div class="d-flex justify-content-between mb-3">
             <button id="other-review" type="button"
                 class="btn btn-outline-secondary <?php echo $totRecensioni > 3 ? '' : 'disabled' ?>">Vedi
                 altre recensioni</button>
         </div>
+        <hr/>
         <!-- scrivi recensione -->
         <h2 id="recensione" class="fw-bold mb-3">Scrivi una Recensione</h2>
         <?php if (isset($templateParams["erroreRecensione"])): ?>

@@ -9,8 +9,9 @@ setPreviousPage(basename($_SERVER['REQUEST_URI']));
 
 $productId = intval($_GET["productId"]);
 
-$recensionePrecedente = $dbh->getUserReviewByProductId(getCurrentUserId(), $productId);
-
+if (isLoggedIn()) {
+    $recensionePrecedente = $dbh->getUserReviewByProductId(getCurrentUserId(), $productId);
+}
 if (!empty($_POST["votoRecensione"]) && !empty($_POST["commento"])) {
     if ($dbh->hasBoughtProduct(getCurrentUserId(), $productId)) {
         $commento = $_POST["commento"];

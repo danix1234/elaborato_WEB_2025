@@ -1,13 +1,16 @@
 <?php if (!empty($templateParams["notifiche"])) { ?>
     <div class="row justify-content-start align-items-center mb-4">
-        <div class="btn-group col-md-3 d-flex flex-wrap justify-content-md-start my-2">
-            <button type="button" class="col btn btn-custom-lgold" onclick="leggiNotifica('tutte')">Leggi
-                Tutte</button>
-            <button id="btnUnread" type="button" class="col btn btn-light" onclick="filtraNotifiche('unread')">Da
-                leggere</button>
-            <button id="btnRead" type="button" class="col btn btn-light" onclick="filtraNotifiche('read')">Gia'
-                lette</button>
-        </div>
+        <form action="notifiche.php?codNotifica=tutte" method="get">
+            <div class="btn-group col-md-3 d-flex flex-wrap justify-content-md-start my-2">
+                <button type="submit" name="codNotifica" value="tutte" class="col btn btn-custom-lgold">
+                    Leggi Tutte
+                </button>
+                <button id="btnUnread" type="button" class="col btn btn-light" onclick="filtraNotifiche('unread')">Da
+                    leggere</button>
+                <button id="btnRead" type="button" class="col btn btn-light" onclick="filtraNotifiche('read')">Gia'
+                    lette</button>
+            </div>
+        </form>
     </div>
 <?php } ?>
 
@@ -31,13 +34,16 @@
                                         data-bs-target="#collapse<?php echo $codNotifica; ?>" aria-expanded="false"
                                         aria-controls="collapse<?php echo $codNotifica; ?>"
                                         onclick="leggiNotifica('<?php echo $codNotifica; ?>')">
-                                        <?php echo htmlspecialchars($notifica["tipoNotifica"]); ?>
+                                        <?php echo $notifica["tipoNotifica"]; ?>
+                                        <?php if (!$notifica['letto']) { ?>
+                                            <p>&nbsp;&nbsp;</p> <span class="badge bg-custom-blue">nuovo</span>
+                                        <?php } ?>
                                     </button>
                                 </h2>
                                 <div id="collapse<?php echo $codNotifica; ?>" class="accordion-collapse collapse"
                                     data-bs-parent="#accordionExample-<?php echo $codNotifica; ?>">
                                     <div class="accordion-body">
-                                        <?php echo htmlspecialchars($notifica["messaggio"]); ?>
+                                        <?php echo ($notifica["messaggio"]); ?>
                                     </div>
                                 </div>
                             </div>
