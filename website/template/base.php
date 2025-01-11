@@ -29,8 +29,8 @@
     }
 
     $categories = $dbh->getAllCategories();
-    $products = $dbh->getAllProducts(); //TODO: sugggestion bar
-    
+    $products = $dbh->getAllProducts();
+
     // Recupera la categoria selezionata
     $selectedCategoryId = isset($_GET['codCategoria']) ? $_GET["codCategoria"] : null;
 
@@ -40,6 +40,11 @@
         if (!empty($category)) {
             $selectedCategoryName = htmlspecialchars($category[0]['nome']);
         }
+        /*  by franco: sfrutto categories che è gia presente, cosi eviti di rifare una chiamata al db
+        volendo non serve htmlspecialachars perchè nel db siamo sicuri al 100% che non ci siano problemi, ma va bene lo stesso */
+        /* if (count($categories) >= $selectedCategoryId) {
+            $selectedCategoryName = $categories[$selectedCategoryId - 1]["nome"];
+        } */
     }
     ?>
     <script>
