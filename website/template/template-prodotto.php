@@ -86,12 +86,12 @@ $prodotto = $templateParams["prodotto"];
                 <?php } ?>
             </ul>
         </section>
-        <hr />
         <div class="d-flex justify-content-between mb-3">
             <button id="other-review" type="button"
                 class="btn btn-outline-secondary <?php echo $totRecensioni > 3 ? '' : 'disabled' ?>">Vedi
                 altre recensioni</button>
         </div>
+        <hr/>
         <!-- scrivi recensione -->
         <h2 id="recensione" class="fw-bold mb-3">Scrivi una Recensione</h2>
         <?php if (isset($templateParams["erroreRecensione"])): ?>
