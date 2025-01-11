@@ -8,11 +8,11 @@ if (!isLoggedIn()) {
 }
 
 // SNIPPED OF CODE HANDLED BY Daniele: check if any order got shipped, and in such case, also send a notification
-$orders = $dbh->getNotificationShippedButWithShippingState(getCurrentUserId());
+/* $orders = $dbh->getNotificationShippedButWithShippingState(getCurrentUserId());
 foreach ($orders as $order) {
     $dbh->notificationFromShippedOrder(intval($order["codOrdine"]));
 }
-$dbh->updateOrdersState(getCurrentUserId());
+$dbh->updateOrdersState(getCurrentUserId()); */
 // END OF SNIPPET OF CODE HANDLED BY Daniele!
 
 $templateParams["titolo"] = "Notifiche";
