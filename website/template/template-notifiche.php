@@ -34,13 +34,16 @@
                                         data-bs-target="#collapse<?php echo $codNotifica; ?>" aria-expanded="false"
                                         aria-controls="collapse<?php echo $codNotifica; ?>"
                                         onclick="leggiNotifica('<?php echo $codNotifica; ?>')">
-                                        <?php echo htmlspecialchars($notifica["tipoNotifica"]); ?>
+                                        <?php echo $notifica["tipoNotifica"]; ?>
+                                        <?php if (!$notifica['letto']) { ?>
+                                            <p>&nbsp;&nbsp;</p> <span class="badge bg-custom-blue">nuovo</span>
+                                        <?php } ?>
                                     </button>
                                 </h2>
                                 <div id="collapse<?php echo $codNotifica; ?>" class="accordion-collapse collapse"
                                     data-bs-parent="#accordionExample-<?php echo $codNotifica; ?>">
                                     <div class="accordion-body">
-                                        <?php echo htmlspecialchars($notifica["messaggio"]); ?>
+                                        <?php echo ($notifica["messaggio"]); ?>
                                     </div>
                                 </div>
                             </div>
