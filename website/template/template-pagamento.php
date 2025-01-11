@@ -1,5 +1,5 @@
 <div class="row justify-content-center mx-1">
-    <div class="col-12 col-md-6 col-lg-4 border rounded p-3">
+    <div class="col-auto border rounded p-3">
         <h2 class="text-center fw-bold mb-2">Pagamento</h2>
         <?php if (isset($templateParams["error"])): ?>
             <div class="text-danger mb-3">
@@ -16,9 +16,9 @@
         </div>
 
         <div class="d-block gap-2">
-            <button id="confirm-button" class="btn btn-custom-lgold">Confirm</button>
+            <button id="confirm-button" class="btn btn-custom-lgold">Conferma</button>
             <a href="?orderId=<?php echo $templateParams['ordine']['codOrdine']; ?>&deleted=true"
-                class="btn btn-danger">Cancel</a>
+                class="btn btn-danger">Cancella</a>
         </div>
         <div id="message-container" class="d-none text-danger"></div>
     </div>

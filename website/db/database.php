@@ -439,7 +439,7 @@ class DatabaseHelper
         $params = array();
         $types = "i";
 
-        if ($months != null) {
+        if ($months !== null) {
             $query .= " AND dataOrdine >= DATE_SUB(NOW(), INTERVAL ? MONTH)";
             array_push($params, $months);
             $types .= "i";
@@ -447,7 +447,7 @@ class DatabaseHelper
         if ($orderState != null) {
             // by daniele: ti ho aggiunto le parentesi tonde, per sistemare un bug nella query
             $query .= " AND ( statoOrdine = ?";
-            if ($orderState == "Pending") {
+            if ($orderState === "Pending") {
                 $query .= " OR statoOrdine = 'Shipping'";
             }
             $query .= ")";
@@ -513,19 +513,13 @@ class DatabaseHelper
                     WHERE codOrdine = ? AND codUtente = ?";
         return $this->parametrizedNoresultQuery($query, "sii", $newOrderState, $orderId, $userId);
     }
-    /**
-     * query for the confirm to buy button
-     */
-    public function confirmBuyOrder($orderState, $orderId, $userId)
+    public function updateOrderState($orderState, $orderId, $userId)
     {
         $query = "UPDATE ORDINE
                     SET statoOrdine = ?, pagato = 1, dataConsegna = DATE_ADD(NOW(), INTERVAL 10 SECOND)
                     WHERE codOrdine = ? AND codUtente = ?";
         return $this->parametrizedNoresultQuery($query, "sii", $orderState, $orderId, $userId);
     }
-    /**
-     * second part for confirm to buy button
-     */
     public function updateProductStock($productId, $setQuantity)
     {
         $query = "UPDATE PRODOTTO
@@ -589,6 +583,12 @@ class DatabaseHelper
                     SET password = ?
                     WHERE codUtente = ?";
         return $this->parametrizedNoresultQuery($query, "si", $newPassword, $userId);
+    }
+    public function inserNotification($userId, $message, $notificationType)
+    {
+        $query = "INSERT INTO NOTIFICA(messaggio, tipoNotifica, letto, dataNotifica, codUtente)
+                    VALUES(?,?,0,NOW(),?)";
+        return $this->parametrizedNoresultQuery($query, "ssi", $message, $notificationType, $userId);
     }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }
