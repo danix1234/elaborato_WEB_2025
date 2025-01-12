@@ -17,7 +17,7 @@
     ?></title> <!-- TODO change title -->
 </head>
 
-<body class="bg-white">
+<body class="bg-white d-flex flex-column min-vh-100">
     <?php
     if (isLoggedIn()) {
         $user = $dbh->getUserbyUserId(getCurrentUserId());
@@ -89,8 +89,7 @@
                         <select id="categoryBar" name="codCategoria"
                             class="form-select-md border border-0 d-none d-md-block">
                             <!-- Anteprima della categoria selezionata -->
-                            <option value="" disabled selected class="d-none"><?php echo $selectedCategoryName; ?>
-                            </option>
+                            <option value="" disabled selected><?php echo $selectedCategoryName; ?></option>
                             <!-- Opzioni della lista -->
                             <option value="">Tutte le categorie</option>
                             <?php foreach ($categories as $category): ?>
@@ -142,7 +141,7 @@
         </div>
     </header>
 
-    <main class="container-fluid">
+    <main class="container-fluid flex-grow-1">
         <?php
         if (isset($templateParams["nome"])) {
             require($templateParams["nome"]);
