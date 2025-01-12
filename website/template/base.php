@@ -29,8 +29,8 @@
     }
 
     $categories = $dbh->getAllCategories();
-    $products = $dbh->getAllProducts(); //TODO: sugggestion bar
-    
+    $products = $dbh->getAllProducts();
+
     // Recupera la categoria selezionata
     $selectedCategoryId = isset($_GET['codCategoria']) ? $_GET["codCategoria"] : null;
 
@@ -40,11 +40,13 @@
         if (!empty($category)) {
             $selectedCategoryName = htmlspecialchars($category[0]['nome']);
         }
+        /*  by franco: sfrutto categories che è gia presente, cosi eviti di rifare una chiamata al db
+        volendo non serve htmlspecialachars perchè nel db siamo sicuri al 100% che non ci siano problemi, ma va bene lo stesso */
+        /* if (count($categories) >= $selectedCategoryId) {
+            $selectedCategoryName = $categories[$selectedCategoryId - 1]["nome"];
+        } */
     }
     ?>
-    <script>
-        window.products = <?php echo json_encode(array_column($products, 'nome')); ?>;
-    </script>
     <header class="container-fluid px-0 py-2 overflow-hidden bg-custom-blue">
         <div class="row align-items-center justify-content-between mx-1">
             <!-- Logo -->
@@ -113,7 +115,11 @@
                             class="link-light link-opacity-50-hover"><span class="bi bi-ban"></span></a>
                     <?php endif; ?>
                     <a href="<?php checkFile('notifiche.php'); ?>" title="notifica"
-                        class="link-light link-opacity-50-hover"><span class="bi bi-bell"></span></a>
+                        class="link-light link-opacity-50-hover text-decoration-none"><span class="bi bi-bell"></span>
+                        <?php if (isLoggedIn() && $dbh->hasUnreadNotification(getCurrentUserId())) { ?>
+                            <span
+                                class="position-absolute translate-middle badge bg-danger border border-light rounded-circle px-1 mt-1"><span
+                                    class="visually-hidden">unread messages</span></span><?php } ?></a>
                     <a href="<?php checkFile('ordini.php'); ?>" title="ordini"
                         class="link-light link-opacity-50-hover"><span class="bi bi-clock-history"></span></a>
                     <a href="<?php checkFile('carrello.php'); ?>" title="carrello" class="text-custom-gold"><span
@@ -131,12 +137,41 @@
         ?>
     </main>
 
-    <footer class="text-center bg-custom-blue text-white">
-        sono il footer
+    <footer class="text-center text-white bg-custom-blue">
+        <div class="container-fluid justify-content-center p-4">
+            <div class="row">
+                <div class="col-12 col-md-6 mb-4 mb-md-0">
+                    <strong>Nostro Sito</strong>
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa velit quo nisi, placeat vero,
+                        ipsam provident repellat qui asperiores obcaecati sequi eligendi? Dolorem minus blanditiis
+                        cumque non nihil at error.
+                    </p>
+                </div>
+
+                <div class="col-12 col-md-6 mb-4 mb-md-0">
+                    <strong>Seguici</strong>
+                    <br />
+                    <div class=""> <!-- icon not centerted? -->
+                        <a href="#" class="text-white me-4"><span class="bi bi-facebook"></span></a><a href="#"
+                            class="text-white me-4"><span class="bi bi-twitter"></span></a><a href="#"
+                            class="text-white me-4"><span class="bi bi-instagram"></span></a><a href="#"
+                            class="text-white me-4"><span class="bi bi-linkedin"></span></a>
+                    </div>
+                </div>
+                <hr />
+                <div class="text-center">
+                    Copyright © <?php echo date("Y"); ?> Nostro Sito. All rights reserved.
+                </div>
+            </div>
+        </div>
+
+
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script src="js/update-orders-and-notifications.js"></script>
     <?php
     if (isset($templateParams["scripts"])) {
         foreach ($templateParams["scripts"] as $script) {

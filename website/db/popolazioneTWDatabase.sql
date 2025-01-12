@@ -52,22 +52,22 @@ VALUES
 -- Insert Orders
 INSERT INTO ORDINE (dataOrdine, dataConsegna, statoOrdine, totale, pagato, codUtente)
 VALUES 
-('2024-1-30', '2024-2-01','Shipped', 2200.00, 1, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
-('2024-12-01', '2027-12-05','Shipping', 2300.00, 1, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
-('2024-12-02', NULL,'Pending', 550.00, 0, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
-('2024-12-03', NULL,'Deleted', 900.00, 0, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com'));
+('2024-1-30', '2024-2-01','Spedito', 2200.00, 1, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
+('2024-12-01', '2027-12-05','In Spedizione', 2300.00, 1, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
+('2024-12-02', NULL,'In Attesa', 550.00, 0, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')),
+('2024-12-03', NULL,'Cancellato', 900.00, 0, (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com'));
 
 -- Insert Order Details
 INSERT INTO DETTAGLIO_ORDINE (codOrdine, codProdotto, quantita)
 VALUES 
-((SELECT codOrdine FROM ORDINE WHERE statoOrdine = 'Shipped' AND codUtente = (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')), (SELECT codProdotto FROM PRODOTTO WHERE nome = 'Dell XPS 13'), 1),
-((SELECT codOrdine FROM ORDINE WHERE statoOrdine = 'Shipped' AND codUtente = (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')), (SELECT codProdotto FROM PRODOTTO WHERE nome = 'iPhone 13'), 1),
-((SELECT codOrdine FROM ORDINE WHERE statoOrdine = 'Shipping' AND codUtente = (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')), (SELECT codProdotto FROM PRODOTTO WHERE nome = 'MacBook Pro'), 1),
-((SELECT codOrdine FROM ORDINE WHERE statoOrdine = 'Shipping' AND codUtente = (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')), (SELECT codProdotto FROM PRODOTTO WHERE nome = 'Samsung Galaxy S21'), 1),
-((SELECT codOrdine FROM ORDINE WHERE statoOrdine = 'Pending' AND codUtente = (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')), (SELECT codProdotto FROM PRODOTTO WHERE nome = 'Sony WH-1000XM4'), 1),
-((SELECT codOrdine FROM ORDINE WHERE statoOrdine = 'Pending' AND codUtente = (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')), (SELECT codProdotto FROM PRODOTTO WHERE nome = 'Bose QuietComfort 35 II'), 1),
-((SELECT codOrdine FROM ORDINE WHERE statoOrdine = 'Deleted' AND codUtente = (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')), (SELECT codProdotto FROM PRODOTTO WHERE nome = 'PlayStation 5'), 1),
-((SELECT codOrdine FROM ORDINE WHERE statoOrdine = 'Deleted' AND codUtente = (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')), (SELECT codProdotto FROM PRODOTTO WHERE nome = 'Nintendo Switch'), 1);
+((SELECT codOrdine FROM ORDINE WHERE statoOrdine = 'Spedito' AND codUtente = (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')), (SELECT codProdotto FROM PRODOTTO WHERE nome = 'Dell XPS 13'), 1),
+((SELECT codOrdine FROM ORDINE WHERE statoOrdine = 'Spedito' AND codUtente = (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')), (SELECT codProdotto FROM PRODOTTO WHERE nome = 'iPhone 13'), 1),
+((SELECT codOrdine FROM ORDINE WHERE statoOrdine = 'In Spedizione' AND codUtente = (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')), (SELECT codProdotto FROM PRODOTTO WHERE nome = 'MacBook Pro'), 1),
+((SELECT codOrdine FROM ORDINE WHERE statoOrdine = 'In Spedizione' AND codUtente = (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')), (SELECT codProdotto FROM PRODOTTO WHERE nome = 'Samsung Galaxy S21'), 1),
+((SELECT codOrdine FROM ORDINE WHERE statoOrdine = 'In Attesa' AND codUtente = (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')), (SELECT codProdotto FROM PRODOTTO WHERE nome = 'Sony WH-1000XM4'), 1),
+((SELECT codOrdine FROM ORDINE WHERE statoOrdine = 'In Attesa' AND codUtente = (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')), (SELECT codProdotto FROM PRODOTTO WHERE nome = 'Bose QuietComfort 35 II'), 1),
+((SELECT codOrdine FROM ORDINE WHERE statoOrdine = 'Cancellato' AND codUtente = (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')), (SELECT codProdotto FROM PRODOTTO WHERE nome = 'PlayStation 5'), 1),
+((SELECT codOrdine FROM ORDINE WHERE statoOrdine = 'Cancellato' AND codUtente = (SELECT codUtente FROM UTENTE WHERE email = 'u@es.com')), (SELECT codProdotto FROM PRODOTTO WHERE nome = 'Nintendo Switch'), 1);
 
 -- Insert Notifications
 INSERT INTO NOTIFICA (messaggio, tipoNotifica, letto, dataNotifica, codUtente)
@@ -113,6 +113,8 @@ VALUES
 
 DROP PROCEDURE IF EXISTS loopReview;
 
+DELIMITER $$
+
 CREATE PROCEDURE loopReview(IN userId INT, IN maxProducts INT)
 BEGIN
     DECLARE counter INT DEFAULT 1;
@@ -137,7 +139,9 @@ BEGIN
             LEAVE my_loop;
         END IF;
     END LOOP;
-END;
+END$$
+
+DELIMITER ;
 
 CALL loopReview(3, 14);
 CALL loopReview(4, 14);

@@ -169,8 +169,8 @@ class DatabaseHelper
     public function updateOrdersState($userId)
     {
         $query = "UPDATE ORDINE
-                    SET statoOrdine='Shipped'
-                    WHERE dataConsegna < NOW() AND statoOrdine='Shipping' AND codUtente = ?;";
+                    SET statoOrdine='Spedito'
+                    WHERE dataConsegna < NOW() AND statoOrdine='In Spedizione' AND codUtente = ?;";
         return $this->parametrizedNoresultQuery($query, "i", $userId);
     }
     public function getUser($userId)
@@ -235,7 +235,7 @@ class DatabaseHelper
     {
         $query = "SELECT *
                     FROM ORDINE
-                    WHERE CodUtente = ? AND dataConsegna < NOW() AND statoOrdine='Shipping'";
+                    WHERE CodUtente = ? AND dataConsegna < NOW() AND statoOrdine='In Spedizione'";
         return $this->parametrizedQuery($query, "i", $userId);
     }
     // ↑↑↑ LAST DANIELE QUERY ↑↑↑
@@ -435,7 +435,7 @@ class DatabaseHelper
     {
         $query = "INSERT INTO UTENTE(nomeUtente, email, password, privilegi, indirizzo, citta)
                     VALUES(?,?,?,0,?,?)";
-        return $this->parametrizedNoresultQuery($query, "sssss", $name, $email, $password, $address, $city);
+        $this->parametrizedNoresultQuery($query, "sssss", $name, $email, $password, $address, $city);
     }
     public function getSingleOrder($userId, $orderId)
     {
@@ -462,10 +462,9 @@ class DatabaseHelper
             $types .= "i";
         }
         if ($orderState != null) {
-            // by daniele: ti ho aggiunto le parentesi tonde, per sistemare un bug nella query
             $query .= " AND ( statoOrdine = ?";
-            if ($orderState === "Pending") {
-                $query .= " OR statoOrdine = 'Shipping'";
+            if ($orderState === "In Attesa") {
+                $query .= " OR statoOrdine = 'In Spedizione'";
             }
             $query .= ")";
             array_push($params, $orderState);
@@ -473,10 +472,6 @@ class DatabaseHelper
         }
         $query .= " ORDER BY dataOrdine DESC";
 
-        /* NOTA: modificata da daniele, per semplificare il codice.
-            semplicemente: passare la prima variabile normalmente, e tutte le variabili successive
-            vanno messe in un array e passarlo utilizzando l'operatore splat (...$array).
-            Se non vi crea problemi, scrivetemi pure ;-) */
         return $this->parametrizedQuery($query, $types, $userId, ...$params);
     }
     public function getAllProducts()
@@ -513,7 +508,7 @@ class DatabaseHelper
     {
         $query = "INSERT INTO CARRELLO(codProdotto, codUtente, quantita)
                     VALUES(?, ?, ?)";
-        return $this->parametrizedNoresultQuery($query, "iii", $productId, $userId, $quantity);
+        $this->parametrizedNoresultQuery($query, "iii", $productId, $userId, $quantity);
     }
     public function getSingleCartItem($productId, $userId)
     {
@@ -523,26 +518,33 @@ class DatabaseHelper
                     AND codUtente = ?";
         return $this->parametrizedQuery($query, "ii", $productId, $userId);
     }
-    public function modOrderState($orderId, $newOrderState, $userId)
+    public function updateOrderState($orderId, $newOrderState, $userId)
     {
         $query = "UPDATE ORDINE
                     SET statoOrdine = ?
                     WHERE codOrdine = ? AND codUtente = ?";
-        return $this->parametrizedNoresultQuery($query, "sii", $newOrderState, $orderId, $userId);
+        $this->parametrizedNoresultQuery($query, "sii", $newOrderState, $orderId, $userId);
     }
-    public function updateOrderState($orderState, $orderId, $userId)
+    public function updateOrderShippedDate($orderDate, $orderId, $userId)
     {
         $query = "UPDATE ORDINE
-                    SET statoOrdine = ?, pagato = 1, dataConsegna = DATE_ADD(NOW(), INTERVAL 10 SECOND)
+                    SET dataConsegna = ?
                     WHERE codOrdine = ? AND codUtente = ?";
-        return $this->parametrizedNoresultQuery($query, "sii", $orderState, $orderId, $userId);
+        $this->parametrizedNoresultQuery($query, "sii", $orderDate, $orderId, $userId);
+    }
+    public function updateOrderStateConfirmBuy($orderId, $userId)
+    {
+        $query = "UPDATE ORDINE
+                    SET statoOrdine = 'In Spedizione', pagato = 1, dataConsegna = DATE_ADD(NOW(), INTERVAL 10 SECOND)
+                    WHERE codOrdine = ? AND codUtente = ?";
+        $this->parametrizedNoresultQuery($query, "ii", $orderId, $userId);
     }
     public function updateProductStock($productId, $setQuantity)
     {
         $query = "UPDATE PRODOTTO
                     SET quantitaResidua = ?
                     WHERE codProdotto = ?";
-        return $this->parametrizedNoresultQuery($query, "ii", $setQuantity, $productId);
+        $this->parametrizedNoresultQuery($query, "ii", $setQuantity, $productId);
     }
     /**
      * add order for buy now button
@@ -551,24 +553,24 @@ class DatabaseHelper
     {
         $query = "INSERT INTO ORDINE(dataOrdine, statoOrdine, totale, pagato, codUtente)
                     VALUES(NOW(), 
-                    'Pending', 
+                    'In Attesa', 
                     (SELECT prezzo * ? FROM PRODOTTO WHERE codProdotto = ?), 
                     0, 
                     ?)";
-        return $this->parametrizedNoresultQuery($query, "iii", $quantity, $productId, $userId);
+        $this->parametrizedNoresultQuery($query, "iii", $quantity, $productId, $userId);
     }
     public function addOrderDetail($orderId, $productId, $quantity)
     {
         $query = "INSERT INTO DETTAGLIO_ORDINE(codOrdine, codProdotto, quantita)
                     VALUES(?, ?, ?)";
-        return $this->parametrizedNoresultQuery($query, "iii", $orderId, $productId, $quantity);
+        $this->parametrizedNoresultQuery($query, "iii", $orderId, $productId, $quantity);
     }
     public function hasBoughtProduct($userId, $productId)
     {
         $query = "SELECT *
                     FROM ORDINE O, DETTAGLIO_ORDINE D
                     WHERE O.codOrdine = D.codOrdine
-                    AND O.statoOrdine = 'Shipped'
+                    AND O.statoOrdine = 'Spedito'
                     AND O.codUtente = ?
                     AND D.codProdotto = ?";
         $result = $this->parametrizedQuery($query, "ii", $userId, $productId);
@@ -585,27 +587,32 @@ class DatabaseHelper
     {
         $query = "INSERT INTO RECENSIONE(codUtente, codProdotto, votoRecensione, commento, dataRecensione)
                     VALUES(?, ?, ?, ?, NOW())";
-        return $this->parametrizedNoresultQuery($query, "iiis", $userId, $productId, $vote, $comment);
+        $this->parametrizedNoresultQuery($query, "iiis", $userId, $productId, $vote, $comment);
     }
     public function updateReview($userId, $productId, $vote, $comment)
     {
         $query = "UPDATE RECENSIONE
         SET votoRecensione = ?, commento = ?, dataRecensione = NOW()
         WHERE codUtente = ? AND codProdotto = ?";
-        return $this->parametrizedNoresultQuery($query, "isii", $vote, $comment, $userId, $productId);
+        $this->parametrizedNoresultQuery($query, "isii", $vote, $comment, $userId, $productId);
     }
     public function updateUserPassword($userId, $newPassword)
     {
         $query = "UPDATE UTENTE
                     SET password = ?
                     WHERE codUtente = ?";
-        return $this->parametrizedNoresultQuery($query, "si", $newPassword, $userId);
+        $this->parametrizedNoresultQuery($query, "si", $newPassword, $userId);
     }
     public function inserNotification($userId, $message, $notificationType)
     {
         $query = "INSERT INTO NOTIFICA(messaggio, tipoNotifica, letto, dataNotifica, codUtente)
                     VALUES(?,?,0,NOW(),?)";
-        return $this->parametrizedNoresultQuery($query, "ssi", $message, $notificationType, $userId);
+        $this->parametrizedNoresultQuery($query, "ssi", $message, $notificationType, $userId);
+    }
+    public function hasUnreadNotification($userId){
+        $query = "SELECT * FROM NOTIFICA WHERE codUtente = ? AND letto = 0";
+        $result = $this->parametrizedQuery($query, "i", $userId);
+        return !empty($result);
     }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }
