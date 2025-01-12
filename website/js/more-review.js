@@ -7,7 +7,6 @@ otherReviewButton.addEventListener("click", function() {
     if (currentIndex < reviews.length) {
         const review = reviews[currentIndex];
         const reviewItem = document.createElement("li");
-        const profile = reviews[currentIndex]
         reviewItem.classList.add("d-flex", "align-items-start", "mb-3");
         reviewItem.innerHTML = `
                 <img src="${review.immagineProfilo}" class="rounded-circle me-3 user-avatar-size" alt="" />
