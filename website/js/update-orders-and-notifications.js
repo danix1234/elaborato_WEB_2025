@@ -1,6 +1,6 @@
-setInterval(function () {
+setInterval(function() {
     fetch("api/update-user-orders.php");
-}, 10000);
+}, 1000);
 
 const notificationLink = document.querySelector('a[title="notifica"]');
 function checkNotifications() {
@@ -21,4 +21,4 @@ function checkNotifications() {
         .catch(error => console.error('Error checking notifications:', error));
 };
 
-setInterval(checkNotifications, 10000);
+setInterval(checkNotifications, 1000);
