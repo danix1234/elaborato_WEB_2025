@@ -41,7 +41,7 @@
         ?>
             <div class="row mb-3 align-items-center">
                 <div class="col-12 col-md-8 mx-auto">
-                    <div class="card shadow">
+                    <div class="card shadow" id="item-<?php echo $item["codProdotto"] ?>">
                         <div class="card-body">
                             <div class="row py-4">
                                 <div class="col-md-4">
