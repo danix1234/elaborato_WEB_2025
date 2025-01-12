@@ -5,7 +5,7 @@ function addToCart(productId) {
             .then(data => {
                 console.log("Server Response: ", data);
                 // Reindirizza alla pagina carrello solo dopo che il fetch è completato
-                window.location.href = `carrello.php?productId=${productId}`;
+                window.location.href = `carrello.php#item-${productId}`;
             })
             .catch(error => {
                 console.error("Error from product-buttons-home.js: ", error);
