@@ -40,8 +40,7 @@
             $selectedCategoryName = ($category[0]['nome']);
         }
         /*  by franco: sfrutto categories che è gia presente, cosi eviti di rifare una chiamata al db
-        volendo non serve htmlspecialachars perchè nel db siamo sicuri al 100% che non ci siano problemi, ma va bene lo stesso */
-        /* if (count($categories) >= $selectedCategoryId) {
+        if (count($categories) >= $selectedCategoryId) {
             $selectedCategoryName = $categories[$selectedCategoryId - 1]["nome"];
         } */
     }
