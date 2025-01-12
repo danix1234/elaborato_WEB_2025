@@ -1,5 +1,5 @@
 // update orders
-setInterval(function() {
+setInterval(function () {
     fetch("api/update-user-orders.php");
 }, 1000);
 
@@ -24,5 +24,25 @@ function checkNotifications() {
 };
 
 setInterval(checkNotifications, 1000);
+
+// update suggestions
+const categoryBar = document.getElementById('categoryBar');
+const datalist = document.getElementById('list-suggestion');
+
+categoryBar.addEventListener('change', function () {
+    const categoryId = this.value;
+
+    fetch(`api/get-suggestions.php?codCategoria=${categoryId}`)
+        .then(response => response.json())
+        .then(data => {
+            datalist.innerHTML = '';
+            data.forEach(suggestion => {
+                const option = document.createElement('option');
+                option.value = suggestion;
+                datalist.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching suggestions:', error));
+})
 
 

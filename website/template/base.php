@@ -33,7 +33,6 @@
 
     // Recupera la categoria selezionata
     $selectedCategoryId = isset($_GET['codCategoria']) ? $_GET["codCategoria"] : null;
-
     $selectedCategoryName = 'Tutte le categorie';
     if ($selectedCategoryId) {
         $category = $dbh->getNameOfCategory($selectedCategoryId);
@@ -45,6 +44,22 @@
         /* if (count($categories) >= $selectedCategoryId) {
             $selectedCategoryName = $categories[$selectedCategoryId - 1]["nome"];
         } */
+    }
+
+    $filteredsuggestions = array();
+    if (!empty($selectedCategoryId)) {
+        foreach ($products as $product) {
+            if (intval($product["codCategoria"]) === intval($selectedCategoryId)) {
+                array_push($filteredsuggestions, $product["nome"]);
+            }
+        }
+    } else {
+        foreach ($products as $product) {
+            array_push($filteredsuggestions, $product["nome"]);
+        }
+        foreach ($categories as $category) {
+            array_push($filteredsuggestions, $category["nome"]);
+        }
     }
     ?>
     <header class="container-fluid px-0 py-2 overflow-hidden bg-custom-blue">
@@ -64,11 +79,8 @@
                             class="form-control rounded-start border border-0" placeholder="Cerca"
                             list="list-suggestion" />
                         <datalist id="list-suggestion">
-                            <?php foreach ($products as $product): ?>
-                                <option value="<?php echo $product["nome"]; ?>"></option>
-                            <?php endforeach; ?>
-                            <?php foreach ($categories as $category): ?>
-                                <option value="<?php echo $category["nome"]; ?>"></option>
+                            <?php foreach ($filteredsuggestions as $suggest): ?>
+                                <option value="<?php echo $suggest; ?>"></option>
                             <?php endforeach; ?>
                         </datalist>
 
@@ -171,7 +183,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <script src="js/update-orders-and-notifications.js"></script>
+    <script src="js/base.js"></script>
     <?php
     if (isset($templateParams["scripts"])) {
         foreach ($templateParams["scripts"] as $script) {
