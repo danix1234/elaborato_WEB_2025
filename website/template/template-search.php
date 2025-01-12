@@ -62,14 +62,14 @@
                                 <button onclick="buyNow(<?php echo $prodotto['codProdotto']; ?>)" type="button"
                                     class="btn btn-custom-gold w-100">
                                     <span class="bi bi-bag-check"></span>
-                                    Acquista subito
+                                    Acquista
                                 </button>
                             </div>
-                            <div class="col-6 text-nowrap border">
+                            <div class="col-6 text-nowrap">
                                 <button onclick="addToCart(<?php echo $prodotto['codProdotto']; ?>)" type="button"
-                                    class="btn w-100">
+                                    class="btn w-100 border">
                                     <span class="bi bi-cart-check"></span>
-                                    Aggiungi al carrello
+                                    Aggiungi
                                 </button>
                             </div>
                         </div>
