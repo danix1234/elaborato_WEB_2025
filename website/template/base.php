@@ -137,8 +137,36 @@
         ?>
     </main>
 
-    <footer class="text-center bg-custom-blue text-white">
-        sono il footer
+    <footer class="text-center text-white bg-custom-blue">
+        <div class="container-fluid justify-content-center p-4">
+            <div class="row">
+                <div class="col-12 col-md-6 mb-4 mb-md-0">
+                    <strong>Nostro Sito</strong>
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa velit quo nisi, placeat vero,
+                        ipsam provident repellat qui asperiores obcaecati sequi eligendi? Dolorem minus blanditiis
+                        cumque non nihil at error.
+                    </p>
+                </div>
+
+                <div class="col-12 col-md-6 mb-4 mb-md-0">
+                    <strong>Seguici</strong>
+                    <br />
+                    <div class=""> <!-- icon not centerted? -->
+                        <a href="#" class="text-white me-4"><span class="bi bi-facebook"></span></a><a href="#"
+                            class="text-white me-4"><span class="bi bi-twitter"></span></a><a href="#"
+                            class="text-white me-4"><span class="bi bi-instagram"></span></a><a href="#"
+                            class="text-white me-4"><span class="bi bi-linkedin"></span></a>
+                    </div>
+                </div>
+                <hr />
+                <div class="text-center">
+                    Copyright © <?php echo date("Y"); ?> Nostro Sito. All rights reserved.
+                </div>
+            </div>
+        </div>
+
+
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
