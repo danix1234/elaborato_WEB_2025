@@ -3,6 +3,7 @@
 - [ ] quando clicchi per aggiungere al carrello in search.php, l'url deve essere `carrello#n`, non `carello.php?productId=n`
 - [ ] in `ordini.php` non è possibile pagare per ordini nello stato `in attesa`
 - [ ] centrare la scritta `Non ci sono notifiche` (in notifiche, quando l'utente non ha notifiche)
+- [ ] nella search bar, i suggerimenti dovrebbero essere filtrati in base alla categoria correntemente selezionata
 
 ### FIXES AFTER WE FINISH EVERYTHING ELSE
 
@@ -12,3 +13,4 @@
 
 - [ ] nome del website
 - [ ] magari i link dei social nel footer possono essere non cliccabili
+- [ ] rendere coerenti i due buttoni (buy now, add to cart) nella search page, in modo tale da averli entrambi con icone, o con parole
