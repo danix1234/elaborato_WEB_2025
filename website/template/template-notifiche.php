@@ -16,7 +16,7 @@
 
 <!-- Notifiche -->
 <?php if (empty($templateParams["notifiche"])) { ?>
-    <h1>Non ci sono notifiche</h1>
+    <h1 class="text-center">Non ci sono notifiche</h1>
 <?php } else { ?>
     <?php
     foreach ($templateParams["notifiche"] as $notifica):
@@ -35,9 +35,8 @@
                                         aria-controls="collapse<?php echo $codNotifica; ?>"
                                         onclick="leggiNotifica('<?php echo $codNotifica; ?>')">
                                         <?php echo $notifica["tipoNotifica"]; ?>
-                                        <?php if (!$notifica['letto']) { ?>
-                                            <p>&nbsp;&nbsp;</p> <span class="badge bg-custom-blue">nuovo</span>
-                                        <?php } ?>
+                                        <p>&nbsp;&nbsp;</p><span class="badge bg-custom-blue" <?php if ($notifica['letto'])
+                                            echo 'style="display:none;"'; ?>>nuovo</span>
                                     </button>
                                 </h2>
                                 <div id="collapse<?php echo $codNotifica; ?>" class="accordion-collapse collapse"
