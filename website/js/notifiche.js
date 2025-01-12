@@ -7,6 +7,9 @@ let activeFilter = null;
 
 // Funzione per filtrare le notifiche
 function filtraNotifiche(filter) {
+    // Collassa tutti gli accordion
+    collapseAllAccordions();
+
     // Controlla se il filtro richiesto è già attivo
     if (activeFilter === filter) {
         resetContent(allNotifications); // Mostra tutte le notifiche
@@ -55,6 +58,13 @@ function updateButtonState() {
     }
 }
 
+// Funzione per collassare tutti gli accordion
+function collapseAllAccordions() {
+    const accordions = document.querySelectorAll(".accordion-collapse");
+    accordions.forEach(accordion => {
+        accordion.classList.remove("show");
+    });
+}
 
 // Funzione per gestire il click su un pulsante accordion
 function leggiNotifica(codNotifica) {
@@ -62,16 +72,24 @@ function leggiNotifica(codNotifica) {
     const url = new URL(window.location.href);
     url.searchParams.set('codNotifica', codNotifica);
     history.pushState({}, '', url.toString());
+
     // Richiesta fetch al server
     fetch(url.toString(), { method: 'GET' })
         .then(data => {
             console.log("Risposta dal server:", data);
 
             // Aggiorna visivamente la notifica come "letta"
-            const notificationElement = document.querySelector(`[data-notifica-id="${codNotifica}"]`);
+            const notificationElement = document.getElementById(`accordionExample-${codNotifica}`);
             if (notificationElement) {
-                notificationElement.setAttribute('data-filter', 'gia-lette');
-                notificationElement.classList.add('read'); // Aggiunge una classe per lo stile visivo
+                const parentItem = notificationElement.closest('.notification-item');
+                parentItem.setAttribute('data-filter', 'read');
+                parentItem.classList.add('read'); // Aggiunge una classe per lo stile visivo
+
+                // Nasconde lo span "nuovo" se presente
+                const badge = parentItem.querySelector('.badge.bg-custom-blue');
+                if (badge) {
+                    badge.style.display = "none";
+                }
             }
-        })
-}
+        });
+} 

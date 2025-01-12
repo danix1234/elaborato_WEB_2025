@@ -89,7 +89,8 @@
                         <select id="categoryBar" name="codCategoria"
                             class="form-select-md border border-0 d-none d-md-block">
                             <!-- Anteprima della categoria selezionata -->
-                            <option value="" disabled selected><?php echo $selectedCategoryName; ?></option>
+                            <option value="" disabled selected class="d-none"><?php echo $selectedCategoryName; ?>
+                            </option>
                             <!-- Opzioni della lista -->
                             <option value="">Tutte le categorie</option>
                             <?php foreach ($categories as $category): ?>
