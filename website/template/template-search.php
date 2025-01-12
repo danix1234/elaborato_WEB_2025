@@ -65,7 +65,7 @@
                                     Acquista subito
                                 </button>
                             </div>
-                            <div class="col-6 text-nowrap">
+                            <div class="col-6 text-nowrap border">
                                 <button onclick="addToCart(<?php echo $prodotto['codProdotto']; ?>)" type="button"
                                     class="btn w-100">
                                     <span class="bi bi-cart-check"></span>
