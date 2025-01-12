@@ -83,7 +83,6 @@ function leggiNotifica(codNotifica) {
             if (notificationElement) {
                 const parentItem = notificationElement.closest('.notification-item');
                 parentItem.setAttribute('data-filter', 'read');
-                parentItem.classList.add('read'); // Aggiunge una classe per lo stile visivo
 
                 // Nasconde lo span "nuovo" se presente
                 const badge = parentItem.querySelector('.badge.bg-custom-blue');
