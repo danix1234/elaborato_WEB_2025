@@ -7,7 +7,6 @@ function checkNotifications() {
     fetch("api/check-notifications.php")
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             if (data) {
                 notificationLink.innerHTML = `
                         <span class="bi bi-bell"></span><span class="position-absolute 
