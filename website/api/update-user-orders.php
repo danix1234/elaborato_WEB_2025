@@ -12,6 +12,6 @@ foreach ($orders as $order) {
     $dbh->updateOrderShippedDate(date('Y-m-d H:i:s'), $order["codOrdine"], getCurrentUserId());
     $message = "Ciao " . getCurrentUserName() . ", ";
     $message.="L'ordine #" . $order["codOrdine"]. " è arrivata!";
-    $dbh->inserNotification(getCurrentUserId(), $message, "Arrivo Ordine");
+    $dbh->inserTNotification(getCurrentUserId(), $message, "Arrivo Ordine");
 }
 ?>

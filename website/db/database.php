@@ -603,7 +603,7 @@ class DatabaseHelper
                     WHERE codUtente = ?";
         $this->parametrizedNoresultQuery($query, "si", $newPassword, $userId);
     }
-    public function inserNotification($userId, $message, $notificationType)
+    public function inserTNotification($userId, $message, $notificationType)
     {
         $query = "INSERT INTO NOTIFICA(messaggio, tipoNotifica, letto, dataNotifica, codUtente)
                     VALUES(?,?,0,NOW(),?)";

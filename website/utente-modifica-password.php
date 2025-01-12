@@ -17,7 +17,7 @@ if (!empty($_POST["vecchia"]) && !empty($_POST["nuova"]) && !empty($_POST["confe
         $dbh->updateUserPassword(getCurrentUserId(), $newHash);
 
         $message = "Ciao " . getCurrentUserName() . ", passowrd modificato con successo!";
-        $dbh->inserNotification(getCurrentUserId(), $message, "Modifica Password");
+        $dbh->inserTNotification(getCurrentUserId(), $message, "Modifica Password");
 
         header("Location: search.php");
     }

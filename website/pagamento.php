@@ -28,7 +28,7 @@ if (isset($_GET["deleted"]) && $_GET["deleted"] == true) {
     $dbh->updateOrderState($orderId, "Cancellato", getCurrentUserId());
     $message = "Ciao " . getCurrentUserName() . ", ";
     $message .= "Hai cancellato il pagamento dell'ordine #" . $orderId;
-    $dbh->inserNotification(getCurrentUserId(), $message, "Pagamento Ordine");
+    $dbh->inserTNotification(getCurrentUserId(), $message, "Pagamento Ordine");
     header("Location: ordini.php");
 }
 

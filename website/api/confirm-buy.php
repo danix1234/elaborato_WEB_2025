@@ -37,6 +37,6 @@ $dbh->updateOrderStateConfirmBuy( $orderId, getCurrentUserId());
 
 $message = "Ciao " . getCurrentUserName() . ", ";
 $message .= "Hai completato il pagamento dell'ordine #" . $orderId;
-$dbh->inserNotification(getCurrentUserId(), $message, "Pagamento Ordine");
+$dbh->inserTNotification(getCurrentUserId(), $message, "Pagamento Ordine");
 
 ?>

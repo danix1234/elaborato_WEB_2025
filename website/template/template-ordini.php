@@ -103,7 +103,7 @@
                                         <a href="ordine.php?orderId=<?php echo $ordine['codOrdine']; ?>"
                                             class="btn btn-outline-secondary">Dettagli</a>
                                         <a href="pagamento.php?orderId=<?php echo $ordine['codOrdine']; ?>"
-                                            class="btn btn-outline-secondary <?php echo $ordine['statoOrdine'] != 'Pending' ? 'disabled' : ''; ?>">Paga</a>
+                                            class="btn btn-outline-secondary <?php echo $ordine['statoOrdine'] != 'In Attesa' ? 'disabled' : ''; ?>">Paga</a>
                                     </div>
                                 
                             </div>
