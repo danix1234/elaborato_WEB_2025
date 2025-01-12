@@ -115,7 +115,11 @@
                             class="link-light link-opacity-50-hover"><span class="bi bi-ban"></span></a>
                     <?php endif; ?>
                     <a href="<?php checkFile('notifiche.php'); ?>" title="notifica"
-                        class="link-light link-opacity-50-hover"><span class="bi bi-bell"></span></a>
+                        class="link-light link-opacity-50-hover text-decoration-none"><span class="bi bi-bell"></span>
+                        <?php if (isLoggedIn() && $dbh->hasUnreadNotification(getCurrentUserId())) { ?>
+                            <span
+                                class="position-absolute translate-middle badge bg-danger border border-light rounded-circle px-1 mt-1"><span
+                                    class="visually-hidden">unread messages</span></span><?php } ?></a>
                     <a href="<?php checkFile('ordini.php'); ?>" title="ordini"
                         class="link-light link-opacity-50-hover"><span class="bi bi-clock-history"></span></a>
                     <a href="<?php checkFile('carrello.php'); ?>" title="carrello" class="text-custom-gold"><span

@@ -609,5 +609,10 @@ class DatabaseHelper
                     VALUES(?,?,0,NOW(),?)";
         $this->parametrizedNoresultQuery($query, "ssi", $message, $notificationType, $userId);
     }
+    public function hasUnreadNotification($userId){
+        $query = "SELECT * FROM NOTIFICA WHERE codUtente = ? AND letto = 0";
+        $result = $this->parametrizedQuery($query, "i", $userId);
+        return !empty($result);
+    }
     // ↑↑↑ LAST FRANCO QUERY ↑↑↑
 }
