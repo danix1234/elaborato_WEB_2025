@@ -1,7 +1,9 @@
+// update orders
 setInterval(function() {
     fetch("api/update-user-orders.php");
 }, 1000);
 
+// update notification icon
 const notificationLink = document.querySelector('a[title="notifica"]');
 function checkNotifications() {
     fetch("api/check-notifications.php")
@@ -22,3 +24,5 @@ function checkNotifications() {
 };
 
 setInterval(checkNotifications, 1000);
+
+
