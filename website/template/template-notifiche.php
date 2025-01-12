@@ -51,7 +51,7 @@
 
                     <!-- Ora -->
                     <div class="ms-3 text-nowrap">
-                        <?php echo htmlspecialchars($notifica["dataNotifica"]); ?>
+                        <?php echo $notifica["dataNotifica"]; ?>
                     </div>
                 </div>
             </div>
