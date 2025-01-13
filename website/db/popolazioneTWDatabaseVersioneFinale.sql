@@ -65,3 +65,26 @@ VALUES
 (4, 7,  2),
 (5, 4,  1);
 
+-- Insert Notifications
+INSERT INTO NOTIFICA (messaggio, tipoNotifica, letto, dataNotifica, codUtente)
+VALUES 
+("Ciao Daniele, Hai completato il pagamento dell'ordine #2",  'Pagamento Ordine', 1, '2025-01-13 21:01:58', 2),
+("Ciao Daniele, Hai cancellato il pagamento dell'ordine #3",  'Pagamento Ordine', 1, '2025-01-13 21:02:03', 2),
+("Ciao Daniele, L'ordine #2 è arrivata!",                     'Arrivo Ordine',    1, '2025-01-13 21:02:09', 2),
+("Ciao Daniele, Hai completato il pagamento dell'ordine #1",  'Pagamento Ordine', 1, '2025-01-13 21:02:23', 2),
+("Ciao Daniele, L'ordine #1 è arrivata!",                     'Arrivo Ordine',    1, '2025-01-13 21:02:34', 2),
+("Ciao Giuseppe, Hai completato il pagamento dell'ordine #4", 'Pagamento Ordine', 0, '2025-01-13 21:04:14', 4),
+("Ciao Giuseppe, Hai completato il pagamento dell'ordine #5", 'Pagamento Ordine', 0, '2025-01-13 21:04:22', 4),
+("Ciao Giuseppe, L'ordine #4 è arrivata!",                    'Arrivo Ordine',    0, '2025-01-13 21:04:25', 4),
+("Ciao Giuseppe, L'ordine #5 è arrivata!",                    'Arrivo Ordine',    0, '2025-01-13 21:04:34', 4);
+
+-- Insert Recensions
+INSERT INTO RECENSIONE (codUtente, codProdotto, votoRecensione, commento, dataRecensione)
+VALUES
+(2, 5,  5, "Sono perfette per quando l'ambiente è rumoroso, proteggono dai rumori forti!", '2025-01-13 21:18:30'),
+(2, 8,  1, 'Non ne vale la pena per il prezzo! Troppo costoso!!!',                         '2025-01-13 21:19:27'),
+(2, 10, 1, '350 euro per un orologio??? ma siamo matti?',                                  '2025-01-13 21:19:57'),
+(2, 14, 5, 'Adoro la nintendo switch!!!',                                                  '2025-01-13 21:17:20'),
+(4, 1,  1, 'Decisamente costa troppo, ha solo 4GB di ram. Non compratelo!',                '2025-01-13 21:15:44'),
+(4, 4,  4, 'Adoro gli iphone, decisamente superiore a samsung, ma costano troppo!',        '2025-01-13 21:06:39'),
+(4, 7,  5, 'Decisamente un prodotto valido! Lo consiglierei a tutti!',                     '2025-01-13 21:15:02');
