@@ -277,7 +277,7 @@ class DatabaseHelper
     {
         $query = "SELECT *
         FROM PRODOTTO
-        WHERE NOT disabilitato
+        WHERE NOT disabilitato AND quantitaResidua <> 0
         ORDER BY RAND()";
         return $this->simpleQuery($query);
     }
@@ -294,7 +294,7 @@ class DatabaseHelper
     {
         $query = "SELECT *
               FROM PRODOTTO
-              WHERE NOT disabilitato AND codCategoria = ?;";
+              WHERE NOT disabilitato AND codCategoria = ? AND quantitaResidua <> 0;";
         return $this->parametrizedQuery($query, "i", $codCategoria);
     }
 
@@ -312,14 +312,14 @@ class DatabaseHelper
         // Altrimenti, cerca prodotti che contengono il nome
         $query = "SELECT *
               FROM PRODOTTO
-              WHERE NOT disabilitato AND nome LIKE CONCAT('%', ?, '%');";
+              WHERE NOT disabilitato AND quantitaResidua <> 0 AND nome LIKE CONCAT('%', ?, '%');";
         return $this->parametrizedQuery($query, "s", $productName);
     }
     public function getProductForCategoryAndSearch($productName, $categoryId)
     {
         $query = "SELECT *
                     FROM PRODOTTO
-                    WHERE NOT disabilitato AND nome LIKE CONCAT('%', ?, '%') AND codCategoria = ?;";
+                    WHERE NOT disabilitato AND quantitaResidua <> 0 AND nome LIKE CONCAT('%', ?, '%') AND codCategoria = ?;";
         return $this->parametrizedQuery($query, "si", $productName, $categoryId);
     }
 
