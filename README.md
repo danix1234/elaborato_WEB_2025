@@ -27,3 +27,4 @@
 - [ ] magari i link dei social nel footer possono essere non cliccabili
 - [ ] vogliamo mettere i numeri delle notifiche nel cerchietto sopra l'icona delle notifiche?
 - [ ] vogliamo aggiungere le icone anche in "compra subito" e "aggiungi al carrello" bottoni nel prodotto? (stesse icone usate in search.php)
+- [ ] vogliamo rimuovere il valore preciso della media delle recensioni in search.php, e lasciare solo le stelline invece?
