@@ -21,7 +21,7 @@ if (!empty($_GET)) {
             if ($_GET["change"] == "test") {
                 run_sql_file($conn, "../db/popolazioneTWDatabase_php.sql");
             } elseif ($_GET["change"] == "final") {
-                run_sql_file($conn, "TODO");
+                run_sql_file($conn, "../db/popolazioneTWDatabaseVersioneFinale.sql");
             }
             $conn->close();
 
