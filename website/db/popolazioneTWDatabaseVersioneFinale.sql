@@ -43,3 +43,25 @@ VALUES
 (2, 10, 1),
 (3, 3,  1),
 (3, 12, 4);
+
+-- Insert Orders
+INSERT INTO ORDINE (dataOrdine, dataConsegna, statoOrdine, totale, pagato, codUtente)
+VALUES 
+('2025-01-13 21:01:39', '2025-01-13 21:02:34', 'Spedito',    1450.00, 1, 2),
+('2025-01-13 21:01:54', '2025-01-13 21:02:09', 'Spedito',    400.00,  1, 2),
+('2025-01-13 21:02:01', NULL,                  'Cancellato', 500.00,  0, 2),
+('2025-01-13 21:04:13', '2025-01-13 21:04:25', 'Spedito',    2400.00, 1, 4),
+('2025-01-13 21:04:21', '2025-01-13 21:04:34', 'Spedito',    1000.00, 1, 4);
+
+-- Insert Order Details
+INSERT INTO DETTAGLIO_ORDINE (codOrdine, codProdotto, quantita)
+VALUES 
+(1, 5,  2),
+(1, 8,  1),
+(1, 10, 1),
+(2, 14, 1),
+(3, 13, 1),
+(4, 1,  1),
+(4, 7,  2),
+(5, 4,  1);
+
