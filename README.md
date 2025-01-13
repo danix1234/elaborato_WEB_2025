@@ -13,6 +13,7 @@
 - [x] footer "ancorato" in basso
 - [x] rendere coerenti i due buttoni (buy now, add to cart) nella search page, in modo tale che entrambi usino sia icone che parole 
 - [ ] template base sign dovrebbe avere lo stesso footer del template base
+- [ ] notifica per quando un prodotto termina da implementare al momento dell'acquisto singolo, o dell'intero carrello
 
 ## FIXES TO DO AFTER EVERYTHING ELSE IS DONE
 
