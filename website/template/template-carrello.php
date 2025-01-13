@@ -41,42 +41,44 @@
         ?>
             <div class="row mb-3 align-items-center">
                 <div class="col-12 col-md-8 mx-auto">
-                    <div class="card shadow" id="item-<?php echo $item["codProdotto"] ?>">
-                        <div class="card-body">
-                            <div class="row py-4">
-                                <div class="col-md-4">
-                                    <div class="row justify-content-center">
-                                        <img class="img-fluid col-auto" src="<?php echo UPLOAD_DIR . $item["immagine"] ?>" alt="" />
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <a href="prodotto.php?productId=<?php echo $item["codProdotto"] ?>" class="row link-custom">
-                                        <h2><?php echo $item["nome"] ?></h2>
-                                    </a>
-                                    <div class="row">
-                                        <span><?php echo $item["descrizione"] ?></span>
-                                    </div>
-                                    <div class="row">
-                                        <span class="text-custom-price">Prezzo: <?php echo $item["prezzo"] ?>€</span>
-                                    </div>
-                                    <div class="row justify-content-md-start justify-content-center">
-                                        <label for="<?php echo $item["codProdotto"] ?>" class="col-form-label pe-0 col-auto">Quantità:</label>
-                                        <div class="col-auto ps-2">
-                                            <div class="input-group">
-                                                <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement<?php echo $i ?>">-</button>
-                                                <input class="form-control button-custom-quantity" type="text" value="<?php echo $item["quantita"] ?>" name="<?php echo $item["codProdotto"] ?>" id="<?php echo $item["codProdotto"] ?>" required />
-                                                <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment<?php echo $i ?>">+</button>
-                                            </div>
-                                            <span class="visually-hidden"><?php echo $item["quantitaResidua"] == 0 ? 0 : 1 ?></span>
-                                            <span class="visually-hidden"><?php echo $item["quantitaResidua"] ?></span>
-                                            <span class="visually-hidden"><?php echo $item["quantita"] ?></span>
+                    <div id="item-<?php echo $item["codProdotto"] ?>">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <div class="row py-4">
+                                    <div class="col-md-4">
+                                        <div class="row justify-content-center">
+                                            <img class="img-fluid col-auto" src="<?php echo UPLOAD_DIR . $item["immagine"] ?>" alt="" />
                                         </div>
                                     </div>
-                                    <div class="row text-center text-md-start">
-                                        <span class="cart-element-msg text-danger" id="msg<?php echo $item["codProdotto"] ?>"></span>
-                                    </div>
-                                    <div class="row justify-content-md-start justify-content-center mt-2 ms-0">
-                                        <button class="btn btn-danger col-auto button-custom-remove" type="button">Rimuovi</button>
+                                    <div class="col-md-8">
+                                        <a href="prodotto.php?productId=<?php echo $item["codProdotto"] ?>" class="row link-custom">
+                                            <h2><?php echo $item["nome"] ?></h2>
+                                        </a>
+                                        <div class="row">
+                                            <span><?php echo $item["descrizione"] ?></span>
+                                        </div>
+                                        <div class="row">
+                                            <span class="text-custom-price">Prezzo: <?php echo $item["prezzo"] ?>€</span>
+                                        </div>
+                                        <div class="row justify-content-md-start justify-content-center">
+                                            <label for="<?php echo $item["codProdotto"] ?>" class="col-form-label pe-0 col-auto">Quantità:</label>
+                                            <div class="col-auto ps-2">
+                                                <div class="input-group">
+                                                    <button tabindex="-1" class="input-group-text font-monospace" type="button" id="decrement<?php echo $i ?>">-</button>
+                                                    <input class="form-control button-custom-quantity" type="text" value="<?php echo $item["quantita"] ?>" name="<?php echo $item["codProdotto"] ?>" id="<?php echo $item["codProdotto"] ?>" required />
+                                                    <button tabindex="-1" class="input-group-text font-monospace" type="button" id="increment<?php echo $i ?>">+</button>
+                                                </div>
+                                                <span class="visually-hidden"><?php echo $item["quantitaResidua"] == 0 ? 0 : 1 ?></span>
+                                                <span class="visually-hidden"><?php echo $item["quantitaResidua"] ?></span>
+                                                <span class="visually-hidden"><?php echo $item["quantita"] ?></span>
+                                            </div>
+                                        </div>
+                                        <div class="row text-center text-md-start">
+                                            <span class="cart-element-msg text-danger" id="msg<?php echo $item["codProdotto"] ?>"></span>
+                                        </div>
+                                        <div class="row justify-content-md-start justify-content-center mt-2 ms-0">
+                                            <button class="btn btn-danger col-auto button-custom-remove" type="button">Rimuovi</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
