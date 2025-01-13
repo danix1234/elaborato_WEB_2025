@@ -5,27 +5,26 @@ VALUES
 ('Daniele',    '$2y$10$U62OmutMlh7GNvR8VbYJluVMpNE/oF1KRlj3TKRASYkq7/a9d50AO', 'daniele@studio.unibo.it',    0, 'Via Roma 12',               0, 'Bologna'),   -- pw: daniele
 ('Franco',     '$2y$10$PATF1eeMpWf8QU0Di4G8F.ZqFoRiSJHpGfQgMFlqnv63ismaJ4Cji', 'franco@studio.unibo.it',     0, 'Viale delle rose 99',       0, 'Firenze'),   -- pw: franco
 ('Giuseppe',   '$2y$10$H8cOAl86UxfOjw0A.5Oc8e8suZZ/MBG7GgpURH9OjAE4ncRz6CO3O', 'giuseppe@studio.unibo.it',   0, 'Via Martini 120',           0, 'Rimini'),    -- pw: giuseppe
-('Filippo',    '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'filippo@studio.unibo.it',    0, 'Via Levaldigi, 420',        0, 'Forli'),     -- pw (from here on): password
-('Marco',      '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'marco@studio.unibo.it',      0, 'Via Dante Alighieri, 35',   0, 'Bologna'),
-('Luca',       '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'luca@studio.unibo.it',       0, 'Via Garibaldi, 12',         0, 'Ravenna'),
-('Giovanni',   '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'giovanni@studio.unibo.it',   0, 'Corso Italia, 80',          0, 'Venezia'),
-('Antonio',    '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'antonio@studio.unibo.it',    0, 'Via Roma, 54',              0, 'Napoli'),
-('Francesco',  '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'francesco@studio.unibo.it',  0, 'Via Torino, 70',            0, 'Milano'),
-('Stefano',    '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'stefano@studio.unibo.it',    0, 'Piazza San Giovanni, 10',   0, 'Genova'),
-('Alessandro', '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'alessandro@studio.unibo.it', 0, 'Via delle Magnolie, 45',    0, 'Torino'),
-('Matteo',     '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'matteo@studio.unibo.it',     0, 'Via della Libertà, 13',     0, 'Firenze'),
-('Simone',     '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'simone@studio.unibo.it',     0, 'Via Guglielmo Marconi, 22', 0, 'Roma'),
-('Maria',      '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'maria@studio.unibo.it',      0, 'Via Giuseppe Mazzini, 28',  0, 'Napoli'),
-('Giulia',     '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'giulia@studio.unibo.it',     0, 'Piazza del Duomo, 4',       0, 'Milano'),
-('Sofia',      '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'sofia@studio.unibo.it',      0, 'Via San Giovanni, 56',      0, 'Torino'),
-('Alessandra', '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'alessandra@studio.unibo.it', 0, 'Viale Europa, 18',          0, 'Bologna'),
-('Martina',    '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'martina@studio.unibo.it',    0, 'Via Dante, 42',             0, 'Roma'),
-('Francesca',  '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'francesca@studio.unibo.it',  0, 'Piazza Venezia, 15',        0, 'Venezia'),
-('Sara',       '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'sara@studio.unibo.it',       0, 'Corso Trieste, 10',         0, 'Firenze'),
-('Elena',      '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'elena@studio.unibo.it',      0, 'Via Roma, 85',              0, 'Genova'),
-('Beatrice',   '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'beatrice@studio.unibo.it',   0, 'Viale dei Colli, 23',       0, 'Palermo'),
-('Valentina',  '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'valentina@studio.unibo.it',  0, 'Via delle Rose, 78',        0, 'Catania');
-
+('Filippo',    '$2y$10$8wZoGoaIhHi8Edv1VsWVReWFX4PGR5Sblw67FvQt.VZ.bDO6i/JpK', 'filippo@studio.unibo.it',    0, 'Via Levaldigi, 420',        0, 'Forli'),     -- pw: filippo               
+('Marco',      '$2y$10$CgaHPnB.zxkxTXyQS6.Y6uXNGheDI85nEPouwvHGPC8PYU5LRm0SK', 'marco@studio.unibo.it',      0, 'Via Dante Alighieri, 35',   0, 'Bologna'),   -- pw: marco               
+('Luca',       '$2y$10$NPtvQiDo5Pv9TGnt38/6g.watBMVqYzZ613eTzJhhTqQFgigMXG5S', 'luca@studio.unibo.it',       0, 'Via Garibaldi, 12',         0, 'Ravenna'),   -- pw: luca               
+('Giovanni',   '$2y$10$XdpM3MIGF.YdkGEit1kXauEbvPk/WkBSS6FPFWAwYZBe9fOhb3o66', 'giovanni@studio.unibo.it',   0, 'Corso Italia, 80',          0, 'Venezia'),   -- pw: giovanni               
+('Antonio',    '$2y$10$2yQ9FulPMQ9sE1SYZPXEK./qo0moAoAVH1138U2pYdZbzqlOrV0U2', 'antonio@studio.unibo.it',    0, 'Via Roma, 54',              0, 'Napoli'),    -- pw: antonio               
+('Francesco',  '$2y$10$SNP3Z5WwN3sIPwk3Q6jmwOalbpc79zJ77TsBWTxzh5EGUu5FI8uPe', 'francesco@studio.unibo.it',  0, 'Via Torino, 70',            0, 'Milano'),    -- pw: francesco               
+('Stefano',    '$2y$10$Rg0WQdHtll3GqyOA0ztFg.bXTBW8c86lrHpeLz4LhA/lsK/EQgqbG', 'stefano@studio.unibo.it',    0, 'Piazza San Giovanni, 10',   0, 'Genova'),    -- pw: stefano               
+('Alessandro', '$2y$10$edewjIbH.D1P2yfd8qI4Re8EAxFvLKLh5v80SVn3IKWjjyMuvZ54y', 'alessandro@studio.unibo.it', 0, 'Via delle Magnolie, 45',    0, 'Torino'),    -- pw: alessandro               
+('Matteo',     '$2y$10$lCA6d.XNFKPaBEf8g9g4ou./G2gEEsxWWL.Qt/fkyqV.mm5c7oKxK', 'matteo@studio.unibo.it',     0, 'Via della Libertà, 13',     0, 'Firenze'),   -- pw: matteo               
+('Simone',     '$2y$10$OGR3MEDrgFQ33DdGfwwWiu6d4zER16m7JaLARjj1Fv.MDBgoJG/T2', 'simone@studio.unibo.it',     0, 'Via Guglielmo Marconi, 22', 0, 'Roma'),      -- pw: simone               
+('Maria',      '$2y$10$oN2BpWG9D98Am8KLzVcpHuCfNRhGrKR.38i/bt7sKNv0sBXUf00t2', 'maria@studio.unibo.it',      0, 'Via Giuseppe Mazzini, 28',  0, 'Napoli'),    -- pw: maria               
+('Giulia',     '$2y$10$W0GOfgKe7jmIxc2NMynPXeON6Pzyf0cI0jIjQzW2pm9L4iMC.4tdq', 'giulia@studio.unibo.it',     0, 'Piazza del Duomo, 4',       0, 'Milano'),    -- pw: giulia               
+('Sofia',      '$2y$10$bt7sWJvlRT5vdBN/BLxloOxEGjjT/nGV/4Kc33UjGWrxLxHy11FqC', 'sofia@studio.unibo.it',      0, 'Via San Giovanni, 56',      0, 'Torino'),    -- pw: sofia               
+('Alessandra', '$2y$10$pf2NoMuJLXP7U.Ph3l1iTukDoj8PZNhZjKo8XHtS4qG0FliWiVOuy', 'alessandra@studio.unibo.it', 0, 'Viale Europa, 18',          0, 'Bologna'),   -- pw: alessandra               
+('Martina',    '$2y$10$4NpK3sW83H6hstW.FwycTeo/W6tjOye7gMo4C505hM6k/kid6q4eC', 'martina@studio.unibo.it',    0, 'Via Dante, 42',             0, 'Roma'),      -- pw: martina               
+('Francesca',  '$2y$10$xRGnSRl1OSuk8PR3NJnDsuofsgzoZ1Lee02D49YRX0egxwRiW9Fmu', 'francesca@studio.unibo.it',  0, 'Piazza Venezia, 15',        0, 'Venezia'),   -- pw: francesca               
+('Sara',       '$2y$10$Zrh3sNmNqZSAP4T1r2St/OErk9Gr1svL8Y43Wi5TnOkPPbj9SrRWy', 'sara@studio.unibo.it',       0, 'Corso Trieste, 10',         0, 'Firenze'),   -- pw: sara               
+('Elena',      '$2y$10$OFhC3y9RrLgyhMUpNb/pHOdIWgU9UF0v48P3waQ9Z3EG3b2E2/1MG', 'elena@studio.unibo.it',      0, 'Via Roma, 85',              0, 'Genova'),    -- pw: elena               
+('Beatrice',   '$2y$10$O/His8fUTG.k1sY3f1iZsuk3bdWHR5B8r/o56Czd2mx237RJGzM2W', 'beatrice@studio.unibo.it',   0, 'Viale dei Colli, 23',       0, 'Palermo'),   -- pw: beatrice               
+('Valentina',  '$2y$10$9LzokHZEl7Kk1apaWtxZIuAf3S6rcTSB5su951sQaswvs0FRa0d7W', 'valentina@studio.unibo.it',  0, 'Via delle Rose, 78',        0, 'Catania');   -- pw: valentina               
 
 -- Insert Categories
 INSERT INTO CATEGORIA (nome, descrizione)
@@ -106,7 +105,6 @@ VALUES
 ('2025-01-13 23:12:56', '2025-01-13 23:13:07', 'Spedito',    1500.00, 1, 20),
 ('2025-01-13 23:14:27', '2025-01-13 23:14:38', 'Spedito',    1500.00, 1, 21),
 ('2025-01-13 23:16:05', '2025-01-13 23:16:17', 'Spedito',    2050.00, 1, 22);
-
 
 -- Insert Order Details
 INSERT INTO DETTAGLIO_ORDINE (codOrdine, codProdotto, quantita)
@@ -248,4 +246,3 @@ VALUES
 (21, 2,  1, "Troppo costoso!",                                                                                                                                                      '2025-01-13 23:14:54'),
 (22, 2,  2, "Niente di che",                                                                                                                                                        '2025-01-13 23:16:27'),
 (22, 10, 5, "Lo consiglierò a tutte le mie amiche!",                                                                                                                                '2025-01-13 23:17:25');
-
