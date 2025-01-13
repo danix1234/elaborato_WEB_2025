@@ -6,14 +6,14 @@
         <ul class="navbar-nav flex-row flex-nowrap overflow-auto w-100">
             <li class="nav-item">
                 <button type="button" class="btn btn-outline-primary me-2" onclick="filtrocategorie('')">
-                    Tutte le categorie</button>
+                    Categorie</button>
             </li>
             <?php foreach ($templateParams["categorie"] as $categoria) {
                 $codCategoria = $categoria["codCategoria"]; ?>
                 <li class="nav-item">
                     <button type="button" class="btn btn-outline-primary me-2"
-                        onclick="filtrocategorie('<?php echo htmlspecialchars($codCategoria, ENT_QUOTES, 'UTF-8'); ?>')">
-                        <?php echo htmlspecialchars($categoria["nome"], ENT_QUOTES, 'UTF-8'); ?>
+                        onclick="filtrocategorie('<?php echo $codCategoria ?>')">
+                        <?php echo $categoria["nome"]; ?>
                     </button>
                 </li>
             <?php } ?>
@@ -26,7 +26,7 @@
     <div class="row row-cols-1 row-cols-md-3 mt-3">
         <?php
         foreach ($templateParams["prodotti"] as $prodotto) { ?>
-            <div class="col mb-5">
+            <div class="col mb-3">
                 <div class="card h-100">
                     <a href="prodotto.php?productId=<?php echo $prodotto["codProdotto"] ?>" class="link-custom">
                         <div class="row py-1">
@@ -67,7 +67,7 @@
                             </div>
                             <div class="col-6 text-nowrap">
                                 <button onclick="addToCart(<?php echo $prodotto['codProdotto']; ?>)" type="button"
-                                    class="btn w-100 border">
+                                    class="btn w-100 btn-light border border-1">
                                     <span class="bi bi-cart-check"></span>
                                     Aggiungi
                                 </button>
