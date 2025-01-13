@@ -45,7 +45,7 @@
                             <p class="card-text"><?php echo $prodotto["descrizione"] ?></p>
                         </div>
                     </div>
-                    <div class="row py-1">
+                    <div class="row py-1 mb-5">
                         <div class="col-12">
                             <p class="card-text"><strong><?php echo $prodotto["prezzo"] . '€' ?></strong></p>
                         </div>
@@ -56,7 +56,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="card-footer mt-5 align-bottom">
+                    <div class="card-footer mt-auto align-bottom">
                         <div class="row">
                             <div class="col-6">
                                 <button onclick="buyNow(<?php echo $prodotto['codProdotto']; ?>)" type="button"
