@@ -18,7 +18,7 @@
     ?></title> <!-- TODO change title -->
 </head>
 
-<body class="bg-white">
+<body class="bg-white d-flex flex-column min-vh-100">
     <?php
     require_once("bootstrap.php");
     if (isLoggedIn()) {
@@ -40,7 +40,7 @@
         </div>
     </header>
 
-    <main class="container my-2">
+    <main class="container my-2 flex-grow-1">
         <?php
         if (isset($templateParams["nome"])) {
             require($templateParams["nome"]);
