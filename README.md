@@ -17,10 +17,10 @@
 ## FIXES TO DO AFTER EVERYTHING ELSE IS DONE
 
 - [ ] sistema query per popolare il database, in modo tale che inserisca dati validi: sistemare l'indirizzo di user e admin, tradurre tutto in italiano, inserire valide notifiche, ...
+- [ ] validate code with achecker and validator w3c
 
 ## TO THINK ABOUT
 
 - [ ] nome del website
 - [ ] magari i link dei social nel footer possono essere non cliccabili
 - [ ] vogliamo mettere i numeri delle notifiche nel cerchietto sopra l'icona delle notifiche?
-- [ ] vogliamo spostare il bottone 'Leggi tutto' in notifiche a destra, da solo?
