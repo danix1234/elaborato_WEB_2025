@@ -12,9 +12,9 @@
 - [x] quando una notifica viene letta, viene immediatamentamente segnata come letta
 - [x] footer "ancorato" in basso
 - [x] rendere coerenti i due buttoni (buy now, add to cart) nella search page, in modo tale che entrambi usino sia icone che parole 
+- [x] non visualizzare nella search page i prodotti con quantita residua = 0
 - [ ] template base sign dovrebbe avere lo stesso footer del template base
 - [ ] notifica per quando un prodotto termina da implementare al momento dell'acquisto singolo, o dell'intero carrello
-- [ ] non visualizzare nella search page i prodotti con quantita residua = 0
 
 ## FIXES TO DO AFTER EVERYTHING ELSE IS DONE
 
