@@ -34,15 +34,8 @@
     // Recupera la categoria selezionata
     $selectedCategoryId = isset($_GET['codCategoria']) ? $_GET["codCategoria"] : null;
     $selectedCategoryName = 'Tutte le categorie';
-    if ($selectedCategoryId) {
-        $category = $dbh->getNameOfCategory($selectedCategoryId);
-        if (!empty($category)) {
-            $selectedCategoryName = ($category[0]['nome']);
-        }
-        /*  by franco: sfrutto categories che è gia presente, cosi eviti di rifare una chiamata al db
-        if (count($categories) >= $selectedCategoryId) {
-            $selectedCategoryName = $categories[$selectedCategoryId - 1]["nome"];
-        } */
+    if (count($categories) >= $selectedCategoryId && !is_null($selectedCategoryId)) {
+        $selectedCategoryName = $categories[$selectedCategoryId - 1]["nome"];
     }
 
     $filteredsuggestions = array();
@@ -88,7 +81,8 @@
                         <select id="categoryBar" name="codCategoria"
                             class="form-select-md border border-0 d-none d-md-block">
                             <!-- Anteprima della categoria selezionata -->
-                            <option value="" disabled selected><?php echo $selectedCategoryName; ?></option>
+                            <option value="" disabled selected class="d-none"><?php echo $selectedCategoryName; ?>
+                            </option>
                             <!-- Opzioni della lista -->
                             <option value="">Tutte le categorie</option>
                             <?php foreach ($categories as $category): ?>

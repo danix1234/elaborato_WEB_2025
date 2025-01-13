@@ -331,15 +331,6 @@ class DatabaseHelper
         $result = $this->parametrizedQuery($query, "i", $productId);
         return $result[0]['mediaVoto'] ?? 0.0; // Restituisce la media o null se non ci sono recensioni
     }
-
-    public function getNameOfCategory($codCategoria)
-    {
-        $query = $query = "SELECT *
-                    FROM CATEGORIA
-                    WHERE codCategoria=?";
-        return $this->parametrizedQuery($query, "i", $codCategoria);
-    }
-
     public function getFinishProduct($productsid, $codUtente)
     {
         $query = "SELECT codProdotto
@@ -609,7 +600,8 @@ class DatabaseHelper
                     VALUES(?,?,0,NOW(),?)";
         $this->parametrizedNoresultQuery($query, "ssi", $message, $notificationType, $userId);
     }
-    public function hasUnreadNotification($userId){
+    public function hasUnreadNotification($userId)
+    {
         $query = "SELECT * FROM NOTIFICA WHERE codUtente = ? AND letto = 0";
         $result = $this->parametrizedQuery($query, "i", $userId);
         return !empty($result);
