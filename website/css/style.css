@@ -14,6 +14,10 @@
     animation: remove-border 2s forwards;
 }
 
+.scroll-25 {
+    scroll-margin-top: 25vh;
+}
+
 /* Animation to remove border after 2 seconds */
 @keyframes remove-border {
     0% {
