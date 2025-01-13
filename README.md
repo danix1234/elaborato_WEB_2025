@@ -14,13 +14,10 @@
 - [x] footer "ancorato" in basso
 - [x] rendere coerenti i due buttoni (buy now, add to cart) nella search page, in modo tale che entrambi usino sia icone che parole
 - [x] non visualizzare nella search page i prodotti con quantita residua = 0
+- [x] migliora le query di popolazione del database, per avere dati in italiano, validi, e che abbiano senso
 - [ ] template base sign dovrebbe avere lo stesso footer del template base
 - [ ] notifica per quando un prodotto termina da implementare al momento dell'acquisto singolo, o dell'intero carrello
-
-## FIXES TO DO AFTER EVERYTHING ELSE IS DONE
-
-- [ ] sistema query per popolare il database, in modo tale che inserisca dati validi: sistemare l'indirizzo di user e admin, tradurre tutto in italiano, inserire valide notifiche, ...
-- [ ] validate code with achecker and validator w3c
+- [ ] metti nome del website ovunque abbiano lasciato 'Nostro Sito' in precedenza
 
 ## TO THINK ABOUT
 
