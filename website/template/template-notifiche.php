@@ -35,8 +35,8 @@
                                         data-bs-target="#collapse<?php echo $codNotifica; ?>" aria-expanded="false"
                                         aria-controls="collapse<?php echo $codNotifica; ?>"
                                         onclick="leggiNotifica('<?php echo $codNotifica; ?>')">
-                                        <?php echo $notifica["tipoNotifica"]; ?>
-                                        <p>&nbsp;&nbsp;</p><span class="badge bg-custom-blue" <?php if ($notifica['letto'])
+                                        <?php echo htmlspecialchars($notifica["tipoNotifica"]); ?>
+                                        <span class="badge bg-custom-blue ms-2" <?php if ($notifica['letto'])
                                             echo 'style="display:none;"'; ?>>nuovo</span>
                                     </button>
                                 </h2>
