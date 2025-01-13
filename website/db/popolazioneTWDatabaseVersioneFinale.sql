@@ -1,10 +1,31 @@
 -- Insert Admin User
 INSERT INTO UTENTE (nomeUtente, password, email, privilegi, indirizzo, disabilitato, citta)
 VALUES 
-('Admin',    '$2y$10$3TVwpYu41fudJSgJVFf3FOgXn/RQspOUtpBXwAbd7vVBXKybbosHS', 'admin@unibo.it',           1, 'Via Giovanni 3',      0, 'Cesena'),    -- pw: admin
-('Daniele',  '$2y$10$U62OmutMlh7GNvR8VbYJluVMpNE/oF1KRlj3TKRASYkq7/a9d50AO', 'daniele@studio.unibo.it',  0, 'Via Roma 12',         0, 'Bologna'),   -- pw: daniele
-('Franco',   '$2y$10$PATF1eeMpWf8QU0Di4G8F.ZqFoRiSJHpGfQgMFlqnv63ismaJ4Cji', 'franco@studio.unibo.it',   0, 'Viale delle rose 99', 0, 'Firenze'),   -- pw: franco
-('Giuseppe', '$2y$10$H8cOAl86UxfOjw0A.5Oc8e8suZZ/MBG7GgpURH9OjAE4ncRz6CO3O', 'giuseppe@studio.unibo.it', 0, 'Via Martini 120',     0, 'Rimini');    -- pw: giuseppe
+('Admin',      '$2y$10$3TVwpYu41fudJSgJVFf3FOgXn/RQspOUtpBXwAbd7vVBXKybbosHS', 'admin@unibo.it',             1, 'Via Giovanni 3',            0, 'Cesena'),    -- pw: admin
+('Daniele',    '$2y$10$U62OmutMlh7GNvR8VbYJluVMpNE/oF1KRlj3TKRASYkq7/a9d50AO', 'daniele@studio.unibo.it',    0, 'Via Roma 12',               0, 'Bologna'),   -- pw: daniele
+('Franco',     '$2y$10$PATF1eeMpWf8QU0Di4G8F.ZqFoRiSJHpGfQgMFlqnv63ismaJ4Cji', 'franco@studio.unibo.it',     0, 'Viale delle rose 99',       0, 'Firenze'),   -- pw: franco
+('Giuseppe',   '$2y$10$H8cOAl86UxfOjw0A.5Oc8e8suZZ/MBG7GgpURH9OjAE4ncRz6CO3O', 'giuseppe@studio.unibo.it',   0, 'Via Martini 120',           0, 'Rimini'),    -- pw: giuseppe
+('Filippo',    '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'filippo@studio.unibo.it',    0, 'Via Levaldigi, 420',        0, 'Forli'),     -- pw (from here on): password
+('Marco',      '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'marco@studio.unibo.it',      0, 'Via Dante Alighieri, 35',   0, 'Bologna'),
+('Luca',       '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'luca@studio.unibo.it',       0, 'Via Garibaldi, 12',         0, 'Ravenna'),
+('Giovanni',   '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'giovanni@studio.unibo.it',   0, 'Corso Italia, 80',          0, 'Venezia'),
+('Antonio',    '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'antonio@studio.unibo.it',    0, 'Via Roma, 54',              0, 'Napoli'),
+('Francesco',  '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'francesco@studio.unibo.it',  0, 'Via Torino, 70',            0, 'Milano'),
+('Stefano',    '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'stefano@studio.unibo.it',    0, 'Piazza San Giovanni, 10',   0, 'Genova'),
+('Alessandro', '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'alessandro@studio.unibo.it', 0, 'Via delle Magnolie, 45',    0, 'Torino'),
+('Matteo',     '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'matteo@studio.unibo.it',     0, 'Via della Libertà, 13',     0, 'Firenze'),
+('Simone',     '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'simone@studio.unibo.it',     0, 'Via Guglielmo Marconi, 22', 0, 'Roma'),
+('Maria',      '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'maria@studio.unibo.it',      0, 'Via Giuseppe Mazzini, 28',  0, 'Napoli'),
+('Giulia',     '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'giulia@studio.unibo.it',     0, 'Piazza del Duomo, 4',       0, 'Milano'),
+('Sofia',      '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'sofia@studio.unibo.it',      0, 'Via San Giovanni, 56',      0, 'Torino'),
+('Alessandra', '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'alessandra@studio.unibo.it', 0, 'Viale Europa, 18',          0, 'Bologna'),
+('Martina',    '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'martina@studio.unibo.it',    0, 'Via Dante, 42',             0, 'Roma'),
+('Francesca',  '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'francesca@studio.unibo.it',  0, 'Piazza Venezia, 15',        0, 'Venezia'),
+('Sara',       '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'sara@studio.unibo.it',       0, 'Corso Trieste, 10',         0, 'Firenze'),
+('Elena',      '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'elena@studio.unibo.it',      0, 'Via Roma, 85',              0, 'Genova'),
+('Beatrice',   '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'beatrice@studio.unibo.it',   0, 'Viale dei Colli, 23',       0, 'Palermo'),
+('Valentina',  '$2y$10$jtePgbT5r5v1eew3DZjhhuJ8X6/yYDXyVDCNfJpcah9AwIL/aFxPq', 'valentina@studio.unibo.it',  0, 'Via delle Rose, 78',        0, 'Catania');
+
 
 -- Insert Categories
 INSERT INTO CATEGORIA (nome, descrizione)
