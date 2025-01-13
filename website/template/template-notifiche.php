@@ -5,9 +5,10 @@
                 <button type="submit" name="codNotifica" value="tutte" class="col btn btn-custom-lgold">
                     Leggi Tutte
                 </button>
-                <button id="btnUnread" type="button" class="col btn btn-light border" onclick="filtraNotifiche('unread')">Da
+                <button id="btnUnread" type="button" class="col btn btn-light border-0"
+                    onclick="filtraNotifiche('unread')">Da
                     leggere</button>
-                <button id="btnRead" type="button" class="col btn btn-light border" onclick="filtraNotifiche('read')">Gia'
+                <button id="btnRead" type="button" class="col btn btn-light border-0" onclick="filtraNotifiche('read')">Gia'
                     lette</button>
             </div>
         </form>
