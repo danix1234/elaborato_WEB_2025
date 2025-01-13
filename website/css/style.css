@@ -139,3 +139,16 @@
     object-fit: contain;
     /* Mantiene proporzioni senza tagliare l'immagine */
 }
+
+.btn.btn-custom-blue {
+    background-color: #0077CC;
+    color: #FFF;
+    border: none;
+}
+
+.btn.btn-custom-blue:active,
+.btn.btn-custom-blue:hover,
+.btn.btn-custom-blue:focus {
+    background-color: #005A99;
+    color: #FFF;
+}

@@ -5,13 +5,13 @@
     <div class="container-fluid">
         <ul class="navbar-nav flex-row flex-nowrap overflow-auto w-100">
             <li class="nav-item">
-                <button type="button" class="btn btn-outline-primary me-2" onclick="filtrocategorie('')">
+                <button type="button" class="btn btn-custom-blue me-2" onclick="filtrocategorie('')">
                     Categorie</button>
             </li>
             <?php foreach ($templateParams["categorie"] as $categoria) {
                 $codCategoria = $categoria["codCategoria"]; ?>
                 <li class="nav-item">
-                    <button type="button" class="btn btn-outline-primary me-2"
+                    <button type="button" class="btn btn-custom-blue me-2"
                         onclick="filtrocategorie('<?php echo $codCategoria ?>')">
                         <?php echo $categoria["nome"]; ?>
                     </button>
