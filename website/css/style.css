@@ -9,7 +9,7 @@
     text-decoration: underline;
 }
 
-:target {
+.target-outline:target {
     border-radius: 5px;
     animation: remove-border 2s forwards;
 }
