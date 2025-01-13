@@ -12,6 +12,7 @@
 - [x] quando una notifica viene letta, viene immediatamentamente segnata come letta
 - [x] footer "ancorato" in basso
 - [x] rendere coerenti i due buttoni (buy now, add to cart) nella search page, in modo tale che entrambi usino sia icone che parole 
+- [ ] template base sign dovrebbe avere lo stesso footer del template base
 
 ## FIXES TO DO AFTER EVERYTHING ELSE IS DONE
 
@@ -21,3 +22,5 @@
 
 - [ ] nome del website
 - [ ] magari i link dei social nel footer possono essere non cliccabili
+- [ ] vogliamo mettere i numeri delle notifiche nel cerchietto sopra l'icona delle notifiche?
+- [ ] vogliamo spostare il bottone 'Leggi tutto' in notifiche a destra, da solo?
