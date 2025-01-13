@@ -32,5 +32,3 @@
 ## TOUGH ABOUT
 
 - [x] nome del website: DFGinformatica
-- [X] vogliamo rimuovere il valore preciso della media delle recensioni in search.php, e lasciare solo le stelline invece?
-- [X] vogliamo rendere il risultato della riserca nella search.php deterministico invece che randomico? (cioè ordinati rispetto al codProdotto per esempio)
