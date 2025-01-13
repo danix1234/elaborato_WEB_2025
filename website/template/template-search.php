@@ -39,23 +39,23 @@
                                 <h2 class="card-title"><?php echo $prodotto["nome"] ?></h2>
                             </div>
                         </div>
-                        <div class="row py-1">
-                            <div class="col-12">
-                                <p class="card-text"><?php echo $prodotto["descrizione"] ?></p>
-                            </div>
-                        </div>
-                        <div class="row py-1">
-                            <div class="col-12">
-                                <p class="card-text"><strong><?php echo $prodotto["prezzo"] . '€' ?></strong></p>
-                            </div>
-                            <div class="col-12">
-                                <p class="card-text">
-                                    <?php echo $review = $dbh->getAverageRating($prodotto["codProdotto"]); ?>
-                                    <?php echo generateStarRating($review); ?>
-                                </p>
-                            </div>
-                        </div>
                     </a>
+                    <div class="row py-1">
+                        <div class="col-12">
+                            <p class="card-text"><?php echo $prodotto["descrizione"] ?></p>
+                        </div>
+                    </div>
+                    <div class="row py-1">
+                        <div class="col-12">
+                            <p class="card-text"><strong><?php echo $prodotto["prezzo"] . '€' ?></strong></p>
+                        </div>
+                        <div class="col-12">
+                            <p class="card-text">
+                                <?php echo $review = $dbh->getAverageRating($prodotto["codProdotto"]); ?>
+                                <?php echo generateStarRating($review); ?>
+                            </p>
+                        </div>
+                    </div>
                     <div class="card-footer mt-5 align-bottom">
                         <div class="row">
                             <div class="col-6">
