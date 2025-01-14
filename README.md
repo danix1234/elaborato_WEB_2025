@@ -18,7 +18,7 @@
 - [x] template base sign dovrebbe avere lo stesso footer del template base
 - [ ] notifica per quando un prodotto termina da implementare al momento dell'acquisto singolo, o dell'intero carrello
 - [x] metti nome del website ovunque abbiano lasciato 'Nostro Sito' in precedenza
-- [ ] {BUG} crash in search.php quando si seleziona "Tutte le categorie" e si fa la ricerca. In versione mobile, il crash avviene semplicemente cliccando il bottone 'Categoria'
+- [x] {BUG} crash in search.php quando si seleziona "Tutte le categorie" e si fa la ricerca. In versione mobile, il crash avviene semplicemente cliccando il bottone 'Categoria'
 
 ## TO THINK ABOUT
 
