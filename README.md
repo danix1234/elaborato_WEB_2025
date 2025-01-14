@@ -15,9 +15,9 @@
 - [x] rendere coerenti i due buttoni (buy now, add to cart) nella search page, in modo tale che entrambi usino sia icone che parole
 - [x] non visualizzare nella search page i prodotti con quantita residua = 0
 - [x] migliora le query di popolazione del database, per avere dati in italiano, validi, e che abbiano senso
-- [ ] template base sign dovrebbe avere lo stesso footer del template base
+- [x] template base sign dovrebbe avere lo stesso footer del template base
 - [ ] notifica per quando un prodotto termina da implementare al momento dell'acquisto singolo, o dell'intero carrello
-- [ ] metti nome del website ovunque abbiano lasciato 'Nostro Sito' in precedenza
+- [x] metti nome del website ovunque abbiano lasciato 'Nostro Sito' in precedenza
 - [ ] {BUG} crash in search.php quando si seleziona "Tutte le categorie" e si fa la ricerca. In versione mobile, il crash avviene semplicemente cliccando il bottone 'Categoria'
 
 ## TO THINK ABOUT

@@ -11,11 +11,12 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="icon" type="image/png" href="./img/logo.jpg" />
 
-    <title>Nostro Sito<?php
-    if (isset($templateParams["titolo"])) {
-        echo " - " . "$templateParams[titolo]";
-    }
-    ?></title> <!-- TODO change title -->
+    <title><?php
+            echo $websiteName;
+            if (isset($templateParams["titolo"])) {
+                echo " - " . "$templateParams[titolo]";
+            }
+            ?></title> <!-- TODO change title -->
 </head>
 
 <body class="bg-white d-flex flex-column min-vh-100">
@@ -48,8 +49,33 @@
         ?>
     </main>
 
-    <footer class="text-center bg-custom-blue text-white">
-        sono il footer
+    <footer class="text-center text-white bg-custom-blue">
+        <div class="container-fluid justify-content-center p-4">
+            <div class="row">
+                <div class="col-12 col-md-6 mb-4 mb-md-0">
+                    <strong><?php echo $websiteName ?></strong>
+                    <p>
+                        Prodotti di informatica: laptop, smartphones, cuffie, gaming console,...
+                        Se vuoi qualche tecnologia, vieni da noi!
+                    </p>
+                </div>
+
+                <div class="col-12 col-md-6 mb-4 mb-md-0">
+                    <strong>Seguici</strong>
+                    <br />
+                    <div class=""> <!-- icon not centerted? -->
+                        <span class="text-white me-4"><span class="bi bi-facebook"></span></span>
+                        <span class="text-white me-4"><span class="bi bi-twitter"></span></span>
+                        <span class="text-white me-4"><span class="bi bi-instagram"></span></span>
+                        <span class="text-white me-4"><span class="bi bi-linkedin"></span></span>
+                    </div>
+                </div>
+                <hr />
+                <div class="text-center">
+                    Copyright © <?php echo date("Y") . " " . $websiteName; ?>. All rights reserved.
+                </div>
+            </div>
+        </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
