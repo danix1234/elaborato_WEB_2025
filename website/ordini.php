@@ -39,7 +39,7 @@ if (!empty($templateParams["ordini"])) {
         $templateParams["ordini"][$index]["immaginePreview"] = $prodottoPreview["immagine"];
         $templateParams["ordini"][$index]["totProdotti"] = count($prodotti);
     }
-    $templateParams["scripts"] = array("js/filter-orders.js");
 }
+$templateParams["scripts"] = array("js/filter-orders.js");
 
 require("template/base.php");
