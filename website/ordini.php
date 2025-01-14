@@ -40,6 +40,8 @@ if (!empty($templateParams["ordini"])) {
         $templateParams["ordini"][$index]["totProdotti"] = count($prodotti);
     }
 }
-$templateParams["scripts"] = array("js/filter-orders.js");
+if (!$templateParams["vuoto"]) {
+    $templateParams["scripts"] = array("js/filter-orders.js");
+}
 
 require("template/base.php");
