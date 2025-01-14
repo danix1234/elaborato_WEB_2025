@@ -61,7 +61,14 @@
                                         <span>Descrizione: <?php echo $item["descrizione"] ?></span>
                                     </div>
                                     <div class="row">
-                                        <span>Quantità residua: <?php echo $item["quantitaResidua"] ?></span>
+                                        <span>Quantità residua: <?php
+                                                                $left = $item["quantitaResidua"];
+                                                                if ($left == 0) {
+                                                                    echo '<span class="text-danger">ESAURITO!</span>';
+                                                                } else {
+                                                                    echo $left;
+                                                                }
+                                                                ?></span>
                                     </div>
                                     <div class="row">
                                         <span>Prezzo unitario: <?php echo $item["prezzo"] ?>€</span>
