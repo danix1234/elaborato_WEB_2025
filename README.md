@@ -16,13 +16,14 @@
 - [x] non visualizzare nella search page i prodotti con quantita residua = 0
 - [x] migliora le query di popolazione del database, per avere dati in italiano, validi, e che abbiano senso
 - [x] template base sign dovrebbe avere lo stesso footer del template base
-- [ ] notifica per quando un prodotto termina da implementare al momento dell'acquisto singolo, o dell'intero carrello
 - [x] metti nome del website ovunque abbiano lasciato 'Nostro Sito' in precedenza
 - [x] {BUG} crash in search.php quando si seleziona "Tutte le categorie" e si fa la ricerca. In versione mobile, il crash avviene semplicemente cliccando il bottone 'Categoria'
+- [x] i link dei social non sono cliccabili, visto che non hanno un link effettivo
+- [ ] notifica per quando un prodotto termina da implementare al momento dell'acquisto singolo, o dell'intero carrello
+- [ ] mettere i titoli nel footer al centro
 
 ## TO THINK ABOUT
 
-- [ ] magari i link dei social nel footer possono essere non cliccabili
 - [ ] vogliamo mettere i numeri delle notifiche nel cerchietto sopra l'icona delle notifiche?
 - [ ] vogliamo aggiungere le icone anche in "compra subito" e "aggiungi al carrello" bottoni nel prodotto? (stesse icone usate in search.php)
 - [ ] vogliamo aggiungere la quantità delle recensioni in prodotto.php, invece che lasciare solo la media dei voti?
