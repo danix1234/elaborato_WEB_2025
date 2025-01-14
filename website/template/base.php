@@ -10,11 +10,12 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="icon" type="image/png" href="./img/logo.jpg" />
 
-    <title>Nostro Sito<?php
-    if (isset($templateParams["titolo"])) {
-        echo " - " . "$templateParams[titolo]";
-    }
-    ?></title> <!-- TODO change title -->
+    <title><?php
+            echo $websiteName;
+            if (isset($templateParams["titolo"])) {
+                echo " - " . "$templateParams[titolo]";
+            }
+            ?></title> <!-- TODO change title -->
 </head>
 
 <body class="bg-white d-flex flex-column min-vh-100">
@@ -146,11 +147,10 @@
         <div class="container-fluid justify-content-center p-4">
             <div class="row">
                 <div class="col-12 col-md-6 mb-4 mb-md-0">
-                    <strong>Nostro Sito</strong>
+                    <strong><?php echo $websiteName ?></strong>
                     <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa velit quo nisi, placeat vero,
-                        ipsam provident repellat qui asperiores obcaecati sequi eligendi? Dolorem minus blanditiis
-                        cumque non nihil at error.
+                        Prodotti di informatica: laptop, smartphones, cuffie, gaming console,...
+                        Se vuoi qualche tecnologia, vieni da noi!
                     </p>
                 </div>
 
@@ -158,15 +158,15 @@
                     <strong>Seguici</strong>
                     <br />
                     <div class=""> <!-- icon not centerted? -->
-                        <a href="#" class="text-white me-4"><span class="bi bi-facebook"></span></a><a href="#"
-                            class="text-white me-4"><span class="bi bi-twitter"></span></a><a href="#"
-                            class="text-white me-4"><span class="bi bi-instagram"></span></a><a href="#"
-                            class="text-white me-4"><span class="bi bi-linkedin"></span></a>
+                        <span class="text-white me-4"><span class="bi bi-facebook"></span></span>
+                        <span class="text-white me-4"><span class="bi bi-twitter"></span></span>
+                        <span class="text-white me-4"><span class="bi bi-instagram"></span></span>
+                        <span class="text-white me-4"><span class="bi bi-linkedin"></span></span>
                     </div>
                 </div>
                 <hr />
                 <div class="text-center">
-                    Copyright © <?php echo date("Y"); ?> Nostro Sito. All rights reserved.
+                    Copyright © <?php echo date("Y") . " " . $websiteName; ?>. All rights reserved.
                 </div>
             </div>
         </div>
