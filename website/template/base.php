@@ -155,13 +155,14 @@
                 </div>
 
                 <div class="col-12 col-md-6 mb-4 mb-md-0">
-                    <strong>Seguici</strong>
-                    <br />
-                    <div class=""> <!-- icon not centerted? -->
-                        <span class="text-white me-4"><span class="bi bi-facebook"></span></span>
-                        <span class="text-white me-4"><span class="bi bi-twitter"></span></span>
-                        <span class="text-white me-4"><span class="bi bi-instagram"></span></span>
-                        <span class="text-white me-4"><span class="bi bi-linkedin"></span></span>
+                    <div class="text-center">
+                        <strong>Seguici</strong>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <span class="text-white mx-3"><span class="bi bi-facebook"></span></span>
+                        <span class="text-white mx-3"><span class="bi bi-twitter"></span></span>
+                        <span class="text-white mx-3"><span class="bi bi-instagram"></span></span>
+                        <span class="text-white mx-3"><span class="bi bi-linkedin"></span></span>
                     </div>
                 </div>
                 <hr />
@@ -170,9 +171,8 @@
                 </div>
             </div>
         </div>
-
-
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
