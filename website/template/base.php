@@ -34,7 +34,7 @@
     // Recupera la categoria selezionata
     $selectedCategoryId = isset($_GET['codCategoria']) ? $_GET["codCategoria"] : null;
     $selectedCategoryName = 'Tutte le categorie';
-    if (count($categories) >= $selectedCategoryId && !is_null($selectedCategoryId)) {
+    if (count($categories) >= $selectedCategoryId && !is_null($selectedCategoryId) && !empty($selectedCategoryId)) {
         $selectedCategoryName = $categories[$selectedCategoryId - 1]["nome"];
     }
 
