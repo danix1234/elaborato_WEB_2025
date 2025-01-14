@@ -246,3 +246,34 @@ VALUES
 (21, 2,  1, "Troppo costoso!",                                                                                                                                                      '2025-01-13 23:14:54'),
 (22, 2,  2, "Niente di che",                                                                                                                                                        '2025-01-13 23:16:27'),
 (22, 10, 5, "Lo consiglierò a tutte le mie amiche!",                                                                                                                                '2025-01-13 23:17:25');
+
+
+
+-- Additional entries to demonstrate functionality of order time filter (use franco@studio.unibo.it account for the demonstration)
+INSERT INTO ORDINE (dataOrdine, dataConsegna, statoOrdine, totale, pagato, codUtente)
+VALUES 
+('2025-01-13 21:01:39', '2025-01-13 21:02:34', 'Spedito', 1200.00, 1, 3),
+('2024-11-13 20:01:39', '2024-11-13 20:02:34', 'Spedito', 1000.00, 1, 3),
+('2024-08-13 19:01:39', '2024-08-13 19:02:34', 'Spedito', 1250.00, 1, 3),
+('2022-01-13 18:01:39', '2022-01-13 18:02:34', 'Spedito', 1750.00, 1, 3);
+
+INSERT INTO NOTIFICA (messaggio, tipoNotifica, letto, dataNotifica, codUtente)
+VALUES 
+("Ciao Franco, Hai completato il pagamento dell'ordine #27", "Pagamento Ordine", 1, "2025-01-13 21:02:23", 3),
+("Ciao Franco, L'ordine #27 è arrivata!",                    "Arrivo Ordine",    1, "2025-01-13 21:02:34", 3),
+("Ciao Franco, Hai completato il pagamento dell'ordine #28", "Pagamento Ordine", 1, "2024-11-13 20:02:23", 3),
+("Ciao Franco, L'ordine #28 è arrivata!",                    "Arrivo Ordine",    1, "2024-11-13 20:02:34", 3),
+("Ciao Franco, Hai completato il pagamento dell'ordine #29", "Pagamento Ordine", 1, "2024-08-13 19:02:23", 3),
+("Ciao Franco, L'ordine #29 è arrivata!",                    "Arrivo Ordine",    1, "2024-08-13 19:02:34", 3),
+("Ciao Franco, Hai completato il pagamento dell'ordine #30", "Pagamento Ordine", 1, "2022-01-13 18:02:23", 3),
+("Ciao Franco, L'ordine #30 è arrivata!",                    "Arrivo Ordine",    1, "2022-01-13 18:02:34", 3);
+
+INSERT INTO DETTAGLIO_ORDINE (codOrdine, codProdotto, quantita)
+VALUES 
+(27,  1, 1),
+(28,  4, 1),
+(29,  6, 1),
+(29,  8, 1),
+(29,  9, 1),
+(30,  11, 1),
+(30,  12, 1);
