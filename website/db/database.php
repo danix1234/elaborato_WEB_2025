@@ -238,6 +238,13 @@ class DatabaseHelper
                     WHERE CodUtente = ? AND dataConsegna < NOW() AND statoOrdine='In Spedizione'";
         return $this->parametrizedQuery($query, "i", $userId);
     }
+    public function getAllAdmins()
+    {
+        $query = "SELECT *
+                    FROM UTENTE
+                    WHERE privilegi AND NOT disabilitato";
+        return $this->simpleQuery($query);
+    }
     // ↑↑↑ LAST DANIELE QUERY ↑↑↑
 
     // ↓↓↓ FIRST GIUSEPPE QUERY ↓↓↓
@@ -388,7 +395,6 @@ class DatabaseHelper
               WHERE codProdotto = ?";
 
         return $this->parametrizedQuery($query, "i", $productId);
-
     }
     //da usare in un cinclo con un contatore per ottenre la quantita' totale
     //e se e' maggiore di una soglia chimare le altre query
