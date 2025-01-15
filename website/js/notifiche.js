@@ -76,7 +76,6 @@ function leggiNotifica(codNotifica) {
     // Richiesta fetch al server
     fetch(url.toString(), { method: 'GET' })
         .then(data => {
-            console.log("Risposta dal server:", data);
 
             // Aggiorna visivamente la notifica come "letta"
             const notificationElement = document.getElementById(`accordionExample-${codNotifica}`);
