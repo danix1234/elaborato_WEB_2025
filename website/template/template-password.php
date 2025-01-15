@@ -1,6 +1,6 @@
 <div class="row justify-content-center mx-1">
     <div class="col-12 col-md-6 col-lg-4 border rounded p-3">
-        <form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
+        <form action="utente-modifica-password.php" method="POST">
             <h1 class="text-center fw-bold mb-2"><?php echo $templateParams["tipo"]; ?></h1>
             <?php if (isset($templateParams["errore"])): ?>
                 <div class="text-danger mb-3">

@@ -48,7 +48,7 @@ VALUES
 ('Bose QuietComfort 35 II', 'Cuffie wireless con cancellazione del rumore',         12, 250.00,  'bose_qc35_ii.jpg',         0, 3),
 ('iPad Pro',                'Apple iPad Pro con display da 12,9 pollici',           10, 600.00,  'ipad_pro.jpg',             0, 4),
 ('Samsung Galaxy Tab S7',   'Tablet ad alta risoluzione di Samsung',                8,  700.00,  'galaxy_tab_s7.jpg',        0, 4),
-('Apple Watch Series 7',    'Smartwatch con monitoraggio delle attività fisiche',   20, 300.00,  'apple_watch_series_7.jpg', 0, 5),
+('Apple Watch Series 7',    "Smartwatch con monitoraggio delle attivita' fisiche",   20, 300.00,  'apple_watch_series_7.jpg', 0, 5),
 ('Samsung Galaxy Watch 4',  'Smartwatch con monitoraggio della frequenza cardiaca', 18, 350.00,  'galaxy_watch_4.jpg',       0, 5),
 ('Canon EOS R5',            'Fotocamera digitale ad alta risoluzione',              10, 900.00,  'canon_eos_r5.jpg',         0, 6),
 ('Sony Alpha a7 III',       'Fotocamera compatta con obiettivo zoom',               12, 850.00,  'sony_alpha_a7_iii.jpg',    0, 6),

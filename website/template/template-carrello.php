@@ -92,6 +92,6 @@
     <!--resoconto-->
     <div class="my-2 row justify-content-evenly">
         <p class="col-auto my-1 align-middle text-custom-totprice">Prezzo totale: <?php echo $total_price ?>€</p>
-        <button type="button" class="col-auto btn btn-custom-lgold" id="buy">Acquista</button>
+        <button type="button" class="col-auto btn btn-custom-lgold" id="buy"><span class="bi bi-cart-check"></span> Acquista</button>
     </div>
 </div>

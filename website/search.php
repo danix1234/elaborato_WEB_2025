@@ -2,6 +2,7 @@
 require_once("bootstrap.php");
 
 $templateParams["nome"] = "template-search.php";
+$templateParams["titolo"] = "Home";
 $templateParams["scripts"] = ["js/search.js", "js/product-buttons-home.js"];
 $templateParams["categorie"] = $dbh->getAllCategories();
 

@@ -43,8 +43,8 @@ $prodotto = $templateParams["prodotto"];
         </script>
         <!-- carrello -->
         <div class="d-grid gap-2 w-100">
-            <button id="button-add-cart" type="button" class="btn btn-custom-lgold">Aggiungi al Carrello</button>
-            <button id="button-buy-now" type="button" class="btn btn-custom-gold">Compra Subito</button>
+            <button id="button-add-cart" type="button" class="btn btn-custom-lgold"><span class="bi bi-bag-check"></span> Aggiungi al Carrello</button>
+            <button id="button-buy-now" type="button" class="btn btn-custom-gold"><span class="bi bi-cart-check"></span> Compra Subito</button>
             <?php if (isAdmin()) { ?>
                 <a href=<?php echo "admin-prodotto.php?productId=" . $_GET["productId"] ?>
                     class="btn btn-light border">Modifica</a>
