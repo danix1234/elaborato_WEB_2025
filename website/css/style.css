@@ -95,8 +95,8 @@
     border: none;
 }
 
-/* .btn.btn-custom-lgold:active,
-.btn.btn-custom-lgold:focus, */
+.btn.btn-custom-lgold:active,
+.btn.btn-custom-lgold:focus,
 .btn.btn-custom-lgold:hover {
     background-color: #805D15;
     color: #000;
@@ -141,7 +141,7 @@
 }
 
 .btn.btn-custom-blue {
-    background-color: #0077CC;
+    background-color: #2E4272;
     color: #FFF;
     border: none;
 }
@@ -149,6 +149,6 @@
 .btn.btn-custom-blue:active,
 .btn.btn-custom-blue:hover,
 .btn.btn-custom-blue:focus {
-    background-color: #005A99;
+    background-color: #162856;
     color: #FFF;
 }

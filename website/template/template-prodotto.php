@@ -1,4 +1,4 @@
-<?php
+<span?php
 $prodotto = $templateParams["prodotto"];
 ?>
 <div class="row mt-4 mx-md-2">
@@ -47,7 +47,7 @@ $prodotto = $templateParams["prodotto"];
             <button id="button-buy-now" type="button" class="btn btn-custom-gold"><span class="bi bi-cart-check"></span> Compra Subito</button>
             <?php if (isAdmin()) { ?>
                 <a href=<?php echo "admin-prodotto.php?productId=" . $_GET["productId"] ?>
-                    class="btn btn-light border">Modifica</a>
+                    class="btn btn-light border"><span class="bi bi-gear"></span> Modifica</a>
             <?php } ?>
             <div id="message-container" class="d-none"></div>
         </div>

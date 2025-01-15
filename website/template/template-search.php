@@ -1,9 +1,9 @@
 <script>
     const isLoggedIn = <?php echo json_encode(isLoggedIn()) ?>;
 </script>
-<nav class="navbar navbar-expand-lg navbar-light bg-light d-md-none overflow-auto">
+<nav class="navbar navbar-light bg-white d-md-none">
     <div class="container-fluid">
-        <ul class="navbar-nav flex-row flex-nowrap overflow-auto w-100">
+        <ul class="navbar-nav flex-row flex-nowrap overflow-auto w-100" >
             <li class="nav-item">
                 <button type="button" class="btn btn-custom-blue me-2" onclick="filtrocategorie('')">
                     Categorie</button>
