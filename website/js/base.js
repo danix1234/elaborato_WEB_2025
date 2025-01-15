@@ -20,7 +20,7 @@ function checkNotifications() {
                 notificationLink.innerHTML = `<span class="bi bi-bell"></span>`;
             }
         })
-        .catch(error => console.error('Error checking notifications:', error));
+        .catch(error => {});
 };
 
 setInterval(checkNotifications, 1000);
