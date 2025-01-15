@@ -1,4 +1,4 @@
-<span?php
+<?php
 $prodotto = $templateParams["prodotto"];
 ?>
 <div class="row mt-4 mx-md-2">
