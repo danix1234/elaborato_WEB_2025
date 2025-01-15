@@ -87,7 +87,7 @@
                                 <div class="row d-flex mt-3 mb-5">
                                     <div class="col-3 col-md-2">
                                         <a href="ordine.php?orderId=<?php echo $ordine['codOrdine']; ?>"><img
-                                                alt="preview-image"
+                                                alt=""
                                                 src="<?php echo UPLOAD_DIR . $ordine['immaginePreview']; ?>"
                                                 class="img-fluid me-2" /></a>
                                     </div>

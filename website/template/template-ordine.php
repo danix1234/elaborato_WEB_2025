@@ -31,8 +31,8 @@ if (sizeof($ordini) == 0) { ?>
                         <div class="card shadow">
                             <div class="card-body">
                                 <div class="row py-4">
-                                    <div class="col-md-2">
-                                        <img class="img-fluid" src="<?php echo UPLOAD_DIR . $ordine["immagine"] ?>" alt="" />
+                                    <div class="col-md-2"><a href="prodotto.php?productId=<?php echo $ordine["codProdotto"] ?>">
+                                        <img class="img-fluid" src="<?php echo UPLOAD_DIR . $ordine["immagine"] ?>" alt="" /></a>
                                     </div>
                                     <div class="col-md-10">
                                         <a href="prodotto.php?productId=<?php echo $ordine["codProdotto"] ?>" class="row link-custom">
